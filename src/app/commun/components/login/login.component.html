@@ -1,0 +1,13 @@
+   
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div id="form_login" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+        <mat-form-field>
+            <input matInput formControlName="login"
+                type="text"
+                required
+                placeholder="Votre login windows">
+        </mat-form-field>
+        <span class="legende">* 1ère lettre de votre prénom suivi de votre nom</span><br />
+        <button mat-raised-button color="primary" (click)="validerUtilisateur">Valider</button>
+    </div>
+</form>

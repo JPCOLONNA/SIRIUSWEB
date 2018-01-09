@@ -1,0 +1,31 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let action of listActions">
+    <!-- Entête de panel -->
+    <mat-expansion-panel-header>
+      <!-- Titre du panel -->
+      <mat-panel-title>
+        <span [matTooltip]="action.type_action" [matTooltipPosition]="rsc.positionTooltip">{{action.description}}</span>
+      </mat-panel-title>
+      <!-- Description du panel -->
+      <mat-panel-description fxLayout="row" fxLayoutAlign="space-between start">
+        <span>{{action.duree_validite}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="column" fxLayoutAlign="start end">
+      <div *ngIf="id_liste_pieces!=''">
+        <a (click)="afficheModalListePieces(action.id_liste_pieces)">Pièce(s) justificative(s) - {{action.id_liste_pieces}}</a>
+        <i class="fa fa-angle-right"></i>
+      </div>
+    </div>
+
+    <!-- Tableau des motifs d'action -->
+    <app-conditions-particulieres-motifs-action 
+      [data]="action.liste_detail_action">
+    </app-conditions-particulieres-motifs-action>
+
+  </mat-expansion-panel>
+
+</mat-accordion>
+
+
+

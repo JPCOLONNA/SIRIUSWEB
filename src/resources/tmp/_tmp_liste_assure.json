@@ -1,0 +1,42 @@
+{
+    "success": "true",
+    "info": [{"variable": "", "code": "", "libelle": "", "gravite": ""}],	
+    "libelle" : {
+        "id": 			"N° d'assuré",
+        "num_ss": 		"N° de sécurité sociale",
+        "date_naissance": "Date de Naissance",
+        "nom": 			"Nom",
+        "prenom": 		"Prénom",
+        "code_postal":	"Code Postal",
+        "ville": 		"Ville"
+    },
+    "liste_assures": [
+        {
+            "id": 			"3225965",
+            "num_ss":		"1761299234025",
+            "date_naissance" :"01/12/1976",
+            "nom" :			"KEO",
+            "prenom":		"DAVUTHEA",
+            "code_postal":	"94100",
+            "ville": 		"ST MAUR DES FOSSES"
+        },
+        {
+            "id": 			"3391846",
+            "num_ss":		"2581299039925",
+            "date_naissance" :"13/12/1958",
+            "nom" :			"DOS SANTOS",
+            "prenom":		"MARIA",
+            "code_postal":	"78190",
+            "ville": 		"TRAPPES"
+        },
+        {
+            "id": 			"3979627",
+            "num_ss":		"2840129232114",
+            "date_naissance" :"18/01/1984",
+            "nom" :			"HERLEDANT",
+            "prenom":		"JESSICA",
+            "code_postal":	"29000",
+            "ville": 		"QUIMPER"
+        }
+    ]
+}

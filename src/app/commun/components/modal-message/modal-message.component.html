@@ -1,0 +1,13 @@
+<!-- Entete de la modal : fil d'ariane + titre -->
+<app-header-modal [routeTmp]="data.route" [titleModal]="rscMessage.titleModal" [nameModal]="rscMessage.nameModal"></app-header-modal>
+
+<!-- Contenu -->
+<div mat-dialog-content>
+  <p>{{messages}}</p>
+</div>
+
+<!-- Bouton -->
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <!-- tabindex="-1" pour éviter que le focus soit mis sur le bouton à l'ouverture de la modal -->
+  <button mat-raised-button color="primary" (click)="closeModal()" tabindex="-1">Fermer</button>
+</div>

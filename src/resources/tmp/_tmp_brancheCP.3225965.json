@@ -1,0 +1,245 @@
+{
+    "id_liste_structure" : "1",
+    "categorie":"Pour toutes catégories",
+    "type_cotisation":"Pour tous type de cotisations",
+    "contrat":"Contrat : Socle Franchise",
+    "envoi_carte_tp":"JP_COLONNA",    
+    "envoi_carte_tp_desc":"Carte de Tiers-Payant envoyée par JP_COLONNA",
+    "id_liste_pieces":"1",
+    "liste_actions" :[
+        {
+            "type_action":	"AFFILIATION",
+            "description": 	"Affiliation de l'assuré par le Web",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "1",
+            "liste_detail_action" :[
+                {
+                    "motif": "AFFILIATION",
+                    "motif_desc": "Affiliation de l'assuré par le Web",
+                    "etat_cible": "110",
+                    "anciennete" : "",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "31"
+                }
+            ]
+        },
+        {
+            "type_action":	"AJOUT_AYANT_DROIT",
+            "description": 	"Ajouter un Ayant droit",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "ASCENDANTS_A_CHARGE",
+                    "motif_desc": "ASCENDANTS_A_CHARGE",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "16"
+                },
+                {
+                    "motif": "AYT_DROIT_-20 ans",
+                    "motif_desc": "Ayant droits -20 ans",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "12"
+                },
+                {
+                    "motif": "AYT_DROIT_-28 ans",
+                    "motif_desc": "Ayant droits 21 et 28 ans étudiant et affilié à RO",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "13"
+                },
+                {
+                    "motif": "AYT_DROIT_AAH_-21ans",
+                    "motif_desc": "Ayant droits AAH avant 21 ans",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "15"
+                },
+                {
+                    "motif": "AYT_DROIT_alternance",
+                    "motif_desc": "Ayant droits en alternance",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "14"
+                },
+                {
+                    "motif": "CONJT_CONCB_A_CHARGE",
+                    "motif_desc": "Conjoint / Concubin à charge",
+                    "etat_cible": "110",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"1 Mois suivant le départ / émission du contrat",
+                    "id_liste_pieces": "17"
+                }
+            ]
+        },
+        {
+            "type_action":	"EVOL_COUVERTURE",
+            "description": 	"Evolution de la Couverture",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "nom_liste_piece":	"",
+            "nom_liste_piece_desc":"",
+            "liste_detail_action" :[
+                {
+                    "motif": "SOUSCRIPT_OPTION_RG",
+                    "motif_desc": "Augmentation de la couverture",
+                    "etat_cible": "120",
+                    "anciennete" : "1 MOIS_MAX",
+                    "commentaires":"Prévoir une carence de trois mois pendant laquelle vous continuerez à bénéficier des garanties de l’Option 1 si la la demande est faite plus de 2 mois après affiliation.",
+                    "id_liste_pieces": "31"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_AYANT_DROIT",
+            "description": 	"Résiliation Ayant Droit",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "AUTRE_REGIME",
+                    "motif_desc": "Affiliation à un régime obligatoire autre",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "5"
+                },
+                {
+                    "motif": "CMU_C_ACS",
+                    "motif_desc": "Accès à la CMU_C ou ACS",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "10"
+                },
+                {
+                    "motif": "RESIL_CONTRAT_ADH",
+                    "motif_desc": "Résiliation du contrat adhésion",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                },
+                {
+                    "motif": "SITUATION_FAMILLE",
+                    "motif_desc": "Modification situation familiale",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "6"
+                },
+                {
+                    "motif": "VIE_CONTRAT",
+                    "motif_desc": "Vie du Contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "8"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_CONTRAT_ADH",
+            "description": 	"Résiliation à l'échéance",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "ECHEANCE_CONTRAT",
+                    "motif_desc": "Échéance du contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_OPTION",
+            "description": 	"Résiliation Option",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "RESIL_CONTRAT_ADH",
+                    "motif_desc": "Résiliation du contrat adhésion",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                }, 
+                {
+                    "motif": "SITUATION_FAMILLE",
+                    "motif_desc": "Modification situation familiale",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "6"
+                },
+                {
+                    "motif": "VIE_CONTRAT",
+                    "motif_desc": "Vie du Contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "8"
+                },{
+                    "motif": "AUTRE_REGIME",
+                    "motif_desc": "Affiliation à un régime obligatoire autre",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "5"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_SOUSCRIPT",
+            "description": 	"Résiliation Souscripteur",
+            "duree_validite": 	"Durée de validité : 1 MOIS_MAX",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "RESIL_CONTRAT_ADH",
+                    "motif_desc": "Résiliation du contrat adhésion",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                },
+                {
+                    "motif": "VIE_CONTRAT",
+                    "motif_desc": "Vie du Contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "8"
+                }
+
+            ]
+        },
+        {
+            "type_action":	"SOUSCRIP_OPTION",
+            "description": 	"Souscription option",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "SOUSCRIPT_OPTION_RG",
+                    "motif_desc": "Souscription à l'Option RG",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "31"
+                }
+            ]
+        }
+    ]
+}    

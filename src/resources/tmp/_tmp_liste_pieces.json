@@ -1,0 +1,55 @@
+{
+    "libelle_entete" : {
+        "nom_liste":"Nom de la liste de pièces",
+        "description":"Description de la liste de pièces",
+        "commentaires" :"Commentaires de la liste de pièces"
+    },
+    "nom_liste":"BIA_ACCOR_FILIALE",
+    "description":"Justif adhésion base FILIALE",
+    "commentaires" :"",
+    "libelle_detail" : {
+        "nom_piece":"Code de la pièce",
+        "description" :"Nom  de la pièce",
+        "commentaires":	"Commentaires de la pièce"
+    },
+    "liste_detail_a_transmettre": [
+        {
+            "nom_piece":"BSI_FILIALE",
+            "description":"Bulletin de souscription individuel Filiale",
+            "commentaires":"",
+            "operateur":""
+        },
+        {
+            "nom_piece":"MANDAT_PRELEVEMENT",
+            "description":"Mandat de prélèvement",
+            "commentaires":"",
+            "operateur":"et"
+        }
+    ],
+    "liste_detail_a_receptionner": [
+        {
+            "nom_piece":"BSI_FILIALE",
+            "description":"Bulletin de souscription individuel Filiale",
+            "commentaires":"",
+            "operateur":""
+        },
+        {
+            "nom_piece":"MANDAT_PRELEVEMENT",
+            "description":"Mandat de prélèvement",
+            "commentaires":"",
+            "operateur":"et"
+        },
+        {
+            "nom_piece":"RIB",
+            "description":"Relevé d'identité Bancaire",
+            "commentaires":"",
+            "operateur":""
+        },
+        {
+            "nom_piece":"ATTESTATION_SECU",
+            "description":"Copie de l'attestation de sécurité sociale et celle des ayants droits",
+            "commentaires":"",
+            "operateur":"ou"
+        }
+    ]
+}

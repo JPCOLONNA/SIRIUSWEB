@@ -1,0 +1,197 @@
+// Theme palette
+@import "theme.scss";
+
+/* ------------------- GENERAL ----------------- */
+hr.down {
+    border: 0;
+    background-color: $default-line-color;
+    height: 3px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+hr.down-light {
+    border: 0;
+    background-color: $default-line-color;
+    height: 1px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+hr.down-h2 {
+    border: 0;
+    background-color: $default-color;
+    height: 2px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+a{
+    border-bottom: 1px solid currentColor;
+    cursor: pointer;
+}
+
+a:hover{
+    border-bottom: 1px solid $default-color;
+}
+
+.center
+{
+    text-align: center;
+}
+
+/* ------------------- CONTENEUR ----------------- */
+.contenair
+{
+    padding:10px 15px;
+}
+
+/* ------------------- TEXTES ----------------- */
+
+h1, .titre1 {
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 700;
+    margin:0px;
+    padding: 0px;
+}
+
+h2, .titre2 {
+    color: $default-color;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+    margin:0px;
+    padding: 0px;
+}
+
+h3, .titre3 {
+    font-family: Montserrat;
+    font-size: 14px;
+}
+
+.header-table {
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+.small-text
+{
+    font-size: 12px;
+}
+
+.legende
+{
+    font-size: 12px !important;
+    font-style: italic;
+}
+
+.showcase
+{
+    font-weight: bold;
+}
+
+.clickable
+{
+    cursor: pointer;
+}
+
+/* ------------------- ICONES ----------------- */
+
+.large-icon
+{
+    font-size: 30px !important;
+}
+
+.middle-icon
+{
+    font-size: 23px !important;
+}
+
+.small-icon
+{
+    font-size: 15px !important;
+}
+
+//les icones sont utilisées comme des boutons
+.fa
+{
+    cursor: pointer;
+}
+
+/* Icone non cliquable*/
+.no-click
+{
+    cursor: initial;
+}
+
+/* Croix pour fermer une modal*/
+.closeModal
+{
+    margin-bottom: 10px;
+    text-align: right;
+    width: 100%
+}
+
+
+.headerCenter, .dataCenter
+{
+    text-align: center;
+}
+
+/* ------------------- MENU ----------------- */
+mat-sidenav a{
+    border: none;
+}
+/* Lien actif */
+mat-sidenav .linkActive 
+{
+    color:$default-color !important;
+    border-bottom: 2px solid $default-color !important;
+}
+
+/* Boutons pour rétracter et déplier le menu */
+.btnOpenClose i
+{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.colonneCentrale mat-sidenav-content
+{
+    background: #fff !important;
+    border-left: 2px solid $default-line-color;
+    padding: 5px 10px;
+} 
+.colonneCentrale mat-sidenav
+{
+    padding-right: 10px;
+} 
+
+/* ---------------- Tableau ---------------- */
+// Retaille la largeur des tailles de façon automatique selon le contenu
+//Par défaut toutes les colonnes sont de la même taille
+.mat-table {
+    display: table !important;
+    width: 100% !important;
+
+    > .mat-header-row, > .mat-row {
+        display: table-row !important;
+        padding: 0 !important;
+        border: none !important;
+
+        > .mat-header-cell, > .mat-cell {
+            display: table-cell !important;
+            height: 48px !important;
+            vertical-align: middle !important;
+            
+            padding-right:5px !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+        }
+    }
+}

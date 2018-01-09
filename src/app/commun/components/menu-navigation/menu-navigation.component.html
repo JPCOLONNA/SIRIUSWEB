@@ -1,0 +1,9 @@
+<mat-nav-list *ngIf="menu!=''">
+    <a mat-list-item [routerLink]="menuItem.url" routerLinkActive="linkActive" *ngFor="let menuItem of menu" [class.hidden]="menuItem.isActif==false"> 
+        {{ menuItem.nom }}
+    </a>
+</mat-nav-list>
+
+<!--<div *ngFor="let menuItem of menu">
+    <a [routerLink]="menuItem.url"> {{ menuItem.nom }} </a>
+</div>-->

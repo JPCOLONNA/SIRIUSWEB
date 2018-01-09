@@ -1,0 +1,15 @@
+{
+    "environnement": "PRODUCTION",
+    "base": {
+        "domain": "http://srvproxy.jpcolonna.fr:2535",
+        "url": "http://srvproxy.jpcolonna.fr:2535/API"
+    },
+    "ged": {
+        "baseUrl": "http://srvproxy.jpcolonna.fr:2535/GED/es_jp_colonna/services/JPCGEDExtranet",
+        "login": "sirius",
+        "password": "sirius"
+    },
+    "keys": {
+        "googleAPI": ""
+    }
+}

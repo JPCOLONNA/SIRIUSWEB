@@ -1,0 +1,100 @@
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
+
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>
+
+<!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
+<ng-template #pageContent>
+    <!-- En-tête -->
+    <div class="contenair" fxLayout="column" fxLayoutAlign="start stretch">
+        <h1>{{rscBaseTampon.eventDetail.title}}</h1>
+        <hr class="down">
+        <div fxLayout="row" fxLayoutAlign="space-between start">
+            <!-- Informations de l'évènement -->
+            <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="30">
+                <h2>{{rscBaseTampon.eventDetail.titleInfoEvenement}}</h2>
+                <hr class="down-h2">
+                <div>
+                    {{rscBaseTampon.label.typeAction}} :
+                    <span [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span><br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}<br /><br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
+                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement}} - {{eventDetail.evenement.heure_traitement}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}} <br />
+                </div>
+            </div>
+
+            <!-- Informations assuré/société -->
+            <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="30">
+                <h2>{{rscBaseTampon.eventDetail.titleInfoEntite}}</h2>
+                <hr class="down-h2">
+                <div>
+                    {{rsc.label.numAssure}} {{eventDetail.evenement.id_assure}} - {{eventDetail.evenement.nom_assure}} {{eventDetail.evenement.prenom_assure}}<br /><br /> {{rsc.label.numSociete}} {{eventDetail.evenement.id_societe}} - {{eventDetail.evenement.raison_sociale}}
+                </div>
+            </div>
+        </div>
+
+        <hr class="down-light">
+
+        <!-- Détail de l'évènement -->
+        <div>
+            <!-- Menu d'accès à chaque aprtie de détail d'une action/évènement -->
+            <mat-sidenav-container>
+                <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
+                    <mat-nav-list>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="eventDetail.assure!=''" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
+                {{menuDetail.assures.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="eventDetail.beneficiaires!=''" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
+                {{menuDetail.beneficiaires.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="eventDetail.couvertureAss!=''" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                {{menuDetail.couvertureAssure.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="eventDetail.couvertureBenef!=''" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                {{menuDetail.couvertureBenef.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="eventDetail.infoSalarie!=''" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
+                {{menuDetail.infosSalarie.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="eventDetail.infoRib!=''" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
+                {{menuDetail.infosRIB.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
+                {{menuDetail.documents.nomEcran}}
+            </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
+                {{menuDetail.anomalies.nomEcran}}
+            </a>
+                    </mat-nav-list>
+                </mat-sidenav>
+
+                <!-- Contenu de la div contenant le détail d'une action/évènement selon le choix dans le menu -->
+                <mat-sidenav-content id="contentEventDetail">
+                    <div class="btnOpenClose">
+                        <i class="fa fa-angle-double-right" (click)="sidenav.toggle()" *ngIf="!sidenavIsOpened"></i>
+                        <i class="fa fa-angle-double-left" (click)="sidenav.toggle()" *ngIf="sidenavIsOpened"></i>
+                    </div>
+                    <div>
+                        <!-- Informations assurés -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="eventDetail.liste_assure">
+                        </app-event-detail-assure>
+
+                        <!-- Liste des bénéficiaires -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="eventDetail.liste_beneficiaires">
+                        </app-event-detail-assure>
+
+
+                    </div>
+                </mat-sidenav-content>
+            </mat-sidenav-container>
+        </div>
+        <hr class="down-light">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <button mat-raised-button color="primary" *ngIf="autorisationService.isAutorise('WBTFICHE','creer')">{{rscBaseTampon.eventDetail.label.validationDefinitive}}</button>
+            <button mat-raised-button color="warn" *ngIf="autorisationService.isAutorise('WBTFICHE','supprimer')">{{rscBaseTampon.eventDetail.label.suppressionDefinitive}}</button>
+        </div>
+    </div>
+
+</ng-template>

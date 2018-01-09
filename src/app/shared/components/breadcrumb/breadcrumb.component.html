@@ -1,0 +1,10 @@
+<div class="breadcrumb titre3" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+  <a href="/"><i class="fa fa-home middle-icon no-click"></i></a>
+  <div *ngFor="let breadcrumb of breadcrumbs" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+    <i class="fa fa-angle-right small-icon"></i>
+    <!-- Activation des liens si ce n'est pas une modal et q'il exisite un lien  -->
+    <a [routerLink]="[breadcrumb.url, breadcrumb.params]" *ngIf="(titleModal==''||titleModal==undefined) && breadcrumb.url!='' && breadcrumb.url!=undefined">{{ breadcrumb.label }}</a>
+    <!-- Si c'est une modal ou pas de lien -->
+    <span *ngIf="(titleModal!='' && titleModal!=undefined) || breadcrumb.url=='' || breadcrumb.url==undefined">{{ breadcrumb.label }}</span>
+  </div>
+</div>

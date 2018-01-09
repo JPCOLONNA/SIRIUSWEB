@@ -1,0 +1,37 @@
+<!-- Contenu du panel -->
+<mat-table #table [dataSource]="dataSource" matSort>
+    {{dataSource}}
+    <!-- Motif -->
+    <ng-container matColumnDef="motif">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Motif </mat-header-cell>
+        <mat-cell *matCellDef="let detailAction" [matTooltip]="detailAction.motif" [matTooltipPosition]="rsc.positionTooltip"> {{detailAction.motif_desc}} </mat-cell>
+    </ng-container>
+
+    <!-- Ancienneté -->
+    <ng-container matColumnDef="anciennete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ancienneté requise </mat-header-cell>
+        <mat-cell *matCellDef="let detailAction"> {{detailAction.anciennete}} </mat-cell>
+    </ng-container>
+
+    <!-- Commentaires -->
+    <ng-container matColumnDef="commentaires">
+        <mat-header-cell *matHeaderCellDef class="commentaires">Commentaires</mat-header-cell>
+        <mat-cell *matCellDef="let detailAction" class="commentaires"> {{detailAction.commentaires}} </mat-cell>
+    </ng-container>
+
+    <!-- Liste de pièces -->
+    <ng-container matColumnDef="listPiece">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let detailAction"><a (click)="openModalListePieces(detailAction.id_liste_pieces)"> Pièce(s) justificative(s) - {{detailAction.id_liste_pieces}}</a> <i class="fa fa-angle-right"></i> </mat-cell>
+    </ng-container>
+
+    <!-- Entête de tableau -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<!-- Pagination -->
+<mat-paginator #paginator 
+  [pageSize]="10"
+  [pageSizeOptions]="[10,25,50]">
+</mat-paginator>

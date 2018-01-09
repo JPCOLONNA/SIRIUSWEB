@@ -1,0 +1,26 @@
+<!-- TO DO :  Lister les applications -->
+<!-- TO DO : controler droit d'accès -->
+<div class="contenair" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+
+    <!-- Boutons ASSURES -->
+    <button mat-raised-button (click)="redirectTo('assures')" fxFlex="20">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <i class="fa fa-users middle-icon"></i>ASSURES
+        </div>
+    </button>
+
+    <!-- Boutons BASE TAMPON -->
+    <button mat-raised-button (click)="redirectTo('tampon')" fxFlex="20">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <i class="fa fa-database middle-icon"></i>BASE TAMPON
+        </div>
+    </button>
+
+    <!-- Boutons PYTHIE -->
+    <button mat-raised-button (click)="redirectTo('pythie')" fxFlex="20">
+        <div fxLayout="column" fxLayoutAlign="space-around center">
+            <i class="fa fa-cubes middle-icon"></i>
+            <span>PYTHIE</span>
+        </div>
+    </button>
+</div>

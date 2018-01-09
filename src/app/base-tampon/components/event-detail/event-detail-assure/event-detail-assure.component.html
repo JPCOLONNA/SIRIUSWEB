@@ -1,0 +1,46 @@
+<!-- Lorsqu'il y a qu'un assuré pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
+<div *ngIf="listAssures!=null && listAssures.length == 1">
+    <div class="numAssure">{{rsc.label.numAssure}} {{listAssures[0].id_assure}} - {{listAssures[0].nom}} {{listAssures[0].prenom}} </div>
+    <app-formulaire-assure [assure]="listAssures[0]" [action]="action"></app-formulaire-assure>
+</div>
+
+<!-- S'il y a plusieurs assure, affiche chaque formulaire par assuré -->
+<mat-accordion *ngIf="listAssures!=null && listAssures.length > 1">
+    <mat-expansion-panel *ngFor="let assure of listAssures">
+        <!-- Entête de panel -->
+        <mat-expansion-panel-header>
+            <!-- Titre du panel -->
+            <mat-panel-title>
+                <span>{{rsc.label.numAssure}} {{assure.id_assure}} - {{assure.nom}} {{assure.prenom}} </span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- Formulaire d'assuré -->
+        <app-formulaire-assure [assure]="assure" [action]="action"></app-formulaire-assure>
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+
+<!-- Lorsqu'il y a qu'un assuré pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
+<div *ngIf="listBeneficiaires!=null && listBeneficiaires.length == 1">
+    <div class="numAssure">{{listBeneficiaires[0].nom}} {{listBeneficiaires[0].prenom}} </div>
+    <app-formulaire-assure [assure]="listBeneficiaires[0]" [action]="action"></app-formulaire-assure>
+</div>
+
+<!-- S'il y a plusieurs assure, affiche chaque formulaire par assuré -->
+<mat-accordion *ngIf="listBeneficiaires!=null && listBeneficiaires.length > 1">
+    <mat-expansion-panel *ngFor="let assure of listBeneficiaires">
+        <!-- Entête de panel -->
+        <mat-expansion-panel-header>
+            <!-- Titre du panel -->
+            <mat-panel-title>
+                <span>{{assure.nom}} {{assure.prenom}} </span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <!-- Formulaire d'assuré -->
+        <app-formulaire-assure [assure]="assure" [action]="action"></app-formulaire-assure>
+
+    </mat-expansion-panel>
+</mat-accordion>

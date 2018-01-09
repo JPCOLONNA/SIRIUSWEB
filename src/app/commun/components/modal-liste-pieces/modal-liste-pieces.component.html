@@ -1,0 +1,67 @@
+<!-- Entete de la modal : fil d'ariane + titre -->
+<app-header-modal [routeTmp]="data.route" [titleModal]="rscListePieces.titleModal" [nameModal]="rscListePieces.nameModal"></app-header-modal>
+
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
+
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>
+
+<!-- Contenu -->
+<ng-template #pageContent>
+  <div mat-dialog-content fxLayout="column" fxLayoutAlign="none stretch"  >
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <span [matTooltip]="listePieces.nom_liste" [matTooltipPosition]="rsc.positionTooltip" fxFlex="33">{{listePieces.description}}</span>
+        <div fxFlex="65">{{listePieces.commentaires}}</div>
+    </div>
+    <h2>A transmettre</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start" class="header-table">
+        <span [matTooltip]="listePieces.libelle_detail.nom_piece" [matTooltipPosition]="rsc.positionTooltip" fxFlex="35">{{listePieces.libelle_detail.description}}</span>
+        <div fxFlex="65">{{listePieces.libelle_detail.commentaires}}</div>
+    </div>
+    
+    <!-- Pour chaque pièce à transmetttre --> 
+    <div *ngFor="let piece of listePieces.liste_detail_a_transmettre">
+      <hr class="down-light" *ngIf="piece.operateur=='' || piece.operateur == 'et'">
+      <!-- Affiche l'opérateur s'il est égale à "ou" -->
+      <div *ngIf="piece.operateur=='ou'" class="operateur">{{piece.operateur | uppercase}}</div>
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+          <span [matTooltip]="piece.nom_piece" [matTooltipPosition]="rsc.positionTooltip" fxFlex="33">{{piece.description}}</span>
+          <div fxFlex="65">
+            {{piece.commentaires | truncate : 250}}
+            <i class="fa fa-plus-circle" *ngIf="piece.commentaires?.length>250" (click)="afficheModalPlusDInfo(piece.description)"></i>
+          </div>
+      </div>
+    </div>
+
+    <h2>A réceptionner</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start" class="header-table">
+        <span [matTooltip]="listePieces.libelle_detail.nom_piece" [matTooltipPosition]="rsc.positionTooltip" fxFlex="35">{{listePieces.libelle_detail.description}}</span>
+        <div fxFlex="65">{{listePieces.libelle_detail.commentaires}}</div>
+    </div>
+    
+    <!-- Pour chaque pièce à transmetttre --> 
+    <div *ngFor="let piece of listePieces.liste_detail_a_receptionner">
+      <hr class="down-light" *ngIf="piece.operateur=='' || piece.operateur == 'et'">
+      <div *ngIf="piece.operateur=='ou'"  class="operateur">{{piece.operateur | uppercase}}</div>
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+          <span [matTooltip]="piece.nom_piece" [matTooltipPosition]="rsc.positionTooltip" fxFlex="33">{{piece.description}}</span>
+          <div fxFlex="65">
+            {{piece.commentaires | truncate : 250}}
+            <i class="fa fa-plus-circle" *ngIf="piece.commentaires?.length>250" (click)="afficheModalPlusDInfo(piece.description)"></i>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<!-- Bouton -->
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <!-- tabindex="-1" pour éviter que le focus soit mis sur le bouton à l'ouverture de la modal -->
+  <button mat-raised-button color="primary" (click)="closeModal()" tabindex="-1">Fermer</button>
+</div>

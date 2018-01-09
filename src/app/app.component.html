@@ -1,0 +1,73 @@
+<!-- Equivalent au <body> -->
+<mat-sidenav-container>
+
+    <!-- COLONNE DE GAUCHE -->
+    <mat-sidenav mode="side" position="start" opened fixedInViewport>
+        <div fxLayout="column" fxLayoutAlign="start stretch" id="colonneGauche" fxLayoutGap="5px">
+            <!-- Informatiosn applications et environnement -->
+            <div id="nom_application"><i [class]="iconApplication"></i> {{nomApplication}}</div>
+            <div class="center">{{nomEnvironnement}}</div>
+            <hr class="down"> 
+
+            <!-- Choix de l'application -->
+            <!--<mat-form-field>
+                <mat-select placeholder="Liste des applications">
+                    <mat-option *ngFor="let application of listeApplications" [value]="application.url">
+                        {{ application.nom }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>-->
+
+            <!-- Accès rapideà un écran via son code -->
+            <!--<mat-form-field>
+                <input matInput placeholder="Accès rapide au menu">
+                <span matPrefix><i class="fa fa-search" aria-hidden="true">&nbsp;&nbsp;</i></span>
+            </mat-form-field>-->
+
+            <!-- Menu de navifation selon l'application -->
+            <app-menu-navigation></app-menu-navigation>
+        </div>
+    </mat-sidenav>
+
+    <!-- CENTRE DE LA PAGE -->
+    <div class="colonneCentrale">
+        <!-- Header de la page -->
+        <div id="haut_de_page" class="contenair" fxLayout="row" fxLayoutAlign="space-between center">
+            
+            <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="75">
+
+                <!-- Message défilant - Conteneur -->
+                <div id="message"fxLayout="row" fxLayoutAlign=" none" style="width:100%">
+                    <i class="fa fa-info-circle middle-icon" *ngIf="messages!=''" (click)="afficheModalMessage()"></i>
+                    <!-- Message défilant --> 
+                    <marquee *ngIf="messageAffiche && messages!=''" direction="left" behavior="scroll" scrollamount="6"> {{messages}}</marquee>
+                    <!-- Boutons pour afficher/masquer les messages défilants -->
+                    <i class="fa fa-times" *ngIf="messageAffiche && messages!=''" (click)="afficheMessage(false)"></i>
+                    <i class="fa fa-play " id="btn_play" *ngIf="!messageAffiche && messages!=''" (click)="afficheMessage(true)"></i>
+                </div>
+
+                <!-- Fil d'ariane -->
+                <app-breadcrumb (nomEcran)= "onChangeNomEcran($event)"></app-breadcrumb>
+            </div>
+
+            <!-- Information utilisateur et générale (date/heure et nom de l'écran) -->
+            <div  id="information_utilisateur" fxLayout="row" fxLayoutAlign="end center"fxLayoutGap="20px">
+                <!-- Lien vers modal PEGASE : liste documents édité par le gestionnaire connecté -->
+                <i class="fa fa-print large-icon"></i>
+                <div fxLayout="column" fxLayoutAlign="space-between end">
+                    <span>Sandra GAUTHIER</span>
+                    <span>{{dateDuJour | date:'fullDate' | uppercase}} - {{dateDuJour | date:'shortTime'}}</span>
+                    <span>{{nomEcran | uppercase}}</span>
+                </div>
+            </div>
+        </div>
+        <!-- Contenu de la page -->
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- COLONNE DE DROITE -->
+    <mat-sidenav mode="side" position="end" closed fixedInViewport>
+        End sidenav content
+    </mat-sidenav>
+
+</mat-sidenav-container>

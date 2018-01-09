@@ -1,0 +1,8 @@
+<!-- Contenu affiché selon l'url, appel de 2 méthodes pour réaliser des actions 
+     aux chargement et à la fermeture du composant appelé -->
+<router-outlet 
+  (activate)="componentAdded($event)" 
+  (deactivate)="componentRemoved($event)">
+</router-outlet>
+
+

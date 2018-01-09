@@ -1,0 +1,83 @@
+{
+    "listeApplications": [{
+            "url": "/pythie",
+            "nom": "PYTHIE"
+        },
+        {
+            "url": "/assure",
+            "nom": "ASSURES"
+        },
+        {
+            "url": "/tampon",
+            "nom": "BASE TAMPON"
+        }
+    ],
+    "modalMessages": {
+        "nameModal": "WCINFORMATIONS",
+        "titleModal": "Informations"
+    },
+    "modalListePieces": {
+        "nameModal": "WCLISTEPIECES",
+        "titleModal": "Liste de pièces"
+    },
+    "modalListeStructure": {
+        "nameModal": "WPYLISTESTRUCTURE",
+        "titleModal": "Composition familiale possible"
+    },
+
+    "label":
+    {
+        "numAssure": "N° d'assuré",
+        "civilite": "Civilité",
+        "nom": "Nom",
+        "prenom": "Prénom",
+        "adresse":"Adresse",
+        "adresseSuite":"Complément d'adresse",
+        "codePostal": "Code postal",
+        "ville":"Ville",
+        "telephone": "Téléphone",
+        "email":"Email",
+        "fax":"Fax",
+        "dateNaissance": "Date de naissance",
+        "situationFamiliale":"Situation familiale",
+        "nombreEnfant":"Nombre d'enfant",
+        "codeBanque":"Code",
+        "guichetBanque":"Guichet",
+        "numCompte":"Numéro de compte",
+        "cleCompte":"Clé",
+        "numSS": "Numéro de sécurité sociale",
+        "cleSS": "Clé",
+        "transfertNoemie":"Transfert noémie",
+        "regimeSS":"Régime",
+        "caisseSS":"Caisse",
+        "guichetSS":"Guichet",
+        "cleGuichetSS":"Clé",
+        "etatCivil": "Etat civil",
+        "banque":"Banque",
+        "securiteSociale":"Sécurité sociale",
+        "nomPrenomAssure":"Nom prénom d'assuré",
+        "numSociete":"N° de societe",
+        "raisonSociale":"Raison sociale de la société",
+        "btnValider":"Valider"
+    },
+    "positionTooltip": "below",
+    "liste_civilite":
+    [
+        {"code":"M", "valeur":"Monsieur"},
+        {"code":"Mlle", "valeur":"Mademoiselle"},
+        {"code":"Mme", "valeur":"Madame"}
+    ],
+    "liste_situation_familiale":
+    [
+        {"code":"C", "valeur":"Célibataire"},
+        {"code":"M ", "valeur":"Marié"},
+        {"code":"D", "valeur":"Divorsé"},
+        {"code":"V", "valeur":"Veuf(ve)"},
+        {"code":"K", "valeur":"En vie maritale"},
+        {"code":"U", "valeur":"En union libre"},
+        {"code":"P", "valeur":"En P.A.C.S."},
+        {"code":"N", "valeur":"En concubinage notoire"},
+        {"code":"S", "valeur":"Séparé"}
+    ]
+   
+}

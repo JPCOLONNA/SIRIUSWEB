@@ -1,0 +1,23 @@
+{
+    "infoApplication":
+    {
+        "icon": "fa-users",
+        "nom": "ASSURES"
+    },
+    "menu": [
+        {
+            "url": "/assures/recherche",
+            "nom": "Rechercher un assuré",
+            "idNecessary": false
+        },
+        {
+            "url": "/assures/cp",
+            "nom": "Conditions particulières",
+            "idNecessary": true
+        }
+    ],
+    "searchAssure":
+    {
+        "title": "Rechercher un assuré"
+    }
+}

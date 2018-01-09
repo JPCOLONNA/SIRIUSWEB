@@ -1,0 +1,65 @@
+// Theme palette
+@import "theme.scss";
+
+mat-sidenav-container
+{
+    background: white !important;
+    height:100%;
+}
+
+#colonneCentrale
+{
+    height: 100%;
+}
+
+
+#colonneGauche
+{
+    background-color:mat-color(mat-palette($md-white, 100));
+    min-height: 100%;
+    padding:10px;
+    width: 250px;
+}
+
+#haut_de_page
+{
+    background-color: $default-bg-color;
+    color: #fff;
+    padding: 5px 10px;
+
+    #information_utilisateur
+    {
+        text-align: right;
+    }
+}
+
+#message 
+{
+    width: 100%;
+    marquee
+    {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-top:5px;
+    }
+
+    #btn_play
+    {
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+}
+
+#nom_application
+{
+    font-family: Montserrat;
+    font-size:22px;
+    font-weight: 800;
+    text-align: center;
+}
+
+//marge des modales
+::ng-deep .mat-dialog-container
+{
+    padding: 10px !important;
+}

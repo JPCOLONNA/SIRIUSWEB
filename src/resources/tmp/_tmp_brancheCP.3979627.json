@@ -1,0 +1,93 @@
+{
+    "id_liste_structure" : "1",
+    "categorie":"Pour toutes catégories",
+    "type_cotisation":"Type de cotisations : Isolé/Famille",
+    "contrat":"Contrat : HCR Surco A en Isolé/Famille Obligatoire",
+    "envoi_carte_tp":"JP_COLONNA",    
+    "envoi_carte_tp_desc":"Carte de Tiers-Payant envoyée par JP_COLONNA",
+    "id_liste_pieces":"",
+    "liste_actions" :[
+        {
+            "type_action":	"AFFILIATION",
+            "description": 	"Affiliation de l'assuré par le Web",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "AFFILIATION",
+                    "motif_desc": "Affiliation de l'assuré par le Web",
+                    "etat_cible": "110",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "40"
+                }
+            ]
+        },
+        {
+            "type_action":	"EVOL_COUVERTURE",
+            "description": 	"Evolution de la Couverture",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "nom_liste_piece":	"",
+            "nom_liste_piece_desc":"",
+            "liste_detail_action" :[
+                {
+                    "motif": "SOUSCRIPT_OPTION_RG",
+                    "motif_desc": "Augmentation de la couverture",
+                    "etat_cible": "130",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "41"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_CONTRAT_ADH",
+            "description": 	"Résiliation à l'échéance",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "ECHEANCE_CONTRAT",
+                    "motif_desc": "Échéance du contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                }
+            ]
+        },
+        {
+            "type_action":	"RESIL_SOUSCRIPT",
+            "description": 	"Résiliation Souscripteur",
+            "duree_validite": 	"",
+            "id_liste_pieces" : "",
+            "liste_detail_action" :[
+                {
+                    "motif": "DEPART_SOCIETE",
+                    "motif_desc": "Départ du Salarié",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "8"
+                },{
+                    "motif": "RESIL_CONTRAT_ADH",
+                    "motif_desc": "Résiliation du contrat adhésion",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "4"
+                },
+                {
+                    "motif": "VIE_CONTRAT",
+                    "motif_desc": "Vie du Contrat",
+                    "etat_cible": "",
+                    "anciennete" : "",
+                    "commentaires":"",
+                    "id_liste_pieces": "8"
+                }
+
+            ]
+        }
+    ]
+}    

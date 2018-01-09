@@ -1,0 +1,28 @@
+{
+    "infoApplication":
+    {
+        "icon": "fa-cubes",
+        "nom": "PYTHIE"
+    },
+    "menu": [
+        {
+            "url": "/pythie/cp",
+            "nom": "Conditions particulières"
+        },
+        {
+            "url": "/pythie/pweba",
+            "nom": "Pages web assuré"
+        }
+    ],
+    "ecrans": 
+    {
+        "home":"WPACCUEIL",
+        "assureRech":"WPASSUREREC",
+        "assureCPExe":"WPASSURECP"
+    },
+    "conditionsParticulieres":
+    {
+        "title": "Conditions particulières pour un assuré",
+        "dateApplication" : "Date d'application"
+    }
+}

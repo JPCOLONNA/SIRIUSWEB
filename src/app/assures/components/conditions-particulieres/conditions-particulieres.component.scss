@@ -1,0 +1,12 @@
+@import "theme.scss";
+
+#dateApplication
+{
+    text-align: center;
+}
+
+#contentBrancheCP
+{
+    //Minimum de hauteur sinon le menu de gauche possède un scroll
+    min-height: 350px;
+}

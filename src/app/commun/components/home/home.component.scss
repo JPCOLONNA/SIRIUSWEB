@@ -1,0 +1,9 @@
+// Theme palette
+@import "theme.scss";
+
+.mat-raised-button
+{
+    background-color: $default-color-material;
+    color: $default-bg-text-color;
+    padding-top:15px;
+}

@@ -1,0 +1,45 @@
+{
+    "success": "string",
+    "info": [{ "variable": "string", "code": "string", "libelle": "string", "gravite": "string" }],
+    "liste_droits": [{
+            "ecran": "wspythie",
+            "autorisations": {
+                "executer": 1,
+                "creer": 1,
+                "modifier": 1,
+                "supprimer": 1,
+                "exporter": 1
+            }
+        },
+        {
+            "ecran": "wsassurecp",
+            "autorisations": {
+                "executer": 1,
+                "creer": 1,
+                "modifier": 1,
+                "supprimer": 1,
+                "exporter": 1
+            }
+        },
+        {
+            "ecran": "wsassuretest",
+            "autorisations": {
+                "executer": 1,
+                "creer": 1,
+                "modifier": 1,
+                "supprimer": 1,
+                "exporter": 1
+            }
+        },
+        {
+            "ecran": "WBTFICHE",
+            "autorisations": {
+                "executer": 1,
+                "creer": 1,
+                "modifier": 1,
+                "supprimer": 1,
+                "exporter": 1
+            }
+        }
+    ]
+}

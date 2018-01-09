@@ -1,0 +1,63 @@
+
+{
+    "libelle_entete" : {
+        "nom_liste":"Nom de la liste",
+        "description":"Description de la liste",
+        "type_famille" :"Type de famille",
+        "max_benef" :"Maximum de bénéficiaire",
+        "ajout_benef":"Ajout de bénéficiaire",
+        "soumis_a_cotis":"Soumis à cotisation"
+    },
+    "nom_liste":"AD COTISANT",
+    "description":"Ayant Droit Cotisant",
+    "max_benef" :"Nombre illimité de bénéficiaire",
+    "ajout_benef" :"Ajout de bénéficiaire possible",
+    "soumis_a_cotis" :"Est soumis à cotisation",
+    "libelle_detail" : {
+        "type_benef": "Code type de bénéficiaires",
+        "description": "Description ",
+        "max_benef_type":"Maximum de bénéficiaire ",
+        "age_min":"Age minimum",
+        "age_max":"Age maximum",
+        "soumis_a_cotis":"Soumis à cotisation",
+        "max_soumis":"Soumis jusqu'à",
+        "max_exonerer":"Exonérer jusqu'à",
+        "id_liste_pieces":"Liste de pièces"
+    },
+    "liste_detail": [
+        {
+            "type_benef": "CJ",
+            "description": "Conjoint (à charge ou non Sécu)",
+            "max_benef_type":"1",
+            "age_min":"18",
+            "age_max":"",
+            "soumis_a_cotis":"O",
+            "max_soumis":"",
+            "max_exonerer":"",
+            "id_liste_pieces":"1"
+        },
+        {
+            "type_benef": "PC",
+            "description": "Partenaire PACS",
+            "max_benef_type":"1",
+            "age_min":"18",
+            "age_max":"",
+            "soumis_a_cotis":"O",
+            "max_soumis":"",
+            "max_exonerer":"",
+            "id_liste_pieces":"1"
+        }
+        ,
+        {
+            "type_benef": "EF",
+            "description": "Enfant -20 ans à charge Sécu",
+            "max_benef_type":"",
+            "age_min":"",
+            "age_max":"20",
+            "soumis_a_cotis":"O",
+            "max_soumis":"",
+            "max_exonerer":"",
+            "id_liste_pieces":"1"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+@import "theme.scss";
+
+.breadcrumb a
+{
+    border: none;
+    color: $default-bg-text-color;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover
+{
+    border-bottom: 1px solid $default-bg-text-color;
+    color: $default-bg-text-color;
+    text-decoration: none;
+}

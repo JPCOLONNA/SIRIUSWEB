@@ -1,0 +1,70 @@
+{
+    "liste_evenements": [
+        {
+            "id_stockage": 152,
+            "type_action": "ACTIV_IBAN",
+            "id_assure":3695636,
+            "nom_assure":"DUPOND",
+            "prenom_assure":"PAUL",
+            "id_societe":0,
+            "raison_social":"",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.39.19"
+        },
+        {
+            "id_stockage": 155,
+            "type_action": "AFFILIATION",
+            "id_assure":0,
+            "nom_assure":"",
+            "prenom_assure":"",
+            "id_societe":1640,
+            "raison_social":"SOCIETE MARTIN VINCENT",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.50.19"
+        },
+        {
+            "id_stockage": 156,
+            "type_action": "ACTIV_IBAN",
+            "id_assure":3695636,
+            "nom_assure":"DUPOND",
+            "prenom_assure":"PAUL",
+            "id_societe":0,
+            "raison_social":"",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.39.19"
+        },
+        {
+            "id_stockage": 157,
+            "type_action": "AFFILIATION",
+            "id_assure":0,
+            "nom_assure":"",
+            "prenom_assure":"",
+            "id_societe":1640,
+            "raison_social":"SOCIETE MARTIN VINCENT",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.50.19"
+        },
+        {
+            "id_stockage": 160,
+            "type_action": "ACTIV_IBAN",
+            "id_assure":3695636,
+            "nom_assure":"DUPOND",
+            "prenom_assure":"PAUL",
+            "id_societe":0,
+            "raison_social":"",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.39.19"
+        },
+        {
+            "id_stockage": 161,
+            "type_action": "AFFILIATION",
+            "id_assure":0,
+            "nom_assure":"",
+            "prenom_assure":"",
+            "id_societe":1640,
+            "raison_social":"SOCIETE MARTIN VINCENT",
+            "date_traitement":"20180102",
+            "heure_traitement":"11.50.19"
+        }
+    ]   
+}
