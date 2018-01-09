@@ -98,8 +98,6 @@
         "rang_beneficiaire": "rang_beneficiaire",
         "qualite_beneficiaire": "qualite_beneficiaire",
         "id_beneficiaire": "id_beneficiaire",
-        "debut_effet": "debut_effet",
-        "fin_effet": "fin_effet",
         "montant_cotisation": "montant_cotisation",
         "id_xtrtmpass": "id_xtrtmpass",
         "id_assure": "id_assure",
@@ -125,7 +123,12 @@
         "caisse": "caisse",
         "guichet": "guichet",
         "num_ss": "num_ss",
-        "cle_ss": "cle_ss"
+        "cle_ss": "cle_ss",
+        "qualite": "Conjoint",
+        "rang": "0",
+        "attachement": "Attaché à l'assuré",
+        "debut_effet": "03/10/2018",
+        "fin_effet": "04/09/2019"
     }],
     "liste_couverture_beneficiaire": [{
         "id_xtrtmpcouv": "id_xtrtmpcouv",

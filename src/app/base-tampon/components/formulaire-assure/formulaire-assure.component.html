@@ -1,142 +1,179 @@
-{{action}}<form [formGroup]="formAssure" (ngSubmit)="onSubmit()">
-  <!-- ETAT CIVIL -->
-  <h2>{{rsc.label.etatCivil}}</h2>
-  <hr class="down-h2">
-  <div fxLayout="row" fxLayoutAlign="space-between start">
-    <!-- Civilité -->
-    <mat-form-field fxFlex="30">
-      <mat-select formControlName="civilite" [placeholder]="rsc.label.civilite">
-        <mat-option *ngFor="let civilite of rsc.liste_civilite" [value]="civilite.code">
-          {{ civilite.valeur }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- Nom -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="nom" [placeholder]="rsc.label.nom">
-    </mat-form-field>
-    <!-- Prénom -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="prenom" [placeholder]="rsc.label.prenom">
-    </mat-form-field>
-  </div>
+{{action}}
+<form [formGroup]="formAssure" (ngSubmit)="onSubmit()">
+    <!-- RATTACHEMENT  -->
+    <h2 *ngIf="beneficiaire !== undefined">{{rsc.label.attachement}}</h2>
+    <hr *ngIf="beneficiaire !== undefined" class="down-h2">
+    <div *ngIf="beneficiaire !== undefined" fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Qualité -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="qualite" [placeholder]="rsc.label.qualite">
+        </mat-form-field>
+        <!-- Rang -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="rang" [placeholder]="rsc.label.rang">
+        </mat-form-field>
+        <div fxFlex="30" *ngIf="assure === undefined"></div>
+    </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Adresse -->
-    <mat-form-field fxFlex="49">
-      <input matInput formControlName="adresse" [placeholder]="rsc.label.adresse">
-    </mat-form-field>
-    <!-- Adresse suite-->
-    <mat-form-field fxFlex="49">
-      <input matInput formControlName="adresse_suite" [placeholder]="rsc.label.adresseSuite">
-    </mat-form-field>
-  </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Code Postal -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="code_postal" [placeholder]="rsc.label.codePostal">
-    </mat-form-field>
-    <!-- Ville-->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="ville" [placeholder]="rsc.label.ville">
-    </mat-form-field>
-    <div fxFlex="30"></div>
-  </div>
+    <div *ngIf="beneficiaire !== undefined" fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Attachement -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="attachement" [placeholder]="rsc.label.attachement">
+        </mat-form-field>
+        <!-- Début effet -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="debut_effet" [matDatepicker]="debeffPicker" [placeholder]="rsc.label.debutEffet">
+            <mat-datepicker-toggle matSuffix [for]="debeffPicker"></mat-datepicker-toggle>
+            <mat-datepicker #debeffPicker></mat-datepicker>
+        </mat-form-field>
+        <!-- Fin effet -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="fin_effet" [matDatepicker]="fineffPicker" [placeholder]="rsc.label.finEffet">
+            <mat-datepicker-toggle matSuffix [for]="fineffPicker"></mat-datepicker-toggle>
+            <mat-datepicker #fineffPicker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <!-- ETAT CIVIL -->
+    <h2>{{rsc.label.etatCivil}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Civilité -->
+        <mat-form-field fxFlex="30">
+            <mat-select formControlName="civilite" [placeholder]="rsc.label.civilite">
+                <mat-option *ngFor="let civilite of rsc.liste_civilite" [value]="civilite.code">
+                    {{ civilite.valeur }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- Nom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="nom" [placeholder]="rsc.label.nom">
+        </mat-form-field>
+        <!-- Prénom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="prenom" [placeholder]="rsc.label.prenom">
+        </mat-form-field>
+    </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Date de naissance -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="date_naissance" [matDatepicker]="picker" [placeholder]="rsc.label.dateNaissance">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <!-- Situation familiale -->
-    <mat-form-field fxFlex="30">
-      <mat-select formControlName="situation_familiale" [placeholder]="rsc.label.situationFamiliale">
-        <mat-option *ngFor="let situation of rsc.liste_situation_familiale" [value]="situation.code">
-          {{ situation.valeur }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!-- Nombre d'enfant -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="nombre_enfant" [placeholder]="rsc.label.nombreEnfant">
-    </mat-form-field>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Adresse -->
+        <mat-form-field fxFlex="49">
+            <input matInput formControlName="adresse" [placeholder]="rsc.label.adresse">
+        </mat-form-field>
+        <!-- Adresse suite-->
+        <mat-form-field fxFlex="49">
+            <input matInput formControlName="adresse_suite" [placeholder]="rsc.label.adresseSuite">
+        </mat-form-field>
+    </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Téléphone -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="telephone" [placeholder]="rsc.label.telephone">
-    </mat-form-field>
-    <!-- Email-->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="email" [placeholder]="rsc.label.email">
-    </mat-form-field>
-    <!-- Fax-->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="fax" [placeholder]="rsc.label.fax">
-    </mat-form-field>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Code Postal -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="code_postal" [placeholder]="rsc.label.codePostal">
+        </mat-form-field>
+        <!-- Ville-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="ville" [placeholder]="rsc.label.ville">
+        </mat-form-field>
+        <div fxFlex="30"></div>
+    </div>
 
-  <h2>{{rsc.label.banque}}</h2>
-  <hr class="down-h2">
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Code banque -->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="code_banque" [placeholder]="rsc.label.codeBanque">
-    </mat-form-field>
-    <!-- Guichet banque-->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="guichet_banque" [placeholder]="rsc.label.guichetBanque">
-    </mat-form-field>
-    <!-- Numéro de compte-->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="num_compte" [placeholder]="rsc.label.numCompte">
-    </mat-form-field>
-    <!-- Clé du compte-->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="cle_compte" [placeholder]="rsc.label.cleCompte">
-    </mat-form-field>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Date de naissance -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="date_naissance" [matDatepicker]="picker" [placeholder]="rsc.label.dateNaissance">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <!-- Situation familiale -->
+        <mat-form-field fxFlex="30">
+            <mat-select formControlName="situation_familiale" [placeholder]="rsc.label.situationFamiliale">
+                <mat-option *ngFor="let situation of rsc.liste_situation_familiale" [value]="situation.code">
+                    {{ situation.valeur }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- Nombre d'enfant -->
+        <mat-form-field fxFlex="30" *ngIf="assure !== undefined">
+            <input matInput formControlName="nombre_enfant" [placeholder]="rsc.label.nombreEnfant">
+        </mat-form-field>
+        <div fxFlex="30" *ngIf="assure === undefined"></div>
+    </div>
 
-  <h2>{{rsc.label.securiteSociale}}</h2>
-  <hr class="down-h2">
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Numéro de sécurité sociale -->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="num_ss" [placeholder]="rsc.label.numSS">
-    </mat-form-field>
-    <!-- Clé du Numéro de sécurité sociale-->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="cle_ss" [placeholder]="rsc.label.cleSS">
-    </mat-form-field>
-    <!-- Transfert noémie-->
-    <mat-form-field fxFlex="30">
-      <input matInput formControlName="transfert_noemie" [placeholder]="rsc.label.transfertNoemie">
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- Régime -->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="regime" [placeholder]="rsc.label.regimeSS">
-    </mat-form-field>
-    <!-- Caisse-->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="caisse" [placeholder]="rsc.label.caisseSS">
-    </mat-form-field>
-    <!-- Guichet-->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="guichet" [placeholder]="rsc.label.guichetSS">
-    </mat-form-field>
-    <!-- Clé -->
-    <mat-form-field fxFlex="24">
-      <input matInput formControlName="cle" [placeholder]="rsc.label.cle_guichetSS">
-    </mat-form-field>
-  </div>
-  <!-- Boutons -->
-  <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'" >
-      <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
-  </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Téléphone -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="telephone" [placeholder]="rsc.label.telephone">
+        </mat-form-field>
+        <!-- Email-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="email" [placeholder]="rsc.label.email">
+        </mat-form-field>
+        <!-- Fax-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="fax" [placeholder]="rsc.label.fax">
+        </mat-form-field>
+    </div>
+
+    <h2 *ngIf="assure !== undefined">{{rsc.label.banque}}</h2>
+    <hr *ngIf="assure !== undefined" class="down-h2">
+    <div *ngIf="assure !== undefined" fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Code banque -->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="code_banque" [placeholder]="rsc.label.codeBanque">
+        </mat-form-field>
+        <!-- Guichet banque-->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="guichet_banque" [placeholder]="rsc.label.guichetBanque">
+        </mat-form-field>
+        <!-- Numéro de compte-->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="num_compte" [placeholder]="rsc.label.numCompte">
+        </mat-form-field>
+        <!-- Clé du compte-->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="cle_compte" [placeholder]="rsc.label.cleCompte">
+        </mat-form-field>
+    </div>
+
+    <h2>{{rsc.label.securiteSociale}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Numéro de sécurité sociale -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="num_ss" [placeholder]="rsc.label.numSS">
+        </mat-form-field>
+        <!-- Clé du Numéro de sécurité sociale-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="cle_ss" [placeholder]="rsc.label.cleSS">
+        </mat-form-field>
+        <!-- Transfert noémie-->
+        <mat-form-field fxFlex="30" *ngIf="assure !== undefined">
+            <input matInput formControlName="transfert_noemie" [placeholder]="rsc.label.transfertNoemie">
+        </mat-form-field>
+        <div fxFlex="30" *ngIf="assure === undefined"></div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Régime -->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="regime" [placeholder]="rsc.label.regimeSS">
+        </mat-form-field>
+        <!-- Caisse-->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="caisse" [placeholder]="rsc.label.caisseSS">
+        </mat-form-field>
+        <!-- Guichet-->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="guichet" [placeholder]="rsc.label.guichetSS">
+        </mat-form-field>
+        <!-- Clé -->
+        <mat-form-field fxFlex="24">
+            <input matInput formControlName="cle" [placeholder]="rsc.label.cle_guichetSS">
+        </mat-form-field>
+    </div>
+    <!-- Boutons -->
+    <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+    </div>
 </form>

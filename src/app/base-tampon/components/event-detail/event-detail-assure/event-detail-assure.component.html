@@ -22,13 +22,13 @@
 </mat-accordion>
 
 
-<!-- Lorsqu'il y a qu'un assuré pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
+<!-- Lorsqu'il y a qu'un bénéficiare pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
 <div *ngIf="listBeneficiaires!=null && listBeneficiaires.length == 1">
     <div class="numAssure">{{listBeneficiaires[0].nom}} {{listBeneficiaires[0].prenom}} </div>
-    <app-formulaire-assure [assure]="listBeneficiaires[0]" [action]="action"></app-formulaire-assure>
+    <app-formulaire-assure [beneficiaire]="listBeneficiaires[0]" [action]="action"></app-formulaire-assure>
 </div>
 
-<!-- S'il y a plusieurs assure, affiche chaque formulaire par assuré -->
+<!-- S'il y a plusieurs bénéfiaires, affiche chaque formulaire par assuré -->
 <mat-accordion *ngIf="listBeneficiaires!=null && listBeneficiaires.length > 1">
     <mat-expansion-panel *ngFor="let assure of listBeneficiaires">
         <!-- Entête de panel -->
@@ -40,7 +40,7 @@
         </mat-expansion-panel-header>
 
         <!-- Formulaire d'assuré -->
-        <app-formulaire-assure [assure]="assure" [action]="action"></app-formulaire-assure>
+        <app-formulaire-assure [beneficiaire]="assure" [action]="action"></app-formulaire-assure>
 
     </mat-expansion-panel>
 </mat-accordion>
