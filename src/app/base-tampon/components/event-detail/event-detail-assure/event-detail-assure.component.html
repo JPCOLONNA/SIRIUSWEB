@@ -89,7 +89,7 @@ INFORMATIONS COUVERTURES BENEFICIAIRES
 
 <!-- S'il y a plusieurs bénéfiaires, affiche chaque formulaire par assuré -->
 <mat-accordion *ngIf="listCouverturesBeneficiaires!=null && listCouverturesBeneficiaires.length > 1">
-    <mat-expansion-panel *ngFor="let couvertureof listCouverturesBeneficiaires">
+    <mat-expansion-panel *ngFor="let couverture of listCouverturesBeneficiaires">
         <!-- Entête de panel -->
         <mat-expansion-panel-header>
             <!-- Titre du panel -->
