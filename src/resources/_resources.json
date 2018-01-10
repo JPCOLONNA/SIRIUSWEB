@@ -62,7 +62,16 @@
         "qualite": "Qualité",
         "rang": "Rang",
         "debutEffet": "Début d'effet",
-        "finEffet": "Fin d'effet"
+        "finEffet": "Fin d'effet",
+        "societe": "Société",
+        "couverture": "Couverture",
+        "statut": "Statut",
+        "famille": "Famille de produits",
+        "produit": "Produit",
+        "risque": "Risque",
+        "option": "Option",
+        "dateAnnulation": "Annulée à partir de",
+        "refCli": "Reférence client"
 
     },
     "positionTooltip": "below",

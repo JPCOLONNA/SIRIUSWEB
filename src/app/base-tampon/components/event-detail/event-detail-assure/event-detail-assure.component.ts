@@ -22,6 +22,18 @@ export class EventDetailAssureComponent implements OnInit {
 
   /** Liste des bénéficiaires à afficher */
   @Input() listBeneficiaires: Array<any>;
+
+  /** Liste des couvertures à afficher */
+  @Input() listCouvertures: Array<any>;
+
+  /** Liste des couvertures bénéficiaires à afficher */
+  @Input() listCouverturesBeneficiaires: Array<any>;
+
+  /** Liste des infos salariés à afficher */
+  @Input() listInfosSalaries: Array<any>;
+
+  /** Liste des infos salariés à afficher */
+  @Input() listInfosIban: Array<any>;
   
   /**
    * Créer une instance du composant EventDetailAssureComponent<br />

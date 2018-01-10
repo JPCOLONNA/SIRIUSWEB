@@ -1,0 +1,78 @@
+{{action}}
+<form [formGroup]="formCouverture" (ngSubmit)="onSubmit()">
+    <!-- INFOS NON MODIFIABLES -->
+    <h2>{{rsc.label.societe}}</h2>
+    <hr class="down-h2">
+    <div>
+        {{couverture.id_societe}} - {{couverture.raison_sociale}}
+    </div>
+    <div>
+        &nbsp;
+    </div>
+
+    <!-- INFOS COUVERTURE -->
+    <h2>{{rsc.label.couverture}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Staut du l'assuré -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="statut" [placeholder]="rsc.label.statut">
+        </mat-form-field>
+        <div fxFlex="30"></div>
+        <div fxFlex="30"></div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Risque -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="risque" [placeholder]="rsc.label.risque">
+        </mat-form-field>
+        <!-- Nom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="famille" [placeholder]="rsc.label.famille">
+        </mat-form-field>
+        <!-- Prénom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="produit" [placeholder]="rsc.label.produit">
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Risque -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="option" [placeholder]="rsc.label.option">
+        </mat-form-field>
+        <!-- Nom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="debut_effet" [matDatepicker]="pickerDeb" [placeholder]="rsc.label.debutEffet">
+            <mat-datepicker-toggle matSuffix [for]="pickerDeb"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDeb></mat-datepicker>
+        </mat-form-field>
+        <!-- Prénom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="fin_effet" [matDatepicker]="pickerFin" [placeholder]="rsc.label.finEffet">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Date de naissance -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="date_annulation" [matDatepicker]="pickerAnn" [placeholder]="rsc.label.dateAnnulation">
+            <mat-datepicker-toggle matSuffix [for]="pickerAnn"></mat-datepicker-toggle>
+            <mat-datepicker #pickerAnn></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Nombre d'enfant -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="ref_client" [placeholder]="rsc.label.refCli">
+        </mat-form-field>
+        <div fxFlex="30"></div>
+    </div>
+
+    <!-- Boutons -->
+    <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+    </div>
+</form>

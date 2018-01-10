@@ -85,6 +85,22 @@
                         <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="eventDetail.liste_beneficiaires">
                         </app-event-detail-assure>
 
+                        <!-- Couvertures -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="eventDetail.liste_couverture_assure">
+                        </app-event-detail-assure>
+
+                        <!-- Couvertures bénéficaires -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="eventDetail.liste_couverture_beneficiaire">
+                        </app-event-detail-assure>
+
+                        <!-- Informations salariés -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="eventDetail.liste_infos_salarie">
+                        </app-event-detail-assure>
+
+                        <!-- Informations IBAN -->
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listInfosIban]="eventDetail.liste_rib">
+                        </app-event-detail-assure>
+
 
                     </div>
                 </mat-sidenav-content>

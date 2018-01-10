@@ -8,6 +8,7 @@ import { BaseTamponService }                      from './providers/base-tampon.
 import { EventDetailComponent }                   from './components/event-detail/event-detail.component';
 import { EventDetailAssureComponent }             from './components/event-detail/event-detail-assure/event-detail-assure.component';
 import { FormulaireAssureComponent } from './components/formulaire-assure/formulaire-assure.component';
+import { FormulaireCouvertureComponent } from './components/formulaire-couverture/formulaire-couverture.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { FormulaireAssureComponent } from './components/formulaire-assure/formul
     EventsListComponent,
     EventDetailComponent,
     EventDetailAssureComponent,
-    FormulaireAssureComponent
+    FormulaireAssureComponent,
+    FormulaireCouvertureComponent
   ],
   providers:
   [

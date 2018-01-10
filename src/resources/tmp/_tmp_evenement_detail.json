@@ -79,18 +79,18 @@
         "id_assure": "id_assure",
         "nom_assure": "nom_assure",
         "prenom_assure": "prenom_assure",
-        "debut_effet": "debut_effet",
-        "fin_effet": "fin_effet",
-        "id_societe": "id_societe",
-        "raison_social": "raison_social",
-        "code_option": "code_option",
+        "debut_effet": "03/04/2018",
+        "fin_effet": "07/09/2019",
+        "id_societe": "1391",
+        "raison_sociale": "Casino S.A.",
+        "code_option": "CCN individuelle famille",
         "libelle_option": "libelle_option",
-        "risque": "risque",
-        "date_annulation": "date_annulation",
-        "ref_client": "ref_client",
-        "statut": "statut",
-        "famille": "famille",
-        "produit": "produit"
+        "risque": "Frais médicaux",
+        "date_annulation": "",
+        "ref_client": "000165878000559",
+        "statut": "Cadre",
+        "famille": "Mornay Frais Médicaux",
+        "produit": "Mornay CCN MOR004"
 
     }],
     "liste_beneficiaires": [{
@@ -135,8 +135,8 @@
         "id_beneficiaire": "id_beneficiaire",
         "nom_assure": "nom_assure",
         "prenom_assure": "prenom_assure",
-        "debut_effet": "debut_effet",
-        "fin_effet": "fin_effet",
+        "debut_effet": "03/04/2018",
+        "fin_effet": "07/09/2019",
         "id_societe": "id_societe",
         "raison_social": "raison_social",
         "code_option": "code_option",
@@ -148,6 +148,19 @@
         "famille": "famille",
         "produit": "produit"
 
+    }],
+    "liste_infos_salarie": [{
+        "code_societe": "id_xtrtmprib",
+        "debut_contrat": "type_titulaire",
+        "fin_contrat": "id_titulaire",
+        "statut_professionnel": "nature",
+        "niveau_professionnel": "statut",
+        "echelon": "debut_validite",
+        "categorie_socio_professionnelle": "fin_validite",
+        "motif_depart": "nom",
+        "top_refus": "domiciliation_banque",
+        "contrat_travail": "domiciliation_adresse",
+        "temps_de_travail": "domiciliation_code_postal"
     }],
     "liste_rib": [{
         "id_xtrtmprib": "id_xtrtmprib",
