@@ -94,7 +94,7 @@ INFORMATIONS COUVERTURES BENEFICIAIRES
         <mat-expansion-panel-header>
             <!-- Titre du panel -->
             <mat-panel-title>
-                <span>{{couverture.code_option}} {{couverture.debut_effet}} {{couverture.fin_effet}}</span>
+                <span>{{couverture.nom_assure}} {{couverture.prenom_assure}} - {{couverture.code_option}} {{couverture.debut_effet}} {{couverture.fin_effet}}</span>
             </mat-panel-title>
         </mat-expansion-panel-header>
 
@@ -112,10 +112,10 @@ INFORMATIONS SALARIALES
 <!-- Lorsqu'il y a qu'un bénéficiare pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
 <div *ngIf="listInfosSalaries!=null && listInfosSalaries.length == 1">
     <div class="numAssure">{{listInfosSalaries[0].nom}} {{listInfosSalaries[0].prenom}} </div>
-    <app-formulaire-assure [beneficiaire]="listInfosSalaries[0]" [action]="action"></app-formulaire-assure>
+    <app-formulaire-infos-salariales [assure]="listInfosSalaries[0]" [action]="action"></app-formulaire-infos-salariales>
 </div>
 
-<!-- S'il y a plusieurs bénéfiaires, affiche chaque formulaire par assuré -->
+<!-- S'il y a plusieurs assure, on affiche chaque formulaire par assuré -->
 <mat-accordion *ngIf="listInfosSalaries!=null && listInfosSalaries.length > 1">
     <mat-expansion-panel *ngFor="let assure of listInfosSalaries">
         <!-- Entête de panel -->
@@ -126,12 +126,11 @@ INFORMATIONS SALARIALES
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <!-- Formulaire bénéficaire -->
-        <app-formulaire-assure [beneficiaire]="assure" [action]="action"></app-formulaire-assure>
+        <!-- Formulaire d'assuré -->
+        <app-formulaire-infos-salariales [assure]="assure" [action]="action"></app-formulaire-infos-salariales>
 
     </mat-expansion-panel>
 </mat-accordion>
-
 
 
 <!--

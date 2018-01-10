@@ -41,17 +41,17 @@
     </div>
 
     <div fxLayout="row" fxLayoutAlign="space-between start">
-        <!-- Risque -->
+        <!-- Option -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="option" [placeholder]="rsc.label.option">
         </mat-form-field>
-        <!-- Nom -->
+        <!-- Début d effet -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="debut_effet" [matDatepicker]="pickerDeb" [placeholder]="rsc.label.debutEffet">
             <mat-datepicker-toggle matSuffix [for]="pickerDeb"></mat-datepicker-toggle>
             <mat-datepicker #pickerDeb></mat-datepicker>
         </mat-form-field>
-        <!-- Prénom -->
+        <!-- Fin d'effet -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="fin_effet" [matDatepicker]="pickerFin" [placeholder]="rsc.label.finEffet">
             <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>

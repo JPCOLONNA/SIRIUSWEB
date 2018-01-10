@@ -26,27 +26,27 @@
         "menu" :{
             "assures" : {
                 "codeEcran":"assures",
-                "nomEcran":"Informations d'assurés"
+                "nomEcran":"Informations assurés"
             },
             "beneficiaires" : {
                 "codeEcran":"beneficiaires",
-                "nomEcran":"Informations de bénéficiaires"
+                "nomEcran":"Informations bénéficiaires"
             },
             "couvertureAssure" : {
                 "codeEcran":"couvertureAss",
-                "nomEcran":"Couvertures assuré"
+                "nomEcran":"Couvertures assurés"
             },
             "couvertureBenef" : {
                 "codeEcran":"couvertureBenef",
-                "nomEcran":"Couvertures bénéficiaire"
+                "nomEcran":"Couvertures bénéficiaires"
             },
             "infosSalarie" : {
                 "codeEcran":"infosSalarie",
-                "nomEcran":"Informations salarié"
+                "nomEcran":"Informations salariales"
             },
             "infosRIB" : {
                 "codeEcran":"infosRIB",
-                "nomEcran":"Informations RIB"
+                "nomEcran":"Informations IBAN"
             },
             "documents" : {
                 "codeEcran":"documents",

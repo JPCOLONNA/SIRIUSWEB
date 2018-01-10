@@ -71,8 +71,17 @@
         "risque": "Risque",
         "option": "Option",
         "dateAnnulation": "Annulée à partir de",
-        "refCli": "Reférence client"
-
+        "refCli": "Reférence client",
+        "rattachementSalarial": "Rattachement salarial",
+        "motifDepart": "Motif de départ",
+        "statutProfessionnel": "Statut professionnel",
+        "niveauStatutProfessionnel": "Niveau",
+        "echelonStatutProfessionnel": "Echelon",
+        "categorieSocioProfessionnelle": "Catégorie socio-professionnelle",
+        "contratTravail": "Contrat de travail",
+        "tempsTravail": "Temps de travail",
+        "codeSalarie": "Code salarié",
+        "refus": "Refus"
     },
     "positionTooltip": "below",
     "liste_civilite": [

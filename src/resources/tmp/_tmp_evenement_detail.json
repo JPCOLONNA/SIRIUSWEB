@@ -170,17 +170,21 @@
         }
     ],
     "liste_infos_salarie": [{
-        "code_societe": "id_xtrtmprib",
-        "debut_contrat": "type_titulaire",
-        "fin_contrat": "id_titulaire",
-        "statut_professionnel": "nature",
-        "niveau_professionnel": "statut",
-        "echelon": "debut_validite",
-        "categorie_socio_professionnelle": "fin_validite",
-        "motif_depart": "nom",
-        "top_refus": "domiciliation_banque",
-        "contrat_travail": "domiciliation_adresse",
-        "temps_de_travail": "domiciliation_code_postal"
+        "code_societe": "1391",
+        "raison_sociale": "CASINO RUHL - S.N.E.B",
+        "code_salarie": "ABK26H5",
+        "nom": "Michel",
+        "prenom": "René",
+        "debut_contrat": "03/09/2017",
+        "fin_contrat": "",
+        "motif_depart": "",
+        "top_refus": "false",
+        "statut_professionnel": "cadre",
+        "niveau_professionnel": "305",
+        "echelon": "50",
+        "categorie_socio_professionnelle": "Juridique",
+        "contrat_travail": "CDI",
+        "temps_de_travail": "Temps plein"
     }],
     "liste_rib": [{
         "id_xtrtmprib": "id_xtrtmprib",

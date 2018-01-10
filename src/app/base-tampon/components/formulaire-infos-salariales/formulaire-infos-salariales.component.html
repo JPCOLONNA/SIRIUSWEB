@@ -1,0 +1,80 @@
+{{action}}
+<form [formGroup]="formAssure" (ngSubmit)="onSubmit()">
+    <!-- INFOS NON MODIFIABLES -->
+    <h2>{{rsc.label.societe}}</h2>
+    <hr class="down-h2">
+    <div>
+        {{assure.code_societe}} - {{assure.raison_sociale}}
+    </div>
+    <div>
+        &nbsp;
+    </div>
+    <!-- INFOS SAL -->
+    <h2>{{rsc.label.rattachementSalarial}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Début d'effet -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="debut_contrat" [matDatepicker]="pickerDeb" [placeholder]="rsc.label.debutEffet">
+            <mat-datepicker-toggle matSuffix [for]="pickerDeb"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDeb></mat-datepicker>
+        </mat-form-field>
+        <!-- Fin d'effet -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="fin_contrat" [matDatepicker]="pickerFin" [placeholder]="rsc.label.finEffet">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+        </mat-form-field>
+        <!-- Prénom -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="motif_depart" [placeholder]="rsc.label.motifDepart">
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Code salarié -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="code_salarie" [placeholder]="rsc.label.codeSalarie">
+        </mat-form-field>
+        <!-- Refus -->
+        <mat-checkbox fxFlex="30" formControlName="top_refus">{{rsc.label.refus}}</mat-checkbox>
+        <div fxFlex="30">&nbsp;</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Staut professionnel -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="statut_professionnel" [placeholder]="rsc.label.statutProfessionnel">
+        </mat-form-field>
+        <!-- Niveau professionnel -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="niveau_professionnel" [placeholder]="rsc.label.niveauStatutProfessionnel">
+        </mat-form-field>
+        <!-- Echelon -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="echelon" [placeholder]="rsc.label.echelonStatutProfessionnel">
+        </mat-form-field>
+    </div>
+
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Catégorie socio-professionnel -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="categorie_socio_professionnelle" [placeholder]="rsc.label.categorieSocioProfessionnelle">
+        </mat-form-field>
+        <!-- Contrat de travail -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="contrat_travail" [placeholder]="rsc.label.contratTravail">
+        </mat-form-field>
+        <!-- Temps de travail -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="temps_de_travail" [placeholder]="rsc.label.tempsTravail">
+        </mat-form-field>
+    </div>
+
+    <!-- Boutons -->
+    <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+    </div>
+</form>

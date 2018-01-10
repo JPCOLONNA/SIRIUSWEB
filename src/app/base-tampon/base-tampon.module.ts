@@ -9,6 +9,7 @@ import { EventDetailComponent }                   from './components/event-detai
 import { EventDetailAssureComponent }             from './components/event-detail/event-detail-assure/event-detail-assure.component';
 import { FormulaireAssureComponent } from './components/formulaire-assure/formulaire-assure.component';
 import { FormulaireCouvertureComponent } from './components/formulaire-couverture/formulaire-couverture.component';
+import { FormulaireInfosSalarialesComponent } from './components/formulaire-infos-salariales/formulaire-infos-salariales.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { FormulaireCouvertureComponent } from './components/formulaire-couvertur
     EventDetailComponent,
     EventDetailAssureComponent,
     FormulaireAssureComponent,
-    FormulaireCouvertureComponent
+    FormulaireCouvertureComponent,
+    FormulaireInfosSalarialesComponent
   ],
   providers:
   [
