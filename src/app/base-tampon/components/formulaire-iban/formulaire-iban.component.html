@@ -1,0 +1,128 @@
+
+<form [formGroup]="formIban" (ngSubmit)="onSubmit()">
+    <!-- 
+    <h2>{{rsc.label.rattachement}}</h2>
+    <hr class="down-h2">
+    <div>
+        {{iban.nom_titulaire}} - {{iban.prenom_titulaire}}
+    </div>
+    <div>
+        &nbsp;
+    </div>-->
+    <!-- Beneficiaire -->
+    <h2>{{rsc.label.beneficiaire}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="nom" [placeholder]="rsc.label.beneficiaire">
+        </mat-form-field>
+    </div>
+
+    <h2>{{rsc.label.iban}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <!-- Code pays -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="iban_code_pays" [placeholder]="rsc.label.codePays">
+        </mat-form-field>
+        <!-- IBAN -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="iban_code" [placeholder]="rsc.label.numeroIban">
+        </mat-form-field>
+        <!-- Clé -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="iban_cle" [placeholder]="rsc.label.cleIban">
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- BIC -->
+        <mat-form-field fxFlex="60">
+            <input matInput formControlName="code_bic" [placeholder]="rsc.label.bic">
+        </mat-form-field>
+
+        <div fxFlex="30">&nbsp;</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Devise -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="devise" [placeholder]="rsc.label.devise">
+        </mat-form-field>
+        <!-- Date de début de validité -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="debut_validite" [matDatepicker]="pickerDeb" [placeholder]="rsc.label.debutValidite">
+            <mat-datepicker-toggle matSuffix [for]="pickerDeb"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDeb></mat-datepicker>
+        </mat-form-field>
+        <!-- Date de fin de validité -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="fin_validite" [matDatepicker]="pickerFin" [placeholder]="rsc.label.finValidite">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Imputation de frais -->
+        <mat-checkbox fxFlex="30" formControlName="imputation_frais">{{rsc.label.imputationFrais}}</mat-checkbox>
+        <!-- Nature-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="nature" [placeholder]="rsc.label.nature">
+        </mat-form-field>
+        <!-- Statut-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="statut" [placeholder]="rsc.label.statut">
+        </mat-form-field>
+    </div>
+
+
+    <h2>{{rsc.label.domiciliationBancaire}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Banque -->
+        <mat-form-field fxFlex="60">
+            <input matInput formControlName="domiciliation_banque" [placeholder]="rsc.label.banque">
+        </mat-form-field>
+
+        <div fxFlex="30">&nbsp;</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Adresse -->
+        <mat-form-field fxFlex="60">
+            <input matInput formControlName="domiciliation_adresse" [placeholder]="rsc.label.adresse">
+        </mat-form-field>
+        <div fxFlex="30">&nbsp;</div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- Code postal-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="domiciliation_code_postal" [placeholder]="rsc.label.codePostal">
+        </mat-form-field>
+        <!-- Ville-->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="domiciliation_ville" [placeholder]="rsc.label.ville">
+        </mat-form-field>
+        <!-- Pays -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="domiciliation_pays" [placeholder]="rsc.label.pays">
+        </mat-form-field>
+    </div>
+
+    <h2>{{rsc.label.complements}}</h2>
+    <hr class="down-h2">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <!-- BIC -->
+        <mat-form-field fxFlex="100">
+            <input matInput formControlName="complements" [placeholder]="rsc.label.placeHolderComplements">
+        </mat-form-field>
+
+    </div>
+    <!-- Boutons -->
+    <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+    </div>
+</form>

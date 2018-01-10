@@ -2,7 +2,7 @@
     "infoApplication": {
         "icon": "fa-database",
         "nom": "BASE TAMPON",
-        "url":"/tampon"
+        "url": "/tampon"
     },
     "menu": [{
             "url": "/tampon/liste",
@@ -18,56 +18,54 @@
     "eventList": {
         "title": "Liste des évènements en attente de validation"
     },
-    "eventDetail":
-    {
-        "title":"Evènement à valider",
-        "titleInfoEvenement":"L'évènement",
-        "titleInfoEntite":"Entité(s) concernée(s)",
-        "menu" :{
-            "assures" : {
-                "codeEcran":"assures",
-                "nomEcran":"Informations assurés"
+    "eventDetail": {
+        "title": "Evènement à valider",
+        "titleInfoEvenement": "L'évènement",
+        "titleInfoEntite": "Entité(s) concernée(s)",
+        "menu": {
+            "assures": {
+                "codeEcran": "assures",
+                "nomEcran": "Informations assurés"
             },
-            "beneficiaires" : {
-                "codeEcran":"beneficiaires",
-                "nomEcran":"Informations bénéficiaires"
+            "beneficiaires": {
+                "codeEcran": "beneficiaires",
+                "nomEcran": "Informations bénéficiaires"
             },
-            "couvertureAssure" : {
-                "codeEcran":"couvertureAss",
-                "nomEcran":"Couvertures assurés"
+            "couvertureAssure": {
+                "codeEcran": "couvertureAss",
+                "nomEcran": "Couvertures assurés"
             },
-            "couvertureBenef" : {
-                "codeEcran":"couvertureBenef",
-                "nomEcran":"Couvertures bénéficiaires"
+            "couvertureBenef": {
+                "codeEcran": "couvertureBenef",
+                "nomEcran": "Couvertures bénéficiaires"
             },
-            "infosSalarie" : {
-                "codeEcran":"infosSalarie",
-                "nomEcran":"Informations salariales"
+            "infosSalarie": {
+                "codeEcran": "infosSalarie",
+                "nomEcran": "Informations salariales"
             },
-            "infosRIB" : {
-                "codeEcran":"infosRIB",
-                "nomEcran":"Informations IBAN"
+            "infosRIB": {
+                "codeEcran": "infosRIB",
+                "nomEcran": "Informations IBAN"
             },
-            "documents" : {
-                "codeEcran":"documents",
-                "nomEcran":"Documents"
+            "documents": {
+                "codeEcran": "documents",
+                "nomEcran": "Documents"
             },
-            "anomalies" : {
-                "codeEcran":"anomalies",
-                "nomEcran":"Anomalies"
+            "anomalies": {
+                "codeEcran": "anomalies",
+                "nomEcran": "Anomalies"
             }
         },
-        "label":
-        {
-            "validationDefinitive":"Valider l'évènement",
-            "suppressionDefinitive":"Suppression de l'évènement"
+        "label": {
+            "validationDefinitive": "Valider l'évènement",
+            "suppressionDefinitive": "Suppression de l'évènement"
         }
     },
     "label": {
-        "typeAction":"Type d'action",
-        "statut":"Statut",
-        "idGED":"Identifiant GED",
-        "dateTraitement":"Date de l'évènement",
+        "typeAction": "Type d'action",
+        "statut": "Statut",
+        "idGED": "Identifiant GED",
+        "dateTraitement": "Date de l'évènement",
         "provenance": "Provenance"
     }
 }
