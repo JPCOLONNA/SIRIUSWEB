@@ -3,8 +3,11 @@
     <!-- INFOS NON MODIFIABLES -->
     <h2>{{rsc.label.societe}}</h2>
     <hr class="down-h2">
-    <div>
+    <div *ngIf="couverture !== undefined">
         {{couverture.id_societe}} - {{couverture.raison_sociale}}
+    </div>
+    <div *ngIf="couverturebeneficiaire !== undefined">
+        {{couverturebeneficiaire.id_societe}} - {{couverturebeneficiaire.raison_sociale}}
     </div>
     <div>
         &nbsp;

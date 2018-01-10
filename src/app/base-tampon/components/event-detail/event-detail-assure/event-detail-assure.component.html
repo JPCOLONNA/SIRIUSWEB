@@ -58,7 +58,7 @@ INFORMATIONS COUVERTURES ASSURE
 
 <!-- Lorsqu'il y a qu'une couverture pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
 <div *ngIf="listCouvertures!=null && listCouvertures.length == 1">
-    <div class="numAssure">{{listCouvertures[0].nom}} {{listCouvertures[0].prenom}} </div>
+    <div class="numAssure">{{listCouvertures[0].nom_assure}} {{listCouvertures[0].prenom_assure}} </div>
     <app-formulaire-couverture [couverture]="listCouvertures[0]" [action]="action"></app-formulaire-couverture>
 </div>
 
@@ -83,8 +83,8 @@ INFORMATIONS COUVERTURES BENEFICIAIRES
 
 <!-- Lorsqu'il y a qu'un bénéficiare pour l'évènement en cours d'affichage, nous affichons uniquement le formulaire-->
 <div *ngIf="listCouverturesBeneficiaires!=null && listCouverturesBeneficiaires.length == 1">
-    <div class="numAssure">{{listCouverturesBeneficiaires[0].nom}} {{listCouverturesBeneficiaires[0].prenom}} </div>
-    <app-formulaire-assure [beneficiaire]="listCouverturesBeneficiaires[0]" [action]="action"></app-formulaire-assure>
+    <div class="numAssure">{{listCouverturesBeneficiaires[0].nom_assure}} {{listCouverturesBeneficiaires[0].prenom_assure}} </div>
+    <app-formulaire-couverture [couverturebeneficiaire]="listCouverturesBeneficiaires[0]" [action]="action"></app-formulaire-couverture>
 </div>
 
 <!-- S'il y a plusieurs bénéfiaires, affiche chaque formulaire par assuré -->
@@ -94,12 +94,12 @@ INFORMATIONS COUVERTURES BENEFICIAIRES
         <mat-expansion-panel-header>
             <!-- Titre du panel -->
             <mat-panel-title>
-                <span>{{couverture.nom}} {{couverture.prenom}} </span>
+                <span>{{couverture.code_option}} {{couverture.debut_effet}} {{couverture.fin_effet}}</span>
             </mat-panel-title>
         </mat-expansion-panel-header>
 
         <!-- Formulaire bénéficaire -->
-        <app-formulaire-assure [beneficiaire]="couverture" [action]="action"></app-formulaire-assure>
+        <app-formulaire-couverture [couverturebeneficiaire]="couverture" [action]="action"></app-formulaire-couverture>
 
     </mat-expansion-panel>
 </mat-accordion>

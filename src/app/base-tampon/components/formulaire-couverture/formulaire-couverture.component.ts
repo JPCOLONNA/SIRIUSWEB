@@ -23,7 +23,7 @@ export class FormulaireCouvertureComponent implements OnInit {
   @Input() couverture: any;
 
   /**Données du bénéficiaire en cours d'affichage/de modification*/
-  @Input() beneficiaire: any;
+  @Input() couverturebeneficiaire: any;
 
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
@@ -87,35 +87,17 @@ export class FormulaireCouvertureComponent implements OnInit {
       });
     } else {
             this.formCouverture = this.formBuilder.group({
-        'civilite': [{ value: this.beneficiaire.civilite, disabled: this.disabled }],
-        'nom': [{ value: this.beneficiaire.nom, disabled: this.disabled }],
-        'prenom': [{ value: this.beneficiaire.prenom, disabled: this.disabled }],
-        'adresse': [{ value: this.beneficiaire.adresse, disabled: this.disabled }],
-        'adresse_suite': [{ value: this.beneficiaire.adresse_suite, disabled: this.disabled }],
-        'code_postal': [{ value: this.beneficiaire.code_postal, disabled: this.disabled }],
-        'ville': [{ value: this.beneficiaire.ville, disabled: this.disabled }],
-        'telephone': [{ value: this.beneficiaire.telephone, disabled: this.disabled }],
-        'fax': [{ value: this.beneficiaire.fax, disabled: this.disabled }],
-        'email': [{ value: this.beneficiaire.email, disabled: this.disabled }],
-        'code_banque': [{ value: this.beneficiaire.code_banque, disabled: this.disabled }],
-        'guichet_banque': [{ value: this.beneficiaire.guichet_banque, disabled: this.disabled }],
-        'num_compte': [{ value: this.beneficiaire.num_compte, disabled: this.disabled }],
-        'cle_compte': [{ value: this.beneficiaire.cle_compte, disabled: this.disabled }],
-        'date_naissance': [{ value: this.beneficiaire.date_naissance, disabled: this.disabled }],
-        'situation_familiale': [{ value: this.beneficiaire.situation_familiale, disabled: this.disabled }],
-        'nombre_enfant': [{ value: this.beneficiaire.nombre_enfant, disabled: this.disabled }],
-        'transfert_noemie': [{ value: this.beneficiaire.transfert_noemie, disabled: this.disabled }],
-        'regime': [{ value: this.beneficiaire.regime, disabled: this.disabled }],
-        'caisse': [{ value: this.beneficiaire.caisse, disabled: this.disabled }],
-        'guichet': [{ value: this.beneficiaire.guichet, disabled: this.disabled }],
-        'cle': [{ value: this.beneficiaire.cle, disabled: this.disabled }],
-        'num_ss': [{ value: this.beneficiaire.num_ss, disabled: this.disabled }],
-        'cle_ss': [{ value: this.beneficiaire.cle_ss, disabled: this.disabled }],
-        'qualite': [{ value: this.beneficiaire.qualite, disabled: this.disabled }],
-        'rang': [{ value: this.beneficiaire.rang, disabled: this.disabled }],
-        'attachement': [{ value: this.beneficiaire.attachement, disabled: this.disabled }],
-        'debut_effet': [{ value: new Date(this.beneficiaire.debut_effet), disabled: this.disabled }],
-        'fin_effet': [{ value: new Date(this.beneficiaire.fin_effet), disabled: this.disabled }]
+              'nom': [{ value: this.couverturebeneficiaire.nom_assure, disabled: this.disabled }],
+        'prenom': [{ value: this.couverturebeneficiaire.prenom_assure, disabled: this.disabled }],
+        'statut': [{ value: this.couverturebeneficiaire.statut, disabled: this.disabled }],
+        'famille': [{ value: this.couverturebeneficiaire.famille, disabled: this.disabled }],
+        'produit': [{ value: this.couverturebeneficiaire.produit, disabled: this.disabled }],
+        'risque': [{ value: this.couverturebeneficiaire.risque, disabled: this.disabled }],
+        'option': [{ value: this.couverturebeneficiaire.code_option, disabled: this.disabled }],
+        'debut_effet': [{ value: new Date(this.couverturebeneficiaire.debut_effet), disabled: this.disabled }],
+        'fin_effet': [{ value: new Date(this.couverturebeneficiaire.fin_effet), disabled: this.disabled }],
+        'date_annulation': [{ value: new Date(this.couverturebeneficiaire.date_annulation), disabled: this.disabled }],
+        'ref_client': [{ value: this.couverturebeneficiaire.ref_client, disabled: this.disabled }]
       });
     }
   }
