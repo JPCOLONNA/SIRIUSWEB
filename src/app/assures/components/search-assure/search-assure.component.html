@@ -26,7 +26,7 @@
             <div fxLayout="row" fxLayoutAlign="space-between center" >
             <!-- Date de naissance -->
             <mat-form-field  fxFlex="20">
-                    <input matInput [matDatepicker]="dateNaissance" [placeholder]="rsc.dateNaissance" [max]="today" [textMask]="{mask: mask.date || false, guide: false}" tabindex="5">
+                    <input matInput [matDatepicker]="dateNaissance" [placeholder]="rsc.dateNaissance"  [textMask]="{mask: mask.date || false, guide: false}" tabindex="5">
                     <mat-datepicker-toggle matSuffix [for]="dateNaissance"></mat-datepicker-toggle>
                     <mat-datepicker #dateNaissance></mat-datepicker>
                 </mat-form-field>
@@ -106,7 +106,7 @@
         </mat-table>
 
         <!-- Pagination -->
-        <mat-paginator #paginator [hidden]="listAssures == '' || listAssures == null"
+        <mat-paginator #paginator [hidden]="listAssures.length == 0 || listAssures == null"
                 [pageSize]="10"
                 [pageSizeOptions]="[10,25,50]">
         </mat-paginator>

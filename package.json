@@ -42,7 +42,6 @@
         "ng-device-detector": "^4.0.3",
         "ng2-device-detector": "^1.0.0",
         "ng2-trim-directive": "^2.0.0",
-        "ngx-uploader": "^4.2.1",
         "rxjs": "^5.5.2",
         "sass-loader": "^6.0.6",
         "sha.js": "^2.4.9",

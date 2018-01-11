@@ -6,7 +6,6 @@ import { MaterialComponentsModule } from './components/material-components.modul
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { NgUploaderModule } from 'ngx-uploader';
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -45,7 +44,6 @@ const COMPONENTS = [
     FormsModule,
     FlexLayoutModule,
     MaterialComponentsModule,
-    NgUploaderModule,
     ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
@@ -58,7 +56,6 @@ const COMPONENTS = [
     FormsModule,
     FlexLayoutModule,
     MaterialComponentsModule,
-    NgUploaderModule,
     ReactiveFormsModule,
     SimpleNotificationsModule,
     Ng2DeviceDetectorModule,
