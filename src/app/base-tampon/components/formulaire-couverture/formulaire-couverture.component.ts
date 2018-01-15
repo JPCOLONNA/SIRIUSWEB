@@ -76,28 +76,28 @@ export class FormulaireCouvertureComponent implements OnInit {
     if (this.couverture !== undefined) {
       this.formCouverture = this.formBuilder.group({
         'statut': [{ value: this.couverture.statut, disabled: this.disabled }],
-        'famille': [{ value: this.couverture.famille, disabled: this.disabled }],
+        'famille': [{ value: this.couverture.famille_produit, disabled: this.disabled }],
         'produit': [{ value: this.couverture.produit, disabled: this.disabled }],
         'risque': [{ value: this.couverture.risque, disabled: this.disabled }],
         'option': [{ value: this.couverture.code_option, disabled: this.disabled }],
         'debut_effet': [{ value: new Date(this.couverture.debut_effet), disabled: this.disabled }],
         'fin_effet': [{ value: new Date(this.couverture.fin_effet), disabled: this.disabled }],
         'date_annulation': [{ value: new Date(this.couverture.date_annulation), disabled: this.disabled }],
-        'ref_client': [{ value: this.couverture.ref_client, disabled: this.disabled }]
+        'ref_client': [{ value: this.couverture.reference_client, disabled: this.disabled }]
       });
     } else {
             this.formCouverture = this.formBuilder.group({
               'nom': [{ value: this.couverturebeneficiaire.nom_assure, disabled: this.disabled }],
         'prenom': [{ value: this.couverturebeneficiaire.prenom_assure, disabled: this.disabled }],
         'statut': [{ value: this.couverturebeneficiaire.statut, disabled: this.disabled }],
-        'famille': [{ value: this.couverturebeneficiaire.famille, disabled: this.disabled }],
+        'famille': [{ value: this.couverturebeneficiaire.famille_produit, disabled: this.disabled }],
         'produit': [{ value: this.couverturebeneficiaire.produit, disabled: this.disabled }],
         'risque': [{ value: this.couverturebeneficiaire.risque, disabled: this.disabled }],
         'option': [{ value: this.couverturebeneficiaire.code_option, disabled: this.disabled }],
         'debut_effet': [{ value: new Date(this.couverturebeneficiaire.debut_effet), disabled: this.disabled }],
         'fin_effet': [{ value: new Date(this.couverturebeneficiaire.fin_effet), disabled: this.disabled }],
         'date_annulation': [{ value: new Date(this.couverturebeneficiaire.date_annulation), disabled: this.disabled }],
-        'ref_client': [{ value: this.couverturebeneficiaire.ref_client, disabled: this.disabled }]
+        'ref_client': [{ value: this.couverturebeneficiaire.reference_client, disabled: this.disabled }]
       });
     }
   }

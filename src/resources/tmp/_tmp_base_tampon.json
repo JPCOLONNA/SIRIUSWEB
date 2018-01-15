@@ -1,70 +1,87 @@
 {
-    "liste_evenements": [
-        {
+    "liste_evenements": [{
+            "id_evenement": "152",
             "id_stockage": 152,
             "type_action": "ACTIV_IBAN",
-            "id_assure":3695636,
-            "nom_assure":"DUPOND",
-            "prenom_assure":"PAUL",
-            "id_societe":0,
-            "raison_social":"",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.39.19"
+            "id_assure": 3695637,
+            "nom_assure": "DUPOND",
+            "prenom_assure": "PAUL",
+            "id_societe": 1391,
+            "raison_sociale": "Casino Partouche SA",
+            "date_traitement": "20180102",
+            "heure_traitement": "11.39.19",
+            "provenance": "WEB",
+            "statut": "AVAL"
         },
         {
+            "id_evenement": "155",
             "id_stockage": 155,
             "type_action": "AFFILIATION",
-            "id_assure":0,
-            "nom_assure":"",
-            "prenom_assure":"",
-            "id_societe":1640,
-            "raison_social":"SOCIETE MARTIN VINCENT",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.50.19"
+            "id_assure": 0,
+            "nom_assure": "",
+            "prenom_assure": "",
+            "id_societe": 1640,
+            "raison_sociale": "SOCIETE MARTIN VINCENT",
+            "date_traitement": "20180102",
+            "heure_traitement": "11.50.19",
+            "provenance": "WEB",
+            "statut": "AVAL"
         },
         {
+            "id_evenement": "156",
             "id_stockage": 156,
             "type_action": "ACTIV_IBAN",
-            "id_assure":3695636,
-            "nom_assure":"DUPOND",
-            "prenom_assure":"PAUL",
-            "id_societe":0,
-            "raison_social":"",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.39.19"
+            "id_assure": 3695636,
+            "nom_assure": "DUPOND",
+            "prenom_assure": "PAUL",
+            "id_societe": 0,
+            "raison_sociale": "",
+            "date_traitement": "20180102",
+            "heure_traitement": "01.54.19",
+            "provenance": "WEB",
+            "statut": "AVAL"
         },
         {
+            "id_evenement": "157",
             "id_stockage": 157,
             "type_action": "AFFILIATION",
-            "id_assure":0,
-            "nom_assure":"",
-            "prenom_assure":"",
-            "id_societe":1640,
-            "raison_social":"SOCIETE MARTIN VINCENT",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.50.19"
+            "id_assure": 0,
+            "nom_assure": "",
+            "prenom_assure": "",
+            "id_societe": 1640,
+            "raison_sociale": "SOCIETE MARTIN VINCENT",
+            "date_traitement": "20180102",
+            "heure_traitement": "17.30.19",
+            "provenance": "WEB",
+            "statut": "AVAL"
         },
         {
+            "id_evenement": "160",
             "id_stockage": 160,
-            "type_action": "ACTIV_IBAN",
-            "id_assure":3695636,
-            "nom_assure":"DUPOND",
-            "prenom_assure":"PAUL",
-            "id_societe":0,
-            "raison_social":"",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.39.19"
+            "type_action": "MODIF_CVT",
+            "id_assure": 3695636,
+            "nom_assure": "DUPOND",
+            "prenom_assure": "PAUL",
+            "id_societe": 0,
+            "raison_sociale": "",
+            "date_traitement": "20180102",
+            "heure_traitement": "21.38.43",
+            "provenance": "WEB",
+            "statut": "AVAL"
         },
         {
+            "id_evenement": "161",
             "id_stockage": 161,
             "type_action": "AFFILIATION",
-            "id_assure":0,
-            "nom_assure":"",
-            "prenom_assure":"",
-            "id_societe":1640,
-            "raison_social":"SOCIETE MARTIN VINCENT",
-            "date_traitement":"20180102",
-            "heure_traitement":"11.50.19"
+            "id_assure": 0,
+            "nom_assure": "",
+            "prenom_assure": "",
+            "id_societe": 1640,
+            "raison_sociale": "SOCIETE MARTIN VINCENT",
+            "date_traitement": "20180102",
+            "heure_traitement": "22.00.09",
+            "provenance": "WEB",
+            "statut": "AVAL"
         }
-    ]   
+    ]
 }

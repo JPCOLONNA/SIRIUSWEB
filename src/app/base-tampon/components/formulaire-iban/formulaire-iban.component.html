@@ -1,4 +1,3 @@
-
 <form [formGroup]="formIban" (ngSubmit)="onSubmit()">
     <!-- 
     <h2>{{rsc.label.rattachement}}</h2>
@@ -66,7 +65,7 @@
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- Imputation de frais -->
-        <mat-checkbox fxFlex="30" formControlName="imputation_frais">{{rsc.label.imputationFrais}}</mat-checkbox>
+        <mat-slide-toggle fxFlex="30" formControlName="imputation_frais">{{rsc.label.imputationFrais}}</mat-slide-toggle>
         <!-- Nature-->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="nature" [placeholder]="rsc.label.nature">
@@ -117,7 +116,7 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- BIC -->
         <mat-form-field fxFlex="100">
-            <input matInput formControlName="complements" [placeholder]="rsc.label.placeHolderComplements">
+            <input matInput formControlName="complement_info" [placeholder]="rsc.label.placeHolderComplements">
         </mat-form-field>
 
     </div>

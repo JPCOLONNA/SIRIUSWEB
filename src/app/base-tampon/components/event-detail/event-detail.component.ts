@@ -5,6 +5,11 @@ import { ResourcesService } from 'app/core/providers/resources.service';
 import { ResourcesBaseTamponService } from 'app/base-tampon/providers/resources-base-tampon.service';
 import { AutorisationService } from 'app/core/providers/autorisation.service';
 
+import { Assure } from '../../model/assure';
+import { Couverture } from '../../model/couverture';
+import { Iban } from '../../model/iban';
+import { Salarie } from '../../model/salarie';
+
 /**
  * Détail d'une action/évènement de la base tampon
  */
@@ -14,6 +19,26 @@ import { AutorisationService } from 'app/core/providers/autorisation.service';
   styleUrls: ['./event-detail.component.scss']
 })
 export class EventDetailComponent implements OnInit {
+
+  /** Liste des infos assuré à afficher */
+  listAssures: Array<Assure>;
+
+  /** Liste des bénéficiaires à afficher */
+  listBeneficiaires: Array<Assure>;
+
+  /** Liste des couvertures à afficher */
+  listCouvertures: Array<Couverture>;
+
+  /** Liste des couvertures bénéficiaires à afficher */
+  listCouverturesBeneficiaires: Array<Couverture>;
+
+  /** Liste des infos salariés à afficher */
+  listInfosSalaries: Array<Salarie>;
+
+  /** Liste des infos salariés à afficher */
+  listInfosIban: Array<Iban>;
+
+
 
   // --------------------- Ressources -----------------------
   /** Ressources globales : label commun à toutes les applications<br /> Fichier : resources/_resources.json */
@@ -82,7 +107,7 @@ export class EventDetailComponent implements OnInit {
     this.menuDetail = this.rscBaseTampon.eventDetail.menu;
 
     //Droits d'accès
-    if(this.autorisationService.isAutorise("WBTFICHE","modifier"))
+    if (this.autorisationService.isAutorise("WBTFICHE", "modifier"))
       this.action = "modifier";
     else
       this.action = "consulter"
@@ -107,6 +132,37 @@ export class EventDetailComponent implements OnInit {
           });
         }*/
         this.eventDetail = data;
+
+        this.listAssures = new Array<Assure>();
+        for (let assure of this.eventDetail.liste_assure) {
+          this.listAssures.push(new Assure(assure));
+        }
+
+        this.listBeneficiaires = new Array<Assure>();
+        for (let assure of this.eventDetail.liste_beneficiaires) {
+          this.listBeneficiaires.push(new Assure(assure));
+        }
+
+        this.listCouvertures = new Array<Couverture>();
+        for (let couverture of this.eventDetail.liste_couverture_assure) {
+          this.listCouvertures.push(new Couverture(couverture));
+        }
+
+        this.listCouverturesBeneficiaires = new Array<Couverture>();
+        for (let couverture of this.eventDetail.liste_couverture_beneficiaire) {
+          this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+        }
+
+        this.listInfosSalaries = new Array<Salarie>();
+        for (let salarie of this.eventDetail.liste_infos_salarie) {
+          this.listInfosSalaries.push(new Salarie(salarie));
+        }
+
+        this.listInfosIban = new Array<Iban>();
+        for (let iban of this.eventDetail.liste_rib) {
+          this.listInfosIban.push(new Iban(iban));
+        }
+
         //détermine l'écran par défaut selon les données reçues
         this.screen = this.screenDefault();
 
@@ -115,16 +171,15 @@ export class EventDetailComponent implements OnInit {
       );
   }
 
-  screenDefault()
-  {
-    if(this.eventDetail.liste_assure !='')                  return this.menuDetail.assures.codeEcran;
-    if(this.eventDetail.liste_couverture_assure !='')       return this.menuDetail.couvertureAss.codeEcran;
-    if(this.eventDetail.liste_beneficiaires !='')           return this.menuDetail.beneficiaires.codeEcran;
-    if(this.eventDetail.liste_couverture_beneficiaire !='') return this.menuDetail.couvertureBenef.codeEcran;
-    if(this.eventDetail.liste_rib !='')                     return this.menuDetail.infoRib.codeEcran;
-    if(this.eventDetail.infos_salaries !='')                return this.menuDetail.infoSalarie.codeEcran;
-    if(this.eventDetail.documents !='')                     return this.menuDetail.documents.codeEcran;
-    if(this.eventDetail.anomalies !='')                     return this.menuDetail.anomalies.codeEcran;
+  screenDefault() {
+    if (this.eventDetail.liste_assure != '') return this.menuDetail.assures.codeEcran;
+    if (this.eventDetail.liste_couverture_assure != '') return this.menuDetail.couvertureAss.codeEcran;
+    if (this.eventDetail.liste_beneficiaires != '') return this.menuDetail.beneficiaires.codeEcran;
+    if (this.eventDetail.liste_couverture_beneficiaire != '') return this.menuDetail.couvertureBenef.codeEcran;
+    if (this.eventDetail.liste_rib != '') return this.menuDetail.infoRib.codeEcran;
+    if (this.eventDetail.liste_infos_salarie != '') return this.menuDetail.infoSalarie.codeEcran;
+    if (this.eventDetail.documents != '') return this.menuDetail.documents.codeEcran;
+    if (this.eventDetail.anomalies != '') return this.menuDetail.anomalies.codeEcran;
   }
 
   /**
