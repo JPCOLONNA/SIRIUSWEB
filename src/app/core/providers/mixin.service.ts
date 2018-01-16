@@ -7,6 +7,8 @@ import { Validators } from '@angular/forms';
 
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable()
 export class MixinService {
     private authorizationToken: string;
@@ -20,6 +22,21 @@ export class MixinService {
      */
     constructor() {
         
+    }
+
+    getDomainUrl(): string {
+        //return window.location.protocol + '//' + window.location.hostname + ':' + window.location.port+"/echange";
+        //return window.location.protocol + '//' + window.location.hostname + ':8080/kitaff';// + window.location.port;
+        if (environment.production) {
+            return window.location.protocol + '//' + window.location.hostname + ':' + window.location.port+"/echange";
+        } else {
+            //return 'http://localhost:9084/kitaff';
+            return 'http://api-i-dev.jpcolonna.fr:2535';
+        }
+    }
+
+    getApiUrl(): string {
+        return this.getDomainUrl() + '/API';
     }
 
     storeInSession(key: string, data: any) {
@@ -54,8 +71,8 @@ export class MixinService {
         return new HttpHeaders()
             .append('Accept', 'application/json')
             .append('Content-Type', 'application/json')
-            .append("Cache-Control", "no-cache, no-store, must-revalidate")
-            .append("Pragma", "no-cache");
+            //.append("Cache-Control", "no-cache, no-store, must-revalidate")
+            //.append("Pragma", "no-cache");
     }
     getAuthorizationHeader(): string {
         if (this.authorizationToken && this.authorizationToken.length > 0) {

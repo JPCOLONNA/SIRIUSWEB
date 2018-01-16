@@ -64,8 +64,14 @@ export class EventsListComponent implements OnInit {
     this.rsc = this.resourcesService.get();
     this.rscBaseTampon = this.resourcesBaseTamponService.get();
 
+
+
+
+
+    
     //Liste des actions à valider
-    this.baseTamponService.getListeEvenements().subscribe(
+    //this.baseTamponService.getListeEvenements().subscribe(
+      this.baseTamponService.loadEventsList("").subscribe(
       (data) => {
         //TO DO A activer lors de l'appel du service
         /*if (data.hasOwnProperty('success') && data.success === 'true') {
@@ -80,14 +86,15 @@ export class EventsListComponent implements OnInit {
         let rscTmp = JSON.parse(JSON.stringify(data))
         //Liste des évènements 
         this.eventList = new Array<Evenement>();
-        for(let evt of rscTmp.liste_evenements){
+        for(let evt of rscTmp.ListeEvt){
             this.eventList.push(new Evenement(evt));
         }
 
+        console.log(this.eventList);
         //this.eventList = rscTmp.liste_evenements;
 
         //Ordre des colonnes
-        this.displayedColumns = ['type_action', 'id_assure', 'nom_assure', 'id_societe', 'raison_sociale', 'date_traitement'];
+        this.displayedColumns = ['provenance', 'type_action', 'id_assure', 'nom_assure', 'id_societe', 'raison_sociale', 'date_traitement'];
         //Données du tableau
         this.dataSourceBaseTampon = new MatTableDataSource<any>(this.eventList);
         //Configuration de la pagination

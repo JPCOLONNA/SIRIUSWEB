@@ -1,3 +1,7 @@
 {
-    
+    "webservices": {
+        "listEvents": {
+            "url": "/wabasetmp"
+        }
+    }
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MixinService } from 'app/core/providers/mixin.service';
+import { SettingsService } from '../../core/providers/settings.service';
+import { ExceptionService } from '../../core/providers/exception.service';
 
 /**
  * Service de l'application "Base tampon" - lié aux données en base tampon
@@ -9,13 +11,42 @@ import { MixinService } from 'app/core/providers/mixin.service';
 @Injectable()
 export class BaseTamponService {
 
+    webservices: any;
+
   /**
    * Crée une instance d'BaseTamponServices
    * @param http 
    */
   constructor(
     private mixinService : MixinService,
-    private http: HttpClient) { }
+    private settingsService: SettingsService,
+    private exceptionService: ExceptionService,
+    private http: HttpClient) {
+      this.webservices = this.settingsService.get().webservices;
+    }
+
+
+  generateEventsListParameters(filters?:any): string {
+    return JSON.stringify({
+      contexte: "GetListeEvenement",
+      idstockage: ""
+    });
+  }
+
+  loadEventsList(filters?:any): Observable<any> {
+    return this.http.post(
+      this.mixinService.getApiUrl() + this.webservices.listEvents.url,
+        this.generateEventsListParameters(filters),
+        {headers: this.mixinService.getDefaultHeaders()}
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
+  }
+
+
+
+
+  
 
   /**
    * Récupère la liste des évênements depuis SIRIUS
