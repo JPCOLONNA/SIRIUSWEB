@@ -1,12 +1,16 @@
-#contentEventDetail
-{
+#contentEventDetail {
     //Minimum de hauteur sinon le menu de gauche possède un scroll
     min-height: 400px;
 }
 
-.down-light
-{
+.down-light {
     margin-top: 10px;
 }
 
-
+.typeEvenement {
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 32px;
+    display: inline-block;
+    vertical-align: top;
+}

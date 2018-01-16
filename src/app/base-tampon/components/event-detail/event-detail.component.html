@@ -18,10 +18,11 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEvenement}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rscBaseTampon.label.typeAction}} :
-                    <span [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    <span class="typeEvenement"> {{rscBaseTampon.label.typeAction}} :</span>
+                    <span class="typeEvenement" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
                     <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span><br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}<br /><br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
-                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement}} - {{eventDetail.evenement.heure_traitement}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}} <br />
+                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement | heure}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
+                    <br />
                 </div>
             </div>
 
@@ -43,22 +44,22 @@
             <mat-sidenav-container>
                 <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
                     <mat-nav-list>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="eventDetail.assure!=''" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
                 {{menuDetail.assures.nomEcran}}
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="eventDetail.beneficiaires!=''" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
                 {{menuDetail.beneficiaires.nomEcran}}
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="eventDetail.couvertureAss!=''" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
                 {{menuDetail.couvertureAssure.nomEcran}}
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="eventDetail.couvertureBenef!=''" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
                 {{menuDetail.couvertureBenef.nomEcran}}
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="eventDetail.infoSalarie!=''" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
                 {{menuDetail.infosSalarie.nomEcran}}
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="eventDetail.infoRib!=''" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
                 {{menuDetail.infosRIB.nomEcran}}
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">

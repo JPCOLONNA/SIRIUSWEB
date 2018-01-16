@@ -110,7 +110,7 @@
     ],
     "liste_situation_familiale": [
         { "code": "C", "valeur": "Célibataire" },
-        { "code": "M ", "valeur": "Marié" },
+        { "code": "M", "valeur": "Marié" },
         { "code": "D", "valeur": "Divorsé" },
         { "code": "V", "valeur": "Veuf(ve)" },
         { "code": "K", "valeur": "En vie maritale" },

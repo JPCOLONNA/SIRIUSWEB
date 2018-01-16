@@ -133,32 +133,39 @@ export class EventDetailComponent implements OnInit {
         }*/
         this.eventDetail = data;
 
+
         this.listAssures = new Array<Assure>();
+        if (this.eventDetail.liste_assure)
         for (let assure of this.eventDetail.liste_assure) {
           this.listAssures.push(new Assure(assure));
         }
 
         this.listBeneficiaires = new Array<Assure>();
+        if (this.eventDetail.liste_beneficiaires)
         for (let assure of this.eventDetail.liste_beneficiaires) {
           this.listBeneficiaires.push(new Assure(assure));
         }
 
         this.listCouvertures = new Array<Couverture>();
+        if (this.eventDetail.liste_couverture_assure)
         for (let couverture of this.eventDetail.liste_couverture_assure) {
           this.listCouvertures.push(new Couverture(couverture));
         }
 
         this.listCouverturesBeneficiaires = new Array<Couverture>();
+        if (this.eventDetail.liste_couverture_beneficiaire)
         for (let couverture of this.eventDetail.liste_couverture_beneficiaire) {
           this.listCouverturesBeneficiaires.push(new Couverture(couverture));
         }
 
         this.listInfosSalaries = new Array<Salarie>();
+        if (this.eventDetail.liste_infos_salarie)
         for (let salarie of this.eventDetail.liste_infos_salarie) {
           this.listInfosSalaries.push(new Salarie(salarie));
         }
 
         this.listInfosIban = new Array<Iban>();
+        if (this.eventDetail.liste_rib)
         for (let iban of this.eventDetail.liste_rib) {
           this.listInfosIban.push(new Iban(iban));
         }
@@ -167,6 +174,7 @@ export class EventDetailComponent implements OnInit {
         this.screen = this.screenDefault();
 
         this.doneRequesting();
+        
       }
       );
   }
