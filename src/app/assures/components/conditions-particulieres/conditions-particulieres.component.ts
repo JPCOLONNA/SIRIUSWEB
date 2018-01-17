@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { PythieService } from '../../../pythie/providers/pythie.service';
 import { ExceptionService } from '../../../core/providers/exception.service';
 import { NotificationsService } from 'angular2-notifications';
@@ -49,7 +49,6 @@ export class ConditionsParticulieresComponent implements OnInit {
   /**
    * Crée une instance du composant ConditionsParticulieresComponent
    * @param router                
-   * @param httpClient           
    * @param exceptionService      Services de gestion des exceptions
    * @param notificationsService  Services de notifications de bas de page
    * @param pythieService         Services de l'application "PYTHIE"
@@ -58,7 +57,6 @@ export class ConditionsParticulieresComponent implements OnInit {
    */
   constructor(
     private router: Router, 
-    private httpClient: HttpClient,
     private exceptionService: ExceptionService,
     private notificationsService: NotificationsService,
     private pythieService: PythieService,

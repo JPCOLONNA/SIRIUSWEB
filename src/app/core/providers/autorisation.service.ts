@@ -1,86 +1,129 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MixinService } from './mixin.service';
+import { SettingsService } from 'app/core/providers/settings.service';
+import { ExceptionService } from 'app/core/providers/exception.service';
+import { DroitApplication } from 'app/core/models/DroitApplication';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { Application } from 'app/core/models/Applications';
+
 
 @Injectable()
 export class AutorisationService {
 
-  listeActions: any;
-  constructor(private http: HttpClient, private mixinService: MixinService) { }
+  /** Ressources liées à l'appel de l'API WALOGIN - Authentification SIRIUSWEB */
+  walogin: any;
 
-  getAutorisationUtil(user: string)
-  {
-    //TO DO : Appel du webservices avec Contexte=GetDroitsGestionnaire pour réupérer la liste des écrans avec les droits utilisateurs
-    let headers = this.mixinService.getDefaultHeaders();
-    
-    return new Promise(resolve => {
-        this.http
-            .get("resources/tmp/_tmp_liste_droits.json", { headers: headers })
-            .subscribe(
-              (rsc) => {
-                //Cast le résultat de type "object" en structure JSON
-                let rscTmp = JSON.parse(JSON.stringify(rsc))
-
-                this.listeActions = rscTmp.liste_droits;
-                //sauvegarde la liste des droits
-                this.mixinService.storeInSession("actions",rscTmp.liste_droits);
-                resolve(true);
-              },
-              (error) => console.log(error)
-            );
-    });
-    
+  /**
+   * Crée une isntance de AutorisationService
+   * @param mixinService 
+   * @param settingsService 
+   * @param exceptionService 
+   * @param http 
+   */
+  constructor(
+    private mixinService: MixinService,
+    private settingsService: SettingsService,
+    private exceptionService: ExceptionService,
+    private http:HttpClient) {
+    this.walogin = this.settingsService.get().webservices.login;
   }
 
-  getAutorisationEcran(ecran: string)
-  {
-    //Récupère en session la liste des actions possibles pour l'utilisateur
-    this.listeActions = JSON.parse(this.mixinService.getFromSession("actions"));
-    this.listeActions.forEach(element => {      
-      if(element.ecran == ecran)
-      {
-        console.log(element.autorisations);
-        return element.autorisations;
+  /**
+   * Récupère la liste des applications accessibles par l'uilisateur connecté et stocke en session le résultat
+   */
+  getListApplication() {
+    //Utilisateur connecté
+    let user = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi, '');
+    if(user != "")
+    {
+      var body = {
+        contexte: this.walogin.contexte.listeApplications,
+        profil: user
       }
-    });
+      const url = this.mixinService.getApiUrl() + this.walogin.url;
+      return this.sendWebService(body,url);
+    }
   }
 
-  isAutorise(ecran: string, droit: string)
+  /**
+   * Récupère la liste des actions possibles pour l'utilisateur connecté dans une application
+   * @param nomAppli      Nom de l'application
+   */
+  getListDroitsApplication(nomAppli: string) {
+    let user = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi, '');
+    if(user != null)
+    {
+      var body = {
+        contexte: this.walogin.contexte.listeDroitsApplication,
+        profil: user,
+        nom_appli: nomAppli
+      }
+      const url = this.mixinService.getApiUrl() + this.walogin.url;
+
+      return this.sendWebService(body,url);
+    }
+  }
+
+  /**
+   * Sauvegarde en session les droits pour un utilisateur et une application
+   * @param nomAppli        Nom de l'application concerné par cet appel
+   * @param liste_droits    Liste des droits à mettre en session
+   */
+  saveDroitInSession(nomAppli:string,liste_droits:any)
   {
+    let droitsApplication:Array <DroitApplication>; 
+    
+    if(this.mixinService.getFromSession("actions") != "" && this.mixinService.getFromSession("actions") != null)
+      droitsApplication = JSON.parse(this.mixinService.getFromSession("actions"));
+    else
+      droitsApplication = new Array <DroitApplication>();
+    
+    for(let droit of liste_droits){
+      console.log(new DroitApplication(droit));
+      droitsApplication.push(new DroitApplication(droit));
+    } 
+      
+    //Sauvegarde la liste/tableau des droits en session
+    this.mixinService.storeInSession("actions",droitsApplication);
+
+    this.mixinService.storeInSession(nomAppli+"_droits",true);
+
+  }
+
+  /**
+   * Controle l'accès à une fonctionnalité selon un écran et un droit pour l'utilisateur authentifié
+   * @param ecran     Nom de l'écran
+   * @param droit     Le droit souhaité
+   */
+  isAutorise(ecran: string, droit: string) {
     let retour = false;
-
-    //Récupère en session la liste des actions possible pour l'utilisateur
+    //Récupère en session la liste des actions possibles pour l'utilisateur dans l'application en cours de consultation
     //!! cast en boolean le résultat 0/1
-    this.listeActions = JSON.parse(this.mixinService.getFromSession("actions"));
-    this.listeActions.forEach(element => {
-      if(element.ecran == ecran)
-      { 
-        switch(droit) { 
-          case "executer": { 
-             retour = !!element.autorisations.executer;
-             break;
-          } 
-          case "creer": { 
-            retour = !!element.autorisations.creer; 
-            break;
-          } 
-          case "modifier": { 
-            retour = !!element.autorisations.modifier; 
-            break;
-          } 
-          case "supprimer": { 
-            retour = !!element.autorisations.supprimer; 
-            break;
-          }
-          case "exporter": { 
-            retour = !!element.autorisations.exporter; 
-            break;
-          } 
-       } 
-       return false;
+    let listeActions = JSON.parse(this.mixinService.getFromSession("actions"));
+        
+    if(listeActions != null)
+    {
+      for (let action of listeActions) {
+        if (action.ecran == ecran) {
+          //console.log(!!element.autorisations[0][droit]);
+          return !!action.autorisations[0][droit];
+        }
       }
-    });
-    return retour;
+    }
+    else
+      return retour;
   }
+
+  /** Methode générale pour effectuer l'appel d'API */
+  sendWebService(body: any, url: string): Observable<any> {
+      return this.http.post(
+        url,
+        body,
+        {headers: this.mixinService.getDefaultHeaders()}
+      ).catch(
+        (err) => this.exceptionService.handleException(err)
+      );
+    }
 
 }

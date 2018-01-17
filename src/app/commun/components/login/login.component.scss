@@ -1,4 +1,14 @@
+// Theme palette
+@import "theme.scss";
+
 #form_login
 {
     margin-top: 200px;
+}
+
+#message
+{
+    color: $default-color-material;
+    font-weight: bold;
+    text-align: center;
 }

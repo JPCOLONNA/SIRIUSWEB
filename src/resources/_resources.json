@@ -1,17 +1,24 @@
 {
-    "listeApplications": [{
-            "url": "/pythie",
-            "nom": "PYTHIE"
+    "listeApplications": {
+        "VALID_ACTIONS":{
+            "icon": "fa-database",
+            "code":"VALID_ACTIONS",
+            "nom": "BASE TAMPON",
+            "url": "tampon"
         },
-        {
-            "url": "/assure",
-            "nom": "ASSURES"
+        "PYTHIEGES":{
+            "icon": "fa-cubes",
+            "nom": "PYTHIE",
+            "code":"PYTHIEGES",
+            "url":"pythie"
         },
-        {
-            "url": "/tampon",
-            "nom": "BASE TAMPON"
+        "ASSURES":{
+            "icon": "fa-user",
+            "nom": "ASSURES",
+            "code":"ASSURES",
+            "url":"assures"
         }
-    ],
+    },
     "modalMessages": {
         "nameModal": "WCINFORMATIONS",
         "titleModal": "Informations"

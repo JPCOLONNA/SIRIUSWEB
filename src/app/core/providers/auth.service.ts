@@ -1,10 +1,11 @@
 import { Injectable }       from '@angular/core';
-import { HttpClient }       from '@angular/common/http';
 import { Router }           from '@angular/router';
 import { Observable }       from 'rxjs/Rx';
 import { SettingsService }  from './settings.service';
 import { ExceptionService } from './exception.service';
 import { MixinService }     from './mixin.service';
+import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { logging } from 'selenium-webdriver';
 
 /**
  * Service lié à l'authentification, gestion des accès aux pages
@@ -20,17 +21,17 @@ export class AuthService {
 
     /**
      * Crée une instance de AuthService
-     * @param http
      * @param settingsService       Service de la configuration générale
      * @param exceptionService      Services de gestion des exceptions
      * @param router
      * @param mixinService          Services généraux
      */ 
-    constructor(private http: HttpClient,
+    constructor(
         private settingsService: SettingsService,
         private exceptionService: ExceptionService,
         private mixinService: MixinService,
-        private router: Router
+        private router: Router,
+        private autorisationService:AutorisationService
     ) {
         this.settings = this.settingsService.get().webservices;
         this.environment = this.settingsService.getEnvironnement();
@@ -40,17 +41,7 @@ export class AuthService {
      * Connection à l'application
      */
     login() {
-        /* TO DO : Récupérer le nom de l'utilisateur via le header d'apache quand le SSO sur IBM i sera en place
-         * Appeler une url du serveur d'apache de IBM i et récupérer la valeur de X-Remote-User
-         * Config apache : https://serverfault.com/questions/207301/get-the-authenticated-user-under-apache
-         * //sauvegarde de l'utilisateur en session
-         * this.mixinService.storeInSession("currentUser", "SGAUTHIER");
-         */
-
         this.router.navigate(["/login"]);
-
-        //Charge en mémoire les droits
-        //return this.autorisationService.getAutorisationUtil("SGAUTHIER");
     }
 
     /**
@@ -58,8 +49,9 @@ export class AuthService {
      * @return {boolean}
      */
     isLoggedIn() {
-        const user = this.mixinService.getFromLocalStorage("currentUser");
-        return user !== null;
+        return (this.mixinService.getFromSession("UserCode") != null 
+            && this.mixinService.getFromSession("UserCode") != undefined 
+            && this.mixinService.getFromSession("UserCode") != "");
     }
 
     /**

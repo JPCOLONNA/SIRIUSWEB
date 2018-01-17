@@ -13,13 +13,9 @@ const appRoutes: Routes = [
       nomEcran: "WPYACCUEIL"
     }
   },
-    {
+  {
     path: 'tampon',
-    loadChildren: './base-tampon/base-tampon.module#BaseTamponModule',
-    data: {
-      breadcrumb: "Base tampon",
-      nomEcran: "WBTValidation"
-    }
+    loadChildren: './base-tampon/base-tampon.module#BaseTamponModule'
   },
   {
     path: 'assures',
@@ -41,7 +37,7 @@ const appRoutes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
     data: {
-      nomEcran: "WCACCUEIL"
+      nomEcran: "WSWACCUEIL"
     }
   },
   {

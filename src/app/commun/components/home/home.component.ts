@@ -4,6 +4,9 @@ import { ApplicationInfoEvent } from '../../../core/broadcast/application-info-e
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MixinService } from '../../../core/providers/mixin.service';
 import { Router } from '@angular/router';
+import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { ExceptionService } from 'app/core/providers/exception.service';
+import { Application } from 'app/core/models/Applications';
 
 /**
  * Liste les applications sous forme de bouton 
@@ -14,6 +17,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  /** Ressources générales */
+  rsc:any;
+
+  /** Liste des applications */
+  listApplication:Array<Application> = new Array<Application>();
 
   /**
    * Créer une instance du composant HomeComponent
@@ -27,7 +36,9 @@ export class HomeComponent implements OnInit {
     private mixinService: MixinService,
     private menuEvent: MenuEvent, 
     private applicationInfoEvent: ApplicationInfoEvent,
-    private router: Router) { }
+    private router: Router,
+    private autorisationService:AutorisationService,
+    private exceptionService: ExceptionService) { }
 
   /**
    * Initialise le composant HomeComponent<br />
@@ -39,6 +50,34 @@ export class HomeComponent implements OnInit {
     this.menuEvent.fire("");
     //MAJ du nom de l'application - aucun information d'application car aucune application sélectionnée
     this.applicationInfoEvent.fire("");
+
+    this.rsc = this.resourcesService.get();
+
+    //Récupération de la liste des applications
+    this.autorisationService.getListApplication().subscribe(
+      (data) => {
+        if (data.hasOwnProperty('success') && data.success === 'true') {
+          if(data.liste_application){
+            //Pour chaque application, recherche les propriétés de l'application dans le fichier _resources.json
+            for(let application of data.liste_application){
+              var applicationTmp = new Application();
+              applicationTmp.code = application.nom_application;
+              applicationTmp.nom = this.rsc.listeApplications[application.nom_application].nom;
+              applicationTmp.icon = this.rsc.listeApplications[application.nom_application].icon;
+              applicationTmp.url = this.rsc.listeApplications[application.nom_application].url;
+              this.listApplication.push(applicationTmp);
+            } 
+          }
+        } else {
+          this.exceptionService.handleException(data).subscribe(() => {}, (error) => {
+            this.exceptionService.error.next({type:0, msg:error});
+          });
+        }
+      },
+      (error) => {
+        this.exceptionService.error.next({type:0, msg:error});
+      }
+    );
   }
 
   /**

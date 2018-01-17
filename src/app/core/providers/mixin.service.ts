@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Validators } from '@angular/forms';
+
+import { environment } from '../../../environments/environment';
 
 //import { Assure } from '../../shared/models/assure';
 //import { Portal } from '../../shared/models/portal';
@@ -21,6 +23,12 @@ export class MixinService {
     constructor() {
         
     }
+
+    /** Récupère l'URL d'API selon l'environnement */
+    getApiUrl(): string {
+        return environment.urlAPI;
+    }
+
 
     storeInSession(key: string, data: any) {
         if (data) {
@@ -51,11 +59,12 @@ export class MixinService {
     }
 
     getDefaultHeaders() {
-        return new HttpHeaders()
+        /*return new HttpHeaders()
             .append('Accept', 'application/json')
             .append('Content-Type', 'application/json')
             .append("Cache-Control", "no-cache, no-store, must-revalidate")
-            .append("Pragma", "no-cache");
+            .append("Pragma", "no-cache");*/
+            return new HttpHeaders();
     }
     getAuthorizationHeader(): string {
         if (this.authorizationToken && this.authorizationToken.length > 0) {

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms/';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MixinService } from '../../../core/providers/mixin.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { ResourcesAssuresService } from '../../providers/resources-assures.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConstructionMenuService } from '../../../core/providers/construction-menu.service';
@@ -77,7 +77,6 @@ export class SearchAssureComponent implements OnInit {
     private constructionMenuService: ConstructionMenuService,
     private assuresService: AssuresService,
     private formBuilder : FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute
   ) { }

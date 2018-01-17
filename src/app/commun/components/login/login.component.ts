@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
   onSubmit()
   {
     //Sauvegarde en mémoire (localStorage) le login utilisateur
-    this.mixinService.storeInLocalStorage("currentUser", this.formLogin.value.login);
+    this.mixinService.storeInSession("UserCode", this.formLogin.value.login);
     
     //Redirige vers la page d'accueil de l'application 
     this.router.navigate(["/"]);

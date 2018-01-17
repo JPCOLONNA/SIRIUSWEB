@@ -1,13 +1,14 @@
-   
 <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
     <div id="form_login" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+        <div id="message">
+            SI VOUS ACCEDEZ A CETTE PAGE, VOUS RENCONTREZ UN PROBLEME D'AUTHENTIFICATION.
+            <br /> Merci d'envoyer un mail au groupe LD_DSI_WEB.
+        </div>
         <mat-form-field>
-            <input matInput formControlName="login"
-                type="text"
-                required
-                placeholder="Votre login windows">
+            <input matInput formControlName="login" type="text" required placeholder="Votre login windows">
         </mat-form-field>
-        <span class="legende">* 1ère lettre de votre prénom suivi de votre nom</span><br />
-        <button mat-raised-button color="primary">Valider</button>
+        <span class="legende">* 1ère lettre de votre prénom suivi de votre nom</span>
+        <br />
+        <button mat-raised-button color="primary" type="submit">Valider</button>
     </div>
 </form>

@@ -11,6 +11,8 @@ import { FormulaireAssureComponent } from './components/formulaire-assure/formul
 import { FormulaireCouvertureComponent } from './components/formulaire-couverture/formulaire-couverture.component';
 import { FormulaireInfosSalarialesComponent } from './components/formulaire-infos-salariales/formulaire-infos-salariales.component';
 import { FormulaireIbanComponent } from './components/formulaire-iban/formulaire-iban.component';
+import { AutorisationService } from '../core/providers/autorisation.service';
+
 
 @NgModule({
   imports: [

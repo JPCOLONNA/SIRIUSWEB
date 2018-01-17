@@ -3,6 +3,8 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Navig
 import { AuthService } from "./auth.service";
 import { AutorisationService } from "app/core/providers/autorisation.service";
 import { MixinService } from "app/core/providers/mixin.service";
+import { Observable } from "rxjs/Observable";
+
 
 /**
  * Service de controle d'accès à un écran (autorisation)
@@ -26,22 +28,63 @@ export class AuthGuardService implements CanActivate {
    * @param route Route appelée
    * @param state 
    */
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    //controle si l'utilisateur est identifier
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(["/login"]);
-      return false;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    var isAutorise = false;
+
+    //Vérifie que l'utilisateur est connu, normalement toujours connu car ses informations sont récupérées à chaque appel d'URL
+    if(this.authService.isLoggedIn())
+    {
+      console.log("utilisateur connecté");
+      //vérifie que l'utilisateur à accès à cette écran
+      //A SUPPRIMER quand l'écran sera paramétré
+      if(route.data.nomEcran == "WSWACCUEIL")
+        return Observable.of(true);  
+      
+      //vérifie que l'utilisateur à accès à cette écran
+      if(this.autorisationService.isAutorise(route.data.nomEcran,"executer"))
+      {
+        return Observable.of(true);  
+      }
+      //Si ce n'est pas le cas, les droits pour l'application ne sont peut être pas chargés en mémoire
+      else
+      {
+        //Récupère le nom de l'application
+        let nomAppli = route.parent.data.nomAppli;
+        //TO DO : boucle jusqu'à trouver le nom de l'application
+
+        //nom de l'application
+        if(nomAppli != null && nomAppli != undefined)
+        {
+          //controle si la liste des droits de l'utilisateur pour l'application est connue (flag en session)
+          if(JSON.parse(this.mixinService.getFromSession(nomAppli+"_droits")) == null)
+          {
+            //récupère les droits
+            return this.autorisationService.getListDroitsApplication(nomAppli)
+            .map(
+              (data) => {
+                if (data.hasOwnProperty('success') && data.success === 'true') {
+                  //sauvegarde en session
+                  this.autorisationService.saveDroitInSession(nomAppli,data.liste_droits);
+                  //controle l'accès
+                  return this.autorisationService.isAutorise(route.data.nomEcran,"executer");
+                }
+              });
+          }
+        }
+      }
     }
     else
-      this.autorisationService.getAutorisationUtil(this.mixinService.getFromLocalStorage("currentUser"));
-    /* TO DO 
-       * //si l'utilisateur n'est pas identifié, appel de la procédure pour identifier l'utilisateur
-       * if(!this.authService.isLoggedIn())
-       *  this.authService.login();
-       * return this.autorisationServices.isAutorise(route.data.nomEcran,"executer")
-       */
-    //return this.autorisationService.isAutorise(route.data.nomEcran,"executer");
-    return true;
+    {
+      //Redirige vers la page de login
+      this.authService.login();
+    }
+
+
+    //vérifie que l'utilisateur à accès à cette écran
+    if(route.data.nomEcran != "WSWACCUEIL")
+      return Observable.of(this.autorisationService.isAutorise(route.data.nomEcran,"executer"));
+    else
+      return Observable.of(true);
   }
 
 /**
@@ -50,7 +93,7 @@ export class AuthGuardService implements CanActivate {
  * @param route Route appelée
  * @param state 
  */
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.canActivate(route, state);
   }
 
@@ -60,7 +103,7 @@ export class AuthGuardService implements CanActivate {
    * @param route Route chargée
    * @param state 
    */
-  canLoad(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canLoad(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.canActivate(route, state);
   }
 }

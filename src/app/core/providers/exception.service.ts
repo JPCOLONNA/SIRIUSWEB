@@ -4,13 +4,13 @@ import { Observable } from 'rxjs/Observable';
 
 import { ResourcesService } from './resources.service';
 import { Subject } from 'rxjs/Rx';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class ExceptionService {
 
   rsc: any;
-  error: Subject<string>;
+  error: Subject<any>;
 
   private router: Router;
 
@@ -36,10 +36,14 @@ export class ExceptionService {
   handleException(error: any): Observable<any> {
     let respBody, reject: string;
     if (error instanceof HttpErrorResponse) {
-      reject = error.error;
+      if ( error.error && error.error.hasOwnProperty('error')) {
+        reject = error.error.error;
+      } else {
+        reject = error.error;
+      }
     } else if (typeof error === 'string') {
       reject = error;
-    } else if (typeof error._body === 'string') {
+    } else if (error._body && typeof error._body === 'string') {
       respBody = JSON.parse(error._body);
 
       if (respBody.errorValidation) {
@@ -65,47 +69,33 @@ export class ExceptionService {
       reject = this.rsc.unknown;
     }
 
+    console.log("error = ", error);
     console.error('An error occurred : ', reject);
     return Observable.throw(reject);
   }
 
-  /**
-   * Handle Error (validation or error messages)
-   * @param {*} model
-   * @param {(string | Object)} error
-   */
-  /*handleError(model: any, error: string | Object) {
-    if (typeof error === 'object') {
-      for (const prop in error) {
-
-        let modelCopy: any = model;
-        const array = prop.split('.');
-
-        if (array.length > 1) {
-
-          while (array.length > 1) {
-            if (modelCopy.hasOwnProperty(array[0])) {
-              modelCopy = modelCopy[array[0]];
-            }
-            array.splice(0, 1);
-          }
-
-          if (modelCopy.hasOwnProperty(array[0])) {
-            modelCopy['_' + array[0]] = error[prop][0];
-          }
-
-        } else {
-          if (model.hasOwnProperty(prop)) {
-            model['_' + prop] = error[prop][0];
-          }
-        }
-      }
-    } else {
-      model.error = error;
-    }
-  }*/
-
   sendError(error: string) {
     this.error.next(error);
+  }
+
+  handleError(response: any) {
+    const errorArray: Array<any> = response.info;
+    if (errorArray) {
+      errorArray.forEach(element => {
+        this.handleException(element).subscribe(
+          (response) => { },
+          (error) => {
+            this.error.next({ msg: error, type: '0' });
+          }
+        );
+      });
+    } else {
+      this.handleException(response).subscribe(
+        (response) => { },
+        (error) => {
+          this.error.next({ msg: error, type: '0' });
+        }
+      );
+    }
   }
 }

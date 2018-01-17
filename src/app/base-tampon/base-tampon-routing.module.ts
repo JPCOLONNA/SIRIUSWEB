@@ -5,6 +5,7 @@ import { BaseTamponComponent } from './base-tampon.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
 import { AuthGuardService } from 'app/core/providers/auth-guard.service';
+import { AutorisationService } from 'app/core/providers/autorisation.service';
 
 
 /**
@@ -14,6 +15,10 @@ const baseTamponRoutes: Routes = [
     {
         path: '',
         component: BaseTamponComponent,
+        data:
+        {
+            nomAppli:"VALID_ACTIONS"
+        },
         children: [
             {
                 path: '',
@@ -25,7 +30,7 @@ const baseTamponRoutes: Routes = [
                 canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Liste des évènements",
-                    nomEcran: "WBTValidation"
+                    nomEcran: "WVALISTE"
                 }
             },
             {
@@ -34,7 +39,7 @@ const baseTamponRoutes: Routes = [
                 canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Validation de l'évènement",
-                    nomEcran: "WBTFICHE"
+                    nomEcran: "WVADETAIL"
                 }
             }
         ]

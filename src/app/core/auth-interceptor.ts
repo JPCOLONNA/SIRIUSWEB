@@ -1,7 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import { MixinService } from './providers/mixin.service'
+import { AuthService } from './providers/auth.service'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -10,50 +12,55 @@ export class AuthInterceptor implements HttpInterceptor {
    * Constructeur
    * @param mixinService
    */
-  constructor(private mixinService: MixinService) { }
+  constructor(
+    private mixinService: MixinService,
+    private inj: Injector
+  ) { }
 
   /**
-   * Intercepte toutes les requêtes HTTP sortantes et entrantes pour ajouter/stocker le token d'authentification
+   * Intercepte toutes les requêtes HTTP sortantes et entrantes pour stocker les informations de l'utilisateur connecté par SSO
    * @param req
    * @param next
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    // Récupération du token d'authentification
-    let authHeader: string = this.mixinService.getAuthorizationHeader();
-
-    // Clonage de la requête sortante car elle est imutable : on est obligé de la cloner pour la modifier
-    let authReq = req.clone();
-    if (authHeader) { // Si il existe un token en session, on l'ajoute à la requête sortante dans un header spécifique
-      if (authHeader.length > 0) {
-        authReq = req.clone({ headers: req.headers.set('Authorization', "Bearer " + authHeader) });
-      }
-    }
-
-    // On envoie ensuite la requête modifier à la place de la requête originale
+    console.log("requete interceptée");
+    
+    // On envoie la requête 
     return next
-      .handle(authReq)
+      .handle(req)
       .do(
-      (event: HttpEvent<any>) => { // Pour les requêtes entrantes, on stocke le nouveau token
+      event => { // Pour les requêtes entrantes, on stocke les informations de l'utilisateur 
+      console.log("intercept 1");
         if (event instanceof HttpResponse) {
-          if (event.headers.get('Authorization')) { // Si le token est présent dans les headers de la réponse
-            this.mixinService.setAuthorizationHeader(event.headers.get('Authorization'));
-          } else {
-            if (event.body.token) { // Sinon il doit être dans le corps de la réponse
-              this.mixinService.setAuthorizationHeader(event.body.token);
-            }
+          console.log("intercept 2");
+          if (event.headers.get('UserCode')) { // Login windows connecté 
+            console.log("login windows" + event.headers.get('UserCode'));
+            this.mixinService.storeInSession("UserCode",event.headers.get('UserCode'));
           }
+          if (event.headers.get('UserFullName')) { // Nom complet de l'utilisateur connecté 
+            console.log("login windows" + event.headers.get('UserFullName'));
+            this.mixinService.storeInSession("UserFullName",event.headers.get('UserFullName'));
+          } 
         }
       },
       error => {
+        //console.log(error); // For Debug only
         if (error instanceof HttpErrorResponse) {
-          console.log(error);
 
-          // FIX ME: A voir avec Jérémy
-          // if (error.status === 401 || error.status === 403) {
-            // this.mixinService.clearSession();
-          // }
-          // return this.exceptionService.handleException(error);
+          // Récupération du AuthService
+          const auth = this.inj.get(AuthService);
+          const router = this.inj.get(Router);
+
+          if (error.status === 401 || error.status === 403) {
+            if (router) {
+              router.navigate['/login'];
+            }
+          } else if (error.status === 0) {
+            if (auth) {
+              auth.logout();
+            }
+          } 
         }
       });
   }

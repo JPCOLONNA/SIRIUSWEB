@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
-import { ResourcesBaseTamponService }      from './providers/resources-base-tampon.service';
-import { MenuEvent }                    from '../core/broadcast/menu-event';
-import { ApplicationInfoEvent }         from '../core/broadcast/application-info-event';
-import { MixinService }                 from '../core/providers/mixin.service';
-import { ConstructionMenuService }      from '../core/providers/construction-menu.service';
+import { Component, OnInit, ViewChild  }  from '@angular/core';
+import { ResourcesBaseTamponService }     from './providers/resources-base-tampon.service';
+import { MenuEvent }                      from '../core/broadcast/menu-event';
+import { ApplicationInfoEvent }           from '../core/broadcast/application-info-event';
+import { MixinService }                   from '../core/providers/mixin.service';
+import { ConstructionMenuService }        from '../core/providers/construction-menu.service';
+import { AutorisationService }            from 'app/core/providers/autorisation.service';
 
 @Component({
   selector: 'app-base-tampon',
@@ -32,11 +33,15 @@ export class BaseTamponComponent implements OnInit {
     private mixinService: MixinService,
     private menuEvent: MenuEvent,
     private constructionMenuService : ConstructionMenuService,
-    private applicationInfoEvent: ApplicationInfoEvent
+    private applicationInfoEvent: ApplicationInfoEvent,
+    private autorisationService:AutorisationService
 
-  ) { }
+  ) { 
+    console.log("constructeur BT");
+  }
 
   ngOnInit() {
+    console.log("ngOnInit BT");
 
     //Ressources de l'application
     this.rscBaseTampon = this.resourcesBaseTamponService.get();
@@ -46,6 +51,9 @@ export class BaseTamponComponent implements OnInit {
     
     //MAJ du nom de l'application
     this.applicationInfoEvent.fire(JSON.stringify(this.rscBaseTampon.infoApplication));
+
+    //Chargement des droits de l'application en session
+    this.autorisationService.getListDroitsApplication(this.rscBaseTampon.infoApplication.code);
 
     this.idStockage = 0;
   }

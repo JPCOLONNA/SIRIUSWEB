@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MenuEvent } from '../../core/broadcast/menu-event';
 import { ApplicationInfoEvent } from '../../core/broadcast/application-info-event';
 
-import "rxjs/add/operator/map";
 import { MixinService } from "../../core/providers/mixin.service";
 import { Observable } from "rxjs/Observable";
 

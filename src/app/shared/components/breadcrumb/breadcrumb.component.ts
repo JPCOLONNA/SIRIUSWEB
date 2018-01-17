@@ -125,10 +125,11 @@ export class BreadcrumbComponent implements OnInit {
 
       //Vérifie que la propriété "breadcrumb" est spécifiée pour la route
       if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
+        // Récursive
         return this.getBreadcrumbs(child, url, breadcrumbs);
       }
 
-      //R2cupère le segment de l'url
+      //Récupère le segment de l'url
       let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
       if(routeURL != '')
       {
@@ -145,7 +146,7 @@ export class BreadcrumbComponent implements OnInit {
 
         breadcrumbs.push(breadcrumb);
       }
-      // R2cursive
+      // Récursive
       return this.getBreadcrumbs(child, url, breadcrumbs);
     }
   }

@@ -1,6 +1,7 @@
 {
     "infoApplication": {
         "icon": "fa-database",
+        "code":"VALID_ACTIONS",
         "nom": "BASE TAMPON",
         "url": "/tampon"
     },
