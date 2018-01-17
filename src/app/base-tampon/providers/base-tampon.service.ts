@@ -33,6 +33,10 @@ export class BaseTamponService {
     });
   }
 
+  /**
+   * Récupère la liste des évênements depuis SIRIUS
+   * @returns         Les informations concernant ces évênements sous forme d'un Observable
+   */
   loadEventsList(filters?:any): Observable<any> {
     return this.http.post(
       this.mixinService.getApiUrl() + this.webservices.listEvents.url,
@@ -45,13 +49,7 @@ export class BaseTamponService {
 
 
 
-
-  
-
-  /**
-   * Récupère la liste des évênements depuis SIRIUS
-   * @returns         Les informations concernant ces évênements sous forme d'un Observable
-   */
+  //A SUPPRIMER PLUS UTILISÉ  
   getListeEvenements(): Observable<any> {
     //TO DO : Appel web service pour lister les évènements
     // A adapeter à l'appel de service (methode post, body et header)

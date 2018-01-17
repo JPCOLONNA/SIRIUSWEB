@@ -107,7 +107,7 @@ export class EventDetailComponent implements OnInit {
     this.menuDetail = this.rscBaseTampon.eventDetail.menu;
 
     //Droits d'accès
-    if (this.autorisationService.isAutorise("WBTFICHE", "modifier"))
+    if (this.autorisationService.isAutorise("WVADETAIL", "modifier"))
       this.action = "modifier";
     else
       this.action = "consulter"
