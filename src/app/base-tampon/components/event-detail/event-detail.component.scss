@@ -10,8 +10,8 @@
 
 .typeEvenement {
     font-weight: bolder;
-    font-size: 18px;
-    line-height: 32px;
+    //font-size: 18px;
+    //line-height: 32px;
     display: inline-block;
     vertical-align: top;
 }
@@ -26,4 +26,8 @@
     cursor: default;
     color: white;
     background-color: #d1d1d2;
+}
+
+.cardClass {
+    padding: 4px;
 }

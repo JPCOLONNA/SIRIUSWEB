@@ -18,8 +18,9 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEvenement}}</h2>
                 <hr class="down-h2">
                 <div>
-                    <span class="typeEvenement"> {{rscBaseTampon.label.typeAction}} :</span>
-                    <span class="typeEvenement" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    <mat-card class="cardClass"><span class="typeEvenement"> {{rscBaseTampon.label.typeAction}} :</span>
+                        <span class="typeEvenement" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    </mat-card>
                     <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span><br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}<br /><br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
                     <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement | heure}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
                     <br />
