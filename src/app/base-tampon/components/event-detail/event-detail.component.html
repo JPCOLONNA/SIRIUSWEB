@@ -45,28 +45,28 @@
                 <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
                     <mat-nav-list>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
-                {{menuDetail.assures.nomEcran}}
+                {{menuDetail.assures.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listAssures.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
-                {{menuDetail.beneficiaires.nomEcran}}
+                {{menuDetail.beneficiaires.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listBeneficiaires.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
-                {{menuDetail.couvertureAssure.nomEcran}}
+                {{menuDetail.couvertureAssure.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouvertures.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
-                {{menuDetail.couvertureBenef.nomEcran}}
+                {{menuDetail.couvertureBenef.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouverturesBeneficiaires.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
-                {{menuDetail.infosSalarie.nomEcran}}
+                {{menuDetail.infosSalarie.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosSalaries.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
-                {{menuDetail.infosRIB.nomEcran}}
+                {{menuDetail.infosRIB.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosIban.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
-                {{menuDetail.documents.nomEcran}}
+                {{menuDetail.documents.nomEcran}} 
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
-                {{menuDetail.anomalies.nomEcran}}
+                {{menuDetail.anomalies.nomEcran}} 
             </a>
                     </mat-nav-list>
                 </mat-sidenav>
