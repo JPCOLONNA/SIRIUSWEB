@@ -1,5 +1,10 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ResourcesService } from 'app/core/providers/resources.service';
+
+import { Assure } from '../../../model/assure';
+import { Couverture } from '../../../model/couverture';
+import { Iban } from '../../../model/iban';
+import { Salarie } from '../../../model/salarie';
 
 /**
  * Liste les assurés de la base tampon pour un évènement
@@ -34,12 +39,15 @@ export class EventDetailAssureComponent implements OnInit {
 
   /** Liste des infos salariés à afficher */
   @Input() listInfosIban: Array<any>;
-  
+
   /**
    * Créer une instance du composant EventDetailAssureComponent<br />
    * @param resourcesService                Services de ressources pour toute les applications
    */
-  constructor(private resourcesService: ResourcesService) { }
+  constructor(private resourcesService: ResourcesService) {
+
+
+  }
 
   /**
   * Initialise le composant et de ses variables<br/>

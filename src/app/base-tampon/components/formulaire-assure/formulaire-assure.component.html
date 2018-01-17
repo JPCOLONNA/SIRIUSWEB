@@ -81,9 +81,9 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- Date de naissance -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="date_naissance" [matDatepicker]="picker" [placeholder]="rsc.label.dateNaissance">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input matInput formControlName="date_naissance" [matDatepicker]="picker1" [placeholder]="rsc.label.dateNaissance">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         <!-- Situation familiale -->
         <mat-form-field fxFlex="30">
@@ -111,30 +111,27 @@
         </mat-form-field>
         <!-- Fax-->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="fax" [placeholder]="rsc.label.fax">
+            <input matInput formControlName="fax" [placeholder]="rsc.label.mobile">
         </mat-form-field>
     </div>
 
+    <!-- 
     <h2 *ngIf="assure !== undefined">{{rsc.label.banque}}</h2>
     <hr *ngIf="assure !== undefined" class="down-h2">
     <div *ngIf="assure !== undefined" fxLayout="row" fxLayoutAlign="space-between center">
-        <!-- Code banque -->
         <mat-form-field fxFlex="24">
             <input matInput formControlName="code_banque" [placeholder]="rsc.label.codeBanque">
         </mat-form-field>
-        <!-- Guichet banque-->
         <mat-form-field fxFlex="24">
             <input matInput formControlName="guichet_banque" [placeholder]="rsc.label.guichetBanque">
         </mat-form-field>
-        <!-- Numéro de compte-->
         <mat-form-field fxFlex="24">
             <input matInput formControlName="num_compte" [placeholder]="rsc.label.numCompte">
         </mat-form-field>
-        <!-- Clé du compte-->
         <mat-form-field fxFlex="24">
             <input matInput formControlName="cle_compte" [placeholder]="rsc.label.cleCompte">
         </mat-form-field>
-    </div>
+    </div>-->
 
     <h2>{{rsc.label.securiteSociale}}</h2>
     <hr class="down-h2">

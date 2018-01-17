@@ -12,6 +12,12 @@
         <mat-table #table [dataSource]="dataSourceBaseTampon" matSort>
 
             <!-- Type d'action -->
+            <ng-container matColumnDef="provenance">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.provenance}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.provenance}} </mat-cell>
+            </ng-container>
+
+            <!-- Type d'action -->
             <ng-container matColumnDef="type_action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.typeAction}} </mat-header-cell>
                 <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.type_action}} </mat-cell>

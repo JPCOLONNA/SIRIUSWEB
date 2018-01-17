@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 
+
 @Injectable()
 export class MixinService {
     private authorizationToken: string;
@@ -65,6 +66,8 @@ export class MixinService {
             .append("Cache-Control", "no-cache, no-store, must-revalidate")
             .append("Pragma", "no-cache");*/
             return new HttpHeaders();
+            //.append("Cache-Control", "no-cache, no-store, must-revalidate")
+            //.append("Pragma", "no-cache");
     }
     getAuthorizationHeader(): string {
         if (this.authorizationToken && this.authorizationToken.length > 0) {

@@ -18,10 +18,12 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEvenement}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rscBaseTampon.label.typeAction}} :
-                    <span [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    <mat-card class="cardClass"><span class="typeEvenement"> {{rscBaseTampon.label.typeAction}} :</span>
+                        <span class="typeEvenement" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    </mat-card>
                     <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span><br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}<br /><br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
-                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement}} - {{eventDetail.evenement.heure_traitement}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}} <br />
+                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement | heure}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
+                    <br />
                 </div>
             </div>
 
@@ -43,29 +45,29 @@
             <mat-sidenav-container>
                 <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
                     <mat-nav-list>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="eventDetail.assure!=''" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
-                {{menuDetail.assures.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
+                {{menuDetail.assures.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listAssures.length}}</mat-chip></mat-chip-list>
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="eventDetail.beneficiaires!=''" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
-                {{menuDetail.beneficiaires.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
+                {{menuDetail.beneficiaires.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listBeneficiaires.length}}</mat-chip></mat-chip-list>
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="eventDetail.couvertureAss!=''" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
-                {{menuDetail.couvertureAssure.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                {{menuDetail.couvertureAssure.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouvertures.length}}</mat-chip></mat-chip-list>
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="eventDetail.couvertureBenef!=''" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
-                {{menuDetail.couvertureBenef.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                {{menuDetail.couvertureBenef.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouverturesBeneficiaires.length}}</mat-chip></mat-chip-list>
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="eventDetail.infoSalarie!=''" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
-                {{menuDetail.infosSalarie.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
+                {{menuDetail.infosSalarie.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosSalaries.length}}</mat-chip></mat-chip-list>
             </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="eventDetail.infoRib!=''" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
-                {{menuDetail.infosRIB.nomEcran}}
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
+                {{menuDetail.infosRIB.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosIban.length}}</mat-chip></mat-chip-list>
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
-                {{menuDetail.documents.nomEcran}}
+                {{menuDetail.documents.nomEcran}} 
             </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
-                {{menuDetail.anomalies.nomEcran}}
+                {{menuDetail.anomalies.nomEcran}} 
             </a>
                     </mat-nav-list>
                 </mat-sidenav>
@@ -78,27 +80,27 @@
                     </div>
                     <div>
                         <!-- Informations assurés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="eventDetail.liste_assure">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="listAssures">
                         </app-event-detail-assure>
 
                         <!-- Liste des bénéficiaires-->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="eventDetail.liste_beneficiaires">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="listBeneficiaires">
                         </app-event-detail-assure>
 
                         <!-- Couvertures -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="eventDetail.liste_couverture_assure">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="listCouvertures">
                         </app-event-detail-assure>
 
                         <!-- Couvertures bénéficaires -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="eventDetail.liste_couverture_beneficiaire">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="listCouverturesBeneficiaires">
                         </app-event-detail-assure>
 
                         <!-- Informations salariés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="eventDetail.liste_infos_salarie">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="listInfosSalaries">
                         </app-event-detail-assure>
 
                         <!-- Informations IBAN -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listInfosIban]="eventDetail.liste_rib">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listInfosIban]="listInfosIban">
                         </app-event-detail-assure>
 
 

@@ -1,12 +1,33 @@
-#contentEventDetail
-{
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+#contentEventDetail {
     //Minimum de hauteur sinon le menu de gauche possède un scroll
     min-height: 400px;
 }
 
-.down-light
-{
+.down-light {
     margin-top: 10px;
 }
 
+.typeEvenement {
+    font-weight: bolder;
+    //font-size: 18px;
+    //line-height: 32px;
+    display: inline-block;
+    vertical-align: top;
+}
 
+.mat-chip:not(.mat-basic-chip) {
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: inline-flex;
+    padding: 4px 9px;
+    margin-left: 4px;
+    border-radius: 24px;
+    align-items: center;
+    cursor: default;
+    color: white;
+    background-color: #d1d1d2;
+}
+
+.cardClass {
+    padding: 4px;
+}

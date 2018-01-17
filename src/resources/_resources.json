@@ -41,7 +41,8 @@
         "adresseSuite": "Complément d'adresse",
         "codePostal": "Code postal",
         "ville": "Ville",
-        "telephone": "Téléphone",
+        "telephone": "Téléphone fixe",
+        "mobile": "Téléphone mobile",
         "email": "Email",
         "fax": "Fax",
         "dateNaissance": "Date de naissance",
@@ -105,7 +106,8 @@
         "bic": "B.I.C.",
         "complements": "Compléments",
         "placeHolderComplements": "Veuillez saisir ici toute info complémentaire utile",
-        "titulaire": "Titulaire"
+        "titulaire": "Titulaire",
+        "provenance": "Provenance"
     },
     "positionTooltip": "below",
     "liste_civilite": [
@@ -115,7 +117,7 @@
     ],
     "liste_situation_familiale": [
         { "code": "C", "valeur": "Célibataire" },
-        { "code": "M ", "valeur": "Marié" },
+        { "code": "M", "valeur": "Marié" },
         { "code": "D", "valeur": "Divorsé" },
         { "code": "V", "valeur": "Veuf(ve)" },
         { "code": "K", "valeur": "En vie maritale" },

@@ -5,6 +5,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 import { ResourcesService } from 'app/core/providers/resources.service';
+import {Evenement} from '../../model/evenement';
 
 /**
  * Liste les actions/évènements en attente de validation par le métier
@@ -27,7 +28,7 @@ export class EventsListComponent implements OnInit {
 
   // ----------------- Tableau d'évènements ---------------------
   /** Liste des évènements, actions en attentes de validation*/
-  eventList: Array<any>;
+  eventList: Array<Evenement>;
   /** Liste des colonnes du tableau des assurés à afficher */
   displayedColumns: any;
   /** Données du tableau : "listAssures" au format datasource */
@@ -63,8 +64,14 @@ export class EventsListComponent implements OnInit {
     this.rsc = this.resourcesService.get();
     this.rscBaseTampon = this.resourcesBaseTamponService.get();
 
+
+
+
+
+    
     //Liste des actions à valider
-    this.baseTamponService.getListeEvenements().subscribe(
+    //this.baseTamponService.getListeEvenements().subscribe(
+      this.baseTamponService.loadEventsList("").subscribe(
       (data) => {
         //TO DO A activer lors de l'appel du service
         /*if (data.hasOwnProperty('success') && data.success === 'true') {
@@ -78,10 +85,16 @@ export class EventsListComponent implements OnInit {
         //Cast le résultat de type "object" en structure JSON
         let rscTmp = JSON.parse(JSON.stringify(data))
         //Liste des évènements 
-        this.eventList = rscTmp.liste_evenements;
+        this.eventList = new Array<Evenement>();
+        for(let evt of rscTmp.ListeEvt){
+            this.eventList.push(new Evenement(evt));
+        }
+
+        console.log(this.eventList);
+        //this.eventList = rscTmp.liste_evenements;
 
         //Ordre des colonnes
-        this.displayedColumns = ['type_action', 'id_assure', 'nom_assure', 'id_societe', 'raison_sociale', 'date_traitement'];
+        this.displayedColumns = ['provenance', 'type_action', 'id_assure', 'nom_assure', 'id_societe', 'raison_sociale', 'date_traitement'];
         //Données du tableau
         this.dataSourceBaseTampon = new MatTableDataSource<any>(this.eventList);
         //Configuration de la pagination
