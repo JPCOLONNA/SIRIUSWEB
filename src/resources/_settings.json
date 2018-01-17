@@ -1,7 +1,8 @@
 {
     "webservices": {
         "listEvents": {
-            "url": "/wabasetmp"
+            "url": "/wabasetmp",
+            "contexte": "GetListeEvenement"
         }
     }
 }

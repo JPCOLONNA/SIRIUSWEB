@@ -28,7 +28,7 @@ export class BaseTamponService {
 
   generateEventsListParameters(filters?:any): string {
     return JSON.stringify({
-      contexte: "GetListeEvenement",
+      contexte: this.webservices.listEvents.contexte,
       idstockage: ""
     });
   }
