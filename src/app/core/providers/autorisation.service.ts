@@ -80,7 +80,6 @@ export class AutorisationService {
       droitsApplication = new Array <DroitApplication>();
     
     for(let droit of liste_droits){
-      console.log(new DroitApplication(droit));
       droitsApplication.push(new DroitApplication(droit));
     } 
       
@@ -106,7 +105,6 @@ export class AutorisationService {
     {
       for (let action of listeActions) {
         if (action.ecran == ecran) {
-          //console.log(!!element.autorisations[0][droit]);
           return !!action.autorisations[0][droit];
         }
       }

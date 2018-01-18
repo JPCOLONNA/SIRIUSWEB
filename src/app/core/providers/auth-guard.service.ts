@@ -34,7 +34,6 @@ export class AuthGuardService implements CanActivate {
     //Vérifie que l'utilisateur est connu, normalement toujours connu car ses informations sont récupérées à chaque appel d'URL
     if(this.authService.isLoggedIn())
     {
-      console.log("utilisateur connecté");
       //vérifie que l'utilisateur à accès à cette écran
       //A SUPPRIMER quand l'écran sera paramétré
       if(route.data.nomEcran == "WSWACCUEIL")

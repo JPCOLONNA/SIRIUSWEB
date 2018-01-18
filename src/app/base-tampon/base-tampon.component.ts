@@ -36,13 +36,9 @@ export class BaseTamponComponent implements OnInit {
     private applicationInfoEvent: ApplicationInfoEvent,
     private autorisationService:AutorisationService
 
-  ) { 
-    console.log("constructeur BT");
-  }
+  ) { }
 
   ngOnInit() {
-    console.log("ngOnInit BT");
-
     //Ressources de l'application
     this.rscBaseTampon = this.resourcesBaseTamponService.get();
     

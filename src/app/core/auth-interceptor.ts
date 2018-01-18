@@ -23,29 +23,22 @@ export class AuthInterceptor implements HttpInterceptor {
    * @param next
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    console.log("requete interceptée");
-    
+  
     // On envoie la requête 
     return next
       .handle(req)
       .do(
       event => { // Pour les requêtes entrantes, on stocke les informations de l'utilisateur 
-      console.log("intercept 1");
         if (event instanceof HttpResponse) {
-          console.log("intercept 2");
           if (event.headers.get('UserCode')) { // Login windows connecté 
-            console.log("login windows" + event.headers.get('UserCode'));
             this.mixinService.storeInSession("UserCode",event.headers.get('UserCode'));
           }
           if (event.headers.get('UserFullName')) { // Nom complet de l'utilisateur connecté 
-            console.log("login windows" + event.headers.get('UserFullName'));
             this.mixinService.storeInSession("UserFullName",event.headers.get('UserFullName'));
           } 
         }
       },
       error => {
-        //console.log(error); // For Debug only
         if (error instanceof HttpErrorResponse) {
 
           // Récupération du AuthService

@@ -18,11 +18,17 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEvenement}}</h2>
                 <hr class="down-h2">
                 <div>
-                    <mat-card class="cardClass"><span class="typeEvenement"> {{rscBaseTampon.label.typeAction}} :</span>
-                        <span class="typeEvenement" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
-                    </mat-card>
-                    <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span><br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}<br /><br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
-                    <br /><br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement | heure}} <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
+                    <span class="showcase"> {{rscBaseTampon.label.typeAction}} :</span>
+                    <span class="showcase" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+
+                    <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span>
+                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}
+                    <br />
+                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
+                    <br />
+                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement
+                    | heure}}
+                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
                     <br />
                 </div>
             </div>
@@ -32,7 +38,10 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEntite}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rsc.label.numAssure}} {{eventDetail.evenement.id_assure}} - {{eventDetail.evenement.nom_assure}} {{eventDetail.evenement.prenom_assure}}<br /><br /> {{rsc.label.numSociete}} {{eventDetail.evenement.id_societe}} - {{eventDetail.evenement.raison_sociale}}
+                    {{rsc.label.numAssure}} {{eventDetail.evenement.id_assure}} - {{eventDetail.evenement.nom_assure}} {{eventDetail.evenement.prenom_assure}}
+                    <br
+                    />
+                    <br /> {{rsc.label.numSociete}} {{eventDetail.evenement.id_societe}} - {{eventDetail.evenement.raison_sociale}}
                 </div>
             </div>
         </div>
@@ -46,29 +55,49 @@
                 <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
                     <mat-nav-list>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
-                {{menuDetail.assures.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listAssures.length}}</mat-chip></mat-chip-list>
-            </a>
+                            {{menuDetail.assures.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listAssures.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
-                {{menuDetail.beneficiaires.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listBeneficiaires.length}}</mat-chip></mat-chip-list>
-            </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
-                {{menuDetail.couvertureAssure.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouvertures.length}}</mat-chip></mat-chip-list>
-            </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
-                {{menuDetail.couvertureBenef.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listCouverturesBeneficiaires.length}}</mat-chip></mat-chip-list>
-            </a>
+                            {{menuDetail.beneficiaires.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listBeneficiaires.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0"
+                            (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                            {{menuDetail.couvertureAssure.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listCouvertures.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0"
+                            (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                            {{menuDetail.couvertureBenef.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listCouverturesBeneficiaires.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
-                {{menuDetail.infosSalarie.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosSalaries.length}}</mat-chip></mat-chip-list>
-            </a>
+                            {{menuDetail.infosSalarie.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listInfosSalaries.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
-                {{menuDetail.infosRIB.nomEcran}} <mat-chip-list><mat-chip disabled="true">{{listInfosIban.length}}</mat-chip></mat-chip-list>
-            </a>
+                            {{menuDetail.infosRIB.nomEcran}}
+                            <mat-chip-list>
+                                <mat-chip disabled="true">{{listInfosIban.length}}</mat-chip>
+                            </mat-chip-list>
+                        </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
-                {{menuDetail.documents.nomEcran}} 
-            </a>
+                            {{menuDetail.documents.nomEcran}}
+                        </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
-                {{menuDetail.anomalies.nomEcran}} 
-            </a>
+                            {{menuDetail.anomalies.nomEcran}}
+                        </a>
                     </mat-nav-list>
                 </mat-sidenav>
 
@@ -110,8 +139,8 @@
         </div>
         <hr class="down-light">
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-            <button mat-raised-button color="primary" *ngIf="autorisationService.isAutorise('WBTFICHE','creer')">{{rscBaseTampon.eventDetail.label.validationDefinitive}}</button>
-            <button mat-raised-button color="warn" *ngIf="autorisationService.isAutorise('WBTFICHE','supprimer')">{{rscBaseTampon.eventDetail.label.suppressionDefinitive}}</button>
+            <button mat-raised-button color="primary" *ngIf="autorisationService.isAutorise('WADETAIL','creer')">{{rscBaseTampon.eventDetail.label.validationDefinitive}}</button>
+            <button mat-raised-button color="warn" *ngIf="autorisationService.isAutorise('WADETAIL','supprimer')">{{rscBaseTampon.eventDetail.label.suppressionDefinitive}}</button>
         </div>
     </div>
 
