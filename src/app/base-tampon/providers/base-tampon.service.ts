@@ -35,7 +35,7 @@ export class BaseTamponService {
 
   loadEventsList(filters?:any): Observable<any> {
     return this.http.post(
-      this.mixinService.getApiUrl() + this.webservices.listEvents.url,
+      this.mixinService.getApiUrl() + '/'+this.webservices.listEvents.url,
         this.generateEventsListParameters(filters),
         {headers: this.mixinService.getDefaultHeaders()}
       ).catch(error => {

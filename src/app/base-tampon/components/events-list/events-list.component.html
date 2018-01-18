@@ -50,7 +50,7 @@
             <!-- Date de l'action -->
             <ng-container matColumnDef="date_traitement">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.dateTraitement}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.date_traitement | dateYMD | date:'dd/MM/y'}} - {{event.heure_traitement | heure}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.date_traitement | dateYMD }} - {{event.heure_traitement | heure}} </mat-cell>
             </ng-container>
 
             <!-- Entête de tableau -->
@@ -59,7 +59,7 @@
         </mat-table>
 
         <!-- Pagination -->
-        <mat-paginator #paginator [hidden]="eventList.length == 0 || eventList == null" [pageSize]="25" [pageSizeOptions]="[10,25,50,100]">
+        <mat-paginator #paginator [hidden]="eventList == undefined || eventList == null || eventList.length == 0 " [pageSize]="25" [pageSizeOptions]="[10,25,50,100]">
         </mat-paginator>
     </div>
 

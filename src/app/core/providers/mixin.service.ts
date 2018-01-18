@@ -60,12 +60,12 @@ export class MixinService {
     }
 
     getDefaultHeaders() {
-        /*return new HttpHeaders()
+        return new HttpHeaders()
             .append('Accept', 'application/json')
-            .append('Content-Type', 'application/json')
-            .append("Cache-Control", "no-cache, no-store, must-revalidate")
-            .append("Pragma", "no-cache");*/
-            return new HttpHeaders();
+            .append('Content-Type', 'application/json');
+            //.append("Cache-Control", "no-cache, no-store, must-revalidate")
+           // .append("Pragma", "no-cache");
+           // return new HttpHeaders();
             //.append("Cache-Control", "no-cache, no-store, must-revalidate")
             //.append("Pragma", "no-cache");
     }
