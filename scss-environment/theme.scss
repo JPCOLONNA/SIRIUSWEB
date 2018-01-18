@@ -23,12 +23,17 @@ $default-color-material:  mat-color($default-primary,'default');
 $default-color: mat-color(mat-palette($md-green, 500, 50, 800),'default');
 //Couleur d'arrière plan par défaut
 $default-bg-color: mat-color(mat-palette($md-green, 500, 50, 800),'default');
-//Couleur du texte lorsqu'il y a un arrièce plan par défaut
+//Couleur du texte lorsqu'il y a un arrière plan par défaut
 $default-bg-text-color: #fff;
 //Couleur du texte  par défaut
 $default-text-color: #333;
 //Couleur des traits par défaut
 $default-line-color:  mat-color(mat-palette($md-white, 400));
+
+//Taille du texte par défaut:
+$default-text-size: 15px;
+//Font/Police par défaut
+$default-font-family: Roboto;
 
 // Define a custom typography config that overrides the font-family
 //$custom-typography: mat-typography-config( $font-family: Roboto);

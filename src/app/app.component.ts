@@ -44,6 +44,9 @@ export class AppComponent {
   messages: string;
   messageAffiche: boolean;
 
+  /** Nom de l'utilsiateur connecté */
+  userConnectedFullName: string;
+
   constructor(
     private settingsService: SettingsService,
     private mixinService: MixinService,
@@ -88,6 +91,13 @@ export class AppComponent {
 
     //Par défaut le message est affiché
     this.messageAffiche = true;
+
+    //Information utilisateur - nom complet si présetn ou login windows
+    this.userConnectedFullName = this.mixinService.getFromSession("UserFullName");
+    console.log(this.userConnectedFullName);
+    
+    if(this.userConnectedFullName == null)
+      this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
   }
 
 

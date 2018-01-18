@@ -39,66 +39,80 @@
                 <hr class="down-h2">
                 <div>
                     {{rsc.label.numAssure}} {{eventDetail.evenement.id_assure}} - {{eventDetail.evenement.nom_assure}} {{eventDetail.evenement.prenom_assure}}
-                    <br
-                    />
+                    <br />
                     <br /> {{rsc.label.numSociete}} {{eventDetail.evenement.id_societe}} - {{eventDetail.evenement.raison_sociale}}
                 </div>
             </div>
         </div>
 
         <hr class="down-light">
-
+        
         <!-- Détail de l'évènement -->
         <div>
-            <!-- Menu d'accès à chaque aprtie de détail d'une action/évènement -->
+            <!-- Menu d'accès à chaque partie de détail d'une action/évènement -->
             <mat-sidenav-container>
                 <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
-                    <mat-nav-list>
+                    <mat-list>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
-                            {{menuDetail.assures.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listAssures.length}}</mat-chip>
-                            </mat-chip-list>
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.assures.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" selected="true" color="primary">{{listAssures.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
-                            {{menuDetail.beneficiaires.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listBeneficiaires.length}}</mat-chip>
-                            </mat-chip-list>
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.beneficiaires.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" selected="true" color="primary">{{listBeneficiaires.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0"
-                            (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
-                            {{menuDetail.couvertureAssure.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listCouvertures.length}}</mat-chip>
-                            </mat-chip-list>
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.couvertureAssure.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" selected="true" color="primary">{{listCouvertures.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0"
                             (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
-                            {{menuDetail.couvertureBenef.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listCouverturesBeneficiaires.length}}</mat-chip>
-                            </mat-chip-list>
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.couvertureBenef.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" selected="true" color="primary">{{listCouverturesBeneficiaires.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
-                            {{menuDetail.infosSalarie.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listInfosSalaries.length}}</mat-chip>
-                            </mat-chip-list>
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.infosSalarie.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" disabled="true" selected="true" color="primary">{{listInfosSalaries.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
-                            {{menuDetail.infosRIB.nomEcran}}
-                            <mat-chip-list>
-                                <mat-chip disabled="true">{{listInfosIban.length}}</mat-chip>
-                            </mat-chip-list>
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.infosRIB.nomEcran}}</span>
+                                <mat-chip-list>
+                                    <mat-chip class="pastille" disabled="true" selected="true" color="primary">{{listInfosIban.length}}</mat-chip>
+                                </mat-chip-list>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
-                            {{menuDetail.documents.nomEcran}}
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.documents.nomEcran}}</span>
+                            </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
-                            {{menuDetail.anomalies.nomEcran}}
+                            <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+                                <span class="itemList">{{menuDetail.anomalies.nomEcran}}</span>
+                            </div>
                         </a>
-                    </mat-nav-list>
+                    </mat-list>
                 </mat-sidenav>
 
                 <!-- Contenu de la div contenant le détail d'une action/évènement selon le choix dans le menu -->
