@@ -4,29 +4,36 @@
 // More info on theming at https://github.com/angular/material2/blob/master/guides/theming.md
 // Create a custom theme at http://mcg.mbitson.com
 // Primary theme
-$default-primary: mat-palette($md-orange, 500, 50, 800);    // couleur principale
-$default-secondary: mat-palette($md-squash, 500, 100, 900);    // couleur secondaire
+$default-primary: mat-palette($md-deeppurple, 500, 50, 800);    // couleur principale
+$default-secondary: mat-palette($md-deeppurple, 500, 100, 900);    // couleur secondaire
 $default-theme: mat-light-theme($default-primary, $default-secondary);
 @include angular-material-theme($default-theme);
 // Alternate theme
-$alternate-primary: mat-palette($md-orange, 500, 50, 800);
-$alternate-accent: mat-palette($md-squash, 500, 100, 900);
+$alternate-primary: mat-palette($md-deeppurple, 500, 50, 800);
+$alternate-accent: mat-palette($md-deeppurple, 500, 100, 900);
 $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
 .alternate-theme {
     @include angular-material-theme($alternate-theme);
 }
 
 //Couleurs principales de l'application variable selon l'environnement
+//Couleur utiliser par les composants matérials
+$default-color-material:  mat-color($default-primary,'default');
 //Couleur par défaut de l'environnement
-$default-color: mat-color($default-primary,'default');
+$default-color: mat-color(mat-palette($md-lightgreen, 500, 50, 800),'default');
 //Couleur d'arrière plan par défaut
-$default-bg-color: mat-color($default-primary,'default');
-//Couleur du texte lorsqu'il y a un arrièce plan par défaut
+$default-bg-color: mat-color(mat-palette($md-lightgreen, 500, 50, 800),'default');
+//Couleur du texte lorsqu'il y a un arrière plan par défaut
 $default-bg-text-color: #fff;
 //Couleur du texte  par défaut
-$default-text-color: #000;
+$default-text-color: #333;
 //Couleur des traits par défaut
 $default-line-color:  mat-color(mat-palette($md-white, 400));
+
+//Taille du texte par défaut:
+$default-text-size: 15px;
+//Font/Police par défaut
+$default-font-family: Roboto;
 
 // Define a custom typography config that overrides the font-family
 //$custom-typography: mat-typography-config( $font-family: Roboto);

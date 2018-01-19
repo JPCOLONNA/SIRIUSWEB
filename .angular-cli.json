@@ -5,6 +5,7 @@
   },
   "apps": [
     {
+      "name":"siriuswebDEV",
       "root": "src",
       "outDir": "dist",
       "assets": [
@@ -24,14 +25,76 @@
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
-          "../scss-environment"
+          "../scss-environment/developpement"
         ]
       },
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environmentDEV.prod.ts"
+      }
+    },
+    {
+      "name":"siriuswebREC",
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "resources",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "scss/app.scss"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "../scss-environment/recette"
+        ]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environmentREC.ts",
+        "prod": "environments/environmentREC.prod.ts"
+      }
+    },
+    {
+      "name":"siriuswebPRO",
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "resources",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "scss/app.scss"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "../scss-environment/production"
+        ]
+      },
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environmentPRO.ts",
+        "prod": "environments/environmentPRO.prod.ts"
       }
     }
   ],

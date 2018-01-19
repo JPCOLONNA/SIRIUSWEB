@@ -102,4 +102,6 @@ export class FormulaireCouvertureComponent implements OnInit {
     }
   }
 
+  onSubmit() {}
+
 }

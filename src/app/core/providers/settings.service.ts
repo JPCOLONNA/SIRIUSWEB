@@ -28,7 +28,7 @@ export class SettingsService {
    * @return {Promise<any>}
    */
   load(callback?: () => any) {
-    this.loadEnvironmentParams();
+    //this.loadEnvironmentParams();
     const headers = new HttpHeaders();
     headers.append('Cache-Control', 'no-cache');
     headers.append('Pragma', 'no-cache');
@@ -52,7 +52,7 @@ export class SettingsService {
    * @param {() => any} [callback]
    * @return {Promise<any>}
    */
-  loadEnvironmentParams(callback?: () => any) {
+  /*loadEnvironmentParams(callback?: () => any) {
     const headers = new HttpHeaders();
     headers.append('Cache-Control', 'no-cache');
     headers.append('Pragma', 'no-cache');
@@ -75,7 +75,7 @@ export class SettingsService {
           () => console.log('Environment settings loaded')
         );
     });
-  }
+  }*/
 
   /**
    * Lecture des ressources
