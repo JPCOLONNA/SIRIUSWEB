@@ -135,4 +135,6 @@ export class FormulaireAssureComponent implements OnInit {
     }
   }
 
+  onSubmit() {}
+
 }

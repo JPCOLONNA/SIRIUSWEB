@@ -47,7 +47,12 @@ a:hover{
 .contenair
 {
     padding:10px 15px;
+    
 }
+::ng-deep .mat-list-text
+    {
+        font-size:15px;
+    }
 
 /* ------------------- TEXTES ----------------- */
 
@@ -172,6 +177,18 @@ mat-sidenav .linkActive
 {
     padding-right: 10px;
 } 
+
+//Pastilles avec numéro dans les listes
+.pastille.mat-chip:not(.mat-basic-chip) {
+    padding: 2px 8px;
+}
+
+//Pour contrer la taille de police des les listes de material
+.colonneCentrale mat-sidenav .itemList
+{
+    font-size: $default-text-size;
+} 
+
 
 /* ---------------- Tableau ---------------- */
 // Retaille la largeur des tailles de façon automatique selon le contenu

@@ -97,4 +97,5 @@ export class FormulaireIbanComponent implements OnInit {
 
   }
 
+  onSubmit() {}
 }

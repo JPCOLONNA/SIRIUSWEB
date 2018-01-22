@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material';
 import { ModalMessageComponent } from './commun/components/modal-message/modal-message.component';
 import { MixinService } from './core/providers/mixin.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../environments/environment';
 
 
 /**
@@ -33,7 +34,7 @@ export class AppComponent {
   /** Environnement d'éxécution*/
   environnement: any;
   /** Nom de l'environnement */
-  nomEnvironnement: string;
+  nomEnvironment: string;
   //Information de l'application
   infoApplication: any;
   /** Nom de l'application */
@@ -43,6 +44,9 @@ export class AppComponent {
   nomEcran: string;
   messages: string;
   messageAffiche: boolean;
+
+  /** Nom de l'utilsiateur connecté */
+  userConnectedFullName: string;
 
   constructor(
     private settingsService: SettingsService,
@@ -57,7 +61,7 @@ export class AppComponent {
   ngOnInit()
   {
     this.environnement = this.settingsService.getEnvironnement();
-    this.nomEnvironnement = this.environnement.nomEnvironnement;
+    this.nomEnvironment = environment.nomEnvironment;
     this.listeApplications = this.resourcesService.get().listeApplications;
 
     //Récupération des informations de l'application chargée
@@ -88,6 +92,13 @@ export class AppComponent {
 
     //Par défaut le message est affiché
     this.messageAffiche = true;
+
+    //Information utilisateur - nom complet si présetn ou login windows
+    this.userConnectedFullName = this.mixinService.getFromSession("UserFullName");
+    console.log(this.userConnectedFullName);
+    
+    if(this.userConnectedFullName == null)
+      this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
   }
 
 

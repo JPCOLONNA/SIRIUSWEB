@@ -6,7 +6,7 @@
         <div fxLayout="column" fxLayoutAlign="start stretch" id="colonneGauche" fxLayoutGap="5px">
             <!-- Informatiosn applications et environnement -->
             <div id="nom_application"><i [class]="iconApplication"></i> {{nomApplication}}</div>
-            <div class="center">{{nomEnvironnement}}</div>
+            <div class="center">{{nomEnvironment}}</div>
             <hr class="down"> 
 
             <!-- Choix de l'application -->
@@ -55,7 +55,7 @@
                 <!-- Lien vers modal PEGASE : liste documents édité par le gestionnaire connecté -->
                 <i class="fa fa-print large-icon"></i>
                 <div fxLayout="column" fxLayoutAlign="space-between end">
-                    <span>Sandra GAUTHIER</span>
+                    <span>{{userConnectedFullName}}</span>
                     <span>{{dateDuJour | date:'fullDate' | uppercase}} - {{dateDuJour | date:'shortTime'}}</span>
                     <span>{{nomEcran | uppercase}}</span>
                 </div>
