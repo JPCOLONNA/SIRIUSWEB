@@ -1,0 +1,44 @@
+// Colors
+@import "colors.scss";
+// Theme palette
+@import "theme.scss";
+// Font awesome
+$fa-font-path: "../../node_modules/font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome.scss";
+// Fonts
+@import "CabinFonts.scss";
+@import "MontserratFonts.scss";
+@import "RobotoFonts.scss";
+// Page design
+@import "page.scss";
+html {
+    height: 100%;
+}
+
+body {
+    color: $default-text-color;
+    font-family: $default-font-family;
+    font-size: $default-text-size;
+    height: 100%;
+    margin: 0;
+    //Bloqué à 1200px en attendant la gestion du responsive
+    min-width: 1200px;
+}
+
+//A SUPPRIMER plus utilisé
+
+/*::ng-deep .mat-drawer-container
+{
+    background-color: #fff !important;
+}*/
+
+
+/* ------------------ Tableaux - Entete centrée ------------------*/
+
+.headerCenter .mat-sort-header-container {
+    text-align: center !important;
+}
+
+.headerCenter .mat-sort-header-button {
+    margin: auto !important;
+}
