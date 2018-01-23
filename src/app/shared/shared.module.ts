@@ -24,6 +24,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { SirenPipe } from './pipes/siren.pipe';
 import { DateYMDPipe } from './pipes/dateYMD.pipe';
 import { HeurePipe } from './pipes/heure.pipe';
+import { NumSSPipe } from './pipes/numSS.pipe';
 
 const COMPONENTS = [
   CapitalizePipe,
@@ -34,7 +35,8 @@ const COMPONENTS = [
   HeaderModalComponent,
   SirenPipe,
   DateYMDPipe,
-  HeurePipe
+  HeurePipe,
+  NumSSPipe
 ];
 
 @NgModule({

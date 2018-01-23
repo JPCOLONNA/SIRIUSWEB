@@ -34,14 +34,14 @@ export class AppComponent {
   /** Environnement d'éxécution*/
   environnement: any;
   /** Nom de l'environnement */
-  nomEnvironment: string;
+  environmentName: string;
   //Information de l'application
-  infoApplication: any;
+  applicationInfo: any;
   /** Nom de l'application */
-  nomApplication: string;/** test nom de l'application */
+  applicationName: string;/** test nom de l'application */
   iconApplication: string;/** Icone de l'application */
   dateDuJour: Date;
-  nomEcran: string;
+  screenName: string;
   messages: string;
   messageAffiche: boolean;
 
@@ -61,22 +61,22 @@ export class AppComponent {
   ngOnInit()
   {
     this.environnement = this.settingsService.getEnvironnement();
-    this.nomEnvironment = environment.nomEnvironment;
+    this.environmentName = environment.environmentName;
     this.listeApplications = this.resourcesService.get().listeApplications;
 
     //Récupération des informations de l'application chargée
     this.applicationInfoEvent.on().subscribe((res) => {
       if(res != "")
       {
-        this.infoApplication = JSON.parse(res) ;
-        this.iconApplication = "fa no-click "+this.infoApplication.icon;
-        this.nomApplication = this.infoApplication.nom;
+        this.applicationInfo = JSON.parse(res) ;
+        this.iconApplication = "fa no-click "+this.applicationInfo.icon;
+        this.applicationName = this.applicationInfo.name;
       }
       else
       {
-        this.infoApplication = "" ;
+        this.applicationInfo = "" ;
         this.iconApplication = "";
-        this.nomApplication = "";
+        this.applicationName = "";
       }
     });
 
@@ -124,9 +124,9 @@ export class AppComponent {
   }
 
   //récupère le nom de l'écran
-  onChangeNomEcran($event)
+  onChangeScreenName($event)
   {
-    this.nomEcran = $event;
+    this.screenName = $event;
   }
 
 }

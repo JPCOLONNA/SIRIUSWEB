@@ -10,7 +10,7 @@ const appRoutes: Routes = [
     loadChildren: './pythie/pythie.module#PythieModule',
     data: {
       breadcrumb: "Pythie",
-      nomEcran: "WPYACCUEIL"
+      screenName: "WPYACCUEIL"
     }
   },
   {
@@ -20,16 +20,12 @@ const appRoutes: Routes = [
   {
     path: 'assures',
     loadChildren: './assures/assures.module#AssuresModule',
-    data: {
-      breadcrumb: "Assures",
-      nomEcran: "WASRECHERCHE"
-    }
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
-      nomEcran: "WCLOGIN"
+      screenName: "WSWLOGIN"
     }
   },
   {
@@ -37,7 +33,7 @@ const appRoutes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
     data: {
-      nomEcran: "WSWACCUEIL"
+      screenName: "WSWACCUEIL"
     }
   },
   {

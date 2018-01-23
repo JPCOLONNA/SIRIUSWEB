@@ -5,7 +5,5 @@ export class Application {
     icon: string;
     url: string;
 
-    constructor() {
-        
-    }
+    constructor() { }
 }

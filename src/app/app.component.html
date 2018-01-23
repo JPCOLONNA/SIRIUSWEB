@@ -5,8 +5,8 @@
     <mat-sidenav mode="side" position="start" opened fixedInViewport>
         <div fxLayout="column" fxLayoutAlign="start stretch" id="colonneGauche" fxLayoutGap="5px">
             <!-- Informatiosn applications et environnement -->
-            <div id="nom_application"><i [class]="iconApplication"></i> {{nomApplication}}</div>
-            <div class="center">{{nomEnvironment}}</div>
+            <div id="applicationName"><i [class]="iconApplication"></i> {{applicationName}}</div>
+            <div class="center">{{environmentName}}</div>
             <hr class="down"> 
 
             <!-- Choix de l'application -->
@@ -47,7 +47,7 @@
                 </div>
 
                 <!-- Fil d'ariane -->
-                <app-breadcrumb (nomEcran)= "onChangeNomEcran($event)"></app-breadcrumb>
+                <app-breadcrumb (screenName)= "onChangeScreenName($event)"></app-breadcrumb>
             </div>
 
             <!-- Information utilisateur et générale (date/heure et nom de l'écran) -->
@@ -57,7 +57,7 @@
                 <div fxLayout="column" fxLayoutAlign="space-between end">
                     <span>{{userConnectedFullName}}</span>
                     <span>{{dateDuJour | date:'fullDate' | uppercase}} - {{dateDuJour | date:'shortTime'}}</span>
-                    <span>{{nomEcran | uppercase}}</span>
+                    <span>{{screenName | uppercase}}</span>
                 </div>
             </div>
         </div>

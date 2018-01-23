@@ -21,7 +21,7 @@ const pythieRoutes: Routes = [
         canLoad: [AuthGuardService],
         data: {
             breadcrumb: "Conditions particulières",
-            nomEcran: "WPASSURECP"
+            screenName: "WPASSURECP"
         }
     }
 ]

@@ -17,7 +17,7 @@ const baseTamponRoutes: Routes = [
         component: BaseTamponComponent,
         data:
         {
-            nomAppli:"VALID_ACTIONS"
+            appliName:"BASE_TAMPON"
         },
         children: [
             {
@@ -30,7 +30,7 @@ const baseTamponRoutes: Routes = [
                 canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Liste des évènements",
-                    nomEcran: "WVALISTE"
+                    screenName: "WBTLISTE"
                 }
             },
             {
@@ -38,8 +38,8 @@ const baseTamponRoutes: Routes = [
                 component: EventDetailComponent,
                 canActivate: [AuthGuardService],
                 data: {
-                    breadcrumb: "Validation de l'évènement",
-                    nomEcran: "WVADETAIL"
+                    breadcrumb: "Détail de l'évènement",
+                    screenName: "WBTDETAIL"
                 }
             }
         ]

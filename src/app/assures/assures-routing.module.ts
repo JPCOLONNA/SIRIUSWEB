@@ -24,16 +24,16 @@ const assuresRoutes: Routes = [
                 canLoad: [AuthGuardService],
                 data: {
                     breadcrumb: "Recherche d'un assuré",
-                    nomEcran: "WASRECHERCHE"
+                    screenName: "WASLISTE"
                 }
             },
             {
-                path: 'cp',
+                path: 'conditions-particulieres',
                 component: ConditionsParticulieresComponent,
                 canLoad: [AuthGuardService],
                 data: {
                     breadcrumb: "Conditions particulières",
-                    nomEcran: "WASCONDIPART"
+                    screenName: "WASCONDIPART"
                 }
             }
         ]

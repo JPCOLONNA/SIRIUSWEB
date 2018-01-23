@@ -1,8 +1,9 @@
 {
-    "infoApplication":
-    {
+    "applicationInfo":{
         "icon": "fa-users",
-        "nom": "ASSURES"
+        "code":"assure",
+        "name": "ASSURES",
+        "url":"/assures"
     },
     "menu": [
         {
@@ -11,7 +12,7 @@
             "idNecessary": false
         },
         {
-            "url": "/assures/cp",
+            "url": "/assures/conditions-particulieres",
             "nom": "Conditions particulières",
             "idNecessary": true
         }

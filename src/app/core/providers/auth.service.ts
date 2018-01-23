@@ -16,7 +16,7 @@ export class AuthService {
     /** Configuration générale */
     settings: any;
 
-    /** Environnement d'éxécution : recette(=développement), production */
+    /** Environnement d'éxécution : développement, recette, production */
     environment: any;
 
     /**

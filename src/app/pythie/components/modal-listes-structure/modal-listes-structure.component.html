@@ -82,7 +82,7 @@
 
 </ng-template>
 <!-- Pagination -->
-<mat-paginator #paginator [hidden]="listDetailBenefType.length == 0 || listDetailBenefType == null"
+<mat-paginator #paginator [class.hidden]="listDetailBenefType == null || listDetailBenefType.length == 0"
   [pageSize]="10"
   [pageSizeOptions]="[10,25,50]">
 </mat-paginator>

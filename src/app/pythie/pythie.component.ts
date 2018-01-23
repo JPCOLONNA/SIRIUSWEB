@@ -32,7 +32,7 @@ export class PythieComponent implements OnInit {
     this.menuEvent.fire(JSON.stringify(this.rsc.menu));
     
     //MAJ du nom de l'application
-    this.applicationInfoEvent.fire(JSON.stringify(this.rsc.infoApplication));
+    this.applicationInfoEvent.fire(JSON.stringify(this.rsc.applicationInfo));
   }
 
   /*createForms(): void {

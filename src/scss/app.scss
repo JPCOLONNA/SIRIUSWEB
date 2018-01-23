@@ -48,4 +48,17 @@ body {
     margin:auto !important;
 }
 
+/* ----------------- Notifications en bas de page ----------------*/
+.notificationError
+{
+    color:$default-bg-text-color;
+    background-color: $default-bg-color-warn;
+}
+
+.notificationInfo
+{
+    color:$default-bg-text-color;
+    background-color: $default-color-material;
+}
+
 

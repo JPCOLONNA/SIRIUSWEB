@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
             for(let application of data.liste_application){
               var applicationTmp = new Application();
               applicationTmp.code = application.nom_application;
-              applicationTmp.nom = this.rsc.listeApplications[application.nom_application].nom;
+              applicationTmp.nom = this.rsc.listeApplications[application.nom_application].name;
               applicationTmp.icon = this.rsc.listeApplications[application.nom_application].icon;
               applicationTmp.url = this.rsc.listeApplications[application.nom_application].url;
               this.listApplication.push(applicationTmp);

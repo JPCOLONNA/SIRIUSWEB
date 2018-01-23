@@ -6,7 +6,7 @@ interface IBreadcrumb {
   label: string;
   params?: Params;
   url?: string;
-  nomEcran?: string;
+  screenName?: string;
 }
 
 /**
@@ -23,7 +23,7 @@ export class BreadcrumbComponent implements OnInit {
   public breadcrumbs: IBreadcrumb[];
 
   /** Nom de l'écran renvoyé à app (socle des applications) */
-  @Output() nomEcran = new EventEmitter<any>();
+  @Output() screenName = new EventEmitter<any>();
 
   //Pour les modales
   /** Route de l'écran appelant la modale */
@@ -75,15 +75,15 @@ export class BreadcrumbComponent implements OnInit {
       this.breadcrumbs = this.getBreadcrumbs(root);
       
       //Nom de l'écran du dernier élément du fil d'arriane (= écran affiché)
-      //Vérifie que l'élémént possède la propriété "nomEcran"
-      if(this.breadcrumbs.length>0 && this.breadcrumbs[this.breadcrumbs.length-1].hasOwnProperty("nomEcran"))
+      //Vérifie que l'élémént possède la propriété "screenName"
+      if(this.breadcrumbs.length>0 && this.breadcrumbs[this.breadcrumbs.length-1].hasOwnProperty("screenName"))
       {
         //Renvoi à app (socle des applications) le nom de l'écran affiché
-        this.nomEcran.emit(this.breadcrumbs[this.breadcrumbs.length-1]["nomEcran"]);
+        this.screenName.emit(this.breadcrumbs[this.breadcrumbs.length-1]["screenName"]);
       }
       else
       {
-        this.nomEcran.emit("");
+        this.screenName.emit("");
       }
 
       //Pour une modal ajout du titre de la modal dans le fil d'ariane
@@ -141,7 +141,7 @@ export class BreadcrumbComponent implements OnInit {
           label: child.snapshot.data[ROUTE_DATA_BREADCRUMB],
           params: child.snapshot.params,
           url: url,
-          nomEcran: child.snapshot.data["nomEcran"]
+          screenName: child.snapshot.data["screenName"]
         };
 
         breadcrumbs.push(breadcrumb);

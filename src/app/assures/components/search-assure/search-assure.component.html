@@ -1,114 +1,120 @@
 <div class="contenair">
     <h1>{{rscAssuresSearch.title}}</h1>
-    <hr class="down"/>
-    
+    <hr class="down">
+
     <div id="searchAssure" class="contenair">
-        
-        <form [formGroup]="formSearchAssure" (ngSubmit)="onSubmit()">
-            <div fxLayout="row" fxLayoutAlign="space-between start" >
+        <form [formGroup]="formSearchAssure" (ngSubmit)="onSubmit()" autocomplete="off">
+            <div fxLayout="row" fxLayoutAlign="space-between start">
                 <!-- Numéro d'assuré -->
                 <mat-form-field fxFlex="20">
-                    <input matInput formControlName="numAssure" [placeholder]="rsc.numAssure" [textMask]="{mask: mask.ident || false, guide: false}" tabindex="1">
+                    <input matInput formControlName="numAssure" [placeholder]="rsc.label.numAssure" [textMask]="{mask: mask.ident || false, guide: false}"
+                        tabindex="1">
                 </mat-form-field>
                 <!-- Numéro de sécurité social -->
-                <mat-form-field  fxFlex="20">
-                    <input matInput formControlName="numSS" [placeholder]="rsc.numSS" [textMask]="{mask: mask.numSS || false, guide: true, keepCharPositions: true}" tabindex="2">
+                <mat-form-field fxFlex="20">
+                    <input matInput formControlName="numSS" [placeholder]="rsc.label.numSS" [textMask]="{mask: mask.numSS || false, guide: true, keepCharPositions: true}"
+                        tabindex="2">
                 </mat-form-field>
                 <!-- Nom -->
-                <mat-form-field  fxFlex="20">
-                    <input matInput formControlName="nom" [placeholder]="rsc.nom" max="25" [textMask]="{mask: mask.alpha25 || false,  guide: false}" tabindex="3">
-                </mat-form-field >
+                <mat-form-field fxFlex="20">
+                    <input matInput formControlName="nom" [placeholder]="rsc.label.nom" max="25" [textMask]="{mask: mask.alpha25 || false,  guide: false}"
+                        tabindex="3">
+                </mat-form-field>
                 <!-- Prénom -->
                 <mat-form-field fxFlex="20">
-                    <input matInput formControlName="prenom" [placeholder]="rsc.prenom" max="15" [textMask]="{mask: mask.alpha15 || false,  guide: false}" tabindex="4">
+                    <input matInput formControlName="prenom" [placeholder]="rsc.label.prenom" max="15" [textMask]="{mask: mask.alpha15 || false,  guide: false}"
+                        tabindex="4">
                 </mat-form-field>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between center" >
-            <!-- Date de naissance -->
-            <mat-form-field  fxFlex="20">
-                    <input matInput [matDatepicker]="dateNaissance" [placeholder]="rsc.dateNaissance"  [textMask]="{mask: mask.date || false, guide: false}" tabindex="5">
-                    <mat-datepicker-toggle matSuffix [for]="dateNaissance"></mat-datepicker-toggle>
-                    <mat-datepicker #dateNaissance></mat-datepicker>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <!-- Date de naissance -->
+                <mat-form-field fxFlex="20">
+                    <!--[textMask]="{mask: mask.date || false, guide: false, keepCharPositions:true}"-->
+                    <input matInput formControlName="dateNaissance" [placeholder]="rsc.label.dateNaissance" [textMask]="{mask: mask.date || false, guide: true}"
+                        tabindex="5">
                 </mat-form-field>
                 <!-- Code postal -->
                 <mat-form-field fxFlex="20">
-                    <input matInput formControlName="codePostal" [placeholder]="rsc.codePostal" [textMask]="{mask: mask.codePostal || false, guide: true}" tabindex="6">
+                    <input matInput formControlName="codePostal" [placeholder]="rsc.label.codePostal" [textMask]="{mask: mask.codePostal || false, guide: true}"
+                        tabindex="6">
                 </mat-form-field>
-                
+
                 <!-- Element vide pour conserver la mise en page tabulaire-->
                 <div fxFlex="20"></div>
 
-                <!-- Date d'application
-                <mat-form-field fxFlex="20">
-                    <input matInput [matDatepicker]="dateApplication" [placeholder]="rscPythie.dateApplication" [value]="today" [textMask]="{mask: mask.date || false, guide: false}" tabindex="7">
-                    <mat-datepicker-toggle matSuffix [for]="dateApplication"></mat-datepicker-toggle>
-                    <mat-datepicker #dateApplication></mat-datepicker>
-                </mat-form-field> -->
-
                 <!-- Bouton rechercher -->
-                <div fxFlex="20" fxLayout="column" fxLayoutAlign="end end" >
-                    <button mat-raised-button type="submit" color="primary" tabindex="8">Rechercher</button>
+                <div fxFlex="20" fxLayout="column" fxLayoutAlign="end end">
+                    <button mat-raised-button type="submit" color="primary" tabindex="8">{{rsc.bouton.rechercher}}</button>
                 </div>
             </div>
 
         </form>
     </div>
     <hr class="down-light">
-    <!-- Liste des assurées -->
-    <div >
-        <mat-table #table [dataSource]="dataSource" matSort >
+    <!-- Conditionne l'affichage le temps du chargement des données -->
+    <div *ngIf="isRequesting;then overlay else pageContent"></div>
 
-            <!-- Numéro d'assuré -->
-            <ng-container matColumnDef="numAssure">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.id}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.id}} </mat-cell>
-            </ng-container>
+    <!-- Spinner de chargement -->
+    <ng-template #overlay>
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </ng-template>
 
-            <!-- Nom de l'assuré -->
-            <ng-container matColumnDef="nom">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.nom}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.nom}} </mat-cell>
-            </ng-container>
+    <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
+    <ng-template #pageContent>
 
-            <!-- Prénom de l'assuré -->
-            <ng-container matColumnDef="prenom">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.prenom}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.prenom}} </mat-cell>
-            </ng-container>
+        <!-- Liste des assurées -->
+        <div>
+            <mat-table #table [dataSource]="dataSource" matSort>
+                <!-- Numéro d'assuré -->
+                <ng-container matColumnDef="numAssure">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.id </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.id_assure}} </mat-cell>
+                </ng-container>
 
-            <!-- Numéro de sécurité sociale-->
-            <ng-container matColumnDef="numSS">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.num_ss}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.num_ss}} </mat-cell>
-            </ng-container>
+                <!-- Nom de l'assuré -->
+                <ng-container matColumnDef="nom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.nom </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.nom}} </mat-cell>
+                </ng-container>
 
-            <!-- Date de naissance-->
-            <ng-container matColumnDef="dateNaissance">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.date_naissance}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.date_naissance}} </mat-cell>
-            </ng-container>
+                <!-- Prénom de l'assuré -->
+                <ng-container matColumnDef="prenom">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.prenom </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.prenom}} </mat-cell>
+                </ng-container>
 
-            <!-- Code Postal-->
-            <ng-container matColumnDef="codePostal">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.code_postal}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.code_postal}} </mat-cell>
-            </ng-container>
+                <!-- Numéro de sécurité sociale-->
+                <ng-container matColumnDef="numSS">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.num_ss </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.num_ss | numSS}} </mat-cell>
+                </ng-container>
 
-            <!-- Ville-->
-            <ng-container matColumnDef="ville">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.ville}} </mat-header-cell>
-                <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id)" class="clickable"> {{assure.ville}} </mat-cell>
-            </ng-container>
+                <!-- Date de naissance-->
+                <ng-container matColumnDef="dateNaissance">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.date_naissance </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.date_naissance | dateYMD}} </mat-cell>
+                </ng-container>
 
-            <!-- Entête de tableau -->
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+                <!-- Code Postal-->
+                <ng-container matColumnDef="codePostal">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.code_postal </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.code_postal}} </mat-cell>
+                </ng-container>
 
-        <!-- Pagination -->
-        <mat-paginator #paginator [hidden]="listAssures.length == 0 || listAssures == null"
-                [pageSize]="10"
-                [pageSizeOptions]="[10,25,50]">
-        </mat-paginator>
-    </div>
+                <!-- Ville-->
+                <ng-container matColumnDef="ville">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.ville </mat-header-cell>
+                    <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.ville}} </mat-cell>
+                </ng-container>
+
+                <!-- Entête de tableau -->
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <!-- Pagination -->
+            <mat-paginator #paginator [class.hidden]="listAssures == null || listAssures.length == 0" [pageSize]="10" [pageSizeOptions]="[10,25,50]">
+            </mat-paginator>
+        </div>
+    </ng-template>
 </div>

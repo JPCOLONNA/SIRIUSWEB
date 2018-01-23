@@ -54,7 +54,7 @@ export class AssuresComponent implements OnInit {
     this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscAssures.menu, false)));
     
     //MAJ du nom de l'application
-    this.applicationInfoEvent.fire(JSON.stringify(this.rscAssures.infoApplication));
+    this.applicationInfoEvent.fire(JSON.stringify(this.rscAssures.applicationInfo));
 
     this.idAssure = 0;
 

@@ -16,9 +16,9 @@ export class AutorisationService {
 
   /**
    * Crée une isntance de AutorisationService
-   * @param mixinService 
-   * @param settingsService 
-   * @param exceptionService 
+   * @param mixinService            Services généraux
+   * @param settingsService         Service de la configuration générale
+   * @param exceptionService        Services de gestion des exceptions
    * @param http 
    */
   constructor(
@@ -50,14 +50,14 @@ export class AutorisationService {
    * Récupère la liste des actions possibles pour l'utilisateur connecté dans une application
    * @param nomAppli      Nom de l'application
    */
-  getListDroitsApplication(nomAppli: string) {
+  getListDroitsApplication(appliName: string) {
     let user = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi, '');
     if(user != null)
     {
       var body = {
         contexte: this.walogin.contexte.listeDroitsApplication,
         profil: user,
-        nom_appli: nomAppli
+        nom_appli: appliName
       }
       const url = this.mixinService.getApiUrl() + this.walogin.url;
 
@@ -70,7 +70,7 @@ export class AutorisationService {
    * @param nomAppli        Nom de l'application concerné par cet appel
    * @param liste_droits    Liste des droits à mettre en session
    */
-  saveDroitInSession(nomAppli:string,liste_droits:any)
+  saveDroitInSession(appliName:string,liste_droits:any)
   {
     let droitsApplication:Array <DroitApplication>; 
     
@@ -86,7 +86,7 @@ export class AutorisationService {
     //Sauvegarde la liste/tableau des droits en session
     this.mixinService.storeInSession("actions",droitsApplication);
 
-    this.mixinService.storeInSession(nomAppli+"_droits",true);
+    this.mixinService.storeInSession(appliName+"_droits",true);
 
   }
 

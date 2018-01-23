@@ -4,6 +4,6 @@
  */
 export const environment = {
   production: true,
-  nomEnvironment:"DEVELOPPEMENT",
+  environmentName:"DEVELOPPEMENT",
   urlAPI : "http://api-i-dev.jpcolonna.fr:2535/API"
 };

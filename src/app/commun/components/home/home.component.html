@@ -5,7 +5,7 @@
     <!-- Bouton accès application -->
     <button *ngFor="let application of listApplication" mat-raised-button (click)="redirectTo(application.url)" fxFlex="20">
         <div fxLayout="column" fxLayoutAlign="space-around center">
-            <i [class]="application.icon+' fa middle-icon'"></i>{{application.nom}}
+            <i [class]="application.icon + ' fa middle-icon'"></i>{{application.nom}}
         </div>
     </button>
 </div>

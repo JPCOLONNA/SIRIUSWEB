@@ -1,8 +1,8 @@
 {
-    "infoApplication":
+    "applicationInfo":
     {
         "icon": "fa-cubes",
-        "nom": "PYTHIE"
+        "name": "PYTHIE"
     },
     "menu": [
         {

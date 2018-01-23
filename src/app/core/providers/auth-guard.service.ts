@@ -36,11 +36,11 @@ export class AuthGuardService implements CanActivate {
     {
       //vérifie que l'utilisateur à accès à cette écran
       //A SUPPRIMER quand l'écran sera paramétré
-      if(route.data.nomEcran == "WSWACCUEIL")
+      if(route.data.screenName == "WSWACCUEIL")
         return Observable.of(true);  
       
       //vérifie que l'utilisateur à accès à cette écran
-      if(this.autorisationService.isAutorise(route.data.nomEcran,"executer"))
+      if(this.autorisationService.isAutorise(route.data.screenName,"executer"))
       {
         return Observable.of(true);  
       }
@@ -48,24 +48,24 @@ export class AuthGuardService implements CanActivate {
       else
       {
         //Récupère le nom de l'application
-        let nomAppli = route.parent.data.nomAppli;
+        let appliName = route.parent.data.appliName;
         //TO DO : boucle jusqu'à trouver le nom de l'application
 
         //nom de l'application
-        if(nomAppli != null && nomAppli != undefined)
+        if(appliName != null && appliName != undefined)
         {
           //controle si la liste des droits de l'utilisateur pour l'application est connue (flag en session)
-          if(JSON.parse(this.mixinService.getFromSession(nomAppli+"_droits")) == null)
+          if(JSON.parse(this.mixinService.getFromSession(appliName+"_droits")) == null)
           {
             //récupère les droits
-            return this.autorisationService.getListDroitsApplication(nomAppli)
+            return this.autorisationService.getListDroitsApplication(appliName)
             .map(
               (data) => {
                 if (data.hasOwnProperty('success') && data.success === 'true') {
                   //sauvegarde en session
-                  this.autorisationService.saveDroitInSession(nomAppli,data.liste_droits);
+                  this.autorisationService.saveDroitInSession(appliName,data.liste_droits);
                   //controle l'accès
-                  return this.autorisationService.isAutorise(route.data.nomEcran,"executer");
+                  return this.autorisationService.isAutorise(route.data.screenName,"executer");
                 }
               });
           }
@@ -80,8 +80,8 @@ export class AuthGuardService implements CanActivate {
 
 
     //vérifie que l'utilisateur à accès à cette écran
-    if(route.data.nomEcran != "WSWACCUEIL")
-      return Observable.of(this.autorisationService.isAutorise(route.data.nomEcran,"executer"));
+    if(route.data.screenName != "WSWACCUEIL" ||route.data.screenName != "WASLISTE" || route.data.screenName != "WASCONDITPART")
+      return Observable.of(this.autorisationService.isAutorise(route.data.screenName,"executer"));
     else
       return Observable.of(true);
   }
