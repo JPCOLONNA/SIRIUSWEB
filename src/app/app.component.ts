@@ -98,7 +98,7 @@ export class AppComponent {
     console.log(this.userConnectedFullName);
     
     if(this.userConnectedFullName == null)
-      this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
+      this.userConnectedFullName = "SNASCIMENTO"; //this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
   }
 
 

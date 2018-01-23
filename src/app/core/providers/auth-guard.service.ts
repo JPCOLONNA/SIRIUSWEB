@@ -36,7 +36,7 @@ export class AuthGuardService implements CanActivate {
     {
       //vérifie que l'utilisateur à accès à cette écran
       //A SUPPRIMER quand l'écran sera paramétré
-      if(route.data.nomEcran == "WSWACCUEIL")
+      if(route.data.nomEcran == "WSWACCUEIL" || route.data.nomEcran == "WVALISTE" || route.data.nomEcran == "WVADETAIL")
         return Observable.of(true);  
       
       //vérifie que l'utilisateur à accès à cette écran

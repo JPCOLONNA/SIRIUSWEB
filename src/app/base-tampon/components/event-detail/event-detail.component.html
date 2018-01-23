@@ -19,16 +19,15 @@
                 <hr class="down-h2">
                 <div>
                     <span class="showcase"> {{rscBaseTampon.label.typeAction}} :</span>
-                    <span class="showcase" [matTooltip]="eventDetail.evenement.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.evenement.type_action_lib!=''">{{eventDetail.evenement.type_action_lib}}</span>
+                    <span class="showcase" [matTooltip]="eventDetail.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.type_action!=''">{{eventDetail.type_action}}</span>
 
-                    <span *ngIf="eventDetail.evenement.type_action_lib==''">{{eventDetail.evenement.type_action}}</span>
-                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.evenement.statut}}
+                    <span *ngIf="eventDetail.type_action==''">{{eventDetail.type_action}}</span>
+                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.statut}}
                     <br />
-                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.evenement.id_stockage}}
+                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.id_stockage}}
                     <br />
-                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.evenement.date_traitement | dateYMD}} - {{eventDetail.evenement.heure_traitement
-                    | heure}}
-                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.evenement.provenance}}
+                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.date_traitement | dateYMD}} - {{eventDetail.heure_traitement | heure}}
+                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.provenance}}
                     <br />
                 </div>
             </div>
@@ -38,15 +37,15 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEntite}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rsc.label.numAssure}} {{eventDetail.evenement.id_assure}} - {{eventDetail.evenement.nom_assure}} {{eventDetail.evenement.prenom_assure}}
+                    {{rsc.label.numAssure}} {{eventDetail.id_assure}} - {{eventDetail.nom_assure}} {{eventDetail.prenom_assure}}
                     <br />
-                    <br /> {{rsc.label.numSociete}} {{eventDetail.evenement.id_societe}} - {{eventDetail.evenement.raison_sociale}}
+                    <br /> {{rsc.label.numSociete}} {{eventDetail.id_societe}} - {{eventDetail.raison_sociale}}
                 </div>
             </div>
         </div>
 
         <hr class="down-light">
-        
+
         <!-- Détail de l'évènement -->
         <div>
             <!-- Menu d'accès à chaque partie de détail d'une action/évènement -->
@@ -77,8 +76,7 @@
                                 </mat-chip-list>
                             </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0"
-                            (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
                                 <span class="itemList">{{menuDetail.couvertureBenef.nomEcran}}</span>
                                 <mat-chip-list>

@@ -1,22 +1,22 @@
 {
     "listeApplications": {
-        "VALID_ACTIONS":{
+        "VALID_ACTIONS": {
             "icon": "fa-database",
-            "code":"VALID_ACTIONS",
+            "code": "VALID_ACTIONS",
             "nom": "BASE TAMPON",
             "url": "tampon"
         },
-        "PYTHIEGES":{
+        "PYTHIEGES": {
             "icon": "fa-cubes",
             "nom": "PYTHIE",
-            "code":"PYTHIEGES",
-            "url":"pythie"
+            "code": "PYTHIEGES",
+            "url": "pythie"
         },
-        "ASSURES":{
+        "ASSURES": {
             "icon": "fa-user",
             "nom": "ASSURES",
-            "code":"ASSURES",
-            "url":"assures"
+            "code": "ASSURES",
+            "url": "assures"
         }
     },
     "modalMessages": {
@@ -53,7 +53,7 @@
         "numCompte": "Numéro de compte",
         "cleCompte": "Clé",
         "numSS": "Numéro de sécurité sociale",
-        "cleSS": "Clé",
+        "cleSS": "Clé SS",
         "transfertNoemie": "Transfert noémie",
         "regimeSS": "Régime",
         "caisseSS": "Caisse",
