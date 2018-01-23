@@ -90,7 +90,6 @@ export class EventsListComponent implements OnInit {
             this.eventList.push(new Evenement(evt));
         }
 
-        console.log(this.eventList);
         //this.eventList = rscTmp.liste_evenements;
 
         //Ordre des colonnes

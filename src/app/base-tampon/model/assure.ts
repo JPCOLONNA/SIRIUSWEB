@@ -16,7 +16,7 @@ export class Assure {
     situation_familiale: string;
     lb_situation_familiale: string;
     nombre_enfant: string;
-    transfert_noemie: string;
+    transfert_noemie: boolean;
     regime_caisse: string;
     caisse: string;
     guichet_caisse: string;
@@ -50,11 +50,11 @@ export class Assure {
         this.telephone_fixe = tab.telephone_fixe ? tab.telephone_fixe : "";
         this.telephone_mobile = tab.telephone_mobile ? tab.telephone_mobile : "";
         this.email = tab.email ? tab.email : "";
-        this.date_naissance = tab.date_naissance ? tab.date_naissance : "";
+        this.date_naissance = tab.date_naissance&&tab.date_naissance>7 ? tab.date_naissance.substr(0,4)+"-"+tab.date_naissance.substr(4,2)+"-"+tab.date_naissance.substr(6,2) : "";
         this.situation_familiale = tab.situation_familiale ? tab.situation_familiale : "";
         this.lb_situation_familiale = tab.lb_situation_familiale ? tab.lb_situation_familiale : "";
         this.nombre_enfant = tab.nombre_enfant ? tab.nombre_enfant : "";
-        this.transfert_noemie = tab.transfert_noemie ? tab.transfert_noemie : "";
+        this.transfert_noemie = tab.transfert_noemie==='1' ? true : false;
         this.regime_caisse = tab.regime_caisse ? tab.regime_caisse : "";
         this.caisse = tab.caisse ? tab.caisse : "";
         this.guichet_caisse = tab.guichet_caisse ? tab.guichet_caisse : "";
@@ -70,7 +70,7 @@ export class Assure {
         this.debut_effet = tab.debut_effet ? tab.debut_effet : "";
         this.fin_effet = tab.fin_effet ? tab.fin_effet : "";
 
-        
+        alert(this.transfert_noemie);
     }
 
 }

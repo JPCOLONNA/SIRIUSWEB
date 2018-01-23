@@ -145,9 +145,11 @@
             <input matInput formControlName="cle_ss" [placeholder]="rsc.label.cleSS">
         </mat-form-field>
         <!-- Transfert noémie-->
-        <mat-form-field fxFlex="30" *ngIf="assure !== undefined">
-            <input matInput formControlName="transfert_noemie" [placeholder]="rsc.label.transfertNoemie">
-        </mat-form-field>
+
+        <!--<mat-form-field fxFlex="30" *ngIf="assure !== undefined">-->
+        <mat-slide-toggle fxFlex="30" *ngIf="assure !== undefined" formControlName="transfert_noemie">{{rsc.label.transfertNoemie}}</mat-slide-toggle>
+        <!--<input matInput formControlName="transfert_noemie" [placeholder]="rsc.label.transfertNoemie">-->
+        <!--</mat-form-field>-->
         <div fxFlex="30" *ngIf="assure === undefined"></div>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -165,7 +167,7 @@
         </mat-form-field>
         <!-- Clé -->
         <mat-form-field fxFlex="24">
-            <input matInput formControlName="cle" [placeholder]="rsc.label.cle_guichetSS">
+            <input matInput formControlName="cle" [placeholder]="rsc.label.cleGuichetSS">
         </mat-form-field>
     </div>
     <!-- Boutons -->

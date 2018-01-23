@@ -20,32 +20,32 @@ export class Iban {
     iban_cle: string;
     iban_code: string;
     devise: string;
-    imputation_frais: string;
+    imputation_frais: boolean;
     complement_info;
 
     listeIbans: Array<Iban>;
 
     constructor(tab: any) {
         this.id_titulaire= tab.id_titulaire ? tab.id_titulaire : "";
-        this.type_titulaire= tab.type_titulaire ? tab.type_titulaire : "";
-        this.nom_titulaire= tab.nom_titulaire ? tab.nom_titulaire : "";
+        this.type_titulaire= tab.type_titul ? tab.type_titul : "";
+        this.nom_titulaire= tab.nom_titul ? tab.nom_titul : "";
         this.prenom_titulaire= tab.prenom_titulaire ? tab.prenom_titulaire : "";
-        this.statut= tab.statut ? tab.statut : "";
-        this.nature= tab.nature ? tab.nature : "";
-        this.debut_validite= tab.debut_validite ? tab.debut_validite : "";
-        this.fin_validite= tab.fin_validite ? tab.fin_validite : "";
+        this.statut= tab.statut_rib ? tab.statut_rib : "";
+        this.nature= tab.nature_rib ? tab.nature_rib : "";
+        this.debut_validite= tab.debut_validite&&tab.debut_validite.length>7 ? tab.debut_validite.substr(0,4)+"-"+tab.debut_validite.substr(4,2)+"-"+tab.debut_validite.substr(6,2) : "";
+        this.fin_validite= tab.fin_validite&&tab.fin_validite.length>7 ? tab.fin_validite.substr(0,4)+"-"+tab.fin_validite.substr(4,2)+"-"+tab.fin_validite.substr(6,2) : "";
         this.nom= tab.nom ? tab.nom : "";
-        this.domiciliation_banque= tab.domiciliation_banque ? tab.domiciliation_banque : "";
-        this.domiciliation_adresse= tab.domiciliation_adresse ? tab.domiciliation_adresse : "";
-        this.domiciliation_code_postal= tab.domiciliation_code_postal ? tab.domiciliation_code_postal : "";
-        this.domiciliation_ville= tab.domiciliation_ville ? tab.domiciliation_ville : "";
-        this.domiciliation_pays= tab.domiciliation_pays ? tab.domiciliation_pays : "";
+        this.domiciliation_banque= tab.domiciliation ? tab.domiciliation : "";
+        this.domiciliation_adresse= tab.adr_domi ? tab.adr_domi : "";
+        this.domiciliation_code_postal= tab.cp_domi ? tab.cp_domi : "";
+        this.domiciliation_ville= tab.ville_domi ? tab.ville_domi : "";
+        this.domiciliation_pays= tab.pays_domi ? tab.pays_domi : "";
         this.code_bic= tab.code_bic ? tab.code_bic : "";
-        this.iban_code_pays= tab.iban_code_pays ? tab.iban_code_pays : "";
-        this.iban_cle= tab.iban_cle ? tab.iban_cle : "";
-        this.iban_code= tab.iban_code ? tab.iban_code : "";
+        this.iban_code_pays= tab.pays_iban ? tab.pays_iban : "";
+        this.iban_cle= tab.cle_iban ? tab.cle_iban : "";
+        this.iban_code= tab.code_iban ? tab.code_iban : "";
         this.devise= tab.devise ? tab.devise : "";
-        this.imputation_frais= tab.imputation_frais ? tab.imputation_frais : "";
+        this.imputation_frais= tab.imputation_frais==="1" ? true: false;
         this.complement_info= tab.complement_info ? tab.complement_info : "";
     }
 

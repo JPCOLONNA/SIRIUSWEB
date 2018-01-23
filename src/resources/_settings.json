@@ -1,14 +1,13 @@
 {
-    "webservices":
-     {
-         "login":{
-            "url":"/walogin",
+    "webservices": {
+        "login": {
+            "url": "/walogin",
             "contexte": {
-                "listeApplications":"GetListApp",
-                "listeDroitsApplication":"GetDrtApp"
+                "listeApplications": "GetListApp",
+                "listeDroitsApplication": "GetDrtApp"
             }
-         },
-         "listEvents": {
+        },
+        "listEvents": {
             "url": "/wabasetmp",
             "contexte": "GetListeEvenement"
         },
@@ -19,6 +18,10 @@
                "listeAssures":"GetListeAssure",
                "infoAssure":"GetAssure"
            }
-       }
-     }
+        },
+        "eventDetails": {
+            "url": "/wabasetmp",
+            "contexte": "GetDetailEvenement"
+        }
+    }
 }

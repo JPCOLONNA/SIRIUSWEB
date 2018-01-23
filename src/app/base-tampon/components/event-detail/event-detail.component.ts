@@ -4,6 +4,7 @@ import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { ResourcesBaseTamponService } from 'app/base-tampon/providers/resources-base-tampon.service';
 import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { NotificationsService } from 'angular2-notifications';
 
 import { Assure } from '../../model/assure';
 import { Couverture } from '../../model/couverture';
@@ -89,6 +90,7 @@ export class EventDetailComponent implements OnInit {
     private resourcesService: ResourcesService,
     private baseTamponService: BaseTamponService,
     private autorisationService: AutorisationService,
+    private notificationsService: NotificationsService,
     private router: Router) { }
 
   /**
@@ -110,16 +112,81 @@ export class EventDetailComponent implements OnInit {
     if (this.autorisationService.isAutorise("WVADETAIL", "modifier"))
       this.action = "modifier";
     else
-      this.action = "consulter"
+      this.action = "modifier"; //"consulter"
 
     //Récupération des données
-    this.getEventDetail();
+    this.loadEventDetail();
+   
   }
+
+loadEventDetail() {
+
+        this.baseTamponService.loadEventDetails(this.idStockage+"","").subscribe(
+      (data) => {
+        //TO DO A activer lors de l'appel du service
+        /*if (data.hasOwnProperty('success') && data.success === 'true') {
+          this.brancheCP = data;
+        } else {
+          this.exceptionService.handleException(data).subscribe(() => {}, (err) => {
+            this.notificationsService.error('Erreur', err);
+          });
+        }*/
+
+        //Cast le résultat de type "object" en structure JSON
+        this.eventDetail= JSON.parse(JSON.stringify(data)).DetailEvt[0];
+        console.log(this.eventDetail);
+        //Liste des évènements 
+        this.listAssures = new Array<Assure>();
+        if (this.eventDetail.Liste_assure)
+        for (let assure of this.eventDetail.Liste_assure) {
+          this.listAssures.push(new Assure(assure));
+        }
+
+         this.listBeneficiaires = new Array<Assure>();
+        if (this.eventDetail.Liste_beneficiaires)
+        for (let assure of this.eventDetail.Liste_beneficiaires) {
+          this.listBeneficiaires.push(new Assure(assure));
+        }
+
+        this.listCouvertures = new Array<Couverture>();
+        if (this.eventDetail.Liste_couverture_assure)
+        for (let couverture of this.eventDetail.Liste_couverture_assure) {
+          this.listCouvertures.push(new Couverture(couverture));
+        }
+
+        this.listCouverturesBeneficiaires = new Array<Couverture>();
+        if (this.eventDetail.Liste_couverture_beneficiaire)
+        for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
+          this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+        }
+
+        this.listInfosSalaries = new Array<Salarie>();
+        if (this.eventDetail.Liste_infos_salarie)
+        for (let salarie of this.eventDetail.Liste_infos_salarie) {
+          this.listInfosSalaries.push(new Salarie(salarie));
+        }
+
+        this.listInfosIban = new Array<Iban>();
+        if (this.eventDetail.Liste_rib)
+        for (let iban of this.eventDetail.Liste_rib) {
+          this.listInfosIban.push(new Iban(iban));
+        }
+
+        //détermine l'écran par défaut selon les données reçues
+        this.screen = this.screenDefault();
+
+        this.doneRequesting();
+      },
+      (err) => {
+        this.notificationsService.error('Erreur', err);
+      }
+    );
+}
 
   /**
    * Récupère le détail d'une action/évènement
    */
-  getEventDetail() {
+  getEventDetailMock() {
     this.baseTamponService.getDetailEvenement(this.idStockage)
       .subscribe(
       (data) => {
