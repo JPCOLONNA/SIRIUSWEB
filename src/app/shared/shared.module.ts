@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialComponentsModule } from './components/material-components.module';
-import { SimpleNotificationsModule } from 'angular2-notifications';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { Ng2DeviceDetectorModule } from 'ng2-device-detector';
@@ -47,7 +46,6 @@ const COMPONENTS = [
     FlexLayoutModule,
     MaterialComponentsModule,
     ReactiveFormsModule,
-    SimpleNotificationsModule.forRoot(),
     Ng2DeviceDetectorModule.forRoot(),
     TextMaskModule,
     RouterModule
@@ -59,7 +57,6 @@ const COMPONENTS = [
     FlexLayoutModule,
     MaterialComponentsModule,
     ReactiveFormsModule,
-    SimpleNotificationsModule,
     Ng2DeviceDetectorModule,
     TextMaskModule,
     COMPONENTS

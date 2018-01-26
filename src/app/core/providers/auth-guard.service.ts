@@ -37,12 +37,12 @@ export class AuthGuardService implements CanActivate {
       //vérifie que l'utilisateur à accès à cette écran
       //A SUPPRIMER quand l'écran sera paramétré
       if(route.data.screenName == "WSWACCUEIL")
-        return Observable.of(true);  
+        isAutorise = true;    
       
       //vérifie que l'utilisateur à accès à cette écran
       if(this.autorisationService.isAutorise(route.data.screenName,"executer"))
       {
-        return Observable.of(true);  
+        isAutorise = true;  
       }
       //Si ce n'est pas le cas, les droits pour l'application ne sont peut être pas chargés en mémoire
       else
@@ -58,14 +58,14 @@ export class AuthGuardService implements CanActivate {
           if(JSON.parse(this.mixinService.getFromSession(appliName+"_droits")) == null)
           {
             //récupère les droits
-            return this.autorisationService.getListDroitsApplication(appliName)
+            this.autorisationService.getListDroitsApplication(appliName)
             .map(
               (data) => {
                 if (data.hasOwnProperty('success') && data.success === 'true') {
                   //sauvegarde en session
                   this.autorisationService.saveDroitInSession(appliName,data.liste_droits);
                   //controle l'accès
-                  return this.autorisationService.isAutorise(route.data.screenName,"executer");
+                  isAutorise = this.autorisationService.isAutorise(route.data.screenName,"executer");
                 }
               });
           }
@@ -78,12 +78,16 @@ export class AuthGuardService implements CanActivate {
       this.authService.login();
     }
 
-
     //vérifie que l'utilisateur à accès à cette écran
-    if(route.data.screenName != "WSWACCUEIL" ||route.data.screenName != "WASLISTE" || route.data.screenName != "WASCONDITPART")
-      return Observable.of(this.autorisationService.isAutorise(route.data.screenName,"executer"));
+    if(route.data.screenName != "WSWACCUEIL")
+      isAutorise = this.autorisationService.isAutorise(route.data.screenName,"executer");
     else
-      return Observable.of(true);
+      isAutorise = true;
+      
+    // Si l'utilisateur est connecté et l'accès est refusé, il est redirigé vers une page "Accès refusé"
+    if(isAutorise == false)
+      this.router.navigate['acces-refuse'];
+    return Observable.of(isAutorise);
   }
 
 /**

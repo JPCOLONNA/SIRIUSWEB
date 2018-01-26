@@ -3,44 +3,54 @@
 
 <!-- Spinner de chargement -->
 <ng-template #overlay>
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
 </ng-template>
 
 <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
 <ng-template #pageContent>
-    <div class="contenair"  fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="contenair" fxLayout="column" fxLayoutAlign="start stretch">
         <h1>Conditions particulières</h1>
         <hr class="down">
-        <div fxLayout="row" fxLayoutAlign="space-between start" >
+        <div fxLayout="row" fxLayoutAlign="space-between start">
             <!-- Informations assuré-->
             <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="30">
                 <h2>Assuré</h2>
                 <hr class="down-h2">
                 <div>
-                    {{idAssure}} - {{infoAssure.civilite}} {{infoAssure.prenom}} {{infoAssure.nom}}<br /><br />
-                    {{infoAssure.num_ss}}<br />
-                    Né le : {{infoAssure.date_naissance}}<br /><br />
-                    {{infoAssure.adresse1}}<br />
-                    <div *ngIf="infoAssure.adresse2!=''">{{infoAssure.adresse2}}</div>
-                    {{infoAssure.code_postal}} {{infoAssure.ville}}<br /><br/>
+                    {{assure.id_assure}} - {{assure.civilite}} {{assure.prenom}} {{assure.nom}}
+                    <br /> {{assure.num_ss | numSS}}
+                    <br /> Né le : {{assure.date_naissance | dateYMD}}
+                    <br />
+                    <br /> {{assure.adresse}}
+                    <br />
+                    <div *ngIf="assure.adresse_suite!=''">{{assure.adresse_suite}}</div>
+                    {{assure.code_postal}} {{assure.ville}}
+                    <br />
+                    <br/>
                     <div fxLayout="row" fxLayoutAlign="space-between start">
-                    <span>{{infoAssure.regime}}</span>
-                    <span>{{infoAssure.college}}</span>
-                    <span>{{infoAssure.couverture}}</span>
+                        <span>{{assure.regime}}</span>
+                        <span>{{assure.college}}</span>
+                        <span>{{assure.couverture}}</span>
                     </div>
                 </div>
             </div>
 
             <!-- Informations société -->
             <div fxLayout="column" fxLayoutAlign="start stretch" fxFlex="30">
-                <h2>Société (Frais médicaux)</h2>
+                <h2>Société</h2>
                 <hr class="down-h2">
                 <div>
-                    {{infoSocieteFM.id}} - {{infoSocieteFM.nom}}<br /><br />
-                    {{infoSocieteFM.num_siren | siren}}<br /><br />
-                    {{infoSocieteFM.adresse1}}<br />
-                    <div *ngIf="infoSocieteFM.adresse2!=''">{{infoSocieteFM.adresse2}}</div>
-                    {{infoSocieteFM.code_postal}} {{infoSocieteFM.ville}}<br />
+                    {{societe.id_societe}} - {{societe.raison_sociale}}
+                    <br />
+                    <br /> {{societe.siren | siren}}
+                    <br />
+                    <br /> {{societe.adresse}}
+                    <br />
+                    <div *ngIf="societe.adresse2!=''">{{societe.adresse_suite}}</div>
+                    {{societe.code_postal}} {{societe.ville}}
+                    <br />
                 </div>
             </div>
         </div>
@@ -48,9 +58,7 @@
         <!-- Date d'application -->
         <div class="showcase" id="dateApplication">
             <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Date d'application" 
-                    [value]="dateApplication" 
-                    (dateInput)="changeDateApplication($event)"
+                <input matInput [matDatepicker]="picker" placeholder="Date d'application" [value]="dateApplication" (dateInput)="changeDateApplication($event)"
                     (dateChange)="changeDateApplication($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -58,21 +66,18 @@
         </div>
         <hr class="down-light">
         <div>
-            <mat-sidenav-container >
-                <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true"
-                        (closed)="sidenavIsOpened=false">
+            <mat-sidenav-container>
+                <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
                     <mat-nav-list>
-                        <a mat-list-item [class.linkActive]="screen == 'informations' || screen == ''" 
-                            (click)="onChangeScreen('informations')"> 
+                        <a mat-list-item [class.linkActive]="screen == 'informations' || screen == ''" (click)="onChangeScreen('informations')">
                             Informations générales
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == 'actions'"
-                            (click)="onChangeScreen('actions')"> 
+                        <a mat-list-item [class.linkActive]="screen == 'actions'" (click)="onChangeScreen('actions')">
                             Actions
                         </a>
                     </mat-nav-list>
                 </mat-sidenav>
-                
+
                 <mat-sidenav-content id="contentBrancheCP">
                     <div class="btnOpenClose">
                         <i class="fa fa-angle-double-right" (click)="sidenav.toggle()" *ngIf="!sidenavIsOpened"></i>
@@ -80,17 +85,12 @@
                     </div>
                     <div>
                         <!-- Confitions particulières : Informations générales -->
-                        <app-conditions-particulieres-informations *ngIf="screen == 'informations' || screen == ''"
-                            [idAssure]="idAssure" 
-                            [action]="consulter"
+                        <app-conditions-particulieres-informations *ngIf="screen == 'informations' || screen == ''" [idAssure]="idAssure" [action]="consulter"
                             [brancheCP]="brancheCP">
                         </app-conditions-particulieres-informations>
-                        
+
                         <!-- Confitions particulières : Actions -->
-                        <app-conditions-particulieres-actions *ngIf="screen == 'actions'"
-                            [idAssure]="idAssure" 
-                            [action]="consulter"
-                            [brancheCP]="brancheCP">
+                        <app-conditions-particulieres-actions *ngIf="screen == 'actions'" [idAssure]="idAssure" [action]="consulter" [brancheCP]="brancheCP">
                         </app-conditions-particulieres-actions>
                     </div>
                 </mat-sidenav-content>

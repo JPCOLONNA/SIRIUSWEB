@@ -55,14 +55,14 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="start start" >
       <div fxFlex="33">
-      <a (click)="afficheModalListePieces(brancheCP.id_liste_pieces)">
-        Pièce(s) justificative(s) - {{brancheCP.id_liste_pieces}}</a>
+      <a (click)="displayModalListPieces(brancheCP.id_liste_pieces)">
+        Pièce(s) justificative(s)</a>
       <i class="fa fa-angle-right"></i>
       </div>
       <div fxFlex="33">
           <!-- En modification : Champs input avec placeHolder = libelle reçu du json lié à la branche CP--> 
           <!-- En consultation : affichage de la valeur reçue, liée à l'assuré-->
-          <a (click)="afficheModalListeStructure(brancheCP.id_liste_structure)">Composition familiale possible - {{brancheCP.id_liste_structure}}</a>
+          <a (click)="afficheModalListeStructure(brancheCP.id_liste_structure)">Composition familiale possible</a>
           <i class="fa fa-angle-right"></i>
         </div>
     </div>

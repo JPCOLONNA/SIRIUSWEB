@@ -1,0 +1,27 @@
+{
+    "id_liste_structure" : "XPPLCOPE.ID_LISTSTR",
+    "categorie":"XPPLCPE.CAT_FIL",
+    "type_cotisation":"XPPLCPE.TYP_COTIS",
+    "contrat":"XPPLCPE.CONTRAT",
+    "envoi_carte_tp":"XPPLCPE.ENV_CRT_TP",    
+    "envoi_carte_tp_desc":"XPTYPENVTP.LB_ENV_TP",
+    "id_liste_pieces":"XPPLCPE.ID_LISTPCE",
+    "liste_actions" :[
+        {
+            "type_action":	"XPPLCPACE.TYP_ACT",
+            "description": 	"XPPLCPACE.LB_ACT",
+            "duree_validite": 	"XPPLCPACE.DUREE_ACT + XPPLCPACE.TYP_DUREE",
+            "id_liste_pieces" : "XPPLCPACE.ID_LISTPCE",
+            "liste_detail_action" :[
+                {
+                    "motif": "XPPLCPACD.LB_COND",
+                    "motif_desc": "XPTYPMOTIF.LB_MOTIF",
+                    "etat_cible": "XPPLCPACD.ETAT_ORIG",
+                    "anciennete" : "XPPLCPACD.DUREE_COND + XPPLCPACD.TYP_DUREE",
+                    "commentaires":"XPPLCPACD.TXT_COND",
+                    "id_liste_pieces": "XPPLCPE.ID_LISTPCE"
+                }
+            ]
+        }
+    ]
+}    

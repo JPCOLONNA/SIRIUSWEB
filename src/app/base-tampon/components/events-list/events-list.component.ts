@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ResourcesBaseTamponService } from 'app/base-tampon/providers/resources-base-tampon.service';
 import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import {Evenement} from '../../model/evenement';
+import { NotificationsService } from 'app/core/providers/notifications.service';
 
 /**
  * Liste les actions/évènements en attente de validation par le métier
@@ -101,8 +101,8 @@ export class EventsListComponent implements OnInit {
         //Configuration du tri sur les colonnes
         this.dataSourceBaseTampon.sort = this.sort;
       },
-      (err) => {
-        this.notificationsService.error('Erreur', err);
+      (error) => {
+        this.notificationsService.displayError(error);
       }
     );
   }

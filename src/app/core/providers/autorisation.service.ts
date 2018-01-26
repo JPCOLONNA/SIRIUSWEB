@@ -95,7 +95,7 @@ export class AutorisationService {
    * @param ecran     Nom de l'écran
    * @param droit     Le droit souhaité
    */
-  isAutorise(ecran: string, droit: string) {
+  isAutorise(ecran: string, droit: string): boolean {
     let retour = false;
     //Récupère en session la liste des actions possibles pour l'utilisateur dans l'application en cours de consultation
     //!! cast en boolean le résultat 0/1

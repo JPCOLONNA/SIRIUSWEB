@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material';
 import { ListesService } from '../../../core/providers/listes.service';
-import { NotificationsService } from 'angular2-notifications';
 import { ModalPlusDinfoComponent } from '../modal-plus-dinfo/modal-plus-dinfo.component';
+import { NotificationsService } from 'app/core/providers/notifications.service';
 
 /**
  * Affiche une liste de pièces dans une modale
@@ -67,8 +67,8 @@ export class ModalListePiecesComponent implements OnInit {
         this.listePieces = data;
         this.doneRequesting();
       },
-      (err) => {
-        this.notificationsService.error('Erreur', err);
+      (error) => {
+        this.notificationsService.displayError(error);
       }
     );
 

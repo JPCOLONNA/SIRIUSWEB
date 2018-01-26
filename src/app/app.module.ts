@@ -23,6 +23,7 @@ import { ModalMessageComponent } from './commun/components/modal-message/modal-m
 //import { HeaderModalComponent } from './commun/shared/components/header-modal/header-modal.component';
 import { ModalListePiecesComponent } from './commun/components/modal-liste-pieces/modal-liste-pieces.component';
 import { ModalPlusDinfoComponent } from './commun/components/modal-plus-dinfo/modal-plus-dinfo.component';
+import { AccessDeniedComponent } from './commun/components/access-denied/access-denied.component';
 
 
 //Module Matérial en français
@@ -47,7 +48,8 @@ registerLocaleData(localeFr);
     LoginComponent, 
     ModalMessageComponent, 
     ModalListePiecesComponent, 
-    ModalPlusDinfoComponent
+    ModalPlusDinfoComponent, 
+    AccessDeniedComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

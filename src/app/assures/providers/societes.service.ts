@@ -17,11 +17,11 @@ export class SocietesService {
     private mixinService : MixinService) { }
 
   /**
-   * Récupère les informations générales d'une société Frais Médicaux (FM) depuis un id assuré
-   * @param idAssure  Identifiant d'un assuré
-   * @returns         Les informations de la société sous forme d'observable
+   * Récupère les informations générales d'une société 
+   * @param idSociete  Identifiant de la société recherchée 
+   * @returns           Les informations de la société sous forme d'observable
    */
-  getSocieteFM(idAssure:number): Observable<any>
+  getSociete(idSociete:number): Observable<any>
   {
     //TO DO : Appel web service pour lancer la recherche d'une société selon le type de société (FM,PV) et le numéro id de l'assuré
     // A adapter à l'appel de service (methode post, body et header)

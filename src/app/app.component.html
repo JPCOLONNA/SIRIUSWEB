@@ -10,13 +10,16 @@
             <hr class="down"> 
 
             <!-- Choix de l'application -->
-            <!--<mat-form-field>
-                <mat-select placeholder="Liste des applications">
-                    <mat-option *ngFor="let application of listeApplications" [value]="application.url">
-                        {{ application.nom }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>-->
+            <mat-form-field *ngIf="!isRequesting">
+                <input #autoInput matInput placeholder="Accès rapide application"[matAutocomplete]="auto" [formControl]="formControlAppli" >
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOptionQuickAccess($event)">
+                <mat-option *ngFor="let application of listApplication" [value]="application.url">
+                    <i [class]="application.icon + ' fa middle-icon'"></i>
+                    <span>&nbsp;&nbsp;{{ application.nom }}</span>
+                </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <hr class="down"> 
 
             <!-- Accès rapideà un écran via son code -->
             <!--<mat-form-field>

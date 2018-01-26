@@ -49,8 +49,6 @@ export class AssuresService {
    * @returns Retourne la liste des assurés sous forme d'observable
    */
   getListAssures(valueForm: any): Observable<any> {
-
-    console.log(valueForm);
     // Génération du corps de la requête
     const body: string = JSON.stringify({
       contexte:       this.waassure.contexte.listeAssures,
@@ -73,7 +71,7 @@ export class AssuresService {
       body,
       {headers: this.mixinService.getDefaultHeaders()}
     ).catch(
-      (err) => this.exceptionService.handleException(err)
+      (error) => this.exceptionService.handleException(error)
     );
   }
 }

@@ -6,89 +6,88 @@
 
 <!-- Spinner de chargement -->
 <ng-template #overlay>
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
 </ng-template>
 
 <!-- Contenu -->
 <ng-template #pageContent>
-  <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between stretch">
-    <span [matTooltip]="listeStructure.nom_liste" [matTooltipPosition]="rsc.positionTooltip">{{listeStructure.description}}</span>
-    <span>{{listeStructure.max_benef}}</span>
-    <span>{{listeStructure.ajout_benef}}</span>
-    <span>{{listeStructure.soumis_a_cotis}}</span>
-  </div>
+    <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between stretch">
+        <span [matTooltip]="listeStructure.nom_liste" [matTooltipPosition]="rsc.positionTooltip">{{listeStructure.description}}</span>
+        <span>{{listeStructure.max_benef}}</span>
+        <span>{{listeStructure.ajout_benef}}</span>
+        <span>{{listeStructure.soumis_a_cotis}}</span>
+    </div>
 
-  <!-- Liste des types de bénéficiares -->
-  <div >
-    <mat-table #table [dataSource]="dataSource" matSort >
+    <!-- Liste des types de bénéficiares -->
+    <div>
+        <mat-table #table [dataSource]="dataSource" matSort>
 
-        <!-- Type de bénéficiaires -->
-        <ng-container matColumnDef="typeBenef">
-            <mat-header-cell *matHeaderCellDef mat-sort-header 
-              [matTooltip]="labelTable.type_benef" 
-              [matTooltipPosition]="rsc.positionTooltip" fxFlex="25"> {{labelTable.description}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" 
-              [matTooltip]="detailBenefType.type_benef" 
-              [matTooltipPosition]="rsc.positionTooltip" fxFlex="25"> {{detailBenefType.description}} </mat-cell>
-        </ng-container>
+            <!-- Type de bénéficiaires -->
+            <ng-container matColumnDef="typeBenef">
+                <mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="labelTable.type_benef" [matTooltipPosition]="rsc.positionTooltip"
+                    fxFlex="25"> {{labelTable.description}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" [matTooltip]="detailBenefType.type_benef" [matTooltipPosition]="rsc.positionTooltip"
+                    fxFlex="25"> {{detailBenefType.description}} </mat-cell>
+            </ng-container>
 
-        <!-- Maximum de bénéficiaires -->
-        <ng-container matColumnDef="maxBenef">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_benef_type}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_benef_type}} </mat-cell>
-        </ng-container>
+            <!-- Maximum de bénéficiaires -->
+            <ng-container matColumnDef="maxBenef">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_benef_type}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_benef_type}} </mat-cell>
+            </ng-container>
 
-        <!-- Age minimum -->
-        <ng-container matColumnDef="ageMin">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.age_min}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.age_min}} </mat-cell>
-        </ng-container>
+            <!-- Age minimum -->
+            <ng-container matColumnDef="ageMin">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.age_min}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.age_min}} </mat-cell>
+            </ng-container>
 
-        <!-- Age maximum -->
-        <ng-container matColumnDef="ageMax">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.age_max}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.age_max}} </mat-cell>
-        </ng-container>
+            <!-- Age maximum -->
+            <ng-container matColumnDef="ageMax">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.age_max}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.age_max}} </mat-cell>
+            </ng-container>
 
-        <!-- Soumis à cotisation -->
-        <ng-container matColumnDef="soumisACotis">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.soumis_a_cotis}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.soumis_a_cotis}} </mat-cell>
-        </ng-container>
+            <!-- Soumis à cotisation -->
+            <ng-container matColumnDef="soumisACotis">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.soumis_a_cotis}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.soumis_a_cotis}} </mat-cell>
+            </ng-container>
 
-        <!-- Max de bénéficiaire soumis à cotisation-->
-        <ng-container matColumnDef="maxSoumis">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_soumis}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_soumis}} </mat-cell>
-        </ng-container>
+            <!-- Max de bénéficiaire soumis à cotisation-->
+            <ng-container matColumnDef="maxSoumis">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_soumis}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_soumis}} </mat-cell>
+            </ng-container>
 
-        <!-- Max de bénéficiaire exonerer-->
-        <ng-container matColumnDef="maxExonerer">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_exonerer}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_exonerer}} </mat-cell>
-        </ng-container>
+            <!-- Max de bénéficiaire exonerer-->
+            <ng-container matColumnDef="maxExonerer">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="10"> {{labelTable.max_exonerer}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="10"> {{detailBenefType.max_exonerer}} </mat-cell>
+            </ng-container>
 
-        <!-- Liste de pièces-->
-        <ng-container matColumnDef="listPiece">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="15"> {{labelTable.id_liste_pieces}} </mat-header-cell>
-            <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="15"> {{detailBenefType.id_liste_pieces}} </mat-cell>
-        </ng-container>
+            <!-- Liste de pièces-->
+            <ng-container matColumnDef="listPiece">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="headerCenter" fxFlex="15"> {{labelTable.id_liste_pieces}} </mat-header-cell>
+                <mat-cell *matCellDef="let detailBenefType" class="dataCenter" fxFlex="15"> {{detailBenefType.id_liste_pieces}} </mat-cell>
+            </ng-container>
 
-        <!-- Entête de tableau -->
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-</div>
+            <!-- Entête de tableau -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
 
 </ng-template>
 <!-- Pagination -->
-<mat-paginator #paginator [class.hidden]="listDetailBenefType == null || listDetailBenefType.length == 0"
-  [pageSize]="10"
-  [pageSizeOptions]="[10,25,50]">
+<mat-paginator #paginator [class.hidden]="listDetailBenefType == null || listDetailBenefType.length == 0" [pageSize]="10"
+    [pageSizeOptions]="[10,25,50]">
 </mat-paginator>
 
 <!-- Bouton -->
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-  <!-- tabindex="-1" pour éviter que le focus soit mis sur le bouton à l'ouverture de la modal -->
-  <button mat-raised-button color="primary" (click)="closeModal()" tabindex="-1">Fermer</button>
+    <!-- tabindex="-1" pour éviter que le focus soit mis sur le bouton à l'ouverture de la modal -->
+    <button mat-raised-button color="primary" (click)="closeModal()" tabindex="-1">Fermer</button>
 </div>

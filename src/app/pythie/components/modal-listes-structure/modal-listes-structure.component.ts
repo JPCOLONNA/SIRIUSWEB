@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ListesService } from '../../../core/providers/listes.service';
-import { NotificationsService } from 'angular2-notifications';
 import { ResourcesService } from '../../../core/providers/resources.service';
+import { NotificationsService } from 'app/core/providers/notifications.service';
 
 /**
  * Affiche une liste structure dans une modale
@@ -97,8 +97,8 @@ export class ModalListesStructureComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.doneRequesting();
       },
-      (err) => {
-        this.notificationsService.error('Erreur', err);
+      (error) => {
+        this.notificationsService.displayError(error);
       }
     );
 

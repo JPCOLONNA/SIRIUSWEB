@@ -141,7 +141,6 @@ export class SearchAssureComponent implements OnInit {
       this.assuresService.getListAssures(this.formSearchAssure.value)
         .subscribe(
           (data) => {             
-            //TO DO A activer lors de l'appel du service
             if (data.hasOwnProperty('success') && data.success === 'true') {
               //Cast le résultat de type "object" en structure JSON
               let rscTmp = data;
@@ -163,7 +162,7 @@ export class SearchAssureComponent implements OnInit {
                 this.notificationsService.displayError(error);
               });
             }
-            this.doneRequesting(false);
+            //this.doneRequesting(false);
           },
           (error) => {
             this.notificationsService.displayError(error);
@@ -180,9 +179,9 @@ export class SearchAssureComponent implements OnInit {
    * Lors de la sélection d'un assuré, sauvegarde l'id assuré sélectionné via router-outlet
    */
   selectAssure(idAssure: any)
-  {
+  {   
     this.idAssure = idAssure;
-    this.router.navigate(['/assures/cp']);
+    this.router.navigate(['/assures/conditions-particulieres']);
   }
 
   /**

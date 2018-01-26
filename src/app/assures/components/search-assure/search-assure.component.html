@@ -8,7 +8,7 @@
                 <!-- Numéro d'assuré -->
                 <mat-form-field fxFlex="20">
                     <input matInput formControlName="numAssure" [placeholder]="rsc.label.numAssure" [textMask]="{mask: mask.ident || false, guide: false}"
-                        tabindex="1">
+                        autofocus tabindex="1">
                 </mat-form-field>
                 <!-- Numéro de sécurité social -->
                 <mat-form-field fxFlex="20">
@@ -56,7 +56,9 @@
 
     <!-- Spinner de chargement -->
     <ng-template #overlay>
-        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
     </ng-template>
 
     <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
@@ -67,43 +69,43 @@
             <mat-table #table [dataSource]="dataSource" matSort>
                 <!-- Numéro d'assuré -->
                 <ng-container matColumnDef="numAssure">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.id </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.id_assure}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.id_assure}} </mat-cell>
                 </ng-container>
 
                 <!-- Nom de l'assuré -->
                 <ng-container matColumnDef="nom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.nom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.nom}}</mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.nom}} </mat-cell>
                 </ng-container>
 
                 <!-- Prénom de l'assuré -->
                 <ng-container matColumnDef="prenom">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.prenom </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.prenom}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.prenom}} </mat-cell>
                 </ng-container>
 
                 <!-- Numéro de sécurité sociale-->
                 <ng-container matColumnDef="numSS">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.num_ss </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.num_ss}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.num_ss | numSS}} </mat-cell>
                 </ng-container>
 
                 <!-- Date de naissance-->
                 <ng-container matColumnDef="dateNaissance">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.date_naissance </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.date_naissance}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.date_naissance | dateYMD}} </mat-cell>
                 </ng-container>
 
                 <!-- Code Postal-->
                 <ng-container matColumnDef="codePostal">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.code_postal </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.code_postal}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.code_postal}} </mat-cell>
                 </ng-container>
 
                 <!-- Ville-->
                 <ng-container matColumnDef="ville">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> labelTable.ville </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.ville}} </mat-header-cell>
                     <mat-cell *matCellDef="let assure" (click)="selectAssure(assure.id_assure)" class="clickable"> {{assure.ville}} </mat-cell>
                 </ng-container>
 
