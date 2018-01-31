@@ -10,7 +10,7 @@
             <hr class="down"> 
 
             <!-- Choix de l'application -->
-            <mat-form-field *ngIf="!isRequesting">
+            <mat-form-field *ngIf="!isRequesting" class="contenair_horizontal">
                 <input #autoInput matInput placeholder="Accès rapide application"[matAutocomplete]="auto" [formControl]="formControlAppli" >
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectOptionQuickAccess($event)">
                 <mat-option *ngFor="let application of listApplication" [value]="application.url">

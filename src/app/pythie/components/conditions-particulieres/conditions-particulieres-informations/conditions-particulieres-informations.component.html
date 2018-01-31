@@ -29,37 +29,37 @@
       <!--{{brancheCP.regime}}-->
     <!--</div>
   </div>-->
-  <div fxLayout="row" fxLayoutAlign="start start" >
-      <div fxFlex="33">
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="3px" >
+      <div fxFlex="32">
         <!-- En modification : Champs input avec placeHolder = libelle reçu du json--> 
         <!-- En consultation : affichage de la valeur reçue-->
         {{brancheCP.categorie}}
       </div>
-      <div fxFlex="33">
+      <div fxFlex="32">
         <!-- En modification : Champs input avec placeHolder = libelle reçu du json--> 
         <!-- En consultation : affichage de la valeur reçue-->
         {{brancheCP.type_cotisation}}
       </div>
-      <div fxFlex="33">
+      <div fxFlex="32">
         <!-- En modification : Champs input avec placeHolder = libelle reçu du json--> 
         <!-- En consultation : affichage de la valeur reçue-->
         {{brancheCP.contrat}}
       </div>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start" >
-      <div fxFlex="33">
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="3px">
+      <div fxFlex="32">
         <!-- En modification : Champs input avec placeHolder = libelle reçu du json--> 
         <!-- En consultation : affichage de la valeur reçue-->
         <span [matTooltip]="brancheCP.envoi_carte_tp" [matTooltipPosition]="rsc.positionTooltip">{{brancheCP.envoi_carte_tp_desc}}</span>
       </div>
     </div>
     <div fxLayout="row" fxLayoutAlign="start start" >
-      <div fxFlex="33">
+      <div fxFlex="32">
       <a (click)="displayModalListPieces(brancheCP.id_liste_pieces)">
         Pièce(s) justificative(s)</a>
       <i class="fa fa-angle-right"></i>
       </div>
-      <div fxFlex="33">
+      <div fxFlex="32">
           <!-- En modification : Champs input avec placeHolder = libelle reçu du json lié à la branche CP--> 
           <!-- En consultation : affichage de la valeur reçue, liée à l'assuré-->
           <a (click)="afficheModalListeStructure(brancheCP.id_liste_structure)">Composition familiale possible</a>

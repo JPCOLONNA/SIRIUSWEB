@@ -37,12 +37,14 @@ export class AuthGuardService implements CanActivate {
       //vérifie que l'utilisateur à accès à cette écran
       //A SUPPRIMER quand l'écran sera paramétré
       if(route.data.screenName == "WSWACCUEIL")
-        isAutorise = true;    
+      {
+        return Observable.of(true);   
+      }
       
-      //vérifie que l'utilisateur à accès à cette écran
+      //vérifie que l'utilisateur à accès à cette écran     
       if(this.autorisationService.isAutorise(route.data.screenName,"executer"))
       {
-        isAutorise = true;  
+        return Observable.of(true);    
       }
       //Si ce n'est pas le cas, les droits pour l'application ne sont peut être pas chargés en mémoire
       else
@@ -56,9 +58,9 @@ export class AuthGuardService implements CanActivate {
         {
           //controle si la liste des droits de l'utilisateur pour l'application est connue (flag en session)
           if(JSON.parse(this.mixinService.getFromSession(appliName+"_droits")) == null)
-          {
+          {            
             //récupère les droits
-            this.autorisationService.getListDroitsApplication(appliName)
+            return this.autorisationService.getListDroitsApplication(appliName)
             .map(
               (data) => {
                 if (data.hasOwnProperty('success') && data.success === 'true') {
@@ -66,8 +68,20 @@ export class AuthGuardService implements CanActivate {
                   this.autorisationService.saveDroitInSession(appliName,data.liste_droits);
                   //controle l'accès
                   isAutorise = this.autorisationService.isAutorise(route.data.screenName,"executer");
+                  
+                  if(isAutorise == false)
+                    this.router.navigate(['/acces-refuse']);
+                  else
+                  {
+                    return true;
+                  }
                 }
-              });
+                else
+                {
+                  this.router.navigate(['/acces-refuse']);
+                }
+              }
+            );
           }
         }
       }
@@ -77,17 +91,7 @@ export class AuthGuardService implements CanActivate {
       //Redirige vers la page de login
       this.authService.login();
     }
-
-    //vérifie que l'utilisateur à accès à cette écran
-    if(route.data.screenName != "WSWACCUEIL")
-      isAutorise = this.autorisationService.isAutorise(route.data.screenName,"executer");
-    else
-      isAutorise = true;
-      
-    // Si l'utilisateur est connecté et l'accès est refusé, il est redirigé vers une page "Accès refusé"
-    if(isAutorise == false)
-      this.router.navigate['acces-refuse'];
-    return Observable.of(isAutorise);
+    console.log("test3");
   }
 
 /**

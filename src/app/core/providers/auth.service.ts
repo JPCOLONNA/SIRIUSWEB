@@ -2,7 +2,6 @@ import { Injectable }       from '@angular/core';
 import { Router }           from '@angular/router';
 import { Observable }       from 'rxjs/Rx';
 import { SettingsService }  from './settings.service';
-import { ExceptionService } from './exception.service';
 import { MixinService }     from './mixin.service';
 import { AutorisationService } from 'app/core/providers/autorisation.service';
 import { logging } from 'selenium-webdriver';
@@ -22,13 +21,11 @@ export class AuthService {
     /**
      * Crée une instance de AuthService
      * @param settingsService       Service de la configuration générale
-     * @param exceptionService      Services de gestion des exceptions
      * @param router
      * @param mixinService          Services généraux
      */ 
     constructor(
         private settingsService: SettingsService,
-        private exceptionService: ExceptionService,
         private mixinService: MixinService,
         private router: Router,
         private autorisationService:AutorisationService

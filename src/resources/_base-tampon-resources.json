@@ -1,22 +1,24 @@
 {
     "applicationInfo": {
-        "icon": "fa-database",
-        "code":"BASE_TAMPON",
-        "name": "BASE TAMPON",
+        "icon": "fa-check",
+        "code": "BASE_TAMPON",
+        "name": "VALIDATION MÉTIER",
         "url": "/tampon"
     },
-    "menu": [
-        {
-            "url": "/tampon/liste",
-            "nom": "Liste des évènements",
-            "idNecessary": false
-        },
-        {
-            "url": "/tampon/fiche",
-            "nom": "Fiche de l'évènement",
-            "idNecessary": true
-        }
-    ],
+    "menu": {
+        "items": [
+            {
+                "url": "/tampon/liste",
+                "nom": "Liste des évènements",
+                "idNecessary": false
+            },
+            {
+                "url": "/tampon/fiche",
+                "nom": "Fiche de l'évènement",
+                "idNecessary": true
+            }
+        ]
+    },
     "eventList": {
         "title": "Liste des évènements en attente de validation"
     },

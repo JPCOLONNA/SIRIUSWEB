@@ -53,7 +53,10 @@ registerLocaleData(localeFr);
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ModalMessageComponent,ModalListePiecesComponent, ModalPlusDinfoComponent]
+  entryComponents: [
+    ModalMessageComponent,
+    ModalListePiecesComponent,
+    ModalPlusDinfoComponent]
 })
 
 export class AppModule { }

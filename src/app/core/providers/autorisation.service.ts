@@ -15,7 +15,7 @@ export class AutorisationService {
   walogin: any;
 
   /**
-   * Crée une isntance de AutorisationService
+   * Crée une instance de AutorisationService
    * @param mixinService            Services généraux
    * @param settingsService         Service de la configuration générale
    * @param exceptionService        Services de gestion des exceptions
@@ -52,6 +52,7 @@ export class AutorisationService {
    */
   getListDroitsApplication(appliName: string) {
     let user = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi, '');
+        
     if(user != null)
     {
       var body = {

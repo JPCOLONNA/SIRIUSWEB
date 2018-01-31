@@ -162,7 +162,7 @@ export class SearchAssureComponent implements OnInit {
                 this.notificationsService.displayError(error);
               });
             }
-            //this.doneRequesting(false);
+            this.doneRequesting(false);
           },
           (error) => {
             this.notificationsService.displayError(error);

@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
    */
   redirectTo(lien: string)
   {
+    console.log(lien);
     this.router.navigate([lien]);
   }
 

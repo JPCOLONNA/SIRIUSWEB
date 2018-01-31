@@ -13,7 +13,7 @@ export class DateYMDPipe implements PipeTransform {
     let tmp = '';
     let transformDate = '';
     
-    //La date de naissance doit contenir 8 numériques pour être affiché
+    //FORMAT AAAAMMDD - La date de naissance doit contenir 8 numériques pour être affiché
     if (value.length == 8 && !isNaN(Number(value))) {
       value.split('').forEach((char, i) => {
         //  transformDate += char;
@@ -28,12 +28,32 @@ export class DateYMDPipe implements PipeTransform {
         }
       });
       transformDate = tmp + '/' + mois + '/' + annee;
-      return transformDate;
+      
     }
     else
     {
-      return '';
+      //FORMAT AAAA-MM-DD - La date de naissance doit contenir 10 caractères
+      let regex = new RegExp('[0-9]{4}\-[0-9]{2}\-[0-9]{2}');
+      if(value.length == 10 && regex.test(value))
+      {
+        value.split('').forEach((char, i) => {
+          if(char != '-')
+            tmp += char;
+          
+            if (i === 3) {
+            annee = tmp;
+            tmp = '';
+          }
+          if (i === 6) {
+            mois = tmp;
+            tmp = '';
+          }
+        });
+        transformDate = tmp + '/' + mois + '/' + annee;
+      }
     }
+
+    return transformDate;
   }
 
 }

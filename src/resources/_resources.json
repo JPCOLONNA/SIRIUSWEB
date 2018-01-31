@@ -1,9 +1,9 @@
 {
     "listeApplications": {
         "BASE_TAMPON":{
-            "icon": "fa-database",
+            "icon": "fa-check",
             "code":"BASE_TAMPON",
-            "name": "BASE TAMPON",
+            "name": "VALIDATION MÉTIER",
             "url": "tampon"
         },
         "PYTHIEGES": {
@@ -107,11 +107,15 @@
         "complements": "Compléments",
         "placeHolderComplements": "Veuillez saisir ici toute info complémentaire utile",
         "titulaire": "Titulaire",
-        "provenance": "Provenance"
+        "provenance": "Provenance",
+        "dateDebut":"A partir de",
+        "dateFin":"Jusqu'au",
+        "typePlan":"Type de plan"
     },
     "bouton":
     {
-        "rechercher":"Rechercher"
+        "rechercher": { "icon":"search", "libelle" : "Rechercher"},
+        "ajouter": { "icon":"plus", "libelle" : "Ajouter"}
     },
     "positionTooltip": "below",
     "liste_civilite": [
@@ -129,6 +133,13 @@
         { "code": "P", "valeur": "En P.A.C.S." },
         { "code": "N", "valeur": "En concubinage notoire" },
         { "code": "S", "valeur": "Séparé" }
-    ]
+    ],
+    "icons":
+    {
+        "menu": {"icon":"bars","label":"Menu"},
+        "modifier": {"icon":"pencil","label":"Modifier"},
+        "supprimer": {"icon":"trash","label":"Supprimer"},
+        "duppliquer": {"icon":"clone","label":"Duppliquer"}
+    }
 
 }

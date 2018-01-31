@@ -22,6 +22,18 @@
         "eventDetails": {
             "url": "/wabasetmp",
             "contexte": "GetDetailEvenement"
+        },
+        "liste": {
+            "url": "/waliste",
+            "contexte": {
+                "typePlan": "GetTypePlan"
+            }
+        },
+        "plan": {
+            "url": "/wapyplan",
+            "contexte": {
+                "listePlan": "GetListePlan"
+            }
         }
     }
 }

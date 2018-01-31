@@ -1,9 +1,18 @@
-<mat-nav-list *ngIf="menu!=''">
-    <a mat-list-item [routerLink]="menuItem.url" routerLinkActive="linkActive" *ngFor="let menuItem of menu" [class.hidden]="menuItem.isActif==false"> 
-        {{ menuItem.nom }}
-    </a>
+
+<div *ngIf="!isRequesting">
+<mat-nav-list *ngIf="menu.items != undefined && menu.items!='' && menu.items.length>0">
+    <a mat-list-item [routerLink]="menuItem.url" routerLinkActive="linkActive" *ngFor="let menuItem of menu.items" [class.hidden]="menuItem.isActif==false">
+        {{ menuItem.nom }}</a>
 </mat-nav-list>
 
+<mat-divider *ngIf="menu.raccourcis != undefined && menu.raccourcis!='' && menu.raccourcis.length>0"></mat-divider>
+
+<mat-nav-list dense *ngIf="menu.raccourcis != undefined && menu.raccourcis!=''">
+    <h3 matSubheader>Raccourcis</h3>
+    <a mat-list-item [routerLink]="raccourci.url" *ngFor="let raccourci of menu.raccourcis">
+        {{ raccourci.nom }}</a>
+</mat-nav-list>
+</div>
 <!--<div *ngFor="let menuItem of menu">
     <a [routerLink]="menuItem.url"> {{ menuItem.nom }} </a>
 </div>-->

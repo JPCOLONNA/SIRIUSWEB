@@ -10,7 +10,7 @@
 
 <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
 <ng-template #pageContent>
-    <div class="contenair" fxLayout="column" fxLayoutAlign="start stretch">
+    <div class="contenair" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
         <h1>Conditions particulières</h1>
         <hr class="down">
         <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -20,6 +20,7 @@
                 <hr class="down-h2">
                 <div>
                     {{assure.id_assure}} - {{assure.civilite}} {{assure.prenom}} {{assure.nom}}
+                    <br />
                     <br /> {{assure.num_ss | numSS}}
                     <br /> Né le : {{assure.date_naissance | dateYMD}}
                     <br />
@@ -27,13 +28,6 @@
                     <br />
                     <div *ngIf="assure.adresse_suite!=''">{{assure.adresse_suite}}</div>
                     {{assure.code_postal}} {{assure.ville}}
-                    <br />
-                    <br/>
-                    <div fxLayout="row" fxLayoutAlign="space-between start">
-                        <span>{{assure.regime}}</span>
-                        <span>{{assure.college}}</span>
-                        <span>{{assure.couverture}}</span>
-                    </div>
                 </div>
             </div>
 
@@ -50,9 +44,15 @@
                     <br />
                     <div *ngIf="societe.adresse2!=''">{{societe.adresse_suite}}</div>
                     {{societe.code_postal}} {{societe.ville}}
-                    <br />
                 </div>
             </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <span>{{brancheCP.infos_assure.regime}}</span>
+            <span>|</span>
+            <span>{{brancheCP.infos_assure.college}}</span>
+            <span>|</span>
+            <span>{{brancheCP.infos_assure.couverture}}</span>
         </div>
 
         <!-- Date d'application -->

@@ -116,11 +116,17 @@ export class AppComponent {
     //Par défaut le message est affiché
     this.messageAffiche = true;
 
-    //Information utilisateur - nom complet si présetn ou login windows
-    this.userConnectedFullName = this.mixinService.getFromSession("UserFullName");
-    
-    if(this.userConnectedFullName == null)
-      this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
+    //Information utilisateur - nom complet si présent ou login windows
+    if(this.userConnectedFullName == null || this.userConnectedFullName == undefined)
+    {
+      if(this.mixinService.getFromSession("UserCode")!= undefined)
+        this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
+    }
+    else
+    {
+      this.userConnectedFullName = this.mixinService.getFromSession("UserFullName").replace(/"/gi,'');
+    }
+      
 
     this.formControlAppli = new FormControl();
     //Récupération de la liste des applications
@@ -191,7 +197,7 @@ export class AppComponent {
   }
 
   /**
-   * Méthode appelée lors de la section d'une application dans accès rapide
+   * Méthode appelée lors de la selection d'une application dans accès rapide
    * @param  
    */
   selectOptionQuickAccess($event)

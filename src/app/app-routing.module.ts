@@ -23,10 +23,6 @@ const appRoutes: Routes = [
   {
     path: 'pythie',
     loadChildren: './pythie/pythie.module#PythieModule',
-    data: {
-      breadcrumb: "Pythie",
-      screenName: "WPYACCUEIL"
-    }
   },
   {
     path: 'tampon',
