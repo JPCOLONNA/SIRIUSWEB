@@ -14,43 +14,43 @@
             <!-- Type d'action -->
             <ng-container matColumnDef="provenance">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.provenance}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.provenance}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.provenance}} </mat-cell>
             </ng-container>
 
             <!-- Type d'action -->
             <ng-container matColumnDef="type_action">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.typeAction}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.type_action}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.type_action}} </mat-cell>
             </ng-container>
 
             <!-- Numéro d'assuré -->
             <ng-container matColumnDef="id_assure">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numAssure}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.id_assure}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_assure}} </mat-cell>
             </ng-container>
 
             <!-- Nom et prénom de l'assuré -->
             <ng-container matColumnDef="nom_assure">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.nomPrenomAssure}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.nom_assure}} {{event.prenom_assure}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.nom_assure}} {{event.prenom_assure}} </mat-cell>
             </ng-container>
 
             <!-- Numéro de société -->
             <ng-container matColumnDef="id_societe">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numSociete}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.id_societe}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_societe}} </mat-cell>
             </ng-container>
 
             <!-- Raison sociale de la société -->
             <ng-container matColumnDef="raison_sociale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.raisonSociale}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.raison_sociale}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.raison_sociale}} </mat-cell>
             </ng-container>
 
             <!-- Date de l'action -->
             <ng-container matColumnDef="date_traitement">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.dateTraitement}} </mat-header-cell>
-                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage)" class="clickable"> {{event.date_traitement | dateYMD }} - {{event.heure_traitement | heure}} </mat-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.date_traitement | dateYMD }} - {{event.heure_traitement | heure}} </mat-cell>
             </ng-container>
 
             <!-- Entête de tableau -->

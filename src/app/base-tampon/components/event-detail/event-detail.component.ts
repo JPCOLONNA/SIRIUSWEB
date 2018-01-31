@@ -54,8 +54,8 @@ export class EventDetailComponent implements OnInit {
   menuDetail: any;
 
   /** Identifiant de l'action/évènement à afficher */
-  idStockage: number;     //Initier par le composant parent lors du chargement du composant (router-outlet)
-
+  idStockage : number;     //Initier par le composant parent lors du chargement du composant (router-outlet)
+  idEvt: number; 
   /** Nom de l'écran du détail de l'évènement à afficher. <br/>
    * <i><u>Valeurs :</u><br/>
    * assure => Information de l'assuré (XTRTMPASS) <br/>
@@ -100,7 +100,7 @@ export class EventDetailComponent implements OnInit {
    */
   ngOnInit() {
     //Si l'idStockage n'est pas connu, redirection vers la liste des évènements
-    if (this.idStockage == 0 || this.idStockage == null)
+    if ((this.idStockage == 0 || this.idStockage == null) && (this.idEvt == 0 || this.idEvt == null))
       this.router.navigate(['/tampon/liste']);
 
     //Ressources
@@ -121,8 +121,9 @@ export class EventDetailComponent implements OnInit {
 
 loadEventDetail() {
 
-        this.baseTamponService.loadEventDetails(this.idStockage+"","").subscribe(
+        this.baseTamponService.loadEventDetails(this.idStockage+"", this.idEvt+"","").subscribe(
       (data) => {
+        console.log(data);
         //TO DO A activer lors de l'appel du service
         /*if (data.hasOwnProperty('success') && data.success === 'true') {
           this.brancheCP = data;
@@ -133,7 +134,7 @@ loadEventDetail() {
         }*/
 
         //Cast le résultat de type "object" en structure JSON
-        this.eventDetail= JSON.parse(JSON.stringify(data)).DetailEvt[0];
+        this.eventDetail= JSON.parse(JSON.stringify(data));
         console.log(this.eventDetail);
         //Liste des évènements 
         this.listAssures = new Array<Assure>();

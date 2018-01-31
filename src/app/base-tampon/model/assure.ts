@@ -55,7 +55,7 @@ export class Assure {
         this.lb_situation_familiale = tab.lb_situation_familiale ? tab.lb_situation_familiale : "";
         this.nombre_enfant = tab.nombre_enfant ? tab.nombre_enfant : "";
         this.transfert_noemie = tab.transfert_noemie==='1' ? true : false;
-        this.regime_caisse = tab.regime_caisse ? tab.regime_caisse : "";
+        this.regime_caisse = tab.regime_caisse&&tab.regime_caisse.length===2 ? tab.regime_caisse :  tab.regime_caisse&&tab.regime_caisse.length===1 ? "0"+tab.regime_caisse : "";
         this.caisse = tab.caisse ? tab.caisse : "";
         this.guichet_caisse = tab.guichet_caisse ? tab.guichet_caisse : "";
         this.cle_caisse = tab.cle_caisse ? tab.cle_caisse : "";
@@ -70,7 +70,7 @@ export class Assure {
         this.debut_effet = tab.debut_effet ? tab.debut_effet : "";
         this.fin_effet = tab.fin_effet ? tab.fin_effet : "";
 
-        alert(this.transfert_noemie);
     }
+
 
 }

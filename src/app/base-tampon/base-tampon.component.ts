@@ -18,6 +18,7 @@ export class BaseTamponComponent implements OnInit {
  
   /** Identifiant de l'assuré sélectionné dans la liste */
   idStockage:number;
+  idEvt:number;
 
 
   /**
@@ -63,6 +64,7 @@ export class BaseTamponComponent implements OnInit {
   {
     //transfert l'id stockage dont le détail est à afficher
     $event.idStockage = this.idStockage;
+    $event.idEvt = this.idEvt;
   }
 
   /**
@@ -77,6 +79,7 @@ export class BaseTamponComponent implements OnInit {
        
     //Récupère l'id stockage dont le détail est à afficher
     this.idStockage = $event.idStockage;
+    this.idEvt = $event.idEvt;
   }
 
 }

@@ -19,15 +19,15 @@
                 <hr class="down-h2">
                 <div>
                     <span class="showcase"> {{rscBaseTampon.label.typeAction}} :</span>
-                    <span class="showcase" [matTooltip]="eventDetail.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.type_action!=''">{{eventDetail.type_action}}</span>
+                    <span class="showcase" [matTooltip]="eventDetail.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.type_action!=''">{{eventDetail.DetailEvt.type_action}}</span>
 
-                    <span *ngIf="eventDetail.type_action==''">{{eventDetail.type_action}}</span>
-                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.statut}}
+                    <span *ngIf="eventDetail.type_action==''">{{eventDetail.DetailEvt.type_action}}</span>
+                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.DetailEvt.statut}}
                     <br />
-                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.id_stockage}}
+                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.DetailEvt.id_stockage}}
                     <br />
-                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.date_traitement | dateYMD}} - {{eventDetail.heure_traitement | heure}}
-                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.provenance}}
+                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.DetailEvt.date_traitement | dateYMD}} - {{eventDetail.DetailEvt.heure_traitement | heure}}
+                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.DetailEvt.provenance}}
                     <br />
                 </div>
             </div>
@@ -37,9 +37,9 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEntite}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rsc.label.numAssure}} {{eventDetail.id_assure}} - {{eventDetail.nom_assure}} {{eventDetail.prenom_assure}}
+                    {{rsc.label.numAssure}} {{eventDetail.DetailEvt.id_assure}} - {{eventDetail.DetailEvt.nom_assure}} {{eventDetail.DetailEvt.prenom_assure}}
                     <br />
-                    <br /> {{rsc.label.numSociete}} {{eventDetail.id_societe}} - {{eventDetail.raison_sociale}}
+                    <br /> {{rsc.label.numSociete}} {{eventDetail.DetailEvt.id_societe}} - {{eventDetail.DetailEvt.raison_sociale}}
                 </div>
             </div>
         </div>

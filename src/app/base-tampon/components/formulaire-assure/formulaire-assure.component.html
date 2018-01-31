@@ -152,6 +152,8 @@
         <!--</mat-form-field>-->
         <div fxFlex="30" *ngIf="assure === undefined"></div>
     </div>
+    <h2>{{rsc.label.organismeRattachement}}</h2>
+    <hr class="down-h2">
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- Régime -->
         <mat-form-field fxFlex="24">
@@ -169,6 +171,7 @@
         <mat-form-field fxFlex="24">
             <input matInput formControlName="cle" [placeholder]="rsc.label.cleGuichetSS">
         </mat-form-field>
+
     </div>
     <!-- Boutons -->
     <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">

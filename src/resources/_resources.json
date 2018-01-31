@@ -107,7 +107,8 @@
         "complements": "Compléments",
         "placeHolderComplements": "Veuillez saisir ici toute info complémentaire utile",
         "titulaire": "Titulaire",
-        "provenance": "Provenance"
+        "provenance": "Provenance",
+        "organismeRattachement": "Organisme de rattachement"
     },
     "positionTooltip": "below",
     "liste_civilite": [

@@ -25,6 +25,7 @@ export class EventsListComponent implements OnInit {
 
   /** Identifiant de l'évènement : initié lors qu clic sur une ligne*/
   idStockage: number;
+  idEvt: number;
 
   // ----------------- Tableau d'évènements ---------------------
   /** Liste des évènements, actions en attentes de validation*/
@@ -84,6 +85,7 @@ export class EventsListComponent implements OnInit {
 
         //Cast le résultat de type "object" en structure JSON
         let rscTmp = JSON.parse(JSON.stringify(data))
+        
         //Liste des évènements 
         this.eventList = new Array<Evenement>();
         for(let evt of rscTmp.ListeEvt){
@@ -120,8 +122,9 @@ export class EventsListComponent implements OnInit {
   /**
    * Lors de la sélection d'une action/évènement, sauvegarde l'id stockage passé au composant via router-outlet
    */
-  selectEvent(idStockage: any) {
+  selectEvent(idStockage: any, idEvt: any) {
     this.idStockage = idStockage;
+    this.idEvt = idEvt;
     this.router.navigate(['/tampon/fiche']);
   }
 
