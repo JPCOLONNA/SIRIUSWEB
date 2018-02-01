@@ -51,7 +51,7 @@ export class ResourcesPythieService {
                     this.menuEvent.fire(JSON.stringify(this.rsc.menu));
 
                     //MAJ du nom de l'application
-                    this.applicationInfoEvent.fire(JSON.stringify(this.rsc.infoApplication));
+                    this.applicationInfoEvent.fire(JSON.stringify(this.rsc.applicationInfo));
 
                     //MAJ du nom de l'écran
                     this.mixinService.majInfoEcran(this.rsc.ecrans.home);*/

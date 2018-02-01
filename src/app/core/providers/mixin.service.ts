@@ -8,11 +8,11 @@ import { environment } from '../../../environments/environment';
 //import { Portal } from '../../shared/models/portal';
 
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import { MatSnackBar } from '@angular/material';
 
 
 @Injectable()
 export class MixinService {
-    private authorizationToken: string;
 
     //private currentUser: Assure;
 
@@ -69,18 +69,6 @@ export class MixinService {
             //.append("Cache-Control", "no-cache, no-store, must-revalidate")
             //.append("Pragma", "no-cache");
     }
-    getAuthorizationHeader(): string {
-        if (this.authorizationToken && this.authorizationToken.length > 0) {
-            return this.authorizationToken;
-        } else {
-            return this.getFromSession('access_token');
-        }
-    }
-
-    setAuthorizationHeader(token: string) {
-        this.authorizationToken = token;
-        sessionStorage.setItem('access_token', token);
-    }
 
     clearSession() {
         this.removeFromSession('actions');
@@ -123,6 +111,19 @@ export class MixinService {
         this.storeInSession('app_portal', portal);
     }*/
 
+    /**
+     * Parse la date au format YYYYMMDD
+     * @param date  Date au format DD/MM/YYYY à transformer
+     */
+    parseDate8(date: any): string {
+        let splitTab = [];
+        splitTab = date.split("/");
+        const year = splitTab[2];
+        const month = splitTab[1];
+        const day = splitTab[0];
+        return (year + month + day);
+    }
+
     getMasks() {
         return {
             nb_children: createNumberMask({
@@ -164,7 +165,7 @@ export class MixinService {
                 includeThousandsSeparator: false,
                 allowLeadingZeroes: true
             }),
-            date: [/[0-3]/, /[0-9]/, '/', /[0-1]/, /[0-9]/, '/', /\d/, /\d/, /\d/, /\d/],
+            date: [/[0-3]/, /[0-9]/, '/', /[0-1]/, /[0-9]/, '/', /[1-2]/, /\d/, /\d/, /\d/],
             numSS: [/[1-2]/, ' ', /\d/, /\d/, ' ', /[0-1]/, /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/],
             iban: [/[A-Za-z]/, /[A-Za-z]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/],
             bic: [/[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/, /[A-Za-z]/, ' ', /[A-Za-z]/, /[A-Za-z]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, ' ', /[A-Za-z0-9]/, /[A-Za-z0-9]/, /[A-Za-z0-9]/],
@@ -228,5 +229,7 @@ export class MixinService {
         });
         return ss_num + cle;
     }
+
+    
 
 }

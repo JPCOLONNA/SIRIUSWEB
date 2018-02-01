@@ -31,7 +31,6 @@
         "@angular/platform-browser-dynamic": "^5.0.2",
         "@angular/router": "^5.0.2",
         "@material/theme": "^0.25.0",
-        "angular2-notifications": "^0.9.6",
         "angular2-text-mask": "^8.0.4",
         "core-js": "^2.5.1",
         "css-loader": "^0.28.7",

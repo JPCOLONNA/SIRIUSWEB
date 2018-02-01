@@ -13,6 +13,19 @@
         <mat-cell *matCellDef="let detailAction"> {{detailAction.anciennete}} </mat-cell>
     </ng-container>
 
+    <!-- Impact -->
+    <ng-container matColumnDef="impact_action">
+        <mat-header-cell *matHeaderCellDef>Impact de l'action</mat-header-cell>
+        <mat-cell *matCellDef="let detailAction">
+            <div *ngIf="detailAction.etat_cible!=''">
+                Option = {{detailAction.etat_cible}}
+                <br />
+                <a (click)="openModalListeStructure(1)">Composition familiale possible</a>
+                <i class="fa fa-angle-right"></i>
+            </div>
+        </mat-cell>
+    </ng-container>
+
     <!-- Commentaires -->
     <ng-container matColumnDef="commentaires">
         <mat-header-cell *matHeaderCellDef class="commentaires">Commentaires</mat-header-cell>
@@ -22,7 +35,10 @@
     <!-- Liste de pièces -->
     <ng-container matColumnDef="listPiece">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let detailAction"><a (click)="openModalListePieces(detailAction.id_liste_pieces)"> Pièce(s) justificative(s) - {{detailAction.id_liste_pieces}}</a> <i class="fa fa-angle-right"></i> </mat-cell>
+        <mat-cell *matCellDef="let detailAction">
+            <a (click)="openModalListePieces(detailAction.id_liste_pieces)"> Pièce(s) justificative(s)</a>
+            <i class="fa fa-angle-right"></i>
+        </mat-cell>
     </ng-container>
 
     <!-- Entête de tableau -->
@@ -31,7 +47,5 @@
 </mat-table>
 
 <!-- Pagination -->
-<mat-paginator #paginator 
-  [pageSize]="10"
-  [pageSizeOptions]="[10,25,50]">
+<mat-paginator #paginator *ngIf="data.length > 5" [pageSize]="5" [pageSizeOptions]="[5,10,20]">
 </mat-paginator>

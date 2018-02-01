@@ -1,28 +1,57 @@
 {
-    "infoApplication":
-    {
+    "applicationInfo": {
         "icon": "fa-cubes",
-        "nom": "PYTHIE"
+        "name": "PYTHIE",
+        "code": "PYTHIEGES",
+        "url": "/pythie"
     },
-    "menu": [
-        {
-            "url": "/pythie/cp",
-            "nom": "Conditions particulières"
-        },
-        {
-            "url": "/pythie/pweba",
-            "nom": "Pages web assuré"
-        }
-    ],
-    "ecrans": 
+    "menu":
     {
-        "home":"WPACCUEIL",
-        "assureRech":"WPASSUREREC",
-        "assureCPExe":"WPASSURECP"
+        "items": [
+            {
+                "url": "/pythie/plan-liste",
+                "nom": "Les plans"
+            },
+            {
+                "url": "/pythie/plan-detail",
+                "nom": "-- Informations générales",
+                "idNecessary": "idPlan"
+            },
+            {
+                "url": "/pythie/plan-brancheCP",
+                "nom": "-- Conditions particulières",
+                "idNecessary": "idPlan"
+            },
+            {
+                "url": "/pythie/donnees-TP",
+                "nom": "Les données TP"
+            },
+            {
+                "url": "/pythie/typage-produit",
+                "nom": "Les typages de produits"
+            },
+            {
+                "url": "/pythie/liste-structure",
+                "nom": "Les listes de structure"
+            }
+        ],
+        "raccourcis":[
+            {
+                "url": "/param-general/liste-pieces",
+                "nom": "Liste de pièces"
+            },
+            {
+                "url": "/param-general/liste-structure",
+                "nom": "Liste de strucutres"
+            },
+            {
+                "url": "/param-general/liste-eligibilite",
+                "nom": "Liste d'éligibilité"
+            }
+        ]
     },
-    "conditionsParticulieres":
+    "planList":
     {
-        "title": "Conditions particulières pour un assuré",
-        "dateApplication" : "Date d'application"
+        "title":"Liste de plans"
     }
 }

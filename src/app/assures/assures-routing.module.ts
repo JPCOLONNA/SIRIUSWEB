@@ -13,6 +13,10 @@ const assuresRoutes: Routes = [
     {
         path: '',
         component: AssuresComponent,
+        data:
+        {
+            appliName:"ASSURES"
+        },
         children: [
             {
                 path: '',
@@ -21,19 +25,19 @@ const assuresRoutes: Routes = [
             {
                 path: 'recherche',
                 component: SearchAssureComponent,
-                canLoad: [AuthGuardService],
+                canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Recherche d'un assuré",
-                    nomEcran: "WASRECHERCHE"
+                    screenName: "WASLISTE"
                 }
             },
             {
-                path: 'cp',
+                path: 'conditions-particulieres',
                 component: ConditionsParticulieresComponent,
-                canLoad: [AuthGuardService],
+                canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Conditions particulières",
-                    nomEcran: "WASCONDIPART"
+                    screenName: "WASCONDIPART"
                 }
             }
         ]

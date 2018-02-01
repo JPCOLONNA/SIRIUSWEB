@@ -47,10 +47,10 @@ export class BaseTamponComponent implements OnInit {
     this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscBaseTampon.menu, false)));
     
     //MAJ du nom de l'application
-    this.applicationInfoEvent.fire(JSON.stringify(this.rscBaseTampon.infoApplication));
+    this.applicationInfoEvent.fire(JSON.stringify(this.rscBaseTampon.applicationInfo));
 
     //Chargement des droits de l'application en session
-    this.autorisationService.getListDroitsApplication(this.rscBaseTampon.infoApplication.code);
+    this.autorisationService.getListDroitsApplication(this.rscBaseTampon.applicationInfo.code);
 
     this.idStockage = 0;
   }

@@ -10,7 +10,10 @@ import { PythieService }                                from './providers/pythie
 import { ModalListesStructureComponent }                from './components/modal-listes-structure/modal-listes-structure.component';
 import { ConditionsParticulieresActionsComponent }      from './components/conditions-particulieres/conditions-particulieres-actions/conditions-particulieres-actions.component';
 import { ConditionsParticulieresMotifsActionComponent } from './components/conditions-particulieres/conditions-particulieres-motifs-action/conditions-particulieres-motifs-action.component';
-
+import { PlanListComponent }                            from './components/plan/plan-list/plan-list.component';
+import { NotificationsService }                         from '../core/providers/notifications.service';
+import { PlanDetailComponent }                          from './components/plan/plan-detail/plan-detail.component';
+import { ModalFormulairePlanComponent }                 from './components/plan/modal-formulaire-plan/modal-formulaire-plan.component';
 
 @NgModule({
   imports: [
@@ -24,15 +27,24 @@ import { ConditionsParticulieresMotifsActionComponent } from './components/condi
     ConditionsParticulieresInformationsComponent,
     ModalListesStructureComponent,
     ConditionsParticulieresActionsComponent,
-    ConditionsParticulieresMotifsActionComponent
+    ConditionsParticulieresMotifsActionComponent,
+    PlanListComponent,
+    PlanDetailComponent,
+    ModalFormulairePlanComponent
+    
   ],
   exports: [
     ConditionsParticulieresInformationsComponent, 
     ModalListesStructureComponent,
     ConditionsParticulieresActionsComponent
   ],
-  entryComponents:[ModalListesStructureComponent],
-  providers: [PythieService]
+  entryComponents:[
+    ModalListesStructureComponent,
+    ModalFormulairePlanComponent],
+  providers: [
+    PythieService,
+  NotificationsService
+]
 })
 export class PythieModule { 
   constructor( @Optional() @SkipSelf() parentModule: PythieModule) {

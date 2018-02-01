@@ -34,7 +34,7 @@ import { ResourcesAssuresService } from '../assures/providers/resources-assures.
 import { ResourcesAssuresFactory } from '../assures/factories/resources-assures.factory';
 import { ResourcesBaseTamponService } from '../base-tampon/providers/resources-base-tampon.service';
 import { ResourcesBaseTamponFactory } from '../base-tampon/factories/resources-base-tampon.factory';
-import { ListesService } from './providers/listes.service';
+import { ListService } from './providers/list.service';
 
 @NgModule({
   imports: [],
@@ -98,7 +98,7 @@ import { ListesService } from './providers/listes.service';
     },
     AutorisationService,
     ConstructionMenuService,
-    ListesService
+    ListService
   ]
 })
 export class CoreModule {

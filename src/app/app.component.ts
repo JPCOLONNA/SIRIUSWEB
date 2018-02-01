@@ -11,6 +11,16 @@ import { ModalMessageComponent } from './commun/components/modal-message/modal-m
 import { MixinService } from './core/providers/mixin.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../environments/environment';
+import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { Application } from 'app/core/models/Applications';
+import { ExceptionService } from 'app/core/providers/exception.service';
+import { Router } from '@angular/router/';
+import { FormControl } from '@angular/forms';
+import { ViewChild } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
 
 
 /**
@@ -26,28 +36,38 @@ import { environment } from '../environments/environment';
  */
 export class AppComponent {
   
-  //Propriétés
-  /**
-   * Liste des applications
-   */
-  listeApplications: Array <any>;
+  /** Flag pour la gestion de l'affichage du spinner de chargement */
+  isRequesting = true;
+  /** Ressources */
+  rsc : any;
+  /** Liste des applications */
+  listApplication: Array <Application> = new Array<Application>();
+  /** Filtre de recherche d'une application */
+  filteredApplication: Observable<any[]>;
+  /** Gestion du champs de saisi "Accès rapide" */
+  formControlAppli: FormControl;
   /** Environnement d'éxécution*/
   environnement: any;
   /** Nom de l'environnement */
-  nomEnvironment: string;
-  //Information de l'application
-  infoApplication: any;
+  environmentName: string;
+  /**Information de l'application*/
+  applicationInfo: any;
   /** Nom de l'application */
-  nomApplication: string;/** test nom de l'application */
+  applicationName: string;/** test nom de l'application */
   iconApplication: string;/** Icone de l'application */
   dateDuJour: Date;
-  nomEcran: string;
+  screenName: string;
+  //Texte des messages à faire défiler
   messages: string;
+  //Flag pour gérer l'affichage des messages
   messageAffiche: boolean;
 
-  /** Nom de l'utilsiateur connecté */
+  /** Nom de l'utilisateur connecté */
   userConnectedFullName: string;
 
+  @ViewChild('autoInput', {read: ElementRef}) private autoInput: ElementRef;
+
+  
   constructor(
     private settingsService: SettingsService,
     private mixinService: MixinService,
@@ -55,28 +75,31 @@ export class AppComponent {
     private applicationInfoEvent: ApplicationInfoEvent,
     public auth: AuthService,
     private activatedRoute: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public autorisationService: AutorisationService,
+    public exceptionService: ExceptionService,
+    private router: Router
     ) {  }
 
   ngOnInit()
   {
+    this.rsc = this.resourcesService.get();
     this.environnement = this.settingsService.getEnvironnement();
-    this.nomEnvironment = environment.nomEnvironment;
-    this.listeApplications = this.resourcesService.get().listeApplications;
+    this.environmentName = environment.environmentName;
 
     //Récupération des informations de l'application chargée
     this.applicationInfoEvent.on().subscribe((res) => {
       if(res != "")
       {
-        this.infoApplication = JSON.parse(res) ;
-        this.iconApplication = "fa no-click "+this.infoApplication.icon;
-        this.nomApplication = this.infoApplication.nom;
+        this.applicationInfo = JSON.parse(res) ;
+        this.iconApplication = "fa no-click "+this.applicationInfo.icon;
+        this.applicationName = this.applicationInfo.name;
       }
       else
       {
-        this.infoApplication = "" ;
+        this.applicationInfo = "" ;
         this.iconApplication = "";
-        this.nomApplication = "";
+        this.applicationName = "";
       }
     });
 
@@ -93,12 +116,51 @@ export class AppComponent {
     //Par défaut le message est affiché
     this.messageAffiche = true;
 
-    //Information utilisateur - nom complet si présetn ou login windows
-    this.userConnectedFullName = this.mixinService.getFromSession("UserFullName");
-    console.log(this.userConnectedFullName);
-    
-    if(this.userConnectedFullName == null)
-      this.userConnectedFullName = "SNASCIMENTO"; //this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
+    //Information utilisateur - nom complet si présent ou login windows
+    if(this.userConnectedFullName == null || this.userConnectedFullName == undefined)
+    {
+      if(this.mixinService.getFromSession("UserCode")!= undefined)
+        this.userConnectedFullName = this.mixinService.getFromSession("UserCode").toUpperCase().replace(/"/gi,'');
+    }
+    else
+    {
+      this.userConnectedFullName = this.mixinService.getFromSession("UserFullName").replace(/"/gi,'');
+    }
+      
+
+    this.formControlAppli = new FormControl();
+    //Récupération de la liste des applications
+    this.autorisationService.getListApplication().subscribe(
+      (data) => {
+        if (data.hasOwnProperty('success') && data.success === 'true') {
+          if(data.liste_application){
+            //Pour chaque application, recherche les propriétés de l'application dans le fichier _resources.json
+            for(let application of data.liste_application){
+              var applicationTmp = new Application();
+              applicationTmp.code = application.nom_application;
+              applicationTmp.nom = this.rsc.listeApplications[application.nom_application].name;
+              applicationTmp.icon = this.rsc.listeApplications[application.nom_application].icon;
+              applicationTmp.url = this.rsc.listeApplications[application.nom_application].url;
+              this.listApplication.push(applicationTmp);
+            }
+            this.filteredApplication = this.formControlAppli.valueChanges
+              .pipe(
+                startWith(''),
+                map(application => application ? this.filterApplication(application) : this.listApplication.slice())
+              );
+
+            this.isRequesting = false;
+          }
+        } else {
+          this.exceptionService.handleException(data).subscribe(() => {}, (error) => {
+            this.exceptionService.error.next({type:0, msg:error});
+          });
+        }
+      },
+      (error) => {
+        this.exceptionService.error.next({type:0, msg:error});
+      }
+    );
   }
 
 
@@ -124,9 +186,27 @@ export class AppComponent {
   }
 
   //récupère le nom de l'écran
-  onChangeNomEcran($event)
+  onChangeScreenName($event)
   {
-    this.nomEcran = $event;
+    this.screenName = $event;
   }
 
+  filterApplication(name: string) {
+    return this.listApplication.filter(application =>
+      application.nom.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  /**
+   * Méthode appelée lors de la selection d'une application dans accès rapide
+   * @param  
+   */
+  selectOptionQuickAccess($event)
+  {
+    //redirige vers l'application sélectionnée
+    this.router.navigate(['/' + $event.option.value]);
+    //Supprime le texte sélectionné
+    this.formControlAppli.reset();    
+    //supprime le focus
+    this.autoInput.nativeElement.blur();
+  }
 }

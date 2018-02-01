@@ -6,4 +6,7 @@
     <input class="form-control" formControlName="name">
 </form>-->
 
-<router-outlet></router-outlet>
+<router-outlet
+(activate)="componentAdded($event)" 
+(deactivate)="componentRemoved($event)">
+</router-outlet>

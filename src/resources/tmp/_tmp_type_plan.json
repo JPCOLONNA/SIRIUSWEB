@@ -1,0 +1,17 @@
+{
+    "libelle":
+    {
+        "code":"Code",
+        "libelle": "Nom type plan"
+    },
+    "liste":[
+        {
+            "code":"1",
+            "libelle":"Plan Conditions Particulières"
+        },
+        {
+            "code":"2",
+            "libelle":"Plan WEB"
+        }
+    ]
+}

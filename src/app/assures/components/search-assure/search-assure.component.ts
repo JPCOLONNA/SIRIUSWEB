@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms/';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MixinService } from '../../../core/providers/mixin.service';
 
@@ -9,7 +9,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ConstructionMenuService } from '../../../core/providers/construction-menu.service';
 import { MenuEvent } from '../../../core/broadcast/menu-event';
 import { AssuresService } from '../../providers/assures.service';
-import { Notification, NotificationsService } from 'angular2-notifications';
+
+import { ExceptionService } from '../../../core/providers/exception.service';
+import { NotificationsService } from '../../../core/providers/notifications.service';
 
 /** 
  * Recherche d'un assuré, résulats sous forme de liste</br />
@@ -20,6 +22,9 @@ import { Notification, NotificationsService } from 'angular2-notifications';
   styleUrls: ['./search-assure.component.scss']
 })
 export class SearchAssureComponent implements OnInit {
+  
+  /** Flag pour la gestion de l'affichage du spinner de chargement */
+  isRequesting = false;
   
   // --------------------- Ressources -----------------------
   /** Ressources globales : label commun à toutes les applications<br /> Fichier : resources/_resources.json */
@@ -63,6 +68,7 @@ export class SearchAssureComponent implements OnInit {
    * @param menuEvent                   Contenu du menu tous les liens possibles, reçu via un evènement (chargement d'écran)
    * @param constructionMenuService     Construit le menu selon les droits et la présence d'un identifiant ou non
    * @param assuresService              Services de l'application "ASSURES"
+   * @param exceptionService            Services de gestion des exceptions
    * @param formBuilder 
    * @param http 
    * @param router 
@@ -76,6 +82,7 @@ export class SearchAssureComponent implements OnInit {
     private menuEvent: MenuEvent,
     private constructionMenuService: ConstructionMenuService,
     private assuresService: AssuresService,
+    private exceptionService : ExceptionService,
     private formBuilder : FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -88,7 +95,7 @@ export class SearchAssureComponent implements OnInit {
    */
   ngOnInit() {
     //Ressources
-    this.rsc = this.resourcesService.get();
+    this.rsc = this.resourcesService.get();   
     this.rscAssures = this.resourcesAssuresService.get();
     this.rscAssuresSearch = this.rscAssures.searchAssure;
     this.validators = this.mixinService.getValidators();
@@ -114,8 +121,7 @@ export class SearchAssureComponent implements OnInit {
       'dateNaissance' : ['',this.validators.date],
       'nom' : ['', this.validators.name],
       'prenom' : ['', this.validators.name],
-      'codePostal' : ['', this.validators.codePostal],
-      'dateApplication' : ['', this.validators.date]
+      'codePostal' : ['', this.validators.codePostal]
     });
   }
 
@@ -123,41 +129,49 @@ export class SearchAssureComponent implements OnInit {
    * Soumission du formulaire de recherche d'un assuré
    */
   onSubmit()
-  {
+  {  
     if(this.formSearchAssure.valid)
     {
-      this.assuresService.getListAssures()
-        .subscribe(
-          (data) => {
-            //TO DO A activer lors de l'appel du service
-            /*if (data.hasOwnProperty('success') && data.success === 'true') {
-              this.brancheCP = data;
-            } else {
-              this.exceptionService.handleException(data).subscribe(() => {}, (err) => {
-                this.notificationsService.error('Erreur', err);
-              });
-            }*/
+      this.doneRequesting(true);
 
-            //Cast le résultat de type "object" en structure JSON
-            let rscTmp = JSON.parse(JSON.stringify(data))
-            //Liste des assurés
-            this.listAssures = rscTmp.liste_assures;
-            //Libellé des colonnes du tableau
-            this.labelTable = rscTmp.libelle;
-            //Ordre des colonnes
-            this.displayedColumns = ['numAssure', 'nom', 'prenom', 'numSS','dateNaissance','codePostal','ville'];
-            //Données du tableau
-            this.dataSource = new MatTableDataSource<any>(this.listAssures);
-            //Configuration de la pagination
-            this.dataSource.paginator = this.paginator;
-            //Configuration du tri sur les colonnes
-            this.dataSource.sort = this.sort;
+      //Convertie le format de la date
+      if(this.formSearchAssure.value.dateNaissance != "")
+        this.formSearchAssure.value.dateNaissance = this.mixinService.parseDate8(this.formSearchAssure.value.dateNaissance);
+
+      this.assuresService.getListAssures(this.formSearchAssure.value)
+        .subscribe(
+          (data) => {             
+            if (data.hasOwnProperty('success') && data.success === 'true') {
+              //Cast le résultat de type "object" en structure JSON
+              let rscTmp = data;
+              //Liste des assurés
+              this.listAssures = rscTmp.liste_assures;
+              //Libellé des colonnes du tableau
+              this.labelTable = rscTmp.libelle;
+              //Ordre des colonnes
+              this.displayedColumns = ['numAssure', 'nom', 'prenom', 'numSS','dateNaissance','codePostal','ville'];
+              //Données du tableau
+              this.dataSource = new MatTableDataSource<any>(this.listAssures);
+              //Configuration de la pagination
+              this.dataSource.paginator = this.paginator;
+              //Configuration du tri sur les colonnes
+              this.dataSource.sort = this.sort;
+            } else {
+              this.exceptionService.handleException(data).subscribe(() => {}, (error) => {
+                //this.exceptionService.error.next({type:0, msg:error});
+                this.notificationsService.displayError(error);
+              });
+            }
+            this.doneRequesting(false);
           },
-          (err) => {
-            this.notificationsService.error('Erreur', err);
+          (error) => {
+            this.notificationsService.displayError(error);
           }
         );
-      
+    }
+    else
+    {
+      this.notificationsService.displayError("Champs du formulaire de recherche mal renseignés");
     }
   }
 
@@ -165,9 +179,21 @@ export class SearchAssureComponent implements OnInit {
    * Lors de la sélection d'un assuré, sauvegarde l'id assuré sélectionné via router-outlet
    */
   selectAssure(idAssure: any)
-  {
+  {   
     this.idAssure = idAssure;
-    this.router.navigate(['/assures/cp']);
+    this.router.navigate(['/assures/conditions-particulieres']);
+  }
+
+  /**
+   * Change l'état de la page "en chargement"(false) <==> "affichée"(true)
+   */
+  doneRequesting(value?: boolean) {
+    if(value != null)
+      this.isRequesting = value;
+    else if (this.isRequesting)
+        this.isRequesting = false;
+      else 
+        this.isRequesting = true;
   }
 
 }

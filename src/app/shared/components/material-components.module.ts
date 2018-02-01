@@ -27,7 +27,9 @@ import {
   MatSortModule,
   MatExpansionModule,
   MatChipsModule,
-  MatCardModule
+  MatCardModule,
+  MatSnackBarModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 import { getFrenchPaginatorIntl } from '../translate/french-paginator-intl';
@@ -64,7 +66,9 @@ import { getFrenchPaginatorIntl } from '../translate/french-paginator-intl';
     MatSortModule,
     MatExpansionModule,
     MatChipsModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -92,7 +96,9 @@ import { getFrenchPaginatorIntl } from '../translate/french-paginator-intl';
     MatSortModule,
     MatExpansionModule,
     MatChipsModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl() }

@@ -4,6 +4,6 @@
  */
 export const environment = {
   production: true,
-  nomEnvironment:"RECETTE (mode dev)",
+  environmentName:"RECETTE (mode dev)",
   urlAPI : "http://api-i-rec.jpcolonna.fr:2535/API"
 };

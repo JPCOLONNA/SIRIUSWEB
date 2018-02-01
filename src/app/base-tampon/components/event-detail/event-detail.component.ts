@@ -4,12 +4,12 @@ import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { ResourcesBaseTamponService } from 'app/base-tampon/providers/resources-base-tampon.service';
 import { AutorisationService } from 'app/core/providers/autorisation.service';
-import { NotificationsService } from 'angular2-notifications';
 
 import { Assure } from '../../model/assure';
 import { Couverture } from '../../model/couverture';
 import { Iban } from '../../model/iban';
 import { Salarie } from '../../model/salarie';
+import { NotificationsService } from 'app/core/providers/notifications.service';
 
 /**
  * Détail d'une action/évènement de la base tampon
@@ -190,8 +190,8 @@ loadEventDetail() {
 
         this.doneRequesting();
       },
-      (err) => {
-        this.notificationsService.error('Erreur', err);
+      (error) => {
+        this.notificationsService.displayError(error);
       }
     );
 }

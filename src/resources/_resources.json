@@ -1,20 +1,20 @@
 {
     "listeApplications": {
-        "VALID_ACTIONS": {
-            "icon": "fa-database",
-            "code": "VALID_ACTIONS",
-            "nom": "BASE TAMPON",
+        "BASE_TAMPON": {
+            "icon": "fa-check",
+            "code": "BASE_TAMPON",
+            "name": "VALIDATION MÉTIER",
             "url": "tampon"
         },
         "PYTHIEGES": {
             "icon": "fa-cubes",
-            "nom": "PYTHIE",
+            "name": "PYTHIE",
             "code": "PYTHIEGES",
             "url": "pythie"
         },
         "ASSURES": {
             "icon": "fa-user",
-            "nom": "ASSURES",
+            "name": "ASSURES",
             "code": "ASSURES",
             "url": "assures"
         }
@@ -108,7 +108,14 @@
         "placeHolderComplements": "Veuillez saisir ici toute info complémentaire utile",
         "titulaire": "Titulaire",
         "provenance": "Provenance",
-        "organismeRattachement": "Organisme de rattachement"
+        "organismeRattachement": "Organisme de rattachement",
+        "dateDebut": "A partir de",
+        "dateFin": "Jusqu'au",
+        "typePlan": "Type de plan"
+    },
+    "bouton": {
+        "rechercher": { "icon": "search", "libelle": "Rechercher" },
+        "ajouter": { "icon": "plus", "libelle": "Ajouter" }
     },
     "JsonBlank": "{}",
     "positionTooltip": "below",
@@ -127,6 +134,12 @@
         { "code": "P", "valeur": "En P.A.C.S." },
         { "code": "N", "valeur": "En concubinage notoire" },
         { "code": "S", "valeur": "Séparé" }
-    ]
+    ],
+    "icons": {
+        "menu": { "icon": "bars", "label": "Menu" },
+        "modifier": { "icon": "pencil", "label": "Modifier" },
+        "supprimer": { "icon": "trash", "label": "Supprimer" },
+        "duppliquer": { "icon": "clone", "label": "Duppliquer" }
+    }
 
 }

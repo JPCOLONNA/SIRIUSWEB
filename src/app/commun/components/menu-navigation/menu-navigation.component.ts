@@ -15,6 +15,9 @@ export class MenuNavigationComponent implements OnInit {
 
   /** Contenu du menu */
   menu: any;
+  
+  /** Flag pour la gestion de l'affichage lors du chargement du menu */
+  isRequesting = true;
 
   /**
    * Créer une instance du composant MenuNavigationComponent
@@ -36,6 +39,7 @@ export class MenuNavigationComponent implements OnInit {
         this.menu = JSON.parse(res);
       else 
         this.menu = "";
+      this.isRequesting = false;
     });
   }
 

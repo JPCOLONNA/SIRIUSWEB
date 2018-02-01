@@ -7,11 +7,12 @@ import { EventsListComponent }                    from './components/events-list
 import { BaseTamponService }                      from './providers/base-tampon.service';
 import { EventDetailComponent }                   from './components/event-detail/event-detail.component';
 import { EventDetailAssureComponent }             from './components/event-detail/event-detail-assure/event-detail-assure.component';
-import { FormulaireAssureComponent } from './components/formulaire-assure/formulaire-assure.component';
-import { FormulaireCouvertureComponent } from './components/formulaire-couverture/formulaire-couverture.component';
-import { FormulaireInfosSalarialesComponent } from './components/formulaire-infos-salariales/formulaire-infos-salariales.component';
-import { FormulaireIbanComponent } from './components/formulaire-iban/formulaire-iban.component';
-import { AutorisationService } from '../core/providers/autorisation.service';
+import { FormulaireAssureComponent }              from './components/formulaire-assure/formulaire-assure.component';
+import { FormulaireCouvertureComponent }          from './components/formulaire-couverture/formulaire-couverture.component';
+import { FormulaireInfosSalarialesComponent }     from './components/formulaire-infos-salariales/formulaire-infos-salariales.component';
+import { FormulaireIbanComponent }                from './components/formulaire-iban/formulaire-iban.component';
+import { AutorisationService }                    from '../core/providers/autorisation.service';
+import { NotificationsService}                    from '../core/providers/notifications.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AutorisationService } from '../core/providers/autorisation.service';
   ],
   providers:
   [
-    BaseTamponService
+    BaseTamponService,
+    NotificationsService
   ]
 })
 export class BaseTamponModule { }

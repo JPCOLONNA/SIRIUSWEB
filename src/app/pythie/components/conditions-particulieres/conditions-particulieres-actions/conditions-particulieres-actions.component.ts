@@ -88,7 +88,7 @@ export class ConditionsParticulieresActionsComponent implements OnInit {
    * Affichage de la modale contenant le détail d'une liste de pièces
    * @param idListePieces : Identifiant de la liste de pièces à afficher
    */
-  afficheModalListePieces(idListePieces: number)
+  displayModalListPieces(idListePieces: number)
   {
     //Chargement de la modal, la taille varie selon le contenu.
     let dialogRef = this.dialog.open(ModalListePiecesComponent, {

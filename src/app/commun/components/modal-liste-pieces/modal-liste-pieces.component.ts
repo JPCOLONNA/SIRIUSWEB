@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material';
-import { ListesService } from '../../../core/providers/listes.service';
-import { NotificationsService } from 'angular2-notifications';
+import { ListService } from '../../../core/providers/list.service';
 import { ModalPlusDinfoComponent } from '../modal-plus-dinfo/modal-plus-dinfo.component';
+import { NotificationsService } from 'app/core/providers/notifications.service';
 
 /**
  * Affiche une liste de pièces dans une modale
@@ -29,14 +29,14 @@ export class ModalListePiecesComponent implements OnInit {
   /**
    * Créer une instance du composant ModalListePiecesComponent
    * @param resourcesService      Services de ressources pour toute les applications
-   * @param listesService         Services générique à toute les listes
+   * @param listService           Services générique à toute les listes
    * @param notificationsService  Services de notifications de bas de page
    * @param data                  Données reçues en paramètre de l'appel de la modal
    * @param dialogRef             Référence à la modal en cours d'affichage
    */
   constructor(
     private resourcesService: ResourcesService,
-    private listesService: ListesService,
+    private listService: ListService,
     private notificationsService: NotificationsService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalListePiecesComponent>
@@ -54,7 +54,7 @@ export class ModalListePiecesComponent implements OnInit {
     this.rscListePieces = this.rsc.modalListePieces
 
     //TO DO : Appel web service pour récupérer le contenu de la liste de pieces
-    this.listesService.getListPieces(this.data.idListePieces).subscribe(
+    this.listService.getListPieces(this.data.idListePieces).subscribe(
       (data) => {
         //TO DO A activer lors de l'appel du service
         /*if (data.hasOwnProperty('success') && data.success === 'true') {
@@ -67,8 +67,8 @@ export class ModalListePiecesComponent implements OnInit {
         this.listePieces = data;
         this.doneRequesting();
       },
-      (err) => {
-        this.notificationsService.error('Erreur', err);
+      (error) => {
+        this.notificationsService.displayError(error);
       }
     );
 

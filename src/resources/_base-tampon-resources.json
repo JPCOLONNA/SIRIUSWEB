@@ -1,21 +1,24 @@
 {
-    "infoApplication": {
-        "icon": "fa-database",
-        "code":"VALID_ACTIONS",
-        "nom": "BASE TAMPON",
+    "applicationInfo": {
+        "icon": "fa-check",
+        "code": "BASE_TAMPON",
+        "name": "VALIDATION MÉTIER",
         "url": "/tampon"
     },
-    "menu": [{
-            "url": "/tampon/liste",
-            "nom": "Liste des évènements",
-            "idNecessary": false
-        },
-        {
-            "url": "/tampon/fiche",
-            "nom": "Fiche de l'évènement",
-            "idNecessary": true
-        }
-    ],
+    "menu": {
+        "items": [
+            {
+                "url": "/tampon/liste",
+                "nom": "Liste des évènements",
+                "idNecessary": false
+            },
+            {
+                "url": "/tampon/fiche",
+                "nom": "Fiche de l'évènement",
+                "idNecessary": true
+            }
+        ]
+    },
     "eventList": {
         "title": "Liste des évènements en attente de validation"
     },
@@ -26,35 +29,35 @@
         "menu": {
             "assures": {
                 "codeEcran": "assures",
-                "nomEcran": "Informations assurés"
+                "screenName": "Informations assurés"
             },
             "beneficiaires": {
                 "codeEcran": "beneficiaires",
-                "nomEcran": "Informations bénéficiaires"
+                "screenName": "Informations bénéficiaires"
             },
             "couvertureAssure": {
                 "codeEcran": "couvertureAss",
-                "nomEcran": "Couvertures assurés"
+                "screenName": "Couvertures assurés"
             },
             "couvertureBenef": {
                 "codeEcran": "couvertureBenef",
-                "nomEcran": "Couvertures bénéficiaires"
+                "screenName": "Couvertures bénéficiaires"
             },
             "infosSalarie": {
                 "codeEcran": "infosSalarie",
-                "nomEcran": "Informations salariales"
+                "screenName": "Informations salariales"
             },
             "infosRIB": {
                 "codeEcran": "infosRIB",
-                "nomEcran": "Informations IBAN"
+                "screenName": "Informations IBAN"
             },
             "documents": {
                 "codeEcran": "documents",
-                "nomEcran": "Documents"
+                "screenName": "Documents"
             },
             "anomalies": {
                 "codeEcran": "anomalies",
-                "nomEcran": "Anomalies"
+                "screenName": "Anomalies"
             }
         },
         "label": {

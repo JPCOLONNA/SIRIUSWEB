@@ -8,6 +8,7 @@ import { ConditionsParticulieresComponent } from './components/conditions-partic
 import { PythieModule }           from '../pythie/pythie.module';
 import { AssuresService }         from './providers/assures.service';
 import { SocietesService }        from './providers/societes.service';
+import { NotificationsService }   from '../core/providers/notifications.service';
 
 /**
  * Module princiapl de l'application "ASSURES"
@@ -26,7 +27,8 @@ import { SocietesService }        from './providers/societes.service';
   ],
   providers:[
     AssuresService, 
-    SocietesService
+    SocietesService,
+    NotificationsService
   ]
 })
 export class AssuresModule { }

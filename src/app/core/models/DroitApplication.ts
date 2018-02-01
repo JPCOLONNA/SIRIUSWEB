@@ -6,7 +6,7 @@ export class DroitApplication {
     autorisations: Array<Autorisation> = new Array<Autorisation>();
     
     constructor(tab: any) {
-      this.ecran = tab.ecran ? tab.ecran : '...';
+      this.ecran = tab.ecran ? tab.ecran : '';
       this.autorisations.push(new Autorisation(tab.autorisations));
     }
 }

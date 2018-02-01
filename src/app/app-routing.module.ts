@@ -1,17 +1,28 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from './core/providers/auth-guard.service';
-import { HomeComponent } from './commun/components/home/home.component';
-import { LoginComponent } from './commun/components/login/login.component';
+import { NgModule }               from '@angular/core';
+import { RouterModule, Routes }   from '@angular/router';
+import { AuthGuardService }       from './core/providers/auth-guard.service';
+import { HomeComponent }          from './commun/components/home/home.component';
+import { LoginComponent }         from './commun/components/login/login.component';
+import { AccessDeniedComponent }  from './commun/components/access-denied/access-denied.component';
 
 const appRoutes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      screenName: "WSWLOGIN"
+    }
+  },
+  {
+    path: 'acces-refuse',
+    component: AccessDeniedComponent,
+    data: {
+      screenName: "WSWACCESREFUSE"
+    }
+  },
+  {
     path: 'pythie',
     loadChildren: './pythie/pythie.module#PythieModule',
-    data: {
-      breadcrumb: "Pythie",
-      nomEcran: "WPYACCUEIL"
-    }
   },
   {
     path: 'tampon',
@@ -20,16 +31,12 @@ const appRoutes: Routes = [
   {
     path: 'assures',
     loadChildren: './assures/assures.module#AssuresModule',
-    data: {
-      breadcrumb: "Assures",
-      nomEcran: "WASRECHERCHE"
-    }
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
-      nomEcran: "WCLOGIN"
+      screenName: "WSWLOGIN"
     }
   },
   {
@@ -37,7 +44,7 @@ const appRoutes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
     data: {
-      nomEcran: "WSWACCUEIL"
+      screenName: "WSWACCUEIL"
     }
   },
   {

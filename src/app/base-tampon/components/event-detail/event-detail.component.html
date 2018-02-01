@@ -3,7 +3,9 @@
 
 <!-- Spinner de chargement -->
 <ng-template #overlay>
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
 </ng-template>
 
 <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
@@ -54,7 +56,7 @@
                     <mat-list>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.assures.codeEcran" *ngIf="listAssures.length > 0" (click)="onChangeScreen(menuDetail.assures.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.assures.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.assures.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" selected="true" color="primary">{{listAssures.length}}</mat-chip>
                                 </mat-chip-list>
@@ -62,23 +64,25 @@
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.beneficiaires.codeEcran" *ngIf="listBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.beneficiaires.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.beneficiaires.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.beneficiaires.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" selected="true" color="primary">{{listBeneficiaires.length}}</mat-chip>
                                 </mat-chip-list>
                             </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0"
+                            (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.couvertureAssure.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.couvertureAssure.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" selected="true" color="primary">{{listCouvertures.length}}</mat-chip>
                                 </mat-chip-list>
                             </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0"
+                            (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.couvertureBenef.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.couvertureBenef.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" selected="true" color="primary">{{listCouverturesBeneficiaires.length}}</mat-chip>
                                 </mat-chip-list>
@@ -86,7 +90,7 @@
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosSalarie.codeEcran" *ngIf="listInfosSalaries.length > 0" (click)="onChangeScreen(menuDetail.infosSalarie.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.infosSalarie.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.infosSalarie.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" disabled="true" selected="true" color="primary">{{listInfosSalaries.length}}</mat-chip>
                                 </mat-chip-list>
@@ -94,7 +98,7 @@
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.infosRIB.codeEcran" *ngIf="listInfosIban.length > 0" (click)="onChangeScreen(menuDetail.infosRIB.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.infosRIB.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.infosRIB.screenName}}</span>
                                 <mat-chip-list>
                                     <mat-chip class="pastille" disabled="true" selected="true" color="primary">{{listInfosIban.length}}</mat-chip>
                                 </mat-chip-list>
@@ -102,12 +106,12 @@
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.documents.codeEcran" *ngIf="eventDetail.documents!=''" (click)="onChangeScreen(menuDetail.documents.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.documents.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.documents.screenName}}</span>
                             </div>
                         </a>
                         <a mat-list-item [class.linkActive]="screen == menuDetail.anomalies.codeEcran" *ngIf="eventDetail.anomalies!=''" (click)="onChangeScreen(menuDetail.anomalies.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="itemList">{{menuDetail.anomalies.nomEcran}}</span>
+                                <span class="itemList">{{menuDetail.anomalies.screenName}}</span>
                             </div>
                         </a>
                     </mat-list>

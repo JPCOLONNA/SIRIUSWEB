@@ -43,10 +43,24 @@ a:hover{
     text-align: center;
 }
 
+.hidden
+{
+    display: none !important;
+}
 /* ------------------- CONTENEUR ----------------- */
 .contenair
 {
     padding:10px 15px;
+    
+}
+.contenair_vertical
+{
+    padding:10px 0px;
+    
+}
+.contenair_horizontal
+{
+    padding:0px 15px;
     
 }
 ::ng-deep .mat-list-text
@@ -159,6 +173,10 @@ mat-sidenav .linkActive
     color:$default-color !important;
     border-bottom: 2px solid $default-color !important;
 }
+mat-sidenav a 
+{
+    border-bottom: 2px solid transparent !important;
+}
 
 /* Boutons pour rétracter et déplier le menu */
 .btnOpenClose i
@@ -212,3 +230,4 @@ mat-sidenav .linkActive
         }
     }
 }
+

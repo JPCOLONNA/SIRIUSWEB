@@ -1,23 +1,24 @@
 {
-    "infoApplication":
-    {
+    "applicationInfo": {
         "icon": "fa-users",
-        "nom": "ASSURES"
+        "code": "assure",
+        "name": "ASSURES",
+        "url": "/assures"
     },
-    "menu": [
-        {
-            "url": "/assures/recherche",
-            "nom": "Rechercher un assuré",
-            "idNecessary": false
-        },
-        {
-            "url": "/assures/cp",
-            "nom": "Conditions particulières",
-            "idNecessary": true
-        }
-    ],
-    "searchAssure":
-    {
+    "menu": {
+        "items": [
+            {
+                "url": "/assures/recherche",
+                "nom": "Rechercher un assuré"
+            },
+            {
+                "url": "/assures/conditions-particulieres",
+                "nom": "Conditions particulières",
+                "idNecessary": true
+            }
+        ]
+    },
+    "searchAssure": {
         "title": "Rechercher un assuré"
     }
 }

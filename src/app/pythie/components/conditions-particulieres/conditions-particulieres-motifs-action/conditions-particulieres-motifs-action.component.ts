@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/m
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { ModalListePiecesComponent } from 'app/commun/components/modal-liste-pieces/modal-liste-pieces.component';
 import { ActivatedRoute } from '@angular/router';
+import { ModalListesStructureComponent }  from '../../modal-listes-structure/modal-listes-structure.component';
 
 @Component({
   selector: 'app-conditions-particulieres-motifs-action',
@@ -41,7 +42,7 @@ export class ConditionsParticulieresMotifsActionComponent implements OnInit {
     this.dataSource = new MatTableDataSource<any>(this.data);
 
     //Ordre des colonnes
-    this.displayedColumns = ['motif', 'anciennete', 'commentaires', 'listPiece'];
+    this.displayedColumns = ['motif', 'anciennete', 'commentaires', 'impact_action', 'listPiece'];
 
     //Ressources
     this.rsc = this.resourcesService.get();
@@ -73,4 +74,20 @@ export class ConditionsParticulieresMotifsActionComponent implements OnInit {
     });
   }
 
+  /**
+   * Affichage de la modale contenant le détail d'une liste structure
+   * @param idListeStructure Identifiant de la liste structure à afficher
+   */
+  openModalListeStructure(idListeStructure: number)
+  {
+    //Chargement de la modal, la taille varie selon le contenu.
+    //En paramètre : identifiant de la liste structure à afficher et l'url du navigateur
+    let dialogRef = this.dialog.open(ModalListesStructureComponent, {
+      minWidth:"80%",
+      data: { 
+        idListeStructure: idListeStructure, 
+        route: this.activatedRoute,
+      }
+    });
+  }
 }
