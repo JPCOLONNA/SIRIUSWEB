@@ -65,6 +65,8 @@ export class BaseTamponComponent implements OnInit {
     //transfert l'id stockage dont le détail est à afficher
     $event.idStockage = this.idStockage;
     $event.idEvt = this.idEvt;
+    //alert(this.idStockage);
+    //alert(this.idEvt);
   }
 
   /**

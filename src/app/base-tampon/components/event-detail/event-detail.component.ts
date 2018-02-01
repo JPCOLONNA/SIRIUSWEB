@@ -140,37 +140,49 @@ loadEventDetail() {
         this.listAssures = new Array<Assure>();
         if (this.eventDetail.Liste_assure)
         for (let assure of this.eventDetail.Liste_assure) {
-          this.listAssures.push(new Assure(assure));
+          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+            this.listAssures.push(new Assure(assure));
+          }
         }
 
          this.listBeneficiaires = new Array<Assure>();
-        if (this.eventDetail.Liste_beneficiaires)
-        for (let assure of this.eventDetail.Liste_beneficiaires) {
-          this.listBeneficiaires.push(new Assure(assure));
+        if (this.eventDetail.Liste_beneficiaire)
+        for (let assure of this.eventDetail.Liste_beneficiaire) {
+          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+            this.listBeneficiaires.push(new Assure(assure));
+          }
         }
 
         this.listCouvertures = new Array<Couverture>();
         if (this.eventDetail.Liste_couverture_assure)
         for (let couverture of this.eventDetail.Liste_couverture_assure) {
-          this.listCouvertures.push(new Couverture(couverture));
+          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+            this.listCouvertures.push(new Couverture(couverture));
+          }
         }
 
         this.listCouverturesBeneficiaires = new Array<Couverture>();
         if (this.eventDetail.Liste_couverture_beneficiaire)
         for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
-          this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+            this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+          }
         }
 
         this.listInfosSalaries = new Array<Salarie>();
         if (this.eventDetail.Liste_infos_salarie)
         for (let salarie of this.eventDetail.Liste_infos_salarie) {
-          this.listInfosSalaries.push(new Salarie(salarie));
+          if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
+            this.listInfosSalaries.push(new Salarie(salarie));
+          }
         }
 
         this.listInfosIban = new Array<Iban>();
         if (this.eventDetail.Liste_rib)
         for (let iban of this.eventDetail.Liste_rib) {
-          this.listInfosIban.push(new Iban(iban));
+          if (JSON.stringify(iban)!==this.rsc.JsonBlank) {
+            this.listInfosIban.push(new Iban(iban));
+          }
         }
 
         //détermine l'écran par défaut selon les données reçues

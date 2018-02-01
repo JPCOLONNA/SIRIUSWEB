@@ -110,6 +110,7 @@
         "provenance": "Provenance",
         "organismeRattachement": "Organisme de rattachement"
     },
+    "JsonBlank": "{}",
     "positionTooltip": "below",
     "liste_civilite": [
         { "code": "M", "valeur": "Monsieur" },
