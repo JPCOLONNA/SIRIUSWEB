@@ -22,6 +22,9 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
   /**Données de l'assuré en cours d'affichage/de modification*/
   @Input() assure: any;
 
+      /**Listes codes/libelles de l ecran de saisie*/
+  @Input() parameters: any;
+
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
 

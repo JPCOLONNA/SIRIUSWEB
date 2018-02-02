@@ -2,6 +2,7 @@ export class Couverture {
 
     id_evenement: string;
     id_assure: string;
+    id_benef: string;
     nom_assure: string;
     prenom_assure: string;
     debut_effet: string;
@@ -25,8 +26,13 @@ export class Couverture {
     constructor(tab: any) {
         this.id_evenement = tab.id_evenement ? tab.id_evenement : "";
         this.id_assure = tab.id_assure ? tab.id_assure : "";
+        this.id_benef = tab.id_benef ? tab.id_benef : "";
         this.nom_assure = tab.nom_assure ? tab.nom_assure : "";
-        this.prenom_assure = tab.prenom_assure ? tab.prenom_assure : "";
+                this.prenom_assure = tab.prenom_assure ? tab.prenom_assure : "";
+        if (tab.nom_benef || tab.prenom_benef) {
+            this.nom_assure  = tab.nom_benef ? tab.nom_benef : "";
+            this.prenom_assure = tab.prenom_benef ? tab.prenom_benef : "";
+        }
         this.debut_effet = tab.debut_effet&&tab.debut_effet.length>7 ? tab.debut_effet.substr(0,4)+"-"+tab.debut_effet.substr(4,2)+"-"+tab.debut_effet.substr(6,2) : "";
         this.fin_effet = tab.fin_effet&&tab.fin_effet.length>7 ? tab.fin_effet.substr(0,4)+"-"+tab.fin_effet.substr(4,2)+"-"+tab.fin_effet.substr(6,2) : "";
         this.id_societe = tab.id_societe ? tab.id_societe : "";

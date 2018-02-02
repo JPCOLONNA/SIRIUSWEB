@@ -16,19 +16,27 @@
     <h2>{{rsc.label.couverture}}</h2>
     <hr class="down-h2">
     <div fxLayout="row" fxLayoutAlign="space-between start">
-        <!-- Staut du l'assuré -->
+        <!-- Staut du l'assuré 
         <mat-form-field fxFlex="30">
             <input matInput formControlName="statut" [placeholder]="rsc.label.statut">
+        </mat-form-field>-->
+        <!-- Risque -->
+        <mat-form-field fxFlex="30">
+            <mat-select formControlName="risque" [placeholder]="rsc.label.risque">
+                <mat-option *ngFor="let risque of parameters.Risque" [value]="risque.code">
+                    {{ risque.code }} {{ risque.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
-        <div fxFlex="30"></div>
+        <!-- Option -->
+        <mat-form-field fxFlex="30">
+            <input matInput formControlName="option" [placeholder]="rsc.label.option">
+        </mat-form-field>
         <div fxFlex="30"></div>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-        <!-- Risque -->
-        <mat-form-field fxFlex="30">
-            <input matInput formControlName="risque" [placeholder]="rsc.label.risque">
-        </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="1==2">
+
         <!-- Nom -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="famille" [placeholder]="rsc.label.famille">
@@ -37,13 +45,11 @@
         <mat-form-field fxFlex="30">
             <input matInput formControlName="produit" [placeholder]="rsc.label.produit">
         </mat-form-field>
+        <div fxFlex="30"></div>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="space-between start">
-        <!-- Option -->
-        <mat-form-field fxFlex="30">
-            <input matInput formControlName="option" [placeholder]="rsc.label.option">
-        </mat-form-field>
+
         <!-- Début d effet -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="debut_effet" [matDatepicker]="pickerDeb" [placeholder]="rsc.label.debutEffet">
@@ -56,6 +62,7 @@
             <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
             <mat-datepicker #pickerFin></mat-datepicker>
         </mat-form-field>
+        <div fxFlex="30"></div>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="space-between center">

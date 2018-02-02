@@ -111,7 +111,8 @@
         "organismeRattachement": "Organisme de rattachement",
         "dateDebut": "A partir de",
         "dateFin": "Jusqu'au",
-        "typePlan": "Type de plan"
+        "typePlan": "Type de plan",
+        "typeTitulaire": "Type de titulaire"
     },
     "bouton": {
         "rechercher": { "icon": "search", "libelle": "Rechercher" },

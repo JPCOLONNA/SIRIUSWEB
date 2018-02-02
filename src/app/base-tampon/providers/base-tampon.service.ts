@@ -72,6 +72,29 @@ export class BaseTamponService {
   }
 
 
+    generateParametersParameters(): string {
+    return JSON.stringify({
+      contexte: this.webservices.parameters.contexte
+    });
+  }
+
+
+    /**
+   * Récupère le détail d'un évênement depuis SIRIUS
+   * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
+   */
+  loadParameters(): Observable<any> {
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/'+this.webservices.parameters.url,
+        this.generateParametersParameters(),
+        {headers: this.mixinService.getDefaultHeaders()}
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
+  }
+
+
+
 
 
   //A SUPPRIMER PLUS UTILISÉ  

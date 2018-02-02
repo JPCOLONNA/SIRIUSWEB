@@ -22,6 +22,11 @@ export class FormulaireIbanComponent implements OnInit {
   /**Données de l'assuré en cours d'affichage/de modification*/
   @Input() iban: any;
 
+   /** Infos assuré */
+  @Input() listAssures: Array<any>;
+
+    /**Listes codes/libelles de l ecran de saisie*/
+  @Input() parameters: any;
 
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
@@ -72,7 +77,7 @@ export class FormulaireIbanComponent implements OnInit {
    */
   createForm(): void {
       this.formIban = this.formBuilder.group({
-        'type_titulaire': [{ value: this.iban.type_titulaire, disabled: this.disabled }],
+        'type_titulaire': [{ value: this.iban.type_titulaire, disabled: true }],
         'id_titulaire': [{ value: this.iban.id_titulaire, disabled: this.disabled }],
         'nom_titulaire': [{ value: this.iban.nom_titulaire, disabled: this.disabled }],
         'prenom_titulaire': [{ value: this.iban.prenom_titulaire, disabled: this.disabled }],

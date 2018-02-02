@@ -5,7 +5,11 @@
     <div *ngIf="beneficiaire !== undefined" fxLayout="row" fxLayoutAlign="space-between start">
         <!-- Qualité -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="qualite" [placeholder]="rsc.label.qualite">
+            <mat-select formControlName="qualite" [placeholder]="rsc.label.qualite">
+                <mat-option *ngFor="let qualite of parameters.Qualite_beneficiaire" [value]="qualite.code">
+                    {{ qualite.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <!-- Rang -->
         <mat-form-field fxFlex="30">
@@ -18,7 +22,11 @@
     <div *ngIf="beneficiaire !== undefined" fxLayout="row" fxLayoutAlign="space-between start">
         <!-- Attachement -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="attachement" [placeholder]="rsc.label.attachement">
+            <mat-select formControlName="attachement" [placeholder]="rsc.label.attachement">
+                <mat-option *ngFor="let att of parameters.Attachement_Secu" [value]="att.code">
+                    {{ att.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <!-- Début effet -->
         <mat-form-field fxFlex="30">
@@ -40,8 +48,8 @@
         <!-- Civilité -->
         <mat-form-field fxFlex="30">
             <mat-select formControlName="civilite" [placeholder]="rsc.label.civilite">
-                <mat-option *ngFor="let civilite of rsc.liste_civilite" [value]="civilite.code">
-                    {{ civilite.valeur }}
+                <mat-option *ngFor="let civilite of parameters.Civilite" [value]="civilite.code">
+                    {{ civilite.libelle }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -55,7 +63,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="assure !== undefined">
         <!-- Adresse -->
         <mat-form-field fxFlex="49">
             <input matInput formControlName="adresse" [placeholder]="rsc.label.adresse">
@@ -66,7 +74,7 @@
         </mat-form-field>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="assure !== undefined">
         <!-- Code Postal -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="code_postal" [placeholder]="rsc.label.codePostal">
@@ -86,10 +94,10 @@
             <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
         <!-- Situation familiale -->
-        <mat-form-field fxFlex="30">
+        <mat-form-field fxFlex="30" *ngIf="assure !== undefined">
             <mat-select formControlName="situation_familiale" [placeholder]="rsc.label.situationFamiliale">
-                <mat-option *ngFor="let situation of rsc.liste_situation_familiale" [value]="situation.code">
-                    {{ situation.valeur }}
+                <mat-option *ngFor="let situation of parameters.Code_famille" [value]="situation.code">
+                    {{ situation.libelle }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -100,7 +108,7 @@
         <div fxFlex="30" *ngIf="assure === undefined"></div>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="assure !== undefined">
         <!-- Téléphone -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="telephone" [placeholder]="rsc.label.telephone">

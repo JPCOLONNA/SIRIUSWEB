@@ -4,6 +4,7 @@ import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { ResourcesBaseTamponService } from 'app/base-tampon/providers/resources-base-tampon.service';
 import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { Observable } from 'rxjs/Observable';
 
 import { Assure } from '../../model/assure';
 import { Couverture } from '../../model/couverture';
@@ -50,6 +51,8 @@ export class EventDetailComponent implements OnInit {
   /** Action effectuée sur l'écran */
   action: any;
 
+  parameters: any;
+
   /** Liste des choix du menu et leurs paramètres */
   menuDetail: any;
 
@@ -93,6 +96,16 @@ export class EventDetailComponent implements OnInit {
     private notificationsService: NotificationsService,
     private router: Router) { }
 
+
+loadParameters() {
+  this.baseTamponService.loadParameters().subscribe(
+      (data) => {
+        this.parameters=JSON.parse(JSON.stringify(data));
+        console.log(this.parameters);
+      }
+  );
+}
+
   /**
    * Initialise le composant et de ses variables<br/>
    * Récupère les ressources et les données<br />
@@ -115,9 +128,98 @@ export class EventDetailComponent implements OnInit {
       this.action = "modifier"; //"consulter"
 
     //Récupération des données
-    this.loadEventDetail();
+    Observable.forkJoin(this.baseTamponService.loadEventDetails(this.idStockage+"", this.idEvt+"",""), this.baseTamponService.loadParameters() ).subscribe(
+       results => {
+
+        //TO DO A activer lors de l'appel du service
+        /*if (data.hasOwnProperty('success') && data.success === 'true') {
+          this.brancheCP = data;
+        } else {
+          this.exceptionService.handleException(data).subscribe(() => {}, (err) => {
+            this.notificationsService.error('Erreur', err);
+          });
+        }*/
+
+        //Cast le résultat de type "object" en structure JSON
+        this.eventDetail= JSON.parse(JSON.stringify(results[0]));
+
+        //Liste des évènements 
+        this.listAssures = new Array<Assure>();
+        if (this.eventDetail.Liste_assure)
+        for (let assure of this.eventDetail.Liste_assure) {
+          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+            this.listAssures.push(new Assure(assure));
+          }
+        }
+
+         this.listBeneficiaires = new Array<Assure>();
+        if (this.eventDetail.Liste_beneficiaire)
+        for (let assure of this.eventDetail.Liste_beneficiaire) {
+          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+            this.listBeneficiaires.push(new Assure(assure));
+          }
+        }
+
+        this.listCouvertures = new Array<Couverture>();
+        if (this.eventDetail.Liste_couverture_assure)
+        for (let couverture of this.eventDetail.Liste_couverture_assure) {
+          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+            this.listCouvertures.push(new Couverture(couverture));
+          }
+        }
+
+        this.listCouverturesBeneficiaires = new Array<Couverture>();
+        if (this.eventDetail.Liste_couverture_beneficiaire)
+        for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
+          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+            this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+          }
+        }
+
+        this.listInfosSalaries = new Array<Salarie>();
+        if (this.eventDetail.Liste_salarie)
+        for (let salarie of this.eventDetail.Liste_salarie) {
+          if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
+            this.listInfosSalaries.push(new Salarie(salarie));
+          }
+        }
+
+        this.listInfosIban = new Array<Iban>();
+        if (this.eventDetail.Liste_rib)
+        for (let iban of this.eventDetail.Liste_rib) {
+          if (JSON.stringify(iban)!==this.rsc.JsonBlank) {
+            this.listInfosIban.push(new Iban(iban));
+          }
+        }
+
+        //détermine l'écran par défaut selon les données reçues
+        this.screen = this.screenDefault();
+
+        this.parameters=JSON.parse(JSON.stringify(results[1]));
+        //console.log("params"+JSON.stringify(results[1]));
+
+        this.doneRequesting();
+
+      },
+      error => {
+        this.notificationsService.displayError(error);
+      }
+    );
    
   }
+
+  screenDefault() {
+    if (this.listAssures.length>0) return this.menuDetail.assures.codeEcran;
+    if (this.listCouvertures.length>0) return this.menuDetail.couvertureAss.codeEcran;
+    if (this.listBeneficiaires.length>0) return this.menuDetail.beneficiaires.codeEcran;
+    if (this.listCouverturesBeneficiaires.length>0) return this.menuDetail.couvertureBenef.codeEcran;
+    if (this.listInfosIban.length>0) return this.menuDetail.infoRib.codeEcran;
+    if (this.listInfosSalaries.length>0) return this.menuDetail.infoSalarie.codeEcran;
+    //if (this.eventDetail.documents.length>0) return this.menuDetail.documents.codeEcran;
+    //if (this.eventDetail.anomalies.length>0) return this.menuDetail.anomalies.codeEcran;
+  }
+
+
 
 loadEventDetail() {
 
@@ -170,8 +272,8 @@ loadEventDetail() {
         }
 
         this.listInfosSalaries = new Array<Salarie>();
-        if (this.eventDetail.Liste_infos_salarie)
-        for (let salarie of this.eventDetail.Liste_infos_salarie) {
+        if (this.eventDetail.Liste_salarie)
+        for (let salarie of this.eventDetail.Liste_salarie) {
           if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
             this.listInfosSalaries.push(new Salarie(salarie));
           }
@@ -188,7 +290,6 @@ loadEventDetail() {
         //détermine l'écran par défaut selon les données reçues
         this.screen = this.screenDefault();
 
-        this.doneRequesting();
       },
       (error) => {
         this.notificationsService.displayError(error);
@@ -253,22 +354,13 @@ loadEventDetail() {
         //détermine l'écran par défaut selon les données reçues
         this.screen = this.screenDefault();
 
-        this.doneRequesting();
+        
         
       }
       );
   }
 
-  screenDefault() {
-    if (this.eventDetail.liste_assure != '') return this.menuDetail.assures.codeEcran;
-    if (this.eventDetail.liste_couverture_assure != '') return this.menuDetail.couvertureAss.codeEcran;
-    if (this.eventDetail.liste_beneficiaires != '') return this.menuDetail.beneficiaires.codeEcran;
-    if (this.eventDetail.liste_couverture_beneficiaire != '') return this.menuDetail.couvertureBenef.codeEcran;
-    if (this.eventDetail.liste_rib != '') return this.menuDetail.infoRib.codeEcran;
-    if (this.eventDetail.liste_infos_salarie != '') return this.menuDetail.infoSalarie.codeEcran;
-    if (this.eventDetail.documents != '') return this.menuDetail.documents.codeEcran;
-    if (this.eventDetail.anomalies != '') return this.menuDetail.anomalies.codeEcran;
-  }
+
 
   /**
    * Change le nom d'écran à afficher dans le détail des éléments de la base tampon
