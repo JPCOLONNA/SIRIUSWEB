@@ -27,7 +27,7 @@ const baseTamponRoutes: Routes = [
             {
                 path: 'liste',
                 component: EventsListComponent,
-                canActivate: [AuthGuardService],
+                //canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Liste des évènements",
                     screenName: "WBTLISTE"
@@ -36,7 +36,7 @@ const baseTamponRoutes: Routes = [
             {
                 path: 'fiche',
                 component: EventDetailComponent,
-                canActivate: [AuthGuardService],
+                //canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Détail de l'évènement",
                     screenName: "WBTDETAIL"

@@ -22,6 +22,9 @@ export class FormulaireCouvertureComponent implements OnInit {
   /**Données de l'assuré en cours d'affichage/de modification*/
   @Input() couverture: any;
 
+      /**Listes codes/libelles de l ecran de saisie*/
+  @Input() parameters: any;
+
   /**Données du bénéficiaire en cours d'affichage/de modification*/
   @Input() couverturebeneficiaire: any;
 

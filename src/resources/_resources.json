@@ -1,22 +1,22 @@
 {
     "listeApplications": {
-        "BASE_TAMPON":{
+        "BASE_TAMPON": {
             "icon": "fa-check",
-            "code":"BASE_TAMPON",
+            "code": "BASE_TAMPON",
             "name": "VALIDATION MÉTIER",
             "url": "tampon"
         },
         "PYTHIEGES": {
             "icon": "fa-cubes",
             "name": "PYTHIE",
-            "code":"PYTHIEGES",
-            "url":"pythie"
+            "code": "PYTHIEGES",
+            "url": "pythie"
         },
         "ASSURES": {
             "icon": "fa-user",
             "name": "ASSURES",
-            "code":"ASSURES",
-            "url":"assures"
+            "code": "ASSURES",
+            "url": "assures"
         }
     },
     "modalMessages": {
@@ -108,10 +108,12 @@
         "placeHolderComplements": "Veuillez saisir ici toute info complémentaire utile",
         "titulaire": "Titulaire",
         "provenance": "Provenance",
+        "organismeRattachement": "Organisme de rattachement",
         "dateDebut":"A partir de",
         "dateFin":"Jusqu'au",
         "typePlan":"Type de plan",
-        "description":"Description"
+        "description":"Description",
+        "typeTitulaire": "Type de titulaire"
     },
     "bouton":
     {
@@ -122,6 +124,7 @@
         "oui": { "icon":"check-circle", "libelle" : "Oui"},
         "non": { "icon":"times-circle", "libelle" : "Non"}
     },
+    "JsonBlank": "{}",
     "positionTooltip": "below",
     "liste_civilite": [
         { "code": "M", "valeur": "Monsieur" },
@@ -153,5 +156,4 @@
         "updateFormConfirm": "Vos modifications seront perdues.",
         "deleteConfirm": "Êtes-vous sur de vouloir supprimer cet élément ?"
     }
-
 }

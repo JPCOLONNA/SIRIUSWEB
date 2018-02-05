@@ -48,10 +48,11 @@ export class BaseTamponService {
   }
 
 
-    generateEventDetailsParameters(idstockage: string, filters?:any): string {
+    generateEventDetailsParameters(idstockage: string, idevenement: string, filters?:any): string {
     return JSON.stringify({
       contexte: this.webservices.eventDetails.contexte,
-      idstockage: idstockage
+      idstockage: idstockage,
+      idevenement: idevenement
     });
   }
 
@@ -60,15 +61,38 @@ export class BaseTamponService {
    * Récupère le détail d'un évênement depuis SIRIUS
    * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
    */
-  loadEventDetails(idstockage: string, filters?:any): Observable<any> {
+  loadEventDetails(idstockage: string, idevenement: string, filters?:any): Observable<any> {
     return this.http.post(
       this.mixinService.getApiUrl() + '/'+this.webservices.eventDetails.url,
-        this.generateEventDetailsParameters(idstockage, filters),
+        this.generateEventDetailsParameters(idstockage, idevenement,filters),
         {headers: this.mixinService.getDefaultHeaders()}
       ).catch(error => {
         return this.exceptionService.handleException(error);
       });
   }
+
+
+    generateParametersParameters(): string {
+    return JSON.stringify({
+      contexte: this.webservices.parameters.contexte
+    });
+  }
+
+
+    /**
+   * Récupère le détail d'un évênement depuis SIRIUS
+   * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
+   */
+  loadParameters(): Observable<any> {
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/'+this.webservices.parameters.url,
+        this.generateParametersParameters(),
+        {headers: this.mixinService.getDefaultHeaders()}
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
+  }
+
 
 
 

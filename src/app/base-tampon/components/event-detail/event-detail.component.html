@@ -21,15 +21,15 @@
                 <hr class="down-h2">
                 <div>
                     <span class="showcase"> {{rscBaseTampon.label.typeAction}} :</span>
-                    <span class="showcase" [matTooltip]="eventDetail.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.type_action!=''">{{eventDetail.type_action}}</span>
+                    <span class="showcase" [matTooltip]="eventDetail.type_action" [matTooltipPosition]="rsc.positionTooltip" *ngIf="eventDetail.type_action!=''">{{eventDetail.DetailEvt.type_action}}</span>
 
-                    <span *ngIf="eventDetail.type_action==''">{{eventDetail.type_action}}</span>
-                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.statut}}
+                    <span *ngIf="eventDetail.type_action==''">{{eventDetail.DetailEvt.type_action}}</span>
+                    <br /> {{rscBaseTampon.label.statut}} : {{eventDetail.DetailEvt.lb_statut}}
                     <br />
-                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.id_stockage}}
+                    <br /> {{rscBaseTampon.label.idGED}} : {{eventDetail.DetailEvt.id_stockage}}
                     <br />
-                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.date_traitement | dateYMD}} - {{eventDetail.heure_traitement | heure}}
-                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.provenance}}
+                    <br /> {{rscBaseTampon.label.dateTraitement}} : {{eventDetail.DetailEvt.date_traitement | dateYMD}} - {{eventDetail.DetailEvt.heure_traitement | heure}}
+                    <br /> {{rscBaseTampon.label.provenance}} : {{eventDetail.DetailEvt.provenance}}
                     <br />
                 </div>
             </div>
@@ -39,9 +39,9 @@
                 <h2>{{rscBaseTampon.eventDetail.titleInfoEntite}}</h2>
                 <hr class="down-h2">
                 <div>
-                    {{rsc.label.numAssure}} {{eventDetail.id_assure}} - {{eventDetail.nom_assure}} {{eventDetail.prenom_assure}}
+                    {{rsc.label.numAssure}} {{eventDetail.DetailEvt.id_assure}} - {{eventDetail.DetailEvt.nom_assure}} {{eventDetail.DetailEvt.prenom_assure}}
                     <br />
-                    <br /> {{rsc.label.numSociete}} {{eventDetail.id_societe}} - {{eventDetail.raison_sociale}}
+                    <br /> {{rsc.label.numSociete}} {{eventDetail.DetailEvt.id_societe}} - {{eventDetail.DetailEvt.raison_sociale}}
                 </div>
             </div>
         </div>
@@ -70,8 +70,7 @@
                                 </mat-chip-list>
                             </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0"
-                            (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureAssure.codeEcran" *ngIf="listCouvertures.length > 0" (click)="onChangeScreen(menuDetail.couvertureAssure.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
                                 <span class="itemList">{{menuDetail.couvertureAssure.screenName}}</span>
                                 <mat-chip-list>
@@ -79,8 +78,7 @@
                                 </mat-chip-list>
                             </div>
                         </a>
-                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0"
-                            (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
+                        <a mat-list-item [class.linkActive]="screen == menuDetail.couvertureBenef.codeEcran" *ngIf="listCouverturesBeneficiaires.length > 0" (click)="onChangeScreen(menuDetail.couvertureBenef.codeEcran)">
                             <div mat-line fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
                                 <span class="itemList">{{menuDetail.couvertureBenef.screenName}}</span>
                                 <mat-chip-list>
@@ -125,27 +123,27 @@
                     </div>
                     <div>
                         <!-- Informations assurés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="listAssures">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="listAssures" [parameters]="parameters">
                         </app-event-detail-assure>
 
                         <!-- Liste des bénéficiaires-->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="listBeneficiaires">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="listBeneficiaires" [parameters]="parameters">
                         </app-event-detail-assure>
 
                         <!-- Couvertures -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="listCouvertures">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="listCouvertures" [parameters]="parameters">
                         </app-event-detail-assure>
 
                         <!-- Couvertures bénéficaires -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="listCouverturesBeneficiaires">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="listCouverturesBeneficiaires" [parameters]="parameters">
                         </app-event-detail-assure>
 
                         <!-- Informations salariés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="listInfosSalaries">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="listInfosSalaries" [parameters]="parameters">
                         </app-event-detail-assure>
 
                         <!-- Informations IBAN -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listInfosIban]="listInfosIban">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listAssures]="listAssures" [listInfosIban]="listInfosIban" [parameters]="parameters">
                         </app-event-detail-assure>
 
 

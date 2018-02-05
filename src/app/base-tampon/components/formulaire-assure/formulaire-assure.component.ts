@@ -22,6 +22,10 @@ export class FormulaireAssureComponent implements OnInit {
   /**Données de l'assuré en cours d'affichage/de modification*/
   @Input() assure: any;
 
+    /**Listes codes/libelles de l ecran de saisie*/
+  @Input() parameters: any;
+
+
   /**Données du bénéficiaire en cours d'affichage/de modification*/
   @Input() beneficiaire: any;
 
@@ -136,5 +140,10 @@ export class FormulaireAssureComponent implements OnInit {
   }
 
   onSubmit() {}
+
+
+  toJSon() {
+    
+  } 
 
 }

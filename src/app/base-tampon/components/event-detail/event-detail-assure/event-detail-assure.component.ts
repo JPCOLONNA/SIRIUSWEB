@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ResourcesService } from 'app/core/providers/resources.service';
+import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
 
 import { Assure } from '../../../model/assure';
 import { Couverture } from '../../../model/couverture';
@@ -18,6 +19,8 @@ export class EventDetailAssureComponent implements OnInit {
 
   /** Ressources générales */
   rsc: any;
+
+  @Input() parameters: any;
 
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
@@ -44,16 +47,21 @@ export class EventDetailAssureComponent implements OnInit {
    * Créer une instance du composant EventDetailAssureComponent<br />
    * @param resourcesService                Services de ressources pour toute les applications
    */
-  constructor(private resourcesService: ResourcesService) {
+  constructor(private resourcesService: ResourcesService,
+              private baseTamponService: BaseTamponService) {
 
 
   }
+
+
+
 
   /**
   * Initialise le composant et de ses variables<br/>
   */
   ngOnInit() {
     this.rsc = this.resourcesService.get();
+ 
   }
 
 }

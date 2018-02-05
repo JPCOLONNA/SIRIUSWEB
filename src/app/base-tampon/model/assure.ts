@@ -3,6 +3,7 @@ export class Assure {
     id_assure: string;
     id_beneficiaire: string;
     civilite: string;
+    lb_civilite: string;
     nom: string;
     prenom: string;
     adresse: string;
@@ -37,11 +38,12 @@ export class Assure {
         this.id_evenement = tab.id_evenement ? tab.id_evenement : "";
         this.id_assure = tab.id_assure ? tab.id_assure : "";
         this.civilite = tab.civilite ? tab.civilite : "";
+        this.lb_civilite = tab.lb_civilite ? tab.lb_civilite : "";
         this.nom = tab.nom_assure ? tab.nom_assure : "";
         this.prenom = tab.prenom_assure ? tab.prenom_assure : "";
-        if (tab.nom_beneficiaire || tab.prenom_beneficiaire) {
-            this.nom = tab.nom_beneficiaire ? tab.nom_beneficiaire : "";
-            this.prenom = tab.prenom_beneficiaire ? tab.prenom_beneficiaire : "";
+        if (tab.nom_benef || tab.prenom_benef) {
+            this.nom = tab.nom_benef ? tab.nom_benef : "";
+            this.prenom = tab.prenom_benef ? tab.prenom_benef : "";
         }
         this.adresse = tab.adresse ? tab.adresse : "";
         this.adresse_suite = tab.adresse_suite ? tab.adresse_suite : "";
@@ -55,22 +57,22 @@ export class Assure {
         this.lb_situation_familiale = tab.lb_situation_familiale ? tab.lb_situation_familiale : "";
         this.nombre_enfant = tab.nombre_enfant ? tab.nombre_enfant : "";
         this.transfert_noemie = tab.transfert_noemie==='1' ? true : false;
-        this.regime_caisse = tab.regime_caisse ? tab.regime_caisse : "";
+        this.regime_caisse = tab.regime_caisse&&tab.regime_caisse.length===2 ? tab.regime_caisse :  tab.regime_caisse&&tab.regime_caisse.length===1 ? "0"+tab.regime_caisse : "";
         this.caisse = tab.caisse ? tab.caisse : "";
         this.guichet_caisse = tab.guichet_caisse ? tab.guichet_caisse : "";
         this.cle_caisse = tab.cle_caisse ? tab.cle_caisse : "";
         this.numero_ss = tab.numero_ss ? tab.numero_ss : "";
         this.cle_ss = tab.cle_ss ? tab.cle_ss : "";
         this.mtt_cotisation = tab.mtt_cotisation ? tab.mtt_cotisation : "";
-        this.qualite = tab.qualite ? tab.qualite : "";
-        this.lb_qualite = tab.lb_qualite ? tab.lb_qualite : "";
-        this.rang = tab.rang ? tab.rang : "";
-        this.attachement = tab.attachement ? tab.attachement : "";
-        this.lb_attachement = tab.lb_attachement ? tab.lb_attachement : "";
-        this.debut_effet = tab.debut_effet ? tab.debut_effet : "";
-        this.fin_effet = tab.fin_effet ? tab.fin_effet : "";
+        this.qualite = tab.qualite_benef ? tab.qualite_benef : "";
+        this.lb_qualite = tab.lb_qualite_benef ? tab.lb_qualite_benef : "";
+        this.rang = tab.rang_benef ? tab.rang_benef : "";
+        this.attachement = tab.rattachement ? tab.rattachement : "";
+        this.lb_attachement = tab.lb_rattachement ? tab.lb_rattachement : "";
+        this.debut_effet = tab.debut_effet&&tab.debut_effet>7 ? tab.debut_effet.substr(0,4)+"-"+tab.debut_effet.substr(4,2)+"-"+tab.debut_effet.substr(6,2) : "";
+        this.fin_effet = tab.fin_effet&&tab.fin_effet>7 ? tab.fin_effet.substr(0,4)+"-"+tab.fin_effet.substr(4,2)+"-"+tab.fin_effet.substr(6,2) : "";
 
-        alert(this.transfert_noemie);
     }
+
 
 }

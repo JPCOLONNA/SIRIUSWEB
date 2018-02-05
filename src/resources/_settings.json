@@ -12,16 +12,19 @@
             "contexte": "GetListeEvenement"
         },
         "assure": {
-           "url": "/waassure",
-           "contexte": 
-           {
-               "listeAssures":"GetListeAssure",
-               "infoAssure":"GetAssure"
-           }
+            "url": "/waassure",
+            "contexte": {
+                "listeAssures": "GetListeAssure",
+                "infoAssure": "GetAssure"
+            }
         },
         "eventDetails": {
             "url": "/wabasetmp",
             "contexte": "GetDetailEvenement"
+        },
+        "parameters": {
+            "url": "/wabasetmp",
+            "contexte": "GetListeParametres"
         },
         "liste": {
             "url": "/waliste",

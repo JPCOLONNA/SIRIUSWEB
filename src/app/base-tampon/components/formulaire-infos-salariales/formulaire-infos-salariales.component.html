@@ -26,7 +26,11 @@
         </mat-form-field>
         <!-- Prénom -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="motif_depart" [placeholder]="rsc.label.motifDepart">
+            <mat-select formControlName="motif_depart" [placeholder]="rsc.label.motifDepart">
+                <mat-option *ngFor="let motif of parameters.Fin_Contrat" [value]="motif.code">
+                    {{ motif.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 
@@ -44,28 +48,38 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- Staut professionnel -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="statut_professionnel" [placeholder]="rsc.label.statutProfessionnel">
+            <mat-select formControlName="statut_professionnel" [placeholder]="rsc.label.statutProfessionnel">
+                <mat-option *ngFor="let statut of parameters.Statut_professionnel" [value]="statut.code">
+                    {{ statut.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
-        <!-- Niveau professionnel -->
+        <!-- Contrat de travail -->
+        <mat-form-field fxFlex="30">
+            <mat-select formControlName="contrat_travail" [placeholder]="rsc.label.contratTravail">
+                <mat-option *ngFor="let contrat of parameters.Contrat_travail" [value]="contrat.code">
+                    {{ contrat.libelle }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div fxFlex="30">&nbsp;</div>
+        <!-- Niveau professionnel 
         <mat-form-field fxFlex="30">
             <input matInput formControlName="niveau_professionnel" [placeholder]="rsc.label.niveauStatutProfessionnel">
-        </mat-form-field>
-        <!-- Echelon -->
+        </mat-form-field>-->
+        <!-- Echelon 
         <mat-form-field fxFlex="30">
             <input matInput formControlName="echelon" [placeholder]="rsc.label.echelonStatutProfessionnel">
-        </mat-form-field>
+        </mat-form-field>-->
     </div>
 
 
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="1==2">
         <!-- Catégorie socio-professionnel -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="categorie_socio_professionnelle" [placeholder]="rsc.label.categorieSocioProfessionnelle">
         </mat-form-field>
-        <!-- Contrat de travail -->
-        <mat-form-field fxFlex="30">
-            <input matInput formControlName="contrat_travail" [placeholder]="rsc.label.contratTravail">
-        </mat-form-field>
+
         <!-- Temps de travail -->
         <mat-form-field fxFlex="30">
             <input matInput formControlName="temps_de_travail" [placeholder]="rsc.label.tempsTravail">

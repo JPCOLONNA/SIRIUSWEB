@@ -34,7 +34,7 @@ export class Iban {
         this.nature= tab.nature_rib ? tab.nature_rib : "";
         this.debut_validite= tab.debut_validite&&tab.debut_validite.length>7 ? tab.debut_validite.substr(0,4)+"-"+tab.debut_validite.substr(4,2)+"-"+tab.debut_validite.substr(6,2) : "";
         this.fin_validite= tab.fin_validite&&tab.fin_validite.length>7 ? tab.fin_validite.substr(0,4)+"-"+tab.fin_validite.substr(4,2)+"-"+tab.fin_validite.substr(6,2) : "";
-        this.nom= tab.nom ? tab.nom : "";
+        this.nom= tab.beneficiaire ? tab.beneficiaire : "";
         this.domiciliation_banque= tab.domiciliation ? tab.domiciliation : "";
         this.domiciliation_adresse= tab.adr_domi ? tab.adr_domi : "";
         this.domiciliation_code_postal= tab.cp_domi ? tab.cp_domi : "";

@@ -8,6 +8,22 @@
     <div>
         &nbsp;
     </div>-->
+    <h2>{{rsc.label.titulaire}}</h2>
+    <hr class="down-h2">
+    <div class="numAssure" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="30">{{listAssures[0].nom}} {{listAssures[0].prenom}}</div>
+
+        <mat-form-field fxFlex="30">
+            <mat-select formControlName="type_titulaire" [placeholder]="rsc.label.typeTitulaire">
+                <mat-option *ngFor="let type of parameters.Type_titulaire_Rib" [value]="type.code">
+                    {{ type.libelle }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div fxFlex="30">&nbsp;</div>
+    </div>
+
     <!-- Beneficiaire -->
     <h2>{{rsc.label.beneficiaire}}</h2>
     <hr class="down-h2">
@@ -47,7 +63,11 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <!-- Devise -->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="devise" [placeholder]="rsc.label.devise">
+            <mat-select formControlName="devise" [placeholder]="rsc.label.devise">
+                <mat-option *ngFor="let devise of parameters.Code_devise" [value]="devise.code">
+                    {{ devise.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <!-- Date de début de validité -->
         <mat-form-field fxFlex="30">
@@ -69,11 +89,19 @@
         <mat-slide-toggle fxFlex="30" formControlName="imputation_frais">{{rsc.label.imputationFrais}}</mat-slide-toggle>
         <!-- Nature-->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="nature" [placeholder]="rsc.label.nature">
+            <mat-select formControlName="nature" [placeholder]="rsc.label.nature">
+                <mat-option *ngFor="let nature of parameters.Nature_Rib" [value]="nature.code">
+                    {{ nature.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
         <!-- Statut-->
         <mat-form-field fxFlex="30">
-            <input matInput formControlName="statut" [placeholder]="rsc.label.statut">
+            <mat-select formControlName="statut" [placeholder]="rsc.label.statut">
+                <mat-option *ngFor="let statut of parameters.Statut_Rib" [value]="statut.code">
+                    {{ statut.libelle }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 
