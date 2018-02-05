@@ -1,3 +1,65 @@
-<p>
-  modal-formulaire-plan works!
-</p>
+<!-- Entete de la modale : fil d'ariane + titre -->
+<app-header-modal [routeTmp]="data.route" [titleModal]="titleModal" [nameModal]="rscPythieModal.nameModal"></app-header-modal>
+
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
+
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-template>
+
+<!-- Contenu -->
+<ng-template #pageContent>
+
+  <form [formGroup]="formPlan" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div fxLayout="column" fxLayoutAlign="start stretch">
+      <!-- Type de plan -->
+      <mat-form-field>
+        <mat-select [placeholder]="rsc.label.typePlan" formControlName="typePlan" autofocus tabindex="10" required>
+          <mat-option *ngFor="let typePlan of listTypePlan" [value]="typePlan.code">
+            {{ typePlan.libelle }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Nom -->
+      <mat-form-field>
+        <input matInput formControlName="nom" [placeholder]="rsc.label.nom" maxlength="20" required tabindex="11">
+      </mat-form-field>
+
+      <!-- Description -->
+      <mat-form-field>
+        <input matInput formControlName="description" [placeholder]="rsc.label.description" maxlength="50"  tabindex="12">
+      </mat-form-field>
+
+      <!-- Date de début -->
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput formControlName="dateDebut" [placeholder]="rsc.label.dateDebut" [textMask]="{mask: mask.date || false, guide: true}"
+            required tabindex="12">
+        </mat-form-field>
+
+        <!-- Date de fin -->
+        <mat-form-field>
+          <input matInput formControlName="dateFin" [placeholder]="rsc.label.dateFin" [textMask]="{mask: mask.date || false, guide: true}"
+            tabindex="13">
+        </mat-form-field>
+      </div>
+      
+      <!-- Actif -->
+      <mat-slide-toggle formControlName="actif">Actif</mat-slide-toggle>
+
+    </div>
+  </form>
+  <div mat-dialog-actions fxLayout="row" class="matDialogActions" fxLayoutAlign="center center" fxLayoutGap="10px">
+    <button mat-raised-button (click)="closeModal()" color="warn" tabindex="15">
+      <i [class]="'fa fa-'+rsc.bouton.annuler.icon"></i> {{rsc.bouton.annuler.libelle}}
+    </button>
+    <button mat-raised-button type="submit" color="primary" tabindex="14">
+      <i [class]="'fa fa-'+rsc.bouton.valider.icon"></i> {{rsc.bouton.valider.libelle}}
+    </button>
+  </div>
+</ng-template>

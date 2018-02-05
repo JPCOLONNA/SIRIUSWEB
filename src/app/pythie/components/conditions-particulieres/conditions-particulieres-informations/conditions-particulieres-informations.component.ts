@@ -60,7 +60,8 @@ export class ConditionsParticulieresInformationsComponent implements OnInit {
       data: { 
         idListePieces: idListePieces, 
         route: this.activatedRoute,
-      }
+      },
+      autoFocus: false 
     });
   }
 
@@ -77,7 +78,8 @@ export class ConditionsParticulieresInformationsComponent implements OnInit {
       data: { 
         idListeStructure: idListeStructure, 
         route: this.activatedRoute,
-      }
+      },
+      autoFocus: false 
     });
   }
 

@@ -31,7 +31,6 @@ import { ModalFormulairePlanComponent }                 from './components/plan/
     PlanListComponent,
     PlanDetailComponent,
     ModalFormulairePlanComponent
-    
   ],
   exports: [
     ConditionsParticulieresInformationsComponent, 

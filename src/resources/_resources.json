@@ -120,6 +120,7 @@
         "dateDebut": "A partir de",
         "dateFin": "Jusqu'au",
         "typePlan": "Type de plan",
+        "description": "Description",
         "typeTitulaire": "Type de titulaire"
     },
     "CONSTS": {
@@ -132,7 +133,11 @@
     },
     "bouton": {
         "rechercher": { "icon": "search", "libelle": "Rechercher" },
-        "ajouter": { "icon": "plus", "libelle": "Ajouter" }
+        "ajouter": { "icon": "plus", "libelle": "Ajouter" },
+        "valider": { "icon": "check", "libelle": "Valider" },
+        "annuler": { "icon": "ban", "libelle": "Annuler" },
+        "oui": { "icon": "check-circle", "libelle": "Oui" },
+        "non": { "icon": "times-circle", "libelle": "Non" }
     },
     "JsonBlank": "{}",
     "positionTooltip": "below",
@@ -157,6 +162,11 @@
         "modifier": { "icon": "pencil", "label": "Modifier" },
         "supprimer": { "icon": "trash", "label": "Supprimer" },
         "duppliquer": { "icon": "clone", "label": "Duppliquer" }
+    },
+    "message": {
+        "quitScreenConfirm": "Êtes-vous sur de vouloir quitter la fenêtre ? ",
+        "addFormConfirm": "Les informations saisies seront perdues.",
+        "updateFormConfirm": "Vos modifications seront perdues.",
+        "deleteConfirm": "Êtes-vous sur de vouloir supprimer cet élément ?"
     }
-
 }

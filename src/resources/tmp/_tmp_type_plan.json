@@ -6,11 +6,11 @@
     },
     "liste":[
         {
-            "code":"1",
+            "code":"CP",
             "libelle":"Plan Conditions Particulières"
         },
         {
-            "code":"2",
+            "code":"WEB",
             "libelle":"Plan WEB"
         }
     ]

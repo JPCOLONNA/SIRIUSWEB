@@ -53,5 +53,11 @@
     "planList":
     {
         "title":"Liste de plans"
+    },
+    "modalFormulairePlan":
+    {
+        "nameModal": "WPYPLANDETAIL",
+        "titleModalModif": "Modification d'un plan",
+        "titleModalAjout": "Ajout d'un plan"
     }
 }

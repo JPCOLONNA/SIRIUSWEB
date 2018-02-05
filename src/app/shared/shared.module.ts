@@ -14,6 +14,7 @@ import { HeaderModalComponent } from './components/header-modal/header-modal.com
 
 
 /*** DIRECTIVES***/
+import { FocusDirective } from './directives/focus.directive';
 
 /*** PIPES ***/
 import { CapitalizePipe } from './pipes/capitalize.pipe';
@@ -35,7 +36,8 @@ const COMPONENTS = [
   SirenPipe,
   DateYMDPipe,
   HeurePipe,
-  NumSSPipe
+  NumSSPipe,
+  FocusDirective
 ];
 
 @NgModule({

@@ -1,39 +1,44 @@
 <div class="contenair">
   <h1>{{rscPlanList.title}}</h1>
   <hr class="down">
+  <!-- Conditionne l'affichage du moteur de recherche le temps du chargement des données -->
+  <div *ngIf="!isRequestingSearch;then searchContent"></div>
 
-  <div id="searchPlan">
-    <form [formGroup]="formSearchPlan" (ngSubmit)="onSubmit()" autocomplete="off">
-      <div fxLayout="row" fxLayoutAlign="space-between center">
-        <!-- Type de plan -->
-        <mat-form-field fxFlex="20">
-          <mat-select [placeholder]="rsc.label.typePlan" formControlName="typePlan" tabindex="1">
-            <mat-option *ngFor="let typePlan of listTypePlan" [value]="typePlan.code">
-              {{ typePlan.libelle }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- Nom -->
-        <mat-form-field fxFlex="20">
-          <input matInput formControlName="nom" [placeholder]="rsc.label.nom" max="25" [textMask]="{mask: mask.alpha25 || false,  guide: false}"
-            autofocus tabindex="2">
-        </mat-form-field>
-        <!-- Date de début -->
-        <mat-form-field fxFlex="20">
-          <input matInput formControlName="dateDebut" [placeholder]="rsc.label.dateDebut" [textMask]="{mask: mask.date || false, guide: true}"
-            tabindex="3">
-        </mat-form-field>
-        <!-- Date de fin -->
-        <mat-form-field fxFlex="20">
-          <input matInput formControlName="dateFin" [placeholder]="rsc.label.dateFin" [textMask]="{mask: mask.date || false, guide: true}"
-            tabindex="4">
-        </mat-form-field>
-        <!-- Bouton rechercher -->
-        <button mat-raised-button type="submit" color="primary" tabindex="8"> <i [class]="'fa fa-'+rsc.bouton.rechercher.icon"></i> {{rsc.bouton.rechercher.libelle}}</button>
-      </div>
-    </form>
-  </div>
-  <hr class="down-light">
+  <ng-template #searchContent>
+    <div id="searchPlan">
+      <form [formGroup]="formSearchPlan" (ngSubmit)="onSubmit()" autocomplete="off">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <!-- Type de plan -->
+          <mat-form-field fxFlex="20">
+            <mat-select [placeholder]="rsc.label.typePlan" formControlName="typePlan" tabindex="1">
+              <mat-option *ngFor="let typePlan of listTypePlan" [value]="typePlan.code">
+                {{ typePlan.libelle }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- Nom -->
+          <mat-form-field fxFlex="20">
+            <input matInput formControlName="nom" [placeholder]="rsc.label.nom" max="25" [textMask]="{mask: mask.alpha25 || false,  guide: false}"
+             tabindex="2" focus>
+          </mat-form-field>
+          <!-- Date de début -->
+          <mat-form-field fxFlex="20">
+            <input matInput formControlName="dateDebut" [placeholder]="rsc.label.dateDebut" [textMask]="{mask: mask.date || false, guide: true}"
+              tabindex="3">
+          </mat-form-field>
+          <!-- Date de fin -->
+          <mat-form-field fxFlex="20">
+            <input matInput formControlName="dateFin" [placeholder]="rsc.label.dateFin" [textMask]="{mask: mask.date || false, guide: true}"
+              tabindex="4">
+          </mat-form-field>
+          <!-- Bouton rechercher -->
+          <button mat-raised-button type="submit" color="primary" tabindex="8"> <i [class]="'fa fa-'+rsc.bouton.rechercher.icon"></i> {{rsc.bouton.rechercher.libelle}}</button>
+        </div>
+      </form>
+    </div>
+    <hr class="down-light">
+  </ng-template>
+  
   <!-- Conditionne l'affichage le temps du chargement des données -->
   <div *ngIf="isRequesting;then overlay else pageContent"></div>
 
@@ -44,12 +49,12 @@
     </div>
   </ng-template>
 
-  <!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
+  <!-- Contenu du composant affiché lorsque le chargement des données est terminé-->
   <ng-template #pageContent>
 
     <div fxLayout="row" fxLayoutAlign="end center">
       <!-- Bouton ajouter -->
-      <button mat-raised-button type="submit" color="primary" (click)="displayModalAddPlan()"> <i [class]="'fa fa-'+rsc.bouton.ajouter.icon"></i> {{rsc.bouton.ajouter.libelle}}</button>
+      <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','creer')" mat-raised-button type="submit" color="primary" (click)="addPlan()"> <i [class]="'fa fa-'+rsc.bouton.ajouter.icon"></i> {{rsc.bouton.ajouter.libelle}}</button>
     </div>
 
     <!-- Liste des plans -->
@@ -101,13 +106,13 @@
               <i [class]="'fa fa-'+rsc.icons.menu.icon"></i>
             </div>
             <mat-menu #menuAction="matMenu">
-              <button mat-menu-item>
+              <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','modifier')" (click)="updatePlan(plan         )"  mat-menu-item>
                 <i [class]="'fa fa-'+rsc.icons.modifier.icon"></i> {{rsc.icons.modifier.label}}
               </button>
-              <button mat-menu-item>
+              <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','supprimer')"  (click)="deletePlan(plan)"  mat-menu-item>
                 <i [class]="'fa fa-'+rsc.icons.supprimer.icon"></i> {{rsc.icons.supprimer.label}}
               </button>
-              <button mat-menu-item>
+              <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','creer')"  (click)="duplicatePlan(plan)"  mat-menu-item>
                 <i [class]="'fa fa-'+rsc.icons.duppliquer.icon"></i> {{rsc.icons.duppliquer.label}}
               </button>
             </mat-menu>

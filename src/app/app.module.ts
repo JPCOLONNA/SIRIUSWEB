@@ -24,6 +24,7 @@ import { ModalMessageComponent } from './commun/components/modal-message/modal-m
 import { ModalListePiecesComponent } from './commun/components/modal-liste-pieces/modal-liste-pieces.component';
 import { ModalPlusDinfoComponent } from './commun/components/modal-plus-dinfo/modal-plus-dinfo.component';
 import { AccessDeniedComponent } from './commun/components/access-denied/access-denied.component';
+import { ModalConfirmComponent } from './commun/components/modal-confirm/modal-confirm.component';
 
 
 //Module Matérial en français
@@ -49,14 +50,16 @@ registerLocaleData(localeFr);
     ModalMessageComponent, 
     ModalListePiecesComponent, 
     ModalPlusDinfoComponent, 
-    AccessDeniedComponent
+    AccessDeniedComponent,
+    ModalConfirmComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalMessageComponent,
     ModalListePiecesComponent,
-    ModalPlusDinfoComponent]
+    ModalPlusDinfoComponent,
+    ModalConfirmComponent]
 })
 
 export class AppModule { }

@@ -18,6 +18,9 @@ import { Application } from 'app/core/models/Applications';
 })
 export class HomeComponent implements OnInit {
 
+  /** Flag pour la gestion de l'affichage du spinner de chargement */
+  isRequesting = true;
+
   /** Ressources générales */
   rsc:any;
 
@@ -67,6 +70,7 @@ export class HomeComponent implements OnInit {
               applicationTmp.url = this.rsc.listeApplications[application.nom_application].url;
               this.listApplication.push(applicationTmp);
             } 
+            this.isRequesting = false;
           }
         } else {
           this.exceptionService.handleException(data).subscribe(() => {}, (error) => {
@@ -86,7 +90,6 @@ export class HomeComponent implements OnInit {
    */
   redirectTo(lien: string)
   {
-    console.log(lien);
     this.router.navigate([lien]);
   }
 

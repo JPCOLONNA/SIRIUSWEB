@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms/';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
 import { ResourcesService } from '../../../core/providers/resources.service';
 import { MixinService } from '../../../core/providers/mixin.service';

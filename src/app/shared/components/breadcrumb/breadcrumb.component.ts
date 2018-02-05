@@ -58,7 +58,7 @@ export class BreadcrumbComponent implements OnInit {
     let root: ActivatedRoute = this.activatedRoute.root;
     this.breadcrumbs = this.getBreadcrumbs(root);
 
-    //Pour une modal ajout du titre de la modal dans le fil d'ariane
+    //Pour une modale ajout du titre de la modale dans le fil d'ariane
     if(this.titleModal != "" && this.titleModal!= undefined)
     {
       let breadcrumbModal: IBreadcrumb = {
@@ -86,7 +86,7 @@ export class BreadcrumbComponent implements OnInit {
         this.screenName.emit("");
       }
 
-      //Pour une modal ajout du titre de la modal dans le fil d'ariane
+      //Pour une modale ajout du titre de la modale dans le fil d'ariane
       if(this.titleModal != "" && this.titleModal!= undefined)
       {
         let breadcrumbModal: IBreadcrumb = {

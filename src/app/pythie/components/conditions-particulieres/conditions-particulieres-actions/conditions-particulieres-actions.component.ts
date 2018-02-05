@@ -96,7 +96,8 @@ export class ConditionsParticulieresActionsComponent implements OnInit {
       data: { 
         idListePieces: idListePieces, 
         route: this.activatedRoute
-      }
+      },
+      autoFocus: false 
     });
   }
 

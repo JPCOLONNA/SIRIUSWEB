@@ -63,11 +63,11 @@ export class MixinService {
         return new HttpHeaders()
             .append('Accept', 'application/json')
             .append('Content-Type', 'application/json');
-            //.append("Cache-Control", "no-cache, no-store, must-revalidate")
-           // .append("Pragma", "no-cache");
-           // return new HttpHeaders();
-            //.append("Cache-Control", "no-cache, no-store, must-revalidate")
-            //.append("Pragma", "no-cache");
+        //.append("Cache-Control", "no-cache, no-store, must-revalidate")
+        // .append("Pragma", "no-cache");
+        // return new HttpHeaders();
+        //.append("Cache-Control", "no-cache, no-store, must-revalidate")
+        //.append("Pragma", "no-cache");
     }
 
     clearSession() {
@@ -112,7 +112,7 @@ export class MixinService {
     }*/
 
     /**
-     * Parse la date au format YYYYMMDD
+     * Converti la date au format YYYYMMDD
      * @param date  Date au format DD/MM/YYYY à transformer
      */
     parseDate8(date: any): string {
@@ -122,6 +122,18 @@ export class MixinService {
         const month = splitTab[1];
         const day = splitTab[0];
         return (year + month + day);
+    }
+    /**
+    * Converti la date au format DD/MM/YYYY
+    * @param date  Date au format YYYY-MM-DD à transformer
+    */
+    parseDateInFR(date: any): string {
+        let splitTab = [];
+        splitTab = date.split("-");
+        const year = splitTab[2];
+        const month = splitTab[1];
+        const day = splitTab[0];
+        return (year + '/'+ month + '/' + day);
     }
 
     getMasks() {
@@ -230,6 +242,6 @@ export class MixinService {
         return ss_num + cle;
     }
 
-    
+
 
 }
