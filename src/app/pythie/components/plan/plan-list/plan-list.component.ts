@@ -16,6 +16,8 @@ import { Router } from '@angular/router';
 import { ElementList } from 'app/core/models/ElementList';
 import { ActivatedRoute } from '@angular/router';
 import { ModalFormulairePlanComponent } from '../modal-formulaire-plan/modal-formulaire-plan.component';
+import { AutorisationService } from 'app/core/providers/autorisation.service';
+import { ModalConfirmComponent } from 'app/commun/components/modal-confirm/modal-confirm.component';
 
 /** Recherche d'un plan de paramétrage PYTHIE, résulats sous forme de liste. */
 @Component({
@@ -26,6 +28,7 @@ import { ModalFormulairePlanComponent } from '../modal-formulaire-plan/modal-for
 export class PlanListComponent implements OnInit {
 
   /** Flag pour la gestion de l'affichage du spinner de chargement */
+  isRequestingSearch = false;
   isRequesting = false;
 
   // --------------------- Ressources -----------------------
@@ -38,25 +41,25 @@ export class PlanListComponent implements OnInit {
 
   // --------------------- Formulaire -----------------------
   /** Nom du formulaire de recherche */
-  formSearchPlan : FormGroup;   
+  formSearchPlan: FormGroup;
   /** Validateurs du formulaire pre-définis */
-  validators: any;     
+  validators: any;
   /** Masques de saisie pre-définis */
   mask: any;
 
   // ----------------- Tableau d'assurés ---------------------
   /** Entêtes du tableau des assurés */
-  labelTable: any;                  
+  labelTable: any;
   /** Liste des assurés trouvés, à afficher */
   listPlan: Array<Plan>;
   /** Liste des colonnes du tableau des assurés à afficher */
   displayedColumns: any;
   /** Données du tableau : "listAssures" au format datasource */
-  dataSource: MatTableDataSource<any>;              
+  dataSource: MatTableDataSource<any>;
   /** Pagination du tableau */
-  @ViewChild(MatPaginator) paginator: MatPaginator; 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   /** Tris sur les entêtes de colonne */
-  @ViewChild(MatSort) sort: MatSort;  
+  @ViewChild(MatSort) sort: MatSort;
 
   /** Liste des types de plan */
   listTypePlan: Array<ElementList>;
@@ -84,23 +87,28 @@ export class PlanListComponent implements OnInit {
   constructor(
     private resourcesService: ResourcesService,
     private resourcesPythieService: ResourcesPythieService,
-    private formBuilder : FormBuilder,
+    private formBuilder: FormBuilder,
     private mixinService: MixinService,
     private listService: ListService,
     private exceptionService: ExceptionService,
     private menuEvent: MenuEvent,
     private constructionMenuService: ConstructionMenuService,
-    private pythieService:PythieService,
+    private pythieService: PythieService,
     private notificationsService: NotificationsService,
     private router: Router,
     private dialog: MatDialog,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private autorisationService: AutorisationService) { }
 
   /**
    * Initialise le composant et de ses variables<br/>
    * Récupère les ressources
    */
   ngOnInit() {
+
+    //Spinner le temps de chargement du module de recherche
+    this.isRequestingSearch = true;
+
     //Ressources
     this.rsc = this.resourcesService.get();
     this.rscPythie = this.resourcesPythieService.get();
@@ -112,69 +120,74 @@ export class PlanListComponent implements OnInit {
     this.idPlan = 0;
     //Chargement du menu en précisnt qu'il n'y a pas d'identifiant de plan de connu pour désactiver les liens nécessitants un identifiant
     this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscPythie.menu, false)));
-    
+
     //Récupère la liste de type de plan
     this.listTypePlan = new Array<ElementList>();
-    this.listService.getList("typePlan").subscribe( (data) => {
+    this.listService.getList("typePlan").subscribe((data) => {
       /*if (data.hasOwnProperty('success') && data.success === 'true') {*/
-        //tmp JSON.PARSE...
-        for(let element of JSON.parse(JSON.stringify(data)).liste) { this.listTypePlan.push(new ElementList(element)); }
-       
-        //Création du formulaire
-        this.createForm();
-        //this.doneRequesting(false);
+      //tmp JSON.PARSE...
+      for (let element of JSON.parse(JSON.stringify(data)).liste) { this.listTypePlan.push(new ElementList(element)); }
+
+      //Création du formulaire
+      this.createForm();
+      this.isRequestingSearch = false;
     },
-    (error) => this.exceptionService.handleException(error)
-  );
-    //Création du formulaire
-    this.createForm();
+      (error) => this.exceptionService.handleException(error)
+    );
+
   }
 
   /**
    * Création du formulaire de recherche de plan
    */
-  createForm(): void
-  {
+  createForm(): void {
     this.formSearchPlan = this.formBuilder.group({
-      'typePlan' : ['',this.validators.number],
-      'nom' : ['', this.validators.name],
-      'dateDebut' : ['',this.validators.date],
-      'dateFin' : ['',this.validators.date]
+      'typePlan': [''],
+      'nom': [''],
+      'dateDebut': ['', this.validators.date],
+      'dateFin': ['', this.validators.date]
     });
   }
 
   /**
    * Soumission du formulaire de recherche d'un plan
    */
-  onSubmit()
-  {  
-    if(this.formSearchPlan.valid)
-    {
-      this.doneRequesting(true);
+  onSubmit() {
 
-      //Convertie le format de la date
-      if(this.formSearchPlan.value.datedebut != "")
-        this.formSearchPlan.value.dateDebut = this.mixinService.parseDate8(this.formSearchPlan.value.dateDebut);
+    //si le formulaire est valide
+    if (this.formSearchPlan.valid) {
 
-      this.pythieService.getListPlan(this.formSearchPlan.value)
-        .subscribe(
-          (data) => {             
+      //S'il y au au moins un champs de renseigné
+      if (this.controlFormInputFilled()) {
+
+        //Spinner sur la liste le temps de la recherche
+        this.doneRequesting(true);
+
+        //Converti le format de la date
+        if (this.formSearchPlan.value.dateDebut != "")
+          this.formSearchPlan.value.dateDebut = this.mixinService.parseDate8(this.formSearchPlan.value.dateDebut);
+        if (this.formSearchPlan.value.dateFin != "")
+          this.formSearchPlan.value.dateFin = this.mixinService.parseDate8(this.formSearchPlan.value.dateFin);
+
+        this.pythieService.getListPlan(this.formSearchPlan.value)
+          .subscribe(
+          (data) => {
             /* TO DO APPEL DE SERVICE 
             if (data.hasOwnProperty('success') && data.success === 'true') {    */
-              //Libellé des colonnes du tableau
-              this.labelTable = data.libelle;
+            //Libellé des colonnes du tableau
+            this.labelTable = data.libelle;
 
-              //Liste des plans
-              this.listPlan = new Array<Plan>();
-              for(let plan of data.liste_plans) { this.listPlan.push(new Plan(plan)); }
-              //Ordre des colonnes
-              this.displayedColumns = ['typePlan', 'nom', 'description', 'dateDebut','dateFin','actif','actions'];
-              //Données du tableau
-              this.dataSource = new MatTableDataSource<any>(this.listPlan);
-              //Configuration de la pagination
-              this.dataSource.paginator = this.paginator;
-              //Configuration du tri sur les colonnes
-              this.dataSource.sort = this.sort;
+            //Liste des plans
+            this.listPlan = new Array<Plan>();
+            for (let plan of data.liste_plans) { this.listPlan.push(new Plan(plan)); }
+            //Ordre des colonnes
+            this.displayedColumns = ['typePlan', 'nom', 'description', 'dateDebut', 'dateFin', 'actif', 'actions'];
+            //Données du tableau
+            this.dataSource = new MatTableDataSource<any>(this.listPlan);
+            //Configuration de la pagination
+            this.dataSource.paginator = this.paginator;
+            //Configuration du tri sur les colonnes
+            this.dataSource.sort = this.sort;
             /*} else {
               this.exceptionService.handleException(data).subscribe(() => {}, (error) => {
                 this.notificationsService.displayError(error);
@@ -185,10 +198,10 @@ export class PlanListComponent implements OnInit {
           (error) => {
             this.notificationsService.displayError(error);
           }
-        );
+          );
+      }
     }
-    else
-    {
+    else {
       this.notificationsService.displayError("Champs du formulaire de recherche mal renseignés");
     }
   }
@@ -196,32 +209,138 @@ export class PlanListComponent implements OnInit {
   /**
    * Lors de la sélection d'un plan, sauvegarde l'id plan sélectionné via router-outlet
    */
-  selectPlan(idPlan: any)
-  {   
+  selectPlan(idPlan: any) {
     this.idPlan = idPlan;
     this.router.navigate(['/pythie/plan-detail']);
   }
 
+
   /**
-   * Affiche le formulaire d'ajout d'un plan dans une modal
+   * Ajout d'un plan : Affiche le formulaire d'ajout d'un plan dans une modal
    */
-  displayModalAddPlan()
-  {
+  addPlan() {
     //Chargement de la modal, la taille varie selon le contenu.
     let dialogRef = this.dialog.open(ModalFormulairePlanComponent, {
-      data: { route: this.activatedRoute }
+      data: { route: this.activatedRoute },
+      autoFocus: false,
+      disableClose: true
     });
+
+    //lors de la fermeture de la modale
+    dialogRef.afterClosed().subscribe(result => {
+      //Actualise la liste
+      this.onSubmit();
+    }
+    );
+  }
+
+  /**
+   * Modifcation d'un plan : affiche le formulaire de modification d'un plan dans une modale
+   */
+  updatePlan(plan: Plan) {
+    //Chargement de la modale, la taille varie selon le contenu.
+    let dialogRef = this.dialog.open(ModalFormulairePlanComponent, {
+      data: {
+        route: this.activatedRoute,
+        mode: "update",
+        idPlan: plan.id_plan
+      },
+      autoFocus: false,
+      disableClose: true
+    });
+
+    //lors de la fermeture de la modale
+    dialogRef.afterClosed().subscribe(result => {
+      //Actualise la liste
+      this.onSubmit();
+    }
+    );
+  }
+
+  /**
+   * Suppression d'un plan : affiche un message de confirmation
+   * @param plan : Objet contenant les informations du plan
+   */
+  deletePlan(plan:Plan) {
+    //Demande de confirmation de suppression
+    let dialogRefConfirm = this.dialog.open(ModalConfirmComponent, {
+      data: { 
+        question: this.rsc.message.deleteConfirm,
+        additionalMessage : "Plan : " + plan.nom + " - " + plan.description
+       },
+      autoFocus: false,
+      disableClose: true
+    });
+
+    //A la fermeture de la modale
+    dialogRefConfirm.afterClosed().subscribe(val => {
+      //si l'utilsiateur à confirmer la fermeture de la modal
+      if (val == true)
+      {
+        //TO DO - Appel de l'api pour supprimer et rafraichi la recherche
+        /*this.pythieService.deletePlan(plan.id_plan).subscribe(data =>
+        {
+          //La suppression c'est bien passée
+          if (data.hasOwnProperty('success') && data.success === 'true') {
+            this.notificationsService.displaySuccessAPI(data.info);*/
+            this.notificationsService.displaySuccessAPI(JSON.parse('{"libelle":"Suppression effectuée"}'));
+            this.onSubmit();
+          /*}
+          else{
+            //Une erreur lors de la supression
+            this.notificationsService.displayErrorAPI(data.info);
+          }
+          
+        });*/
+      }
+    });
+  }
+
+  duplicatePlan(plan:Plan)
+  {
+    //Chargement de la modale, la taille varie selon le contenu.
+    let dialogRef = this.dialog.open(ModalFormulairePlanComponent, {
+      data: {
+        route: this.activatedRoute,
+        mode: "duplicate",
+        idPlan: plan.id_plan
+      },
+      autoFocus: false,
+      disableClose: true
+    });
+
+    //lors de la fermeture de la modale
+    dialogRef.afterClosed().subscribe(result => {
+      //Actualise la liste
+      this.onSubmit();
+    }
+    );
   }
 
   /**
    * Change l'état de la page "en chargement"(false) <==> "affichée"(true)
    */
   doneRequesting(value?: boolean) {
-    if(value != null)
+    if (value != null)
       this.isRequesting = value;
     else if (this.isRequesting)
-        this.isRequesting = false;
-      else 
-        this.isRequesting = true;
+      this.isRequesting = false;
+    else
+      this.isRequesting = true;
+  }
+
+  /**
+   * Controle s'il y a un des champs du formulaire de renseigné
+   */
+  controlFormInputFilled() {
+    let isValueFilled = false;
+
+    //Pour chaque input possédant un formControl, on vérifie s'il y a une donnée
+    for (let valueInput in this.formSearchPlan.controls) {
+      if (this.formSearchPlan.get(valueInput).value != "")
+        return true;
+    }
+
+    return isValueFilled;
   }
 }

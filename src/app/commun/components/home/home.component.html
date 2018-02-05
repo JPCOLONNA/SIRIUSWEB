@@ -1,11 +1,23 @@
-<!-- TO DO :  Lister les applications -->
-<!-- TO DO : controler droit d'accès -->
-<div class="contenair" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
 
-    <!-- Bouton accès application -->
-    <button *ngFor="let application of listApplication" mat-raised-button (click)="redirectTo(application.url)" fxFlex="20">
-        <div fxLayout="column" fxLayoutAlign="space-around center">
-            <i [class]="application.icon + ' fa middle-icon'"></i>{{application.nom}}
-        </div>
-    </button>
-</div>
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</ng-template>
+
+<!-- Contenu du composant affiché lorsque le chargement des données est terminé-->
+<ng-template #pageContent>
+    <!-- Liste les applications -->
+    <div class="contenair" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+
+        <!-- Bouton accès application -->
+        <button *ngFor="let application of listApplication" mat-raised-button (click)="redirectTo(application.url)" fxFlex="20">
+            <div fxLayout="column" fxLayoutAlign="space-around center">
+                <i [class]="application.icon + ' fa middle-icon'"></i>{{application.nom}}
+            </div>
+        </button>
+    </div>
+</ng-template>

@@ -47,6 +47,7 @@ $default-bg-color-warn:#F44336;
 ::ng-deep .mat-menu-item, ::ng-deep .mat-list-item, ::ng-deep .mat-list-item-content
 {
     font-size: $default-text-size !important;
-    line-height: 30px !important;
-    max-height: 30px !important;
+    line-height: inherit !important;
+    height: inherit !important;
+    padding:5px;
 }

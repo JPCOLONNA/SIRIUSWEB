@@ -32,7 +32,12 @@
         "plan": {
             "url": "/wapyplan",
             "contexte": {
-                "listePlan": "GetListePlan"
+                "listePlan": "GetListePlan",
+                "infoPlan": "GetPlan",
+                "supprimePlan": "SupprimerPlan",
+                "addPlan": "AjouterPlan",
+                "updatePlan": "ModifierPlan",
+                "duplicatePlan": "DuppliquerPlan"
             }
         }
     }

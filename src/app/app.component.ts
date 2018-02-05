@@ -175,13 +175,14 @@ export class AppComponent {
 
 
   /**
-   * Affiche une modal avec tous les messages.
+   * Affiche une modale avec tous les messages.
    */
   afficheModalMessage(): void {
 
-    //Chargement de la modal, la taille varie selon le contenu.
+    //Chargement de la modale, la taille varie selon le contenu.
     let dialogRef = this.dialog.open(ModalMessageComponent, {
-      data: { route: this.activatedRoute }
+      data: { route: this.activatedRoute },
+      autoFocus: false 
     });
   }
 

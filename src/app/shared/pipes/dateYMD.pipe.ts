@@ -13,7 +13,7 @@ export class DateYMDPipe implements PipeTransform {
     let tmp = '';
     let transformDate = '';
     
-    //FORMAT AAAAMMDD - La date de naissance doit contenir 8 numériques pour être affiché
+    //FORMAT YYYYMMDD - La date de naissance doit contenir 8 numériques pour être affiché
     if (value.length == 8 && !isNaN(Number(value))) {
       value.split('').forEach((char, i) => {
         //  transformDate += char;
@@ -32,7 +32,7 @@ export class DateYMDPipe implements PipeTransform {
     }
     else
     {
-      //FORMAT AAAA-MM-DD - La date de naissance doit contenir 10 caractères
+      //FORMAT YYYY-MM-DD - La date de naissance doit contenir 10 caractères
       let regex = new RegExp('[0-9]{4}\-[0-9]{2}\-[0-9]{2}');
       if(value.length == 10 && regex.test(value))
       {

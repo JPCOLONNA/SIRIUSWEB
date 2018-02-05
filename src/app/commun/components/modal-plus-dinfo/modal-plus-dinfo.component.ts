@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 /**
- * Affihce dans une modal un texte passé en paramètre<br />
+ * Affiche dans une modale un texte passé en paramètre<br />
  * Utilisé pour afficher le texte complet d'une chaine tronquée
  */
 @Component({
@@ -14,8 +14,8 @@ export class ModalPlusDinfoComponent implements OnInit {
 
   /**
    * Crée une instance du composant ModalPlusDinfoComponent
-   * @param dialogRef       Référence à la modal en cours d'affichage
-   * @param data            Données reçues en paramètre de l'appel de la modal : contient le texte à afficher
+   * @param dialogRef       Référence à la modale en cours d'affichage
+   * @param data            Données reçues en paramètre de l'appel de la modale : contient le texte à afficher
    */
   constructor(
     public dialogRef: MatDialogRef<ModalPlusDinfoComponent>, 

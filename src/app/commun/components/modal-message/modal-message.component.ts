@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ResourcesService } from '../../../core/providers/resources.service';
 
 /**
- * Modal contenant les messages complets défilants et à communiquer aux gestionnaires
+ * Modale contenant les messages complets défilants et à communiquer aux gestionnaires
  */
 @Component({
   selector: 'app-modal-message',
@@ -21,7 +21,7 @@ export class ModalMessageComponent implements OnInit {
   /**
    * Créer une instance du composant ModalMessageComponent
    * @param resourcesService    Services de ressources pour toute les applications
-   * @param dialogRef           Référence à la modal en cours d'affichage
+   * @param dialogRef           Référence à la modale en cours d'affichage
    * @param data                Données reçues en paramètre de l'appel de la modal
    */
   constructor(

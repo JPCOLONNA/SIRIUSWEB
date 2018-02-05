@@ -4,6 +4,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MixinService } from 'app/core/providers/mixin.service';
 import { ExceptionService } from 'app/core/providers/exception.service';
 import { SettingsService } from 'app/core/providers/settings.service';
+import { observeOn } from 'rxjs/operators/observeOn';
+import { Plan } from 'app/pythie/models/plan';
 
 @Injectable()
 export class PythieService {
@@ -19,6 +21,8 @@ export class PythieService {
       this.wapyplan = this.settingsService.get().webservices.assure;
     }
 
+
+  // --------------------------------- PLAN -------------------------------------
   /**
    * Récupère la liste des plans selon une recherche
    * @param valueForm : Valeur des champs saisie dans le formulaire de recherche
@@ -43,6 +47,66 @@ export class PythieService {
   }
 
   /**
+   * Récupère les informations d'un plan
+   * @param idPlan  Identifiant du plan recherché
+   * @returns       Retourne les informations du plan sous forme d'observable
+   */
+  getPlan(idPlan: number): Observable<any> {
+    // Génération du corps de la requête
+    /* TO appel de service
+    const body: string = JSON.stringify({
+      contexte:     this.wapyplan.contexte.getPlan,
+      id_plan:      idPlan
+    });
+
+    const url = this.mixinService.getApiUrl() + this.wapyplan.url;
+    return this.sendWebService(body,url);*/
+    return this.http.get("resources/tmp/_tmp_plan.json");
+  }
+
+  /** 
+   * Supprime un plan 
+   * @param idPlan Identifiant du plan à supprimer 
+   */
+  deletePlan(idPlan: string)
+  {
+    //tmp 
+    console.log("Suppresion du plan :" + idPlan);
+    
+    // Génération du corps de la requête
+    /* TO appel de service
+    const body: string = JSON.stringify({
+      contexte:     this.wapyplan.contexte.supprimePlan,
+      id_plan:      idPlan
+    });
+
+    const url = this.mixinService.getApiUrl() + this.wapyplan.url;
+    return this.sendWebService(body,url);*/
+    return Observable.of("");
+  }
+
+  addUpdateDuplicatePlan(idPlan: number, valueForm: any, mode: string)
+  {
+    // Génération du corps de la requête
+    // TO appel de service
+    const body: string = JSON.stringify({
+      contexte:     this.wapyplan.contexte[mode + 'Plan'],
+      id_plan:      idPlan,
+      type_plan:    valueForm.typePlan,
+      nom:          valueForm.nom,
+      description:  valueForm.description,
+      date_debut:   valueForm.dateDebut,
+      date_fin:     valueForm.dateFin,
+      actif:        valueForm.actif
+    });
+
+    const url = this.mixinService.getApiUrl() + this.wapyplan.url;
+    return this.sendWebService(body,url);
+  }
+
+
+  // ------------------------- BRANCHE "CONDITIONS PARTICULIERES (CP)" -------------------------
+  /**
    * Récupère les données d'une branche CP selon un identifiant assuré et une date d'application
    * @param idAssure          Identifiant d'un assuré
    * @param dateApplication   Date d'application de la recherche (par défaut la date du jour)
@@ -53,6 +117,9 @@ export class PythieService {
     return this.http.get("resources/tmp/_tmp_brancheCP.json");
             
   }
+
+
+  // ------------------------------------ GENERAL --------------------------------------------
 
   /** Methode générale pour effectuer l'appel d'API */
   sendWebService(body: any, url: string): Observable<any> {

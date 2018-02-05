@@ -70,7 +70,8 @@ export class ConditionsParticulieresMotifsActionComponent implements OnInit {
       data: { 
         idListePieces: idListePieces, 
         route: this.activatedRoute
-      }
+      },
+      autoFocus: false 
     });
   }
 
@@ -87,7 +88,8 @@ export class ConditionsParticulieresMotifsActionComponent implements OnInit {
       data: { 
         idListeStructure: idListeStructure, 
         route: this.activatedRoute,
-      }
+      },
+      autoFocus: false 
     });
   }
 }

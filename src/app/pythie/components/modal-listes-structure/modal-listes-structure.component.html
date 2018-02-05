@@ -1,4 +1,4 @@
-<!-- Entete de la modal : fil d'ariane + titre -->
+<!-- Entete de la modale : fil d'ariane + titre -->
 <app-header-modal [routeTmp]="data.route" [titleModal]="rscModal.titleModal" [nameModal]="rscModal.nameModal"></app-header-modal>
 
 <!-- Conditionne l'affichage le temps du chargement des données -->
@@ -88,6 +88,5 @@
 
 <!-- Bouton -->
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
-    <!-- tabindex="-1" pour éviter que le focus soit mis sur le bouton à l'ouverture de la modal -->
-    <button mat-raised-button color="primary" (click)="closeModal()" tabindex="-1">Fermer</button>
+    <button mat-raised-button color="primary" (click)="closeModal()">Fermer</button>
 </div>

@@ -1,0 +1,21 @@
+{
+    "libelle": {
+        "id": "ID plan",
+        "type_plan": "Type de plan",
+        "nom": "Nom du plan",
+        "description": "Libellé plan",
+        "date_debut": "Date de début",
+        "date_fin": "Date de fin",
+        "actif": "Actif O/N"
+    },
+    "detail_plan": {
+        "id": "1",
+        "type_plan": "CP",
+        "type_plan_desc": "Conditions particulières",
+        "nom": "ACCORD_FILIALE",
+        "description": "Plan de base du groupe Accor FILIALE",
+        "date_debut": "2017-12-30",
+        "date_fin": "",
+        "actif": "O"
+    }
+}

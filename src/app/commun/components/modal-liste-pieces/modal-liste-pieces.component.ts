@@ -32,7 +32,7 @@ export class ModalListePiecesComponent implements OnInit {
    * @param listService           Services générique à toute les listes
    * @param notificationsService  Services de notifications de bas de page
    * @param data                  Données reçues en paramètre de l'appel de la modal
-   * @param dialogRef             Référence à la modal en cours d'affichage
+   * @param dialogRef             Référence à la modale en cours d'affichage
    */
   constructor(
     private resourcesService: ResourcesService,

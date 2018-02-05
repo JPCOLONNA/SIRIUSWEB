@@ -53,6 +53,12 @@ body {
     background-color: $default-color-material;
 }
 
+.notificationSuccess
+{
+    color:$default-bg-text-color;
+    background-color: $default-color;
+}
+
 
 .headerCenter .mat-sort-header-button {
     margin: auto !important;

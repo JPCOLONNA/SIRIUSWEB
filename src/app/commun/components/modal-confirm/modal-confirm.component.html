@@ -1,0 +1,13 @@
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+  <span>{{question}}</span>
+  <span>{{additionalMessage}}</span>
+</div>
+
+<div mat-dialog-actions fxLayout="row" class="matDialogActions" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <button mat-raised-button (click)="closeModal(false)" tabindex="15">
+    <i [class]="'fa fa-'+rsc.bouton.non.icon"></i> {{rsc.bouton.non.libelle}}
+  </button>
+  <button mat-raised-button (click)="closeModal(true)" tabindex="14">
+    <i [class]="'fa fa-'+rsc.bouton.oui.icon"></i> {{rsc.bouton.oui.libelle}}
+  </button>
+</div>
