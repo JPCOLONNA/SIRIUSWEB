@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms/';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { DISABLED } from '@angular/forms/src/model';
@@ -30,6 +30,8 @@ export class FormulaireCouvertureComponent implements OnInit {
 
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
+
+  @Output() onDeleted = new EventEmitter<string>();
 
   // --------------------- Formulaire -----------------------
   /** Nom du formulaire de recherche */
@@ -106,5 +108,13 @@ export class FormulaireCouvertureComponent implements OnInit {
   }
 
   onSubmit() {}
+
+   delete()  {
+     if (this.couverture !== undefined) {
+        this.onDeleted.emit(this.couverture.num);
+     } else {
+        this.onDeleted.emit(this.couverturebeneficiaire.num);
+     }
+  }
 
 }

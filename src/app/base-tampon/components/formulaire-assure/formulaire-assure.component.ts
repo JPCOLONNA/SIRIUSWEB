@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms/';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { DISABLED } from '@angular/forms/src/model';
+import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
 
 /**
  * Formulaire de modification d'un assuré en base tampon.<br />
@@ -25,12 +26,17 @@ export class FormulaireAssureComponent implements OnInit {
     /**Listes codes/libelles de l ecran de saisie*/
   @Input() parameters: any;
 
-
   /**Données du bénéficiaire en cours d'affichage/de modification*/
   @Input() beneficiaire: any;
 
+  @Input() idEvenement: string;
+
+  @Input() idStockage: string;
+
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
+
+  @Output() onDeleted = new EventEmitter<string>();
 
   // --------------------- Formulaire -----------------------
   /** Nom du formulaire de recherche */
@@ -51,6 +57,7 @@ export class FormulaireAssureComponent implements OnInit {
    */
   constructor(
     private resourcesService: ResourcesService,
+    private baseTamponService: BaseTamponService,
     private formBuilder: FormBuilder) { }
 
   /**
@@ -139,11 +146,81 @@ export class FormulaireAssureComponent implements OnInit {
     }
   }
 
-  onSubmit() {}
+  onSubmit($event) {
+    this.baseTamponService.saveEvent(this.generateAssureSaveParameters(this.formAssure)).subscribe(data => {
+
+    });
+
+    ;
+  }
+
+  delete()  {
+    if (this.assure !== undefined) {
+      this.onDeleted.emit(this.assure.num);
+    } else {
+      this.onDeleted.emit(this.beneficiaire.num);
+    }
+  }
+
+  generateAssureSaveParameters(form: FormGroup) {
+
+    if (this.assure !== undefined) {
+      let  JSONArg = JSON.parse('{"assure":[{}]}');
+      JSONArg["idevenement"] = this.idEvenement;
+      JSONArg["idstockage"] = this.idStockage;
+      JSONArg.assure[0].id_assure=this.assure.id_assure;
+      Object.keys( form.controls).forEach(key => {
+        if (this.keepKeyAssure(key)===true) {
+          JSONArg.assure[0][this.convertAssureKeys(key)]=form.controls[key].value;
+        }
+      });
+
+      return JSONArg;
+    } else {
+
+    }
+  }
+
+  keepKeyAssure(key:string) {
+    let ret: boolean=false;
+    if (key!=="qualite"&&key!=="rang"&&key!=="attachement"&&key!=="debut_effet"&&key!=="fin_effet") {
+      ret=true;
+    }
+    return ret;
+  }
+
+  convertAssureKeys(key: string) {
+    switch (key) {
+    case "nom":
+      key="nom_assure";
+      break;
+    case "prenom":
+      key="prenom_assure";
+      break;
+    case "telephone":
+      key="telephone_fixe";
+      break;
+    case "fax":
+      key="telephone_mobile";
+      break;
+    case "regime":
+      key="regime_caisse";
+      break;
+    case "guichet":
+      key="guichet_caisse";
+      break;
+    case "cle":
+      key="cle_caisse";
+      break;
+    case "num_ss":
+      key="numero_ss";
+      break;
+    default:
+      
+  }
 
 
-  toJSon() {
-    
-  } 
+    return key;
+  }
 
 }

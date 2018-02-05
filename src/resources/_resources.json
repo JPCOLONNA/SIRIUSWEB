@@ -66,6 +66,14 @@
         "numSociete": "N° de societe",
         "raisonSociale": "Raison sociale de la société",
         "btnValider": "Valider",
+        "btnValiderEvenement": "Valider l'évênement",
+        "btnAjouterAssure": "Ajouter une fiche assuré",
+        "btnAjouterBeneficiaire": "Ajouter un bénéficiaire",
+        "btnAjouterCouverture": "Ajouter une couverture",
+        "btnAjouterCouvertureBeneficiaire": "Ajouter une couverture",
+        "btnAjouterInfosSalariales": "Ajouter une fiche d'informations salariales",
+        "btnAjouterIban": "Ajouter un iban",
+        "btnEnregistrerModifs": "Enregistrer les modifications",
         "attachement": "Attachement",
         "rattachement": "Rattachement",
         "qualite": "Qualité",
@@ -113,6 +121,14 @@
         "dateFin": "Jusqu'au",
         "typePlan": "Type de plan",
         "typeTitulaire": "Type de titulaire"
+    },
+    "CONSTS": {
+        "AJOUT_ASSURE": "AJOUT_ASSURE",
+        "AJOUT_BENEFICIAIRE": "AJOUT_BENEFICIAIRE",
+        "AJOUT_COUVERTURE": "AJOUT_COUVERTURE",
+        "AJOUT_COUVERTURE_BENEFICIAIRE": "AJOUT_COUVERTURE_BENEFICIAIRE",
+        "AJOUT_INFOS_SALARIALES": "AJOUT_INFOS_SALARIALES",
+        "AJOUT_IBAN": "AJOUT_IBAN"
     },
     "bouton": {
         "rechercher": { "icon": "search", "libelle": "Rechercher" },

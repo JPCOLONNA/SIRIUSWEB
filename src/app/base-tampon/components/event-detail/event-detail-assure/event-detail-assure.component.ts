@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
 
@@ -43,25 +43,36 @@ export class EventDetailAssureComponent implements OnInit {
   /** Liste des infos salariés à afficher */
   @Input() listInfosIban: Array<any>;
 
+  @Input() idEvenement: string;
+
+  @Input() idStockage: string;
+
+
+  @Output() onDeleted = new EventEmitter<string>();
+
+  @Output() onAdded   = new EventEmitter<string>();
+
   /**
    * Créer une instance du composant EventDetailAssureComponent<br />
    * @param resourcesService                Services de ressources pour toute les applications
    */
   constructor(private resourcesService: ResourcesService,
               private baseTamponService: BaseTamponService) {
-
-
   }
-
-
-
 
   /**
   * Initialise le composant et de ses variables<br/>
   */
   ngOnInit() {
     this.rsc = this.resourcesService.get();
- 
+  }
+
+  onDelete($event) {
+    this.onDeleted.emit($event);
+  }
+
+  Ajouter(type: string) {
+    this.onAdded.emit(type);
   }
 
 }

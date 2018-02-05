@@ -26,6 +26,11 @@
             "url": "/wabasetmp",
             "contexte": "GetListeParametres"
         },
+        "saveEvent": {
+            "url": "/wabasetmp",
+            "contexte": "ModificationEvenement",
+            "fic_assures": "XTRTMPASS"
+        },
         "liste": {
             "url": "/waliste",
             "contexte": {

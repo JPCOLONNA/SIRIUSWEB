@@ -143,52 +143,67 @@ loadParameters() {
         //Cast le résultat de type "object" en structure JSON
         this.eventDetail= JSON.parse(JSON.stringify(results[0]));
 
+        this.idEvt      = this.eventDetail.DetailEvt.id_evenement;
+        this.idStockage = this.eventDetail.DetailEvt.id_stockage;
+
         //Liste des évènements 
         this.listAssures = new Array<Assure>();
+        let tmp = 1;
         if (this.eventDetail.Liste_assure)
         for (let assure of this.eventDetail.Liste_assure) {
           if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
-            this.listAssures.push(new Assure(assure));
+            this.listAssures.push(new Assure(assure, tmp));
+            tmp = tmp + 1;
           }
         }
 
-         this.listBeneficiaires = new Array<Assure>();
+        tmp = 1;
+        this.listBeneficiaires = new Array<Assure>();
         if (this.eventDetail.Liste_beneficiaire)
         for (let assure of this.eventDetail.Liste_beneficiaire) {
           if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
-            this.listBeneficiaires.push(new Assure(assure));
+            this.listBeneficiaires.push(new Assure(assure, tmp));
+            tmp = tmp + 1;
           }
         }
 
+        tmp = 1;
         this.listCouvertures = new Array<Couverture>();
         if (this.eventDetail.Liste_couverture_assure)
         for (let couverture of this.eventDetail.Liste_couverture_assure) {
           if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
-            this.listCouvertures.push(new Couverture(couverture));
+            this.listCouvertures.push(new Couverture(couverture, tmp));
+            tmp = tmp + 1;
           }
         }
 
+        tmp = 1;
         this.listCouverturesBeneficiaires = new Array<Couverture>();
         if (this.eventDetail.Liste_couverture_beneficiaire)
         for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
           if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
-            this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+            this.listCouverturesBeneficiaires.push(new Couverture(couverture, tmp));
+            tmp = tmp + 1;
           }
         }
 
+        tmp = 1;
         this.listInfosSalaries = new Array<Salarie>();
         if (this.eventDetail.Liste_salarie)
         for (let salarie of this.eventDetail.Liste_salarie) {
           if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
-            this.listInfosSalaries.push(new Salarie(salarie));
+            this.listInfosSalaries.push(new Salarie(salarie, tmp));
+            tmp = tmp + 1;
           }
         }
 
+        tmp = 1;
         this.listInfosIban = new Array<Iban>();
         if (this.eventDetail.Liste_rib)
         for (let iban of this.eventDetail.Liste_rib) {
           if (JSON.stringify(iban)!==this.rsc.JsonBlank) {
-            this.listInfosIban.push(new Iban(iban));
+            this.listInfosIban.push(new Iban(iban, tmp));
+            tmp = tmp + 1;
           }
         }
 
@@ -206,6 +221,94 @@ loadParameters() {
       }
     );
    
+  }
+
+  deleteAssure($event) {
+    let index=1;
+    for(var i = 0; i < this.listAssures.length; i++) {
+    if(this.listAssures[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listAssures.splice(index, 1);
+  }
+
+  deleteBenef($event) {
+    let index=1;
+    for(var i = 0; i < this.listBeneficiaires.length; i++) {
+    if(this.listBeneficiaires[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listBeneficiaires.splice(index, 1);
+  }
+
+  deleteCouverture($event) {
+    let index=1;
+    for(var i = 0; i < this.listCouvertures.length; i++) {
+    if(this.listCouvertures[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listCouvertures.splice(index, 1);
+  }
+
+  deleteCouvertureBenef($event) {
+    let index=1;
+    for(var i = 0; i < this.listCouverturesBeneficiaires.length; i++) {
+    if(this.listCouverturesBeneficiaires[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listCouverturesBeneficiaires.splice(index, 1);
+  }
+
+  deleteInfosSalaries($event) {
+    let index=1;
+    for(var i = 0; i < this.listInfosSalaries.length; i++) {
+    if(this.listInfosSalaries[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listInfosSalaries.splice(index, 1);
+  }
+
+  deleteIban($event) {
+    let index=1;
+    for(var i = 0; i < this.listInfosIban.length; i++) {
+    if(this.listInfosIban[i].num === $event) {
+        index=i;
+      }
+    }
+    this.listInfosIban.splice(index, 1);
+  }
+
+  add($event) {
+    alert($event);
+    if ($event===this.rsc.CONSTS.AJOUT_ASSURE) {
+      let index=this.listAssures.length+1;
+      this.listAssures.push(new Assure("", index));
+    }
+
+    if ($event===this.rsc.CONSTS.AJOUT_BENEFICIAIRE) {
+
+    }
+    if ($event===this.rsc.CONSTS.AJOUT_COUVERTURE) {
+
+    }
+    if ($event===this.rsc.CONSTS.AJOUT_COUVERTURE_BENEFICIAIRE) {
+
+    }
+    if ($event===this.rsc.CONSTS.AJOUT_INFOS_SALARIALES) {
+
+    }
+    if ($event===this.rsc.CONSTS.AJOUT_IBAN) {
+
+    }      
+        
+        
+        
+        
   }
 
   screenDefault() {
