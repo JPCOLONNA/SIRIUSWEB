@@ -127,6 +127,13 @@ export class BaseTamponService {
   }
 
 
+  generateSaveInfosSalParameters(JSONArg: any): string {
+    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"]=this.webservices.saveEvent.fic_infossal;
+    return JSON.stringify(JSONArg);
+  }
+
+
     /**
    * Récupère le détail d'un évênement depuis SIRIUS
    * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
@@ -181,7 +188,15 @@ export class BaseTamponService {
         });
   }
 
-
+  saveInfosSalEvent(JSONArg: any): Observable<any> {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveInfosSalParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
+  }
 
 /*
   //A SUPPRIMER PLUS UTILISÉ  

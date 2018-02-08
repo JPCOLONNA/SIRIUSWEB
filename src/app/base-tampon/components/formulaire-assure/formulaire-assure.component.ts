@@ -273,6 +273,7 @@ export class FormulaireAssureComponent implements OnInit {
         } else {
           retour='0';
         }
+      break;
       default:
     }
 

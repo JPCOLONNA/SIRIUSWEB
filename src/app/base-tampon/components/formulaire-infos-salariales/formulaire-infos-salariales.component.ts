@@ -108,7 +108,88 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.baseTamponService.saveInfosSalEvent(this.generateInfosSalSaveParameters(this.formAssure)).subscribe(data => {
+        this.isModified=false;
+      });
     this.onSaved.emit("");
+  }
+
+  generateInfosSalSaveParameters(form: FormGroup) {
+
+      let  JSONArg = JSON.parse('{}');
+      JSONArg.idevenement = this.idEvenement;
+      JSONArg.idstockage = this.idStockage;
+      Object.keys( form.controls).forEach(key => {
+        if (this.keepInfosSalKeys(key)===true) {
+          JSONArg[this.convertInfosSalKeys(key)]=this.convertInfosSalValues(key, form.controls[key].value);
+        }
+      });
+
+      return JSONArg;
+
+  }
+
+  
+  keepInfosSalKeys(key:string) {
+    let ret: boolean=false;
+    if (key!=="code_societe"&&key!=="raison_sociale"&&key!=="prenom"&&key!=="nom"&&key!=="niveau_professionnel"&&key!=="echelon"&&key!=="categorie_socio_professionnelle"&&key!=="temps_travail") {
+      ret=true;
+    }
+    return ret;
+  }
+
+  convertInfosSalKeys(key: string) {
+    switch (key) {
+    case "code_salarie":
+      key="id_salarie";
+      break;
+    case "top_refus":
+      key="refus_portabilite";
+      break;
+    case "statut_professionnel":
+      key="statut_prof";
+      break;
+    case "contrat_travail":
+      key="contrat_travail";
+      break;
+    default:  
+  }
+
+
+    return key;
+  }
+
+  convertInfosSalValues(key: string, value: any) {
+    let retour: string=value;
+    switch(key) {
+      case "debut_contrat":
+        if (value!==undefined && value!=null && value!="" && (value+"")!=="Invalid Date") {
+          let dateTmp: Date=value;
+          retour=dateTmp.getFullYear()+("0" + (dateTmp.getMonth()+1)).slice(-2)+("0" + dateTmp.getDate()).slice(-2);
+        } else {
+          retour="0";
+        }
+      break;
+      case "fin_contrat":
+          if (value!==undefined && value!=null && value!="" && (value+"")!=="Invalid Date") {
+            let dateTmp1: Date=value;
+            retour=dateTmp1.getFullYear()+("0" + (dateTmp1.getMonth()+1)).slice(-2)+("0" + dateTmp1.getDate()).slice(-2);
+          } else {
+            retour="0";
+          }
+      break;
+      case "top_refus":
+        let transf: boolean=value;
+        if (transf===true) {
+          retour='1';
+        } else {
+          retour='0';
+        }
+      break;
+      default:
+    }
+
+    return retour;
   }
 
    delete()  {
