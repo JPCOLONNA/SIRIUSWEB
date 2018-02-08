@@ -42,7 +42,7 @@ const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuardService],
+    //canActivate: [AuthGuardService],
     data: {
       screenName: "WSWACCUEIL"
     }

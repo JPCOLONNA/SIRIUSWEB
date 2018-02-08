@@ -28,8 +28,13 @@
         },
         "saveEvent": {
             "url": "/wabasetmp",
-            "contexte": "ModificationEvenement",
-            "fic_assures": "XTRTMPASS"
+            "contexte": "ModifEvenement",
+            "fic_assures": "Assure",
+            "fic_benefs": "Beneficiaire",
+            "fic_couverture": "CouvAssure",
+            "fic_couverturebenef": "CouvBenef",
+            "fic_iban": "RIB",
+            "fic_infossal": "Salarie"
         },
         "liste": {
             "url": "/waliste",

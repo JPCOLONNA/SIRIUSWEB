@@ -121,7 +121,8 @@
         "dateFin": "Jusqu'au",
         "typePlan": "Type de plan",
         "description": "Description",
-        "typeTitulaire": "Type de titulaire"
+        "typeTitulaire": "Type de titulaire",
+        "formulaireModifie": "*La saisie n'a pas été enregistrée."
     },
     "CONSTS": {
         "AJOUT_ASSURE": "AJOUT_ASSURE",

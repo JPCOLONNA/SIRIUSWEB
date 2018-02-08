@@ -88,8 +88,10 @@ export class EventsListComponent implements OnInit {
         
         //Liste des évènements 
         this.eventList = new Array<Evenement>();
+        let tmp: number=1;
         for(let evt of rscTmp.ListeEvt){
-            this.eventList.push(new Evenement(evt));
+            this.eventList.push(new Evenement(evt, tmp));
+            tmp=tmp+1;
         }
 
         //this.eventList = rscTmp.liste_evenements;

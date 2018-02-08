@@ -52,6 +52,8 @@ export class EventDetailAssureComponent implements OnInit {
 
   @Output() onAdded   = new EventEmitter<string>();
 
+  @Output() onSaved   = new EventEmitter<string>();
+
   /**
    * Créer une instance du composant EventDetailAssureComponent<br />
    * @param resourcesService                Services de ressources pour toute les applications
@@ -73,6 +75,10 @@ export class EventDetailAssureComponent implements OnInit {
 
   Ajouter(type: string) {
     this.onAdded.emit(type);
+  }
+
+  onSave() {
+    this.onSaved.emit("");
   }
 
 }

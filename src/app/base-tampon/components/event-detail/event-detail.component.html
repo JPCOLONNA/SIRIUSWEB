@@ -124,32 +124,33 @@
                     </div>
                     <div>
                         <!-- Informations assurés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="listAssures" [parameters]="parameters" (onDeleted)="deleteAssure($event)" (onAdded)="add($event)" [idEvenement]="idEvt" [idStockage]="idStockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.assures.codeEcran" [action]="action" [listAssures]="listAssures" [parameters]="parameters" (onSaved)="onSave($event)" (onDeleted)="deleteAssure($event)" (onAdded)="add($event)" [idEvenement]="idEvt"
+                            [idStockage]="idStockage">
                         </app-event-detail-assure>
 
                         <!-- Liste des bénéficiaires-->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="listBeneficiaires" [parameters]="parameters" (onDeleted)="deleteBenef($event)" (onAdded)="add($event)" [idEvenement]="eventDetail.id_evenement"
-                            [idStockage]="eventDetail.id_stockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.beneficiaires.codeEcran" [action]="action" [listBeneficiaires]="listBeneficiaires" [parameters]="parameters" (onSaved)="onSave($event)" (onDeleted)="deleteBenef($event)" (onAdded)="add($event)" [idEvenement]="idEvt"
+                            [idStockage]="idStockage">
                         </app-event-detail-assure>
 
                         <!-- Couvertures -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="listCouvertures" [parameters]="parameters" (onDeleted)="deleteCouverture($event)" (onAdded)="add($event)" [idEvenement]="eventDetail.id_evenement"
-                            [idStockage]="eventDetail.id_stockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureAssure.codeEcran" [action]="action" [listCouvertures]="listCouvertures" [parameters]="parameters" (onSaved)="onSave($event)" (onDeleted)="deleteCouverture($event)" (onAdded)="add($event)"
+                            [idEvenement]="idEvt" [idStockage]="idStockage">
                         </app-event-detail-assure>
 
                         <!-- Couvertures bénéficaires -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="listCouverturesBeneficiaires" [parameters]="parameters" (onDeleted)="deleteCouvertureBenef($event)" (onAdded)="add($event)"
-                            [idEvenement]="eventDetail.id_evenement" [idStockage]="eventDetail.id_stockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.couvertureBenef.codeEcran" [action]="action" [listCouverturesBeneficiaires]="listCouverturesBeneficiaires" (onSaved)="onSave($event)" [parameters]="parameters" (onDeleted)="deleteCouvertureBenef($event)"
+                            (onAdded)="add($event)" [idEvenement]="idEvt" [idStockage]="idStockage">
                         </app-event-detail-assure>
 
                         <!-- Informations salariés -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="listInfosSalaries" [parameters]="parameters" (onDeleted)="deleteInfosSalaries($event)" (onAdded)="add($event)" [idEvenement]="eventDetail.id_evenement"
-                            [idStockage]="eventDetail.id_stockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosSalarie.codeEcran" [action]="action" [listInfosSalaries]="listInfosSalaries" [parameters]="parameters" (onSaved)="onSave($event)" (onDeleted)="deleteInfosSalaries($event)" (onAdded)="add($event)"
+                            [idEvenement]="idEvt" [idStockage]="idStockage">
                         </app-event-detail-assure>
 
                         <!-- Informations IBAN -->
-                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listAssures]="listAssures" [listInfosIban]="listInfosIban" [parameters]="parameters" (onDeleted)="deleteIban($event)" (onAdded)="add($event)" [idEvenement]="eventDetail.id_evenement"
-                            [idStockage]="eventDetail.id_stockage">
+                        <app-event-detail-assure *ngIf="screen == menuDetail.infosRIB.codeEcran" [action]="action" [listAssures]="listAssures" [listInfosIban]="listInfosIban" (onSaved)="onSave($event)" [parameters]="parameters" (onDeleted)="deleteIban($event)" (onAdded)="add($event)"
+                            [idEvenement]="idEvt" [idStockage]="idStockage">
                         </app-event-detail-assure>
 
 

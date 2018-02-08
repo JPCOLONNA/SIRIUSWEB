@@ -1,4 +1,9 @@
 <form [formGroup]="formIban" (ngSubmit)="onSubmit()">
+    <div *ngIf="isModified">
+        <mat-chip-list>
+            <mat-chip class="pastille" disabled="true" selected="true" color="warn">{{rsc.label.formulaireModifie}}</mat-chip>
+        </mat-chip-list>
+    </div>
     <!-- 
     <h2>{{rsc.label.rattachement}}</h2>
     <hr class="down-h2">

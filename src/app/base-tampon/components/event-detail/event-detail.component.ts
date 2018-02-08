@@ -51,6 +51,21 @@ export class EventDetailComponent implements OnInit {
   /** Action effectuée sur l'écran */
   action: any;
 
+  DR_AJOUT_ASSURE: boolean=false;
+  DR_AJOUT_BENEFICIAIRE: boolean=false;
+  DR_AJOUT_COUVERTURE: boolean=false;
+  DR_AJOUT_COUVERTURE_BENEFICIAIRE: boolean=false;
+  DR_AJOUT_INFOS_SALARIALES: boolean=false;
+  DR_AJOUT_IBAN: boolean=false;
+
+  DR_SUPPR_ASSURE: boolean=false;
+  DR_SUPPR_BENEFICIAIRE: boolean=false;
+  DR_SUPPR_COUVERTURE: boolean=false;
+  DR_SUPPR_COUVERTURE_BENEFICIAIRE: boolean=false;
+  DR_SUPPR_INFOS_SALARIALES: boolean=false;
+  DR_SUPPR_IBAN: boolean=false;
+
+
   parameters: any;
 
   /** Liste des choix du menu et leurs paramètres */
@@ -127,6 +142,47 @@ loadParameters() {
     else
       this.action = "modifier"; //"consulter"
 
+    if (this.autorisationService.isAutorise("WVADETAILASS", "creer")) {
+      this.DR_AJOUT_ASSURE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILBENEF", "creer")) {
+      this.DR_AJOUT_BENEFICIAIRE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILCOUV", "creer")) {
+      this.DR_AJOUT_COUVERTURE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILCOVBEN", "creer")) {
+      this.DR_AJOUT_COUVERTURE_BENEFICIAIRE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILINFSAL", "creer")) {
+      this.DR_AJOUT_INFOS_SALARIALES=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILIBAN", "creer")) {
+      this.DR_AJOUT_IBAN=true;
+    }
+
+    
+
+    if (this.autorisationService.isAutorise("WVADETAILASS", "supprimer")) {
+      this.DR_SUPPR_ASSURE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILBENEF", "supprimer")) {
+      this.DR_SUPPR_BENEFICIAIRE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILCOUV", "supprimer")) {
+      this.DR_SUPPR_COUVERTURE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILCOVBEN", "supprimer")) {
+      this.DR_SUPPR_COUVERTURE_BENEFICIAIRE=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILINFSAL", "supprimer")) {
+      this.DR_SUPPR_INFOS_SALARIALES=true;
+    }
+    if (this.autorisationService.isAutorise("WVADETAILIBAN", "supprimer")) {
+      this.DR_SUPPR_IBAN=true;
+    }
+
+    alert(this.idEvt);
     //Récupération des données
     Observable.forkJoin(this.baseTamponService.loadEventDetails(this.idStockage+"", this.idEvt+"",""), this.baseTamponService.loadParameters() ).subscribe(
        results => {
@@ -143,7 +199,10 @@ loadParameters() {
         //Cast le résultat de type "object" en structure JSON
         this.eventDetail= JSON.parse(JSON.stringify(results[0]));
 
+        if (this.eventDetail.DetailEvt.id_evenement)
         this.idEvt      = this.eventDetail.DetailEvt.id_evenement;
+
+        if (this.eventDetail.DetailEvt.id_stockage)
         this.idStockage = this.eventDetail.DetailEvt.id_stockage;
 
         //Liste des évènements 
@@ -284,26 +343,31 @@ loadParameters() {
   }
 
   add($event) {
-    alert($event);
     if ($event===this.rsc.CONSTS.AJOUT_ASSURE) {
       let index=this.listAssures.length+1;
       this.listAssures.push(new Assure("", index));
     }
 
     if ($event===this.rsc.CONSTS.AJOUT_BENEFICIAIRE) {
-
+      let index=this.listBeneficiaires.length+1;
+      this.listBeneficiaires.push(new Assure("", index));
     }
-    if ($event===this.rsc.CONSTS.AJOUT_COUVERTURE) {
 
+    if ($event===this.rsc.CONSTS.AJOUT_COUVERTURE) {
+      let index=this.listCouvertures.length+1;
+      this.listCouvertures.push(new Couverture("", index));
     }
     if ($event===this.rsc.CONSTS.AJOUT_COUVERTURE_BENEFICIAIRE) {
-
+      let index=this.listCouverturesBeneficiaires.length+1;
+      this.listCouverturesBeneficiaires.push(new Couverture("", index));
     }
     if ($event===this.rsc.CONSTS.AJOUT_INFOS_SALARIALES) {
-
+      let index=this.listInfosSalaries.length+1;
+      this.listInfosSalaries.push(new Salarie("", index));
     }
     if ($event===this.rsc.CONSTS.AJOUT_IBAN) {
-
+      let index=this.listInfosIban.length+1;
+      this.listInfosIban.push(new Iban("", index));
     }      
         
         
@@ -323,70 +387,86 @@ loadParameters() {
   }
 
 
+  onSave() {
+    this.loadEventDetail();
+  }
+
 
 loadEventDetail() {
 
         this.baseTamponService.loadEventDetails(this.idStockage+"", this.idEvt+"","").subscribe(
       (data) => {
         console.log(data);
-        //TO DO A activer lors de l'appel du service
-        /*if (data.hasOwnProperty('success') && data.success === 'true') {
-          this.brancheCP = data;
-        } else {
-          this.exceptionService.handleException(data).subscribe(() => {}, (err) => {
-            this.notificationsService.error('Erreur', err);
-          });
-        }*/
 
         //Cast le résultat de type "object" en structure JSON
         this.eventDetail= JSON.parse(JSON.stringify(data));
         console.log(this.eventDetail);
         //Liste des évènements 
+        let tmp: number = 1;
+
         this.listAssures = new Array<Assure>();
-        if (this.eventDetail.Liste_assure)
-        for (let assure of this.eventDetail.Liste_assure) {
-          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
-            this.listAssures.push(new Assure(assure));
+        if (this.eventDetail.Liste_assure) {
+          tmp = 1;
+          for (let assure of this.eventDetail.Liste_assure) {
+            if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+              this.listAssures.push(new Assure(assure,tmp));
+              tmp=tmp+1;
+            }
           }
         }
 
-         this.listBeneficiaires = new Array<Assure>();
-        if (this.eventDetail.Liste_beneficiaire)
-        for (let assure of this.eventDetail.Liste_beneficiaire) {
-          if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
-            this.listBeneficiaires.push(new Assure(assure));
+        this.listBeneficiaires = new Array<Assure>();
+        if (this.eventDetail.Liste_beneficiaire) {
+          tmp = 1;
+          for (let assure of this.eventDetail.Liste_beneficiaire) {
+            if (JSON.stringify(assure)!==this.rsc.JsonBlank) {
+              this.listBeneficiaires.push(new Assure(assure,tmp));
+              tmp = tmp+1;
+            }
           }
         }
 
         this.listCouvertures = new Array<Couverture>();
-        if (this.eventDetail.Liste_couverture_assure)
-        for (let couverture of this.eventDetail.Liste_couverture_assure) {
-          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
-            this.listCouvertures.push(new Couverture(couverture));
+        if (this.eventDetail.Liste_couverture_assure) {
+          tmp=1;
+          for (let couverture of this.eventDetail.Liste_couverture_assure) {
+            if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+              this.listCouvertures.push(new Couverture(couverture,tmp));
+              tmp = tmp+1;
+            }
           }
         }
 
         this.listCouverturesBeneficiaires = new Array<Couverture>();
-        if (this.eventDetail.Liste_couverture_beneficiaire)
-        for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
-          if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
-            this.listCouverturesBeneficiaires.push(new Couverture(couverture));
+        if (this.eventDetail.Liste_couverture_beneficiaire) {
+          tmp = 1;
+          for (let couverture of this.eventDetail.Liste_couverture_beneficiaire) {
+            if (JSON.stringify(couverture)!==this.rsc.JsonBlank) {
+              this.listCouverturesBeneficiaires.push(new Couverture(couverture,tmp));
+              tmp = tmp+1;
+            }
           }
         }
 
         this.listInfosSalaries = new Array<Salarie>();
-        if (this.eventDetail.Liste_salarie)
-        for (let salarie of this.eventDetail.Liste_salarie) {
-          if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
-            this.listInfosSalaries.push(new Salarie(salarie));
+        if (this.eventDetail.Liste_salarie) {
+          tmp=1;
+          for (let salarie of this.eventDetail.Liste_salarie) {
+            if (JSON.stringify(salarie)!==this.rsc.JsonBlank) {
+              this.listInfosSalaries.push(new Salarie(salarie,tmp));
+              tmp = tmp+1;
+            }
           }
         }
 
         this.listInfosIban = new Array<Iban>();
-        if (this.eventDetail.Liste_rib)
-        for (let iban of this.eventDetail.Liste_rib) {
-          if (JSON.stringify(iban)!==this.rsc.JsonBlank) {
-            this.listInfosIban.push(new Iban(iban));
+        if (this.eventDetail.Liste_rib) {
+          tmp = 1;
+          for (let iban of this.eventDetail.Liste_rib) {
+            if (JSON.stringify(iban)!==this.rsc.JsonBlank) {
+              this.listInfosIban.push(new Iban(iban,tmp));
+              tmp = tmp+1;
+            }
           }
         }
 
@@ -403,18 +483,11 @@ loadEventDetail() {
   /**
    * Récupère le détail d'une action/évènement
    */
-  getEventDetailMock() {
+  /*getEventDetailMock() {
     this.baseTamponService.getDetailEvenement(this.idStockage)
       .subscribe(
       (data) => {
-        //TO DO A activer lors de l'appel du service
-        /*if (data.hasOwnProperty('success') && data.success === 'true') {
-          this.eventDetail = data;
-        } else {
-          this.exceptionService.handleException(data).subscribe(() => {}, (err) => {
-            this.notificationsService.error('Erreur', err);
-          });
-        }*/
+
         this.eventDetail = data;
 
 
@@ -461,7 +534,7 @@ loadEventDetail() {
         
       }
       );
-  }
+  }*/
 
 
 

@@ -96,10 +96,33 @@ export class BaseTamponService {
 
 
 
-  generateSaveParameters(JSONArg: any): string {
+  generateSaveAssureParameters(JSONArg: any): string {
     JSONArg["contexte"]=this.webservices.saveEvent.contexte;
     JSONArg["nomfic"]=this.webservices.saveEvent.fic_assures;
-    alert(JSON.stringify(JSONArg));
+    return JSON.stringify(JSONArg);
+  }
+
+  generateSaveBeneficiaireParameters(JSONArg: any): string {
+    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"]=this.webservices.saveEvent.fic_benefs;
+    return JSON.stringify(JSONArg);
+  }
+
+  generateSaveCouvertureParameters(JSONArg: any): string {
+    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"]=this.webservices.saveEvent.fic_couverture;
+    return JSON.stringify(JSONArg);
+  }
+
+  generateSaveCouvertureBeneficiaireParameters(JSONArg: any): string {
+    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"]=this.webservices.saveEvent.fic_couverturebenef;
+    return JSON.stringify(JSONArg);
+  }
+
+  generateSaveIbanParameters(JSONArg: any): string {
+    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"]=this.webservices.saveEvent.fic_iban;
     return JSON.stringify(JSONArg);
   }
 
@@ -108,14 +131,54 @@ export class BaseTamponService {
    * Récupère le détail d'un évênement depuis SIRIUS
    * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
    */
-  saveEvent(JSONArg: any): Observable<any> {
-    return this.http.post(
-      this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-        this.generateSaveParameters(JSONArg),
-        {headers: this.mixinService.getDefaultHeaders()}
-      ).catch(error => {
-        return this.exceptionService.handleException(error);
-      });
+  saveAssureEvent(JSONArg: any, type: number): Observable<any> {
+    if (type===0) {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveAssureParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
+    } else {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveBeneficiaireParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
+    }
+  }
+
+  saveCouvertureEvent(JSONArg: any, type: number): Observable<any> {
+    if (type===0) {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveCouvertureParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
+    } else {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveCouvertureBeneficiaireParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
+    }
+  }
+
+  saveIbanEvent(JSONArg: any): Observable<any> {
+      return this.http.post(
+        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
+          this.generateSaveIbanParameters(JSONArg),
+          {headers: this.mixinService.getDefaultHeaders()}
+        ).catch(error => {
+          return this.exceptionService.handleException(error);
+        });
   }
 
 

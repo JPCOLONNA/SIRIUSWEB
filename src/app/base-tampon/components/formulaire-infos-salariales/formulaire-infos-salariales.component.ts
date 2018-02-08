@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms/';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { DISABLED } from '@angular/forms/src/model';
+import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
 
 /**
  * Formulaire de modification d'un assuré en base tampon.<br />
@@ -19,6 +20,10 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
 
   /**Le formulaire concerne soit un assuré soit un bénéficaire   */
 
+  @Input() idEvenement: string;
+
+  @Input() idStockage: string;
+
   /**Données de l'assuré en cours d'affichage/de modification*/
   @Input() assure: any;
 
@@ -29,6 +34,10 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
   @Input() action: string;
 
   @Output() onDeleted = new EventEmitter<string>();
+
+  @Output() onSaved = new EventEmitter<string>();
+
+  isModified: boolean=false; 
 
   // --------------------- Formulaire -----------------------
   /** Nom du formulaire de recherche */
@@ -49,6 +58,7 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
    */
   constructor(
     private resourcesService: ResourcesService,
+    private baseTamponService: BaseTamponService,
     private formBuilder: FormBuilder) { }
 
   /**
@@ -92,9 +102,14 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
         'contrat_travail': [{ value: this.assure.contrat_travail, disabled: this.disabled }],
         'temps_de_travail': [{ value: this.assure.temps_de_travail, disabled: this.disabled }]
       });
+      this.formAssure.valueChanges.subscribe(val => {
+        this.isModified = true;
+      });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.onSaved.emit("");
+  }
 
    delete()  {
       this.onDeleted.emit(this.assure.num);
