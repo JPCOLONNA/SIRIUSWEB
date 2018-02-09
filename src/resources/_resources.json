@@ -66,6 +66,14 @@
         "numSociete": "N° de societe",
         "raisonSociale": "Raison sociale de la société",
         "btnValider": "Valider",
+        "btnValiderEvenement": "Valider l'évênement",
+        "btnAjouterAssure": "Ajouter une fiche assuré",
+        "btnAjouterBeneficiaire": "Ajouter un bénéficiaire",
+        "btnAjouterCouverture": "Ajouter une couverture",
+        "btnAjouterCouvertureBeneficiaire": "Ajouter une couverture",
+        "btnAjouterInfosSalariales": "Ajouter une fiche d'informations salariales",
+        "btnAjouterIban": "Ajouter un iban",
+        "btnEnregistrerModifs": "Enregistrer les modifications",
         "attachement": "Attachement",
         "rattachement": "Rattachement",
         "qualite": "Qualité",
@@ -109,11 +117,12 @@
         "titulaire": "Titulaire",
         "provenance": "Provenance",
         "organismeRattachement": "Organisme de rattachement",
-        "dateDebut":"A partir de",
-        "dateFin":"Jusqu'au",
-        "typePlan":"Type de plan",
-        "description":"Description",
-        "typeTitulaire": "Type de titulaire"
+        "dateDebut": "A partir de",
+        "dateFin": "Jusqu'au",
+        "typePlan": "Type de plan",
+        "description": "Description",
+        "typeTitulaire": "Type de titulaire",
+        "formulaireModifie": "*La saisie n'a pas été enregistrée."
     },
     "bouton":
     {
@@ -127,6 +136,14 @@
         "modifier": {"icon":"pencil","libelle":"Modifier"},
         "supprimer": {"icon":"trash","libelle":"Supprimer"},
         "duppliquer": {"icon":"clone","libelle":"Duppliquer"}
+    },
+    "CONSTS": {
+        "AJOUT_ASSURE": "AJOUT_ASSURE",
+        "AJOUT_BENEFICIAIRE": "AJOUT_BENEFICIAIRE",
+        "AJOUT_COUVERTURE": "AJOUT_COUVERTURE",
+        "AJOUT_COUVERTURE_BENEFICIAIRE": "AJOUT_COUVERTURE_BENEFICIAIRE",
+        "AJOUT_INFOS_SALARIALES": "AJOUT_INFOS_SALARIALES",
+        "AJOUT_IBAN": "AJOUT_IBAN"
     },
     "JsonBlank": "{}",
     "positionTooltip": "below",
@@ -146,9 +163,20 @@
         { "code": "N", "valeur": "En concubinage notoire" },
         { "code": "S", "valeur": "Séparé" }
     ],
+<<<<<<< HEAD
     "message":
     {
         "quitScreenConfirm":"Êtes-vous sur de vouloir quitter la fenêtre ? ",
+=======
+    "icons": {
+        "menu": { "icon": "bars", "label": "Menu" },
+        "modifier": { "icon": "pencil", "label": "Modifier" },
+        "supprimer": { "icon": "trash", "label": "Supprimer" },
+        "duppliquer": { "icon": "clone", "label": "Duppliquer" }
+    },
+    "message": {
+        "quitScreenConfirm": "Êtes-vous sur de vouloir quitter la fenêtre ? ",
+>>>>>>> 528f068d349b6367561aadf2bc1338e5150fb3f2
         "addFormConfirm": "Les informations saisies seront perdues.",
         "updateFormConfirm": "Vos modifications seront perdues.",
         "deleteConfirm": "Êtes-vous sur de vouloir supprimer cet élément ?"

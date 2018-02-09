@@ -1,4 +1,5 @@
 export class Assure {
+    num: number;
     id_evenement: string;
     id_assure: string;
     id_beneficiaire: string;
@@ -34,9 +35,11 @@ export class Assure {
     fin_effet: string;
 
 
-    constructor(tab: any) {
+    constructor(tab: any, numero: number) {
+        this.num=numero;
         this.id_evenement = tab.id_evenement ? tab.id_evenement : "";
         this.id_assure = tab.id_assure ? tab.id_assure : "";
+        this.id_beneficiaire = tab.id_benef ? tab.id_benef : "";
         this.civilite = tab.civilite ? tab.civilite : "";
         this.lb_civilite = tab.lb_civilite ? tab.lb_civilite : "";
         this.nom = tab.nom_assure ? tab.nom_assure : "";

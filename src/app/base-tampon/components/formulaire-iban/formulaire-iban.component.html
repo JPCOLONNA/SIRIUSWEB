@@ -1,4 +1,9 @@
 <form [formGroup]="formIban" (ngSubmit)="onSubmit()">
+    <div *ngIf="isModified">
+        <mat-chip-list>
+            <mat-chip class="pastille" disabled="true" selected="true" color="warn">{{rsc.label.formulaireModifie}}</mat-chip>
+        </mat-chip-list>
+    </div>
     <!-- 
     <h2>{{rsc.label.rattachement}}</h2>
     <hr class="down-h2">
@@ -11,7 +16,7 @@
     <h2>{{rsc.label.titulaire}}</h2>
     <hr class="down-h2">
     <div class="numAssure" fxLayout="row" fxLayoutAlign="space-between center">
-        <div fxFlex="30">{{listAssures[0].nom}} {{listAssures[0].prenom}}</div>
+        <div fxFlex="30" *ngIf="listAssures[0]">{{listAssures[0].nom}} {{listAssures[0].prenom}}</div>
 
         <mat-form-field fxFlex="30">
             <mat-select formControlName="type_titulaire" [placeholder]="rsc.label.typeTitulaire">
@@ -151,6 +156,7 @@
     </div>
     <!-- Boutons -->
     <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
-        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnEnregistrerModifs}}</button>
+        <button mat-raised-button type="button" (click)="delete();" color="primary">Supprimer</button>
     </div>
 </form>

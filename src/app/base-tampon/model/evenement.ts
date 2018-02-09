@@ -1,4 +1,5 @@
 export class Evenement {
+    num: number;
     id_evenement: string;
     id_stockage: string;
     type_action: string;
@@ -14,7 +15,8 @@ export class Evenement {
 
     listeEvenements: Array<Evenement>;
 
-    constructor(tab: any) {
+    constructor(tab: any, numero: number) {
+        this.num = numero;
         this.id_evenement = tab.id_evenement ? tab.id_evenement : "";
         this.id_stockage = tab.id_stockage ? tab.id_stockage : "";
         this.type_action = tab.type_action ? tab.type_action : "";

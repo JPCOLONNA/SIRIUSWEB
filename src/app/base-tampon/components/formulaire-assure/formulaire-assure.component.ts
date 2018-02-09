@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms/';
 import { ResourcesService } from 'app/core/providers/resources.service';
 import { DISABLED } from '@angular/forms/src/model';
+import { BaseTamponService } from 'app/base-tampon/providers/base-tampon.service';
+import { Router } from '@angular/router';
 
 /**
  * Formulaire de modification d'un assuré en base tampon.<br />
@@ -25,12 +27,19 @@ export class FormulaireAssureComponent implements OnInit {
     /**Listes codes/libelles de l ecran de saisie*/
   @Input() parameters: any;
 
-
   /**Données du bénéficiaire en cours d'affichage/de modification*/
   @Input() beneficiaire: any;
 
+  @Input() idEvenement: string;
+
+  @Input() idStockage: string;
+
   /** Action effectuée sur l'écran : consulter ou modifier */
   @Input() action: string;
+
+  @Output() onDeleted = new EventEmitter<string>();
+
+  @Output() onSaved = new EventEmitter<string>();
 
   // --------------------- Formulaire -----------------------
   /** Nom du formulaire de recherche */
@@ -43,7 +52,7 @@ export class FormulaireAssureComponent implements OnInit {
   /** Statut des champs, désactivée si l'utilisateur n'a pas le droit de modifier  */
   disabled = true;
 
-
+  isModified: boolean=false; 
   /**
    * Crée une instance du composant FormulaireAssureComponent
    * @param resourcesService      Services de ressources pour toute les applications 
@@ -51,14 +60,15 @@ export class FormulaireAssureComponent implements OnInit {
    */
   constructor(
     private resourcesService: ResourcesService,
-    private formBuilder: FormBuilder) { }
+    private baseTamponService: BaseTamponService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   /**
    * Initialise le composant et ses variables<br />
    * Construit le formulaire
    */
   ngOnInit() {
-
     // Attribut la valeur par défaut
     if (this.action == "")
       this.action = "consulter";
@@ -71,6 +81,7 @@ export class FormulaireAssureComponent implements OnInit {
 
     //Création du formulaire
     this.createForm();
+
   }
 
   /**
@@ -109,20 +120,7 @@ export class FormulaireAssureComponent implements OnInit {
         'civilite': [{ value: this.beneficiaire.civilite, disabled: this.disabled }],
         'nom': [{ value: this.beneficiaire.nom, disabled: this.disabled }],
         'prenom': [{ value: this.beneficiaire.prenom, disabled: this.disabled }],
-        'adresse': [{ value: this.beneficiaire.adresse, disabled: this.disabled }],
-        'adresse_suite': [{ value: this.beneficiaire.adresse_suite, disabled: this.disabled }],
-        'code_postal': [{ value: this.beneficiaire.code_postal, disabled: this.disabled }],
-        'ville': [{ value: this.beneficiaire.ville, disabled: this.disabled }],
-        'telephone': [{ value: this.beneficiaire.telephone_fixe, disabled: this.disabled }],
-        'fax': [{ value: this.beneficiaire.telephone_mobile, disabled: this.disabled }],
-        'email': [{ value: this.beneficiaire.email, disabled: this.disabled }],
-        'code_banque': [{ value: this.beneficiaire.code_banque, disabled: this.disabled }],
-        'guichet_banque': [{ value: this.beneficiaire.guichet_banque, disabled: this.disabled }],
-        'num_compte': [{ value: this.beneficiaire.num_compte, disabled: this.disabled }],
-        'cle_compte': [{ value: this.beneficiaire.cle_compte, disabled: this.disabled }],
         'date_naissance': [{ value: new Date(this.beneficiaire.date_naissance), disabled: this.disabled }],
-        'situation_familiale': [{ value: this.beneficiaire.situation_familiale, disabled: this.disabled }],
-        'nombre_enfant': [{ value: this.beneficiaire.nombre_enfant, disabled: this.disabled }],
         'transfert_noemie': [{ value: this.beneficiaire.transfert_noemie, disabled: this.disabled }],
         'regime': [{ value: this.beneficiaire.regime_caisse, disabled: this.disabled }],
         'caisse': [{ value: this.beneficiaire.caisse, disabled: this.disabled }],
@@ -137,13 +135,149 @@ export class FormulaireAssureComponent implements OnInit {
         'fin_effet': [{ value: new Date(this.beneficiaire.fin_effet), disabled: this.disabled }]
       });
     }
+    this.formAssure.valueChanges.subscribe(val => {
+    this.isModified = true;
+  });
   }
 
-  onSubmit() {}
+  onSubmit($event) {
+    if (this.assure !== undefined) {
+      this.baseTamponService.saveAssureEvent(this.generateAssureSaveParameters(this.formAssure),0).subscribe(data => {
+        this.isModified=false;
+      });
+    } else {
+      this.baseTamponService.saveAssureEvent(this.generateAssureSaveParameters(this.formAssure),1).subscribe(data => {
+        this.isModified=false;
+      });
+    }
+    this.onSaved.emit("");
+  }
+
+  delete()  {
+    if (this.assure !== undefined) {
+      this.onDeleted.emit(this.assure.num);
+    } else {
+      this.onDeleted.emit(this.beneficiaire.num);
+    }
+  }
+
+  generateAssureSaveParameters(form: FormGroup) {
+
+    if (this.assure !== undefined) {
+      let  JSONArg = JSON.parse('{}');
+      JSONArg.idevenement = this.idEvenement;
+      JSONArg.idstockage = this.idStockage;
+      JSONArg.id_assure=this.assure.id_assure;
+      Object.keys( form.controls).forEach(key => {
+        if (this.keepKeyAssure(key)===true) {
+          JSONArg[this.convertAssureKeys(key)]=this.convertAssureValues(key, form.controls[key].value);
+        }
+      });
+
+      return JSONArg;
+    } else {
+      let  JSONArg = JSON.parse('{}');
+      JSONArg.idevenement = this.idEvenement;
+      JSONArg.idstockage = this.idStockage;
+      JSONArg.id_assure=this.beneficiaire.id_assure;
+      JSONArg.id_benef=this.beneficiaire.id_beneficiaire;
+      Object.keys( form.controls).forEach(key => {
+          JSONArg[this.convertAssureKeys(key)]=this.convertAssureValues(key, form.controls[key].value);
+      });
+
+      return JSONArg;
+    }
+  }
+
+  keepKeyAssure(key:string) {
+    let ret: boolean=false;
+    if (key!=="qualite"&&key!=="rang"&&key!=="attachement"&&key!=="debut_effet"&&key!=="fin_effet") {
+      ret=true;
+    }
+    return ret;
+  }
+
+  convertAssureKeys(key: string) {
+    switch (key) {
+    case "nom":
+      key="nom_assure";
+      break;
+    case "prenom":
+      key="prenom_assure";
+      break;
+    case "telephone":
+      key="telephone_fixe";
+      break;
+    case "fax":
+      key="telephone_mobile";
+      break;
+    case "regime":
+      key="regime_caisse";
+      break;
+    case "guichet":
+      key="guichet_caisse";
+      break;
+    case "cle":
+      key="cle_caisse";
+      break;
+    case "num_ss":
+      key="numero_ss";
+      break;
+    case "attachement":
+      key= "rattachement";
+      break;
+    case "qualite":
+      key= "qualite_benef";
+      break;
+    case "rang":
+      key= "rang_benef";
+      break;
+    default:  
+  }
 
 
-  toJSon() {
-    
-  } 
+    return key;
+  }
+
+  convertAssureValues(key: string, value: any) {
+    let retour: string=value;
+    switch(key) {
+      case "date_naissance":
+        if (value!==undefined && value!=null && value!="" && (value+"")!=="Invalid Date") {
+          let dateTmp: Date=value;
+          retour=dateTmp.getFullYear()+("0" + (dateTmp.getMonth()+1)).slice(-2)+("0" + dateTmp.getDate()).slice(-2);
+        } else {
+          retour="0";
+        }
+      break;
+      case "debut_effet":
+          if (value!==undefined && value!=null && value!="" && (value+"")!=="Invalid Date") {
+            let dateTmp1: Date=value;
+            retour=dateTmp1.getFullYear()+("0" + (dateTmp1.getMonth()+1)).slice(-2)+("0" + dateTmp1.getDate()).slice(-2);
+          } else {
+            retour="0";
+          }
+      break;
+      case "fin_effet":
+          if (value!==undefined && value!=null && value!="" && (value+"")!=="Invalid Date") {
+            let dateTmp2: Date=value;
+            retour=dateTmp2.getFullYear()+("0" + (dateTmp2.getMonth()+1)).slice(-2)+("0" + dateTmp2.getDate()).slice(-2);
+          } else {
+            retour="0";
+          }
+      break;
+      case "transfert_noemie":
+        let transf: boolean=value;
+        if (transf===true) {
+          retour='1';
+        } else {
+          retour='0';
+        }
+      break;
+      default:
+    }
+
+    return retour;
+  }
 
 }

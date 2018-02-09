@@ -1,5 +1,5 @@
 export class Iban {
-
+    num: number;
     id_evenement: string;
     id_titulaire: string;
     type_titulaire: string;
@@ -25,7 +25,8 @@ export class Iban {
 
     listeIbans: Array<Iban>;
 
-    constructor(tab: any) {
+    constructor(tab: any, numero: number) {
+        this.num = numero;
         this.id_titulaire= tab.id_titulaire ? tab.id_titulaire : "";
         this.type_titulaire= tab.type_titul ? tab.type_titul : "";
         this.nom_titulaire= tab.nom_titul ? tab.nom_titul : "";

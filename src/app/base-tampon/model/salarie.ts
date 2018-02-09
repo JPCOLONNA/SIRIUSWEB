@@ -1,5 +1,5 @@
 export class Salarie { 
-
+    num: number;
     id_evenement: string;
     id_societe: string;
     raison_sociale: string;
@@ -27,7 +27,8 @@ export class Salarie {
     code_salarie: string;
 
 
-    constructor(tab: any) {
+    constructor(tab: any, numero: number) {
+        this.num=numero;
         this.id_evenement = tab.id_evenement ? tab.id_evenement : "";
         this.code_societe = tab.id_societe ? tab.id_societe : "";
         this.raison_sociale = tab.raison_sociale ? tab.raison_sociale : "";

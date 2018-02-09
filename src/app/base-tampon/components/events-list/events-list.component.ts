@@ -39,6 +39,9 @@ export class EventsListComponent implements OnInit {
   /** Tris sur les entêtes de colonne */
   @ViewChild(MatSort) sort: MatSort;
 
+   /** Flag pour la gestion de l'affichage du spinner de chargement */
+  isRequesting = true;
+
   /**
    *  Créer une instance du composant EventsListComponent
    * @param resourcesBaseTamponService      Services de ressources pour l'application "BASE TAMPON" 
@@ -65,7 +68,7 @@ export class EventsListComponent implements OnInit {
     this.rsc = this.resourcesService.get();
     this.rscBaseTampon = this.resourcesBaseTamponService.get();
 
-
+    this.isRequesting=true;
 
 
 
@@ -88,8 +91,10 @@ export class EventsListComponent implements OnInit {
         
         //Liste des évènements 
         this.eventList = new Array<Evenement>();
+        let tmp: number=1;
         for(let evt of rscTmp.ListeEvt){
-            this.eventList.push(new Evenement(evt));
+            this.eventList.push(new Evenement(evt, tmp));
+            tmp=tmp+1;
         }
 
         //this.eventList = rscTmp.liste_evenements;
@@ -102,6 +107,8 @@ export class EventsListComponent implements OnInit {
         this.dataSourceBaseTampon.paginator = this.paginator;
         //Configuration du tri sur les colonnes
         this.dataSourceBaseTampon.sort = this.sort;
+
+        this.doneRequesting();
       },
       (error) => {
         this.notificationsService.displayError(error);
@@ -128,5 +135,14 @@ export class EventsListComponent implements OnInit {
     this.router.navigate(['/tampon/fiche']);
   }
 
+
+ /**
+   * Change l'état de la page "en chargement" <==> "affichée"
+   */
+  doneRequesting() {
+    if (this.isRequesting) {
+      this.isRequesting = false;
+    }
+  }
 
 }

@@ -1,4 +1,9 @@
 <form [formGroup]="formAssure" (ngSubmit)="onSubmit()">
+    <div *ngIf="isModified">
+        <mat-chip-list>
+            <mat-chip class="pastille" disabled="true" selected="true" color="warn">{{rsc.label.formulaireModifie}}</mat-chip>
+        </mat-chip-list>
+    </div>
     <!-- INFOS NON MODIFIABLES -->
     <h2>{{rsc.label.societe}}</h2>
     <hr class="down-h2">
@@ -88,6 +93,7 @@
 
     <!-- Boutons -->
     <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
-        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnValider}}</button>
+        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnEnregistrerModifs}}</button>
+        <button mat-raised-button type="button" (click)="delete();" color="primary">Supprimer</button>
     </div>
 </form>
