@@ -1,0 +1,46 @@
+{
+    "libelle": 
+	{
+        "id_branche": 	"ID branche",
+        "type_produit": "Type de produit par défaut ou *",
+        "produit":	 	"ID Produit",
+        "college":	 	"Code Collège",
+        "regime":	 	"Régime",
+        "categorie":	 	"Catégorie filiale",
+        "type_cotidation": 	"Type de cotisation",
+        "envoi_carte_TP": 	"Destinataire carte TP",
+        "contrat":	 	"Contrat",
+        "liste_pieces" : 	"ID Liste pièces",
+        "liste_eligibilite" : "ID Liste éligibilité"
+	},
+"liste_branche_CP": [
+    {
+    "id_branche": 	"1",
+    "type_produit": 	"ACCOR_FILIALE_C ",
+    "type_produit_desc":"CADRE",
+    "produit":	 	"*",
+    "college":	 	"CADRE",
+    "regime":	 	"*",
+    "categorie":	 	"Tous types",
+    "type_cotidation": 	"tous types",
+    "envoi_carte_TP": 	"JP_COLONNA",
+    "contrat":	 	"Socle Filiale",
+    "liste_pieces" : 	"1",
+    "liste_eligibilite" : "1"
+    },
+    {
+    "id_branche": 	"5",
+    "type_produit": 	"ACCOR_FIL_OPT+_CA  ",
+    "type_produit_desc":"CADRE",
+    "produit":	 	"*",
+    "college":	 	"CADRE",
+    "regime":	 	"*",
+    "categorie":	 	"Tous types",
+    "type_cotidation": 	"tous types",
+    "envoi_carte_TP": 	"JP_COLONNA",
+    "contrat":	 	"Socle Filiale",
+    "liste_pieces" : 	"2",
+    "liste_eligibilite" : "2"
+    }
+]   
+}

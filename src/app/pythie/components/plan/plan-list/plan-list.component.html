@@ -63,38 +63,38 @@
         <!-- Type de plan -->
         <ng-container matColumnDef="typePlan">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.type_plan}} </mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable" [matTooltip]="plan.type_plan" [matTooltipPosition]="rsc.positionTooltip">
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable" [matTooltip]="plan.type_plan" [matTooltipPosition]="rsc.positionTooltip">
             {{plan.type_plan_desc}} </mat-cell>
         </ng-container>
 
         <!-- Nom du plan -->
         <ng-container matColumnDef="nom">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.nom}}</mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable"> {{plan.nom}} </mat-cell>
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable"> {{plan.nom}} </mat-cell>
         </ng-container>
 
         <!-- Description -->
         <ng-container matColumnDef="description">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.description}} </mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable"> {{plan.description}} </mat-cell>
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable"> {{plan.description}} </mat-cell>
         </ng-container>
 
         <!-- Date de début-->
         <ng-container matColumnDef="dateDebut">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.date_debut}} </mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable"> {{plan.date_debut | dateYMD}} </mat-cell>
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable"> {{plan.date_debut | dateYMD}} </mat-cell>
         </ng-container>
 
         <!-- Date de fin-->
         <ng-container matColumnDef="dateFin">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.date_fin}} </mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable"> {{plan.date_fin | dateYMD}} </mat-cell>
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable"> {{plan.date_fin | dateYMD}} </mat-cell>
         </ng-container>
 
         <!-- Actif -->
         <ng-container matColumnDef="actif">
           <mat-header-cell *matHeaderCellDef mat-sort-header> {{labelTable.actif}} </mat-header-cell>
-          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan.id_plan)" class="clickable"> {{plan.actif}} </mat-cell>
+          <mat-cell *matCellDef="let plan" (click)="selectPlan(plan)" class="clickable"> {{plan.actif}} </mat-cell>
         </ng-container>
 
         <!-- Actions -->
@@ -103,17 +103,17 @@
           <mat-cell *matCellDef="let plan">
             <!--<div [matMenuTriggerFor]="menu" #menuTrig="matMenuTrigger" (mouseenter)="menuTrig.openMenu()">-->
             <div [matMenuTriggerFor]="menuAction">
-              <i [class]="'fa fa-'+rsc.icons.menu.icon"></i>
+              <i [class]="'fa fa-'+rsc.bouton.menu.icon"></i>
             </div>
             <mat-menu #menuAction="matMenu">
               <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','modifier')" (click)="updatePlan(plan         )"  mat-menu-item>
-                <i [class]="'fa fa-'+rsc.icons.modifier.icon"></i> {{rsc.icons.modifier.label}}
+                <i [class]="'fa fa-'+rsc.bouton.modifier.icon"></i> {{rsc.bouton.modifier.libelle}}
               </button>
               <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','supprimer')"  (click)="deletePlan(plan)"  mat-menu-item>
-                <i [class]="'fa fa-'+rsc.icons.supprimer.icon"></i> {{rsc.icons.supprimer.label}}
+                <i [class]="'fa fa-'+rsc.bouton.supprimer.icon"></i> {{rsc.bouton.supprimer.libelle}}
               </button>
               <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','creer')"  (click)="duplicatePlan(plan)"  mat-menu-item>
-                <i [class]="'fa fa-'+rsc.icons.duppliquer.icon"></i> {{rsc.icons.duppliquer.label}}
+                <i [class]="'fa fa-'+rsc.bouton.duppliquer.icon"></i> {{rsc.bouton.duppliquer.libelle}}
               </button>
             </mat-menu>
           </mat-cell>

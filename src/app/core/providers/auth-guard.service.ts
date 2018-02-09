@@ -91,7 +91,6 @@ export class AuthGuardService implements CanActivate {
       //Redirige vers la page de login
       this.authService.login();
     }
-    console.log("test3");
   }
 
 /**

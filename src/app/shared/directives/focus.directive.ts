@@ -10,7 +10,7 @@ export class FocusDirective {
   //Applique un focus après le chargement de la vue
   ngAfterViewInit() {
     //setTimeout utilisé pour contourné une erreur 
-    setTimeout(this.element.nativeElement.focus(), 0);
+    setTimeout (() => this.element.nativeElement.focus(),0);
   }
 
 }

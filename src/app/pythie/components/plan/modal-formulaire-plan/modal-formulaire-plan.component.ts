@@ -175,10 +175,9 @@ export class ModalFormulairePlanComponent implements OnInit {
   }
 
   /**
-   * 
+   * Validation du formulaire d'ajout, de modification ou de dupplication d'un plan
    */
   onSubmit() {
-
     //Notification Ajout effectué (mode = add + duplicate) ou Modification effectuée
     if (this.formPlan.valid) {
       //Converti les dates
@@ -187,33 +186,38 @@ export class ModalFormulairePlanComponent implements OnInit {
       if (this.formPlan.value.dateFin != "")
         this.formPlan.value.dateFin = this.mixinService.parseDate8(this.formPlan.value.dateFin);
 
-      this.pythieService.addUpdateDuplicatePlan(this.idPlan,this.formPlan.value, this.mode)
-      .subscribe(result =>{
-        if (result.hasOwnProperty('success') && result.success === 'true') {
-          this.notificationsService.displaySuccessAPI(result.info);
-          this.onSubmit();
-        }
-        else
-        {
-          this.notificationsService.displayErrorAPI(result.info);
-        }
-      });
+      this.pythieService.addUpdateDuplicatePlan(this.idPlan, this.formPlan.value, this.mode)
+        .subscribe(result => {
+          /*TO DO if (result.hasOwnProperty('success') && result.success === 'true') {
+            this.notificationsService.displaySuccessAPI(result.info);*/
+            this.onSubmit();
+          /*}
+          else {
+            this.notificationsService.displayErrorAPI(result.info);
+          }*/
+        });
     }
   }
 
   /**
-   * Ferme la modale
+   * Ferme la modale avec controle s'il y a eu des données de saisies ou de modifiées
    */
   closeModal() {
     //controle si le formulaire a été modifié/touché et en mode ajout que le formulaire contient des données
     if ((this.mode != 'add' && this.formUpdated == false) || (this.mode == 'add' && !this.controlFormInputFilled()))
       this.dialogRef.close();
     else {
+      let message; 
+      if (this.mode != 'add') 
+        message = this.rsc.message.updateFormConfirm
+      else
+        message = this.rsc.message.addFormConfirm
+      
       //si le formulaire a été modifié/touché, demande de confirmation de fermeture
       let dialogRefConfirm = this.dialog.open(ModalConfirmComponent, {
         data: {
           question: this.rsc.message.quitScreenConfirm,
-          additionalMessage: this.rsc.message.updateFormConfirm
+          additionalMessage: message
         },
         autoFocus: false,
         disableClose: true
@@ -222,7 +226,7 @@ export class ModalFormulairePlanComponent implements OnInit {
         //si l'utilsiateur à confirmer la fermeture de la modal
         if (val == true)
           this.dialogRef.close();
-      })
+      });
     }
   }
 

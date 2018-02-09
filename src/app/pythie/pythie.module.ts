@@ -14,6 +14,10 @@ import { PlanListComponent }                            from './components/plan/
 import { NotificationsService }                         from '../core/providers/notifications.service';
 import { PlanDetailComponent }                          from './components/plan/plan-detail/plan-detail.component';
 import { ModalFormulairePlanComponent }                 from './components/plan/modal-formulaire-plan/modal-formulaire-plan.component';
+import { ConditionsParticuliereListComponent } from './components/conditions-particulieres/conditions-particuliere-list/conditions-particuliere-list.component';
+import { PlanInformationsComponent } from './components/plan/plan-informations/plan-informations.component';
+import { PlanCriteresApplicationComponent } from './components/plan/plan-criteres-application/plan-criteres-application.component';
+import { PlanBrancheCpComponent } from './components/plan/plan-branche-cp/plan-branche-cp.component';
 
 @NgModule({
   imports: [
@@ -30,7 +34,11 @@ import { ModalFormulairePlanComponent }                 from './components/plan/
     ConditionsParticulieresMotifsActionComponent,
     PlanListComponent,
     PlanDetailComponent,
-    ModalFormulairePlanComponent
+    ModalFormulairePlanComponent,
+    ConditionsParticuliereListComponent,
+    PlanInformationsComponent,
+    PlanCriteresApplicationComponent,
+    PlanBrancheCpComponent
   ],
   exports: [
     ConditionsParticulieresInformationsComponent, 

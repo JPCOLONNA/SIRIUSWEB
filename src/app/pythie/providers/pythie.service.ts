@@ -13,12 +13,16 @@ export class PythieService {
   /** Ressources liées à l'appel de l'API WAPYPLAN - Plan de PYTHIE */
   wapyplan: any;
 
+  /** Ressources liées à l'appel de l'API WABRANCHECP - Branche "Conditions particulières" de PYTHIE */
+  wapybrancheCP: any;
+
   constructor(
     private http: HttpClient, 
     private mixinService : MixinService,
     private exceptionService: ExceptionService,
     private settingsService: SettingsService) { 
-      this.wapyplan = this.settingsService.get().webservices.assure;
+      this.wapyplan = this.settingsService.get().webservices.plan;
+      this.wapybrancheCP = this.settingsService.get().webservices.brancheCP;
     }
 
 
@@ -52,6 +56,7 @@ export class PythieService {
    * @returns       Retourne les informations du plan sous forme d'observable
    */
   getPlan(idPlan: number): Observable<any> {
+    console.log(idPlan);
     // Génération du corps de la requête
     /* TO appel de service
     const body: string = JSON.stringify({
@@ -88,8 +93,8 @@ export class PythieService {
   addUpdateDuplicatePlan(idPlan: number, valueForm: any, mode: string)
   {
     // Génération du corps de la requête
-    // TO appel de service
-    const body: string = JSON.stringify({
+    // TO DO appel de service
+    /*const body: string = JSON.stringify({
       contexte:     this.wapyplan.contexte[mode + 'Plan'],
       id_plan:      idPlan,
       type_plan:    valueForm.typePlan,
@@ -101,7 +106,8 @@ export class PythieService {
     });
 
     const url = this.mixinService.getApiUrl() + this.wapyplan.url;
-    return this.sendWebService(body,url);
+    return this.sendWebService(body,url);*/
+    return Observable.of("");
   }
 
 
@@ -115,7 +121,22 @@ export class PythieService {
     //TO DO Appel web services pour récupérer les informations de la branche CP concernant l'assuré
     // A adapeter à l'appel de service (methode post, body et header)
     return this.http.get("resources/tmp/_tmp_brancheCP.json");
-            
+  }
+
+  /**
+   * Récupère la liste des branches CP selon l'identifiant d'un plan
+   * @param idPlan Identifiant d'un plan PYTHIE
+   */
+  getListConditionsParticulieres(idPlan: number)
+  {
+    /*const body: string = JSON.stringify({
+      contexte:     this.wapybrancheCP.contexte.brancheCPList,
+      id_plan:      idPlan
+    });
+
+    const url = this.mixinService.getApiUrl() + this.wapyplan.url;
+    return this.sendWebService(body,url);*/
+    return this.http.get("resources/tmp/_tmp_liste_branchesCP.json");
   }
 
 

@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { PythieComponent } from './pythie.component';
 import { AuthGuardService } from '../core/providers/auth-guard.service';
 import { PlanListComponent } from './components/plan/plan-list/plan-list.component';
-import { PlanDetailComponent } from './components/plan/plan-detail/plan-detail.component';
+import { PlanInformationsComponent } from 'app/pythie/components/plan/plan-informations/plan-informations.component';
+import { PlanCriteresApplicationComponent } from 'app/pythie/components/plan/plan-criteres-application/plan-criteres-application.component';
+import { PlanBrancheCpComponent } from 'app/pythie/components/plan/plan-branche-cp/plan-branche-cp.component';
 
 
 const pythieRoutes: Routes = [
@@ -30,8 +32,8 @@ const pythieRoutes: Routes = [
                 }
             },
             {
-                path: 'plan-detail',
-                component: PlanDetailComponent,
+                path: 'plan-critereApplication',
+                component: PlanCriteresApplicationComponent,
                 canActivate: [AuthGuardService],
                 data: {
                     breadcrumb: "Détail d'un plan",
@@ -40,8 +42,8 @@ const pythieRoutes: Routes = [
             },
             {
                 path: 'plan-brancheCP',
-                component: PlanDetailComponent,
-                canActivate: [AuthGuardService],
+                component: PlanBrancheCpComponent,
+                canActivate: [],
                 data: {
                     breadcrumb: "Branche \"Conditions particulières\"",
                     screenName: "WPYPLANBRANCHECP"
