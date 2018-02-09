@@ -163,20 +163,9 @@
         { "code": "N", "valeur": "En concubinage notoire" },
         { "code": "S", "valeur": "Séparé" }
     ],
-<<<<<<< HEAD
     "message":
     {
-        "quitScreenConfirm":"Êtes-vous sur de vouloir quitter la fenêtre ? ",
-=======
-    "icons": {
-        "menu": { "icon": "bars", "label": "Menu" },
-        "modifier": { "icon": "pencil", "label": "Modifier" },
-        "supprimer": { "icon": "trash", "label": "Supprimer" },
-        "duppliquer": { "icon": "clone", "label": "Duppliquer" }
-    },
-    "message": {
-        "quitScreenConfirm": "Êtes-vous sur de vouloir quitter la fenêtre ? ",
->>>>>>> 528f068d349b6367561aadf2bc1338e5150fb3f2
+        "quitScreenConfirm":"Êtes-vous sûr de vouloir quitter la fenêtre ? ",
         "addFormConfirm": "Les informations saisies seront perdues.",
         "updateFormConfirm": "Vos modifications seront perdues.",
         "deleteConfirm": "Êtes-vous sur de vouloir supprimer cet élément ?"
