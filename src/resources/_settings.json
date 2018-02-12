@@ -36,6 +36,14 @@
             "fic_iban": "RIB",
             "fic_infossal": "Salarie"
         },
+        "validateEvent": {
+            "url": "/wabasetmp",
+            "contexte": "ValidEvenement"
+        },
+        "deleteEvent": {
+            "url": "/wabasetmp",
+            "contexte": "SuppEvenement"
+        },
         "liste": {
             "url": "/waliste",
             "contexte": {

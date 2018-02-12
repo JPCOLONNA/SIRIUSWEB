@@ -43,7 +43,7 @@
                     <br />
                     <br /> {{rsc.label.numSociete}} {{eventDetail.DetailEvt.id_societe}} - {{eventDetail.DetailEvt.raison_sociale}}
                 </div>
-                <div><br /><button mat-raised-button type="submit" color="primary">{{rsc.label.btnValiderEvenement}}</button></div>
+                <div><br /><button mat-raised-button type="button" (click)="validEvent()" color="primary">{{rsc.label.btnValiderEvenement}}</button></div>
             </div>
         </div>
 

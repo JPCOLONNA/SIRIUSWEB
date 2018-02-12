@@ -110,8 +110,8 @@ export class FormulaireInfosSalarialesComponent implements OnInit {
   onSubmit() {
     this.baseTamponService.saveInfosSalEvent(this.generateInfosSalSaveParameters(this.formAssure)).subscribe(data => {
         this.isModified=false;
+        this.onSaved.emit("");
       });
-    this.onSaved.emit("");
   }
 
   generateInfosSalSaveParameters(form: FormGroup) {

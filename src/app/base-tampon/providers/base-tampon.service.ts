@@ -12,22 +12,22 @@ import { ExceptionService } from '../../core/providers/exception.service';
 @Injectable()
 export class BaseTamponService {
 
-    webservices: any;
+  webservices: any;
 
   /**
    * Crée une instance d'BaseTamponServices
    * @param http 
    */
   constructor(
-    private mixinService : MixinService,
+    private mixinService: MixinService,
     private settingsService: SettingsService,
     private exceptionService: ExceptionService,
     private http: HttpClient) {
-      this.webservices = this.settingsService.get().webservices;
-    }
+    this.webservices = this.settingsService.get().webservices;
+  }
 
 
-  generateEventsListParameters(filters?:any): string {
+  generateEventsListParameters(filters?: any): string {
     return JSON.stringify({
       contexte: this.webservices.listEvents.contexte,
       idstockage: ""
@@ -38,18 +38,18 @@ export class BaseTamponService {
    * Récupère la liste des évênements depuis SIRIUS
    * @returns         Les informations concernant ces évênements sous forme d'un Observable
    */
-  loadEventsList(filters?:any): Observable<any> {
+  loadEventsList(filters?: any): Observable<any> {
     return this.http.post(
-      this.mixinService.getApiUrl() + '/'+this.webservices.listEvents.url,
-        this.generateEventsListParameters(filters),
-        {headers: this.mixinService.getDefaultHeaders()}
-      ).catch(error => {
-        return this.exceptionService.handleException(error);
-      });
+      this.mixinService.getApiUrl() + '/' + this.webservices.listEvents.url,
+      this.generateEventsListParameters(filters),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
 
-    generateEventDetailsParameters(idstockage: string, idevenement: string, filters?:any): string {
+  generateEventDetailsParameters(idstockage: string, idevenement: string, filters?: any): string {
     return JSON.stringify({
       contexte: this.webservices.eventDetails.contexte,
       idstockage: idstockage,
@@ -58,161 +58,190 @@ export class BaseTamponService {
   }
 
 
-    /**
-   * Récupère le détail d'un évênement depuis SIRIUS
-   * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
-   */
-  loadEventDetails(idstockage: string, idevenement: string, filters?:any): Observable<any> {
+  /**
+ * Récupère le détail d'un évênement depuis SIRIUS
+ * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
+ */
+  loadEventDetails(idstockage: string, idevenement: string, filters?: any): Observable<any> {
     return this.http.post(
-      this.mixinService.getApiUrl() + '/'+this.webservices.eventDetails.url,
-        this.generateEventDetailsParameters(idstockage, idevenement,filters),
-        {headers: this.mixinService.getDefaultHeaders()}
-      ).catch(error => {
-        return this.exceptionService.handleException(error);
-      });
+      this.mixinService.getApiUrl() + '/' + this.webservices.eventDetails.url,
+      this.generateEventDetailsParameters(idstockage, idevenement, filters),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
 
-    generateParametersParameters(): string {
+  generateParametersParameters(): string {
     return JSON.stringify({
       contexte: this.webservices.parameters.contexte
     });
   }
 
 
-    /**
-   * Récupère le détail d'un évênement depuis SIRIUS
-   * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
-   */
+  /**
+ * Récupère le détail d'un évênement depuis SIRIUS
+ * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
+ */
   loadParameters(): Observable<any> {
     return this.http.post(
-      this.mixinService.getApiUrl() + '/'+this.webservices.parameters.url,
-        this.generateParametersParameters(),
-        {headers: this.mixinService.getDefaultHeaders()}
-      ).catch(error => {
-        return this.exceptionService.handleException(error);
-      });
+      this.mixinService.getApiUrl() + '/' + this.webservices.parameters.url,
+      this.generateParametersParameters(),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
 
 
   generateSaveAssureParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_assures;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_assures;
     return JSON.stringify(JSONArg);
   }
 
   generateSaveBeneficiaireParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_benefs;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_benefs;
     return JSON.stringify(JSONArg);
   }
 
   generateSaveCouvertureParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_couverture;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_couverture;
     return JSON.stringify(JSONArg);
   }
 
   generateSaveCouvertureBeneficiaireParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_couverturebenef;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_couverturebenef;
     return JSON.stringify(JSONArg);
   }
 
   generateSaveIbanParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_iban;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_iban;
     return JSON.stringify(JSONArg);
   }
 
 
   generateSaveInfosSalParameters(JSONArg: any): string {
-    JSONArg["contexte"]=this.webservices.saveEvent.contexte;
-    JSONArg["nomfic"]=this.webservices.saveEvent.fic_infossal;
+    JSONArg["contexte"] = this.webservices.saveEvent.contexte;
+    JSONArg["nomfic"] = this.webservices.saveEvent.fic_infossal;
     return JSON.stringify(JSONArg);
   }
 
+  generateValidEventParameters(JSONArg: any): string {
+    JSONArg["contexte"] = this.webservices.validEvent.contexte;
+    return JSON.stringify(JSONArg);
+  }
 
-    /**
-   * Récupère le détail d'un évênement depuis SIRIUS
-   * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
-   */
+  generateDeleteEventParameters(JSONArg: any): string {
+    JSONArg["contexte"] = this.webservices.deleteEvent.contexte;
+    return JSON.stringify(JSONArg);
+  }
+
+  /**
+ * Récupère le détail d'un évênement depuis SIRIUS
+ * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
+ */
   saveAssureEvent(JSONArg: any, type: number): Observable<any> {
-    if (type===0) {
+    if (type === 0) {
       return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveAssureParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+        this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+        this.generateSaveAssureParameters(JSONArg),
+        { headers: this.mixinService.getDefaultHeaders() }
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
     } else {
       return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveBeneficiaireParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+        this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+        this.generateSaveBeneficiaireParameters(JSONArg),
+        { headers: this.mixinService.getDefaultHeaders() }
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
     }
   }
 
   saveCouvertureEvent(JSONArg: any, type: number): Observable<any> {
-    if (type===0) {
+    if (type === 0) {
       return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveCouvertureParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+        this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+        this.generateSaveCouvertureParameters(JSONArg),
+        { headers: this.mixinService.getDefaultHeaders() }
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
     } else {
       return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveCouvertureBeneficiaireParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+        this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+        this.generateSaveCouvertureBeneficiaireParameters(JSONArg),
+        { headers: this.mixinService.getDefaultHeaders() }
+      ).catch(error => {
+        return this.exceptionService.handleException(error);
+      });
     }
   }
 
   saveIbanEvent(JSONArg: any): Observable<any> {
-      return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveIbanParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+      this.generateSaveIbanParameters(JSONArg),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
   saveInfosSalEvent(JSONArg: any): Observable<any> {
-      return this.http.post(
-        this.mixinService.getApiUrl() + '/'+this.webservices.saveEvent.url,
-          this.generateSaveInfosSalParameters(JSONArg),
-          {headers: this.mixinService.getDefaultHeaders()}
-        ).catch(error => {
-          return this.exceptionService.handleException(error);
-        });
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/' + this.webservices.saveEvent.url,
+      this.generateSaveInfosSalParameters(JSONArg),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
-/*
-  //A SUPPRIMER PLUS UTILISÉ  
-  getListeEvenements(): Observable<any> {
-    //TO DO : Appel web service pour lister les évènements
-    // A adapeter à l'appel de service (methode post, body et header)
-    let headers = this.mixinService.getDefaultHeaders();
-    return this.http.get("resources/tmp/_tmp_base_tampon.json", { headers: headers });
+  validEvent(JSONArg: any): Observable<any> {
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/' + this.webservices.validEvent.url,
+      this.generateValidEventParameters(JSONArg),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
   }
 
-  getDetailEvenement(idStockage: number): Observable<any> {
-    //TO DO : Appel web service pour lancer la recherche d'un assuré
-    // A adapter à l'appel de service (methode post, body et header)
-    let headers = this.mixinService.getDefaultHeaders();
-    return this.http.get("resources/tmp/_tmp_evenement_detail.json", { headers: headers });
-  }*/
+  deleteEvent(JSONArg: any): Observable<any> {
+    return this.http.post(
+      this.mixinService.getApiUrl() + '/' + this.webservices.deleteEvent.url,
+      this.generateDeleteEventParameters(JSONArg),
+      { headers: this.mixinService.getDefaultHeaders() }
+    ).catch(error => {
+      return this.exceptionService.handleException(error);
+    });
+  }
+
+  /*
+    //A SUPPRIMER PLUS UTILISÉ  
+    getListeEvenements(): Observable<any> {
+      //TO DO : Appel web service pour lister les évènements
+      // A adapeter à l'appel de service (methode post, body et header)
+      let headers = this.mixinService.getDefaultHeaders();
+      return this.http.get("resources/tmp/_tmp_base_tampon.json", { headers: headers });
+    }
   
+    getDetailEvenement(idStockage: number): Observable<any> {
+      //TO DO : Appel web service pour lancer la recherche d'un assuré
+      // A adapter à l'appel de service (methode post, body et header)
+      let headers = this.mixinService.getDefaultHeaders();
+      return this.http.get("resources/tmp/_tmp_evenement_detail.json", { headers: headers });
+    }*/
+
 
 }

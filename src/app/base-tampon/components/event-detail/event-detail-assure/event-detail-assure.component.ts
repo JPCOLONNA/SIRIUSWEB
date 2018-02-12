@@ -7,6 +7,8 @@ import { Couverture } from '../../../model/couverture';
 import { Iban } from '../../../model/iban';
 import { Salarie } from '../../../model/salarie';
 
+
+
 /**
  * Liste les assurés de la base tampon pour un évènement
  */

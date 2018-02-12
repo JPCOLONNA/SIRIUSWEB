@@ -125,13 +125,14 @@ export class FormulaireCouvertureComponent implements OnInit {
     if (this.couverture !== undefined) {
       this.baseTamponService.saveCouvertureEvent(this.generateAssureSaveParameters(this.formCouverture),0).subscribe(data => {
         this.isModified=false;
+        this.onSaved.emit("");
       });
     } else {
       this.baseTamponService.saveCouvertureEvent(this.generateAssureSaveParameters(this.formCouverture),1).subscribe(data => {
         this.isModified=false;
+        this.onSaved.emit("");
       });
     }
-    this.onSaved.emit("");
   }
 
   generateAssureSaveParameters(form: FormGroup) {

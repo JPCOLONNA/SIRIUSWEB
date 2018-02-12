@@ -144,13 +144,14 @@ export class FormulaireAssureComponent implements OnInit {
     if (this.assure !== undefined) {
       this.baseTamponService.saveAssureEvent(this.generateAssureSaveParameters(this.formAssure),0).subscribe(data => {
         this.isModified=false;
+        this.onSaved.emit("");
       });
     } else {
       this.baseTamponService.saveAssureEvent(this.generateAssureSaveParameters(this.formAssure),1).subscribe(data => {
         this.isModified=false;
+        this.onSaved.emit("");
       });
     }
-    this.onSaved.emit("");
   }
 
   delete()  {

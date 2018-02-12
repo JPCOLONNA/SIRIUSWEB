@@ -42,6 +42,16 @@ const baseTamponRoutes: Routes = [
                     screenName: "WBTDETAIL"
                 }
             }
+            ,
+            {
+                path: 'ged/:idstockage',
+                component: EventDetailComponent,
+                //canActivate: [AuthGuardService],
+                data: {
+                    breadcrumb: "Détail de l'évènement",
+                    screenName: "WBTDETAIL"
+                }
+            }
         ]
     }
 ];

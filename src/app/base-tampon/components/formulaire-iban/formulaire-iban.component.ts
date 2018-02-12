@@ -119,8 +119,9 @@ export class FormulaireIbanComponent implements OnInit {
   onSubmit() {
     this.baseTamponService.saveIbanEvent(this.generateIbanSaveParameters(this.formIban)).subscribe(data => {
         this.isModified=false;
+         this.onSaved.emit("");
       });
-    this.onSaved.emit("");
+   
   }
 
    generateIbanSaveParameters(form: FormGroup) {
@@ -216,6 +217,14 @@ export class FormulaireIbanComponent implements OnInit {
           } else {
             retour="0";
           }
+      break;
+      case "imputation_frais":
+        let transf: boolean=value;
+        if (transf===true) {
+          retour='1';
+        } else {
+          retour='0';
+        }
       break;
       default:
     }
