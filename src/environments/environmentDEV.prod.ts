@@ -5,5 +5,5 @@
 export const environment = {
   production: true,
   environmentName:"DEVELOPPEMENT",
-  urlAPI : "http://api-i-dev.jpcolonna.fr:2535/API"
+  urlAPI : "http://sirius-dev.jpcolonna.fr:3615/API"
 };
