@@ -17,7 +17,7 @@ export class PythieComponent implements OnInit {
   //Ressources
   rscPythie: any; 
 
-  idPlan:number;
+  objet:any;
 
   constructor(
     private resourcesPythieService: ResourcesPythieService, 
@@ -31,7 +31,7 @@ export class PythieComponent implements OnInit {
 
   ngOnInit() {
     this.rscPythie = this.resourcesPythieService.get();
-    this.idPlan = 0;
+    
 
     //MAJ du menu
     this.menuEvent.fire(JSON.stringify(this.rscPythie.menu));
@@ -48,7 +48,7 @@ export class PythieComponent implements OnInit {
   componentAdded($event)
   {
     //transfert l'id assuré à afficher
-    $event.idPlan = this.idPlan;
+    $event.objet = this.objet;
   }
 
   /**
@@ -59,9 +59,9 @@ export class PythieComponent implements OnInit {
   componentRemoved($event)
   {
     //Chargement du menu en précisnt qu'il y a un identifiant de connu pour activer les liens nécessitants un identifiant
-    this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscPythie.menu, true, $event.nameId)));
-       
-    //Récupère l'id assuré à afficher
-    this.idPlan = $event.idPlan;
+    this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscPythie.menu, true, $event.nameIdMenu, $event.conditionsMenu)));
+    
+    //Récupère l'objet à afficher
+    this.objet = $event.objet;
   }
 }

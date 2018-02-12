@@ -11,13 +11,13 @@ export class ConstructionMenuService {
      * @param idExist   True si l'id existe et que l'affichage des menus comprenant l'id est souhaité
      * @param nameId    Nom de l'identifiant souhaité (ex idAssure, idPlan,...)
      */
-    constructionMenuNavigation(jsonMenu: any, idExist?: boolean, nameId?: string)
+    constructionMenuNavigation(jsonMenu: any, idExist?: boolean, nameId?: string, conditions?: Array<String>)
     {
         jsonMenu.items.forEach(item => {
-            //si le lien nécessite l'identifiant on vérifie si l'identifiant existe et controle le droit d'accès
+            //si le lien nécessite l'identifiant on vérifie si l'identifiant existe, controle le droit d'accès et si la page est conditionnée
             //TO DO if(((item.id == true && idExist == true) || item.id == false) && this.autorisationService.isAutorise(item.nameScreen, "executer"))
             //(item.idNecessary == true && idExist == true) || 
-            if(item.idNecessary == undefined || item.idNecessary == false || (idExist == true && (item.idNecessary == true || item.idNecessary == nameId)))
+            if((item.idNecessary == undefined || item.idNecessary == false || (idExist == true && (item.idNecessary == true || item.idNecessary == nameId))) && (item.condition == undefined || conditions.indexOf(item.condition) != -1))
               item.isActif = true;
             else
               item.isActif = false;                

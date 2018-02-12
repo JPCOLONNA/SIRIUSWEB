@@ -1,5 +1,5 @@
-export class Plan {
-    id_plan: number;
+export class BrancheCP {
+    id_plan: string;
     type_plan: string;
     type_plan_desc: string;
     nom: string;
@@ -9,7 +9,7 @@ export class Plan {
     actif: string;
     
     constructor(element: any) {        
-        this.id_plan = element.id ? Number(element.id) : element.id_plan ? Number(element.id_plan) : 0;
+        this.id_plan = element.id ? element.id : element.id_plan ? element.id_plan : 0;
         this.nom = element.nom ? element.nom : "";
         this.description = element.description ? element.description : "";
         this.type_plan = element.type_plan ? element.type_plan : "";

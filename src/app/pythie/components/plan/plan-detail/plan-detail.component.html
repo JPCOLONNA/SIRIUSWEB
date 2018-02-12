@@ -1,4 +1,48 @@
-<p>
-  plan-detail works!
-  {{idPlan}}
-</p>
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
+
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</ng-template>
+
+<!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
+<ng-template #pageContent>
+    <div class="contenair" fxLayout="column">
+        <h1>{{rscPlanDetail.title}}</h1>
+        <hr class="down">
+        <div>
+            <mat-sidenav-container>
+                <mat-sidenav #sidenav mode="side" opened (opened)="sidenavIsOpened = true" (closed)="sidenavIsOpened=false">
+                    <mat-nav-list>
+                        <a mat-list-item [class.linkActive]="screen == 'informations' || screen == ''" (click)="onChangeScreen('informations')">
+                            {{rscPlanDetail.infosGeneral}}
+                        </a>
+                        <a mat-list-item [class.linkActive]="screen == 'branchescpList'" (click)="onChangeScreen('branchescpList')">
+                            {{rscPlanDetail.brancheCP}}
+                        </a>
+                    </mat-nav-list>
+                </mat-sidenav>
+
+                <mat-sidenav-content id="contentDetailPlan">
+                    <div class="btnOpenClose">
+                        <i class="fa fa-angle-double-right" (click)="sidenav.toggle()" *ngIf="!sidenavIsOpened"></i>
+                        <i class="fa fa-angle-double-left" (click)="sidenav.toggle()" *ngIf="sidenavIsOpened"></i>
+                    </div>
+                    <div>
+                        <!-- Informations générale d'un plan -->
+                        <!--<app-plan-informations *ngIf="screen == 'informations' || screen == ''" [infosPlan]="infosPlan">
+                        </app-plan-informations>-->
+
+                        <!-- Liste des branches CP d'un plan -->
+                        <!-- [idPlan]="idPlan" [action]="consulter" [branchescpList]="branchescpList" -->
+                        <app-conditions-particuliere-list *ngIf="screen == 'branchescpList'" >
+                        </app-conditions-particuliere-list>
+                    </div>
+                </mat-sidenav-content>
+            </mat-sidenav-container>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,43 @@
+<h1>{{rscPlanInfo.title}}</h1>
+<hr class="down">
+<!-- Conditionne l'affichage le temps du chargement des données -->
+<div *ngIf="isRequesting;then overlay else pageContent"></div>
+
+<!-- Spinner de chargement -->
+<ng-template #overlay>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</ng-template>
+
+<!-- Contenu du composant affiché lorsque le chargement des données est terminé-->
+<ng-template #pageContent>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field [matTooltip]="plan.type_plan" fxFlex="30">
+            <input matInput disabled [placeholder]="label.type_plan" [value]="plan.type_plan_desc">
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+            <input matInput disabled [placeholder]="label.nom" [value]="plan.nom">
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+            <input matInput disabled [placeholder]="label.description" [value]="plan.description">
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="30">
+            <input matInput disabled [placeholder]="label.date_debut" [value]="plan.date_debut | dateYMD">
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+            <input matInput disabled [placeholder]="label.date_fin" [value]="plan.date_fin | dateYMD">
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+            <input matInput disabled [placeholder]="label.actif" [value]="plan.actif">
+        </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <!-- Bouton ajouter -->
+        <button *ngIf="autorisationService.isAutorise('WPYPLANDETAIL','modifier')" mat-raised-button type="submit" color="primary" (click)="updatePlan()" id="btn_update">
+            <i [class]="'fa fa-'+rsc.bouton.modifier.icon"></i> {{rsc.bouton.modifier.libelle}}</button>
+    </div>
+    
+</ng-template>

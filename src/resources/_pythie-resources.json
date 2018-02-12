@@ -10,49 +10,66 @@
         "items": [
             {
                 "url": "/pythie/plan-liste",
-                "nom": "Les plans"
+                "nom": "Plans"
             },
             {
-                "url": "/pythie/plan-detail",
-                "nom": "-- Informations générales",
+                "url": "/pythie/plan-critereApplication",
+                "nom": "-- Critères d'application",
                 "idNecessary": "idPlan"
             },
             {
                 "url": "/pythie/plan-brancheCP",
                 "nom": "-- Conditions particulières",
-                "idNecessary": "idPlan"
+                "idNecessary": "idPlan",
+                "condition": "brancheCP"
+            },
+            {
+                "url": "/pythie/plan-brancheWEBA",
+                "nom": "-- Pages WEB Assuré",
+                "idNecessary": "idPlan",
+                "condition": "planListPWEB"
+            },
+            {
+                "url": "/pythie/plan-brancheWEBS",
+                "nom": "-- Pages WEB Société",
+                "idNecessary": "idPlan",
+                "condition": "planListPWEB"
             },
             {
                 "url": "/pythie/donnees-TP",
-                "nom": "Les données TP"
+                "nom": "Données TP"
             },
             {
                 "url": "/pythie/typage-produit",
-                "nom": "Les typages de produits"
-            },
-            {
-                "url": "/pythie/liste-structure",
-                "nom": "Les listes de structure"
+                "nom": "Typages de produits"
             }
         ],
         "raccourcis":[
             {
                 "url": "/param-general/liste-pieces",
-                "nom": "Liste de pièces"
+                "nom": "Listes de pièces"
             },
             {
                 "url": "/param-general/liste-structure",
-                "nom": "Liste de strucutres"
+                "nom": "Listes de structures"
             },
             {
                 "url": "/param-general/liste-eligibilite",
-                "nom": "Liste d'éligibilité"
+                "nom": "Listes d'éligibilité"
             }
         ]
     },
     "planList":
     {
         "title":"Liste de plans"
+    },
+    "planInfos":
+    {
+        "title":"Information du plan"
+    },
+    "planCritereApplication":
+    {
+        "title":"Liste des critères d'application"
     },
     "modalFormulairePlan":
     {

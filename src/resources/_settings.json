@@ -60,6 +60,13 @@
                 "updatePlan": "ModifierPlan",
                 "duplicatePlan": "DuppliquerPlan"
             }
+        },
+        "brancheCP": {
+            "url": "/wabranchecp",
+            "contexte": {
+                "brancheCPList": "GetListeBrancheCP",
+                "brancheCP": "GetBranchCP"
+            }
         }
     }
 }

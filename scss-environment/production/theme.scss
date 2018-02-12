@@ -51,3 +51,8 @@ $default-bg-color-warn:#F44336;
     height: inherit !important;
     padding:5px;
 }
+
+::ng-deep .mat-input-element:disabled
+{
+    color:inherit !important;
+}

@@ -64,11 +64,13 @@ export class PlanListComponent implements OnInit {
   /** Liste des types de plan */
   listTypePlan: Array<ElementList>;
 
-  /** Identifiant du plan sélectionné */
-  idPlan: number;
-
+  /** ---------------------- Pour la génération du menu -------------------- */
+  /** Plan sélectionné transférer via le router-outlet */
+  objet: any;
   /** Nom de l'identifiant pour l'affichage du menu */
-  nameId: string = 'idPlan'
+  nameIdMenu: string = 'idPlan'
+  /** Conditions d'affichage du menu */
+  conditionsMenu:Array<String>;
 
   /**
    * Crée une instance de PlanListComponent
@@ -117,7 +119,7 @@ export class PlanListComponent implements OnInit {
     this.mask = this.mixinService.getMasks();
 
     //Réinitialise l'identifiant du plan et le menu 
-    this.idPlan = 0;
+    this.objet = new Plan("");
     //Chargement du menu en précisnt qu'il n'y a pas d'identifiant de plan de connu pour désactiver les liens nécessitants un identifiant
     this.menuEvent.fire(JSON.stringify(this.constructionMenuService.constructionMenuNavigation(this.rscPythie.menu, false)));
 
@@ -207,11 +209,20 @@ export class PlanListComponent implements OnInit {
   }
 
   /**
-   * Lors de la sélection d'un plan, sauvegarde l'id plan sélectionné via router-outlet
+   * Lors de la sélection d'un plan, transfer via router-outlet les donénes du plan sélectionné et les libellés dans données
    */
-  selectPlan(idPlan: any) {
-    this.idPlan = idPlan;
-    this.router.navigate(['/pythie/plan-detail']);
+  selectPlan(plan: Plan) {
+    //construit le JSOn à transmettre au autre composant enfant : donnée (plan sélectionné) + libelle
+    let paramTmp = new Array();
+    paramTmp.push(plan);
+    paramTmp.push(this.labelTable);
+    this.objet = JSON.stringify(paramTmp);
+   
+    // L'affichage le contenu du menu dépend des branches du plans */
+    this.conditionsMenu = Array<String>();
+    //TO DO Récupérer les codes des branches du plan à reporter dans items de puthie_ressources.jso,
+    this.conditionsMenu.push("brancheCP");
+    this.router.navigate(['/pythie/plan-critereApplication']);
   }
 
 
