@@ -93,7 +93,7 @@
 
     <!-- Boutons -->
     <div fxLayout="row" fxLayoutAlign="end start" fxLayoutGap="10px" *ngIf="action=='modifier'">
-        <button mat-raised-button type="submit" color="primary">{{rsc.label.btnEnregistrerModifs}}</button>
-        <button mat-raised-button type="button" (click)="delete();" color="primary">Supprimer</button>
+        <button mat-raised-button type="submit" color="primary"><i class="fa no-click fa-save"></i>&nbsp;{{rsc.label.btnEnregistrerModifs}}</button>
+        <button mat-raised-button type="button" (click)="delete();" color="primary"><i class="fa no-click fa-times-circle"></i>&nbsp;Supprimer</button>
     </div>
 </form>
