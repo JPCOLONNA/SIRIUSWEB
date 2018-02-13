@@ -1,79 +1,73 @@
 <!-- Conditionne l'affichage le temps du chargement des données -->
-<div *ngIf="isRequesting;then overlay else pageContent"></div>
 
-<!-- Spinner de chargement -->
-<ng-template #overlay>
-    <div fxLayout="row" fxLayoutAlign="center center">
-        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-    </div>
-</ng-template>
+<div *ngIf="isRequesting" fxLayout="row" fxLayoutAlign="center center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 
-<!-- Contenu du composant affiché lorsque le chargement des données est terminées-->
-<ng-template #pageContent>
-    <div class="contenair" fxLayout="column" fxLayoutAlign="start stretch">
-        <h1>{{rscBaseTampon.eventList.title}}</h1>
-        <hr class="down" />
+<div class="contenair" fxLayout="column" fxLayoutAlign="start stretch" [ngClass]="{hidden: isRequesting}">
+    <h1>{{rscBaseTampon.eventList.title}}</h1>
+    <hr class="down" />
 
-        <!-- Filtre -->
-        <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
+    <!-- Filtre -->
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
 
-        <!-- Liste des actions à valider -->
-        <div>
-            <mat-table #table [dataSource]="dataSourceBaseTampon" matSort>
+    <!-- Liste des actions à valider -->
+    <div>
+        <mat-table #table [dataSource]="dataSourceBaseTampon" matSort>
 
-                <!-- Type d'action -->
-                <ng-container matColumnDef="provenance">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.provenance}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.provenance}} </mat-cell>
-                </ng-container>
+            <!-- Type d'action -->
+            <ng-container matColumnDef="provenance">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.provenance}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.provenance}} </mat-cell>
+            </ng-container>
 
-                <!-- Type d'action -->
-                <ng-container matColumnDef="type_action">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.typeAction}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.type_action}} </mat-cell>
-                </ng-container>
+            <!-- Type d'action -->
+            <ng-container matColumnDef="type_action">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.typeAction}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.type_action}} </mat-cell>
+            </ng-container>
 
-                <!-- Numéro d'assuré -->
-                <ng-container matColumnDef="id_assure">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numAssure}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_assure}} </mat-cell>
-                </ng-container>
+            <!-- Numéro d'assuré -->
+            <ng-container matColumnDef="id_assure">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numAssure}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_assure}} </mat-cell>
+            </ng-container>
 
-                <!-- Nom et prénom de l'assuré -->
-                <ng-container matColumnDef="nom_assure">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.nomPrenomAssure}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.nom_assure}} {{event.prenom_assure}} </mat-cell>
-                </ng-container>
+            <!-- Nom et prénom de l'assuré -->
+            <ng-container matColumnDef="nom_assure">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.nomPrenomAssure}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.nom_assure}} {{event.prenom_assure}} </mat-cell>
+            </ng-container>
 
-                <!-- Numéro de société -->
-                <ng-container matColumnDef="id_societe">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numSociete}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_societe}} </mat-cell>
-                </ng-container>
+            <!-- Numéro de société -->
+            <ng-container matColumnDef="id_societe">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.numSociete}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.id_societe}} </mat-cell>
+            </ng-container>
 
-                <!-- Raison sociale de la société -->
-                <ng-container matColumnDef="raison_sociale">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.raisonSociale}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.raison_sociale}} </mat-cell>
-                </ng-container>
+            <!-- Raison sociale de la société -->
+            <ng-container matColumnDef="raison_sociale">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rsc.label.raisonSociale}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.raison_sociale}} </mat-cell>
+            </ng-container>
 
-                <!-- Date de l'action -->
-                <ng-container matColumnDef="date_traitement">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.dateTraitement}} </mat-header-cell>
-                    <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.date_traitement | dateYMD }} - {{event.heure_traitement | heure}} </mat-cell>
-                </ng-container>
+            <!-- Date de l'action -->
+            <ng-container matColumnDef="date_traitement">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{rscBaseTampon.label.dateTraitement}} </mat-header-cell>
+                <mat-cell *matCellDef="let event" (click)="selectEvent(event.id_stockage, event.id_evenement)" class="clickable"> {{event.date_traitement | dateYMD }} - {{event.heure_traitement | heure}} </mat-cell>
+            </ng-container>
 
-                <!-- Entête de tableau -->
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+            <!-- Entête de tableau -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
 
-            <!-- Pagination -->
-            <mat-paginator #paginator [class.hidden]="eventList == undefined || eventList == null || eventList.length == 0 " [pageSize]="25" [pageSizeOptions]="[10,25,50,100]">
-            </mat-paginator>
-        </div>
 
     </div>
-</ng-template>
+
+</div>
+<!-- Pagination -->
+<mat-paginator #paginator [class.hidden]="eventList == undefined || eventList == null || eventList.length == 0 " [pageSize]="25" [pageSizeOptions]="[10,25,50,100]">
+</mat-paginator>

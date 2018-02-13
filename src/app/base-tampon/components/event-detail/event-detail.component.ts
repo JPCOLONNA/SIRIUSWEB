@@ -129,10 +129,12 @@ export class EventDetailComponent implements OnInit {
    * Controle les paramètres en entrée
    */
   ngOnInit() {
-    this.idStockage=parseInt(this.route.snapshot.paramMap.get('idstockage'));
+    if (this.route.snapshot.paramMap.get('idstockage')) {
+      this.idStockage=parseInt(this.route.snapshot.paramMap.get('idstockage'));
+    }
     //Si l'idStockage n'est pas connu, redirection vers la liste des évènements
-    if ((this.idStockage == 0 || this.idStockage == null) && (this.idEvt == 0 || this.idEvt == null))
-      this.router.navigate(['/tampon/liste']);
+    if (( this.idStockage == 0 || this.idStockage == null) && (this.idEvt == 0 || this.idEvt == null))
+      this.router.navigate(['/tampon/liste']); 
 
     //Ressources
     this.rsc = this.resourcesService.get();
@@ -486,8 +488,16 @@ export class EventDetailComponent implements OnInit {
   generateParameters() {
 
     let JSONArg = JSON.parse('{}');
-    JSONArg.idevenement = this.idEvt;
-    JSONArg.idstockage = this.idStockage;
+    if (this.idEvt) {
+      JSONArg.idevenement = this.idEvt;
+    } else {
+      JSONArg.idevenement = "";
+    }
+    if (this.idStockage) {
+      JSONArg.idstockage = this.idStockage;
+    } else {
+      JSONArg.idstockage = "";
+    }
 
     return JSONArg;
 

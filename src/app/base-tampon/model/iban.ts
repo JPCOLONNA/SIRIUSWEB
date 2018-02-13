@@ -45,7 +45,7 @@ export class Iban {
         this.iban_code_pays= tab.pays_iban ? tab.pays_iban : "";
         this.iban_cle= tab.cle_iban ? tab.cle_iban : "";
         this.iban_code= tab.code_iban ? tab.code_iban : "";
-        this.devise= tab.devise ? tab.devise : "";
+        this.devise= tab.code_devise ? tab.code_devise : "";
         this.imputation_frais= tab.imputation_frais==="1" ? true: false;
         this.complement_info= tab.complement_info ? tab.complement_info : "";
     }

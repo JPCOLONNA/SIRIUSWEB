@@ -116,6 +116,7 @@ export class EventsListComponent implements OnInit {
     );
   }
 
+
   /**
    * Applique le filtre sur la liste des actions/évènements 
    * @param filterValue Valeur du filtre, valeur recherchée

@@ -43,7 +43,8 @@
                     <br />
                     <br /> {{rsc.label.numSociete}} {{eventDetail.DetailEvt.id_societe}} - {{eventDetail.DetailEvt.raison_sociale}}
                 </div>
-                <div><br /><button mat-raised-button type="button" (click)="validEvent()" color="primary">{{rsc.label.btnValiderEvenement}}</button></div>
+                <div>&nbsp;</div>
+                <div fxLayout="row" fxLayoutAlign="space-between"><button mat-raised-button type="button" (click)="validEvent()" color="primary"><i class="fa no-click fa-check-circle"></i>&nbsp;{{rsc.label.btnValiderEvenement}}</button><button mat-raised-button type="button" (click)="deleteEvent()" color="warn"><i class="fa no-click fa-times-circle"></i>&nbsp;{{rsc.label.btnSupprimerEvenement}}</button></div>
             </div>
         </div>
 

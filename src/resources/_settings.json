@@ -26,6 +26,14 @@
             "url": "/wabasetmp",
             "contexte": "GetListeParametres"
         },
+        "validEvent": {
+            "url": "/wabasetmp",
+            "contexte": "ValidEvenement"
+        },
+        "supprEvent": {
+            "url": "/wabasetmp",
+            "contexte": "SuppEvenement"
+        },
         "saveEvent": {
             "url": "/wabasetmp",
             "contexte": "ModifEvenement",

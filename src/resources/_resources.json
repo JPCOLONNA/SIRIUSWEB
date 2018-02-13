@@ -67,6 +67,7 @@
         "raisonSociale": "Raison sociale de la société",
         "btnValider": "Valider",
         "btnValiderEvenement": "Valider l'évênement",
+        "btnSupprimerEvenement": "Supprimer l'évênement",
         "btnAjouterAssure": "Ajouter une fiche assuré",
         "btnAjouterBeneficiaire": "Ajouter un bénéficiaire",
         "btnAjouterCouverture": "Ajouter une couverture",
@@ -124,18 +125,17 @@
         "typeTitulaire": "Type de titulaire",
         "formulaireModifie": "*La saisie n'a pas été enregistrée."
     },
-    "bouton":
-    {
-        "rechercher": { "icon":"search", "libelle" : "Rechercher"},
-        "ajouter": { "icon":"plus", "libelle" : "Ajouter"},
-        "valider": { "icon":"check", "libelle" : "Valider"},
-        "annuler": { "icon":"ban", "libelle" : "Annuler"},
-        "oui": { "icon":"check-circle", "libelle" : "Oui"},
-        "non": { "icon":"times-circle", "libelle" : "Non"},
-        "menu": {"icon":"bars","libelle":"Menu"},
-        "modifier": {"icon":"pencil","libelle":"Modifier"},
-        "supprimer": {"icon":"trash","libelle":"Supprimer"},
-        "duppliquer": {"icon":"clone","libelle":"Duppliquer"}
+    "bouton": {
+        "rechercher": { "icon": "search", "libelle": "Rechercher" },
+        "ajouter": { "icon": "plus", "libelle": "Ajouter" },
+        "valider": { "icon": "check", "libelle": "Valider" },
+        "annuler": { "icon": "ban", "libelle": "Annuler" },
+        "oui": { "icon": "check-circle", "libelle": "Oui" },
+        "non": { "icon": "times-circle", "libelle": "Non" },
+        "menu": { "icon": "bars", "libelle": "Menu" },
+        "modifier": { "icon": "pencil", "libelle": "Modifier" },
+        "supprimer": { "icon": "trash", "libelle": "Supprimer" },
+        "duppliquer": { "icon": "clone", "libelle": "Duppliquer" }
     },
     "CONSTS": {
         "AJOUT_ASSURE": "AJOUT_ASSURE",
@@ -163,9 +163,8 @@
         { "code": "N", "valeur": "En concubinage notoire" },
         { "code": "S", "valeur": "Séparé" }
     ],
-    "message":
-    {
-        "quitScreenConfirm":"Êtes-vous sûr de vouloir quitter la fenêtre ? ",
+    "message": {
+        "quitScreenConfirm": "Êtes-vous sûr de vouloir quitter la fenêtre ? ",
         "addFormConfirm": "Les informations saisies seront perdues.",
         "updateFormConfirm": "Vos modifications seront perdues.",
         "deleteConfirm": "Êtes-vous sur de vouloir supprimer cet élément ?"

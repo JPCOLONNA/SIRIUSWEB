@@ -80,6 +80,14 @@ export class BaseTamponService {
   }
 
 
+  generateSupprEventParameters(filters?: any): string {
+    return JSON.stringify({
+      contexte: this.webservices.validEvent.contexte
+    });
+  }
+
+
+
   /**
  * Récupère le détail d'un évênement depuis SIRIUS
  * @returns         Les informations concernant cet évênement sont sous forme d'un Observable
